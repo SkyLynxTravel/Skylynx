@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLynx Travel | Test Environment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --deep-ocean: #051923; 
+            --sky-glow: #00a6fb; 
+            --gold: #d4af37;
+            --white: #ffffff;
+        }
+        body {
+            background-color: var(--deep-ocean);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--sky-glow);
+            backdrop-filter: blur(10px);
+        }
+        .input-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #0a2633;
+            color: white;
+            outline: none;
+        }
+        input:focus { border-color: var(--sky-glow); }
+        .search-btn {
+            background: var(--gold);
+            color: var(--deep-ocean);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-btn:hover { background: var(--sky-glow); color: white; }
+        
+        /* تصميم كروت النتائج */
+        #results { margin-top: 30px; }
+        .flight-card {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--gold);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .price { color: var(--sky-glow); font-size: 24px; font-weight: bold; }
+        .loading { text-align: center; color: var(--gold); font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align: center; font-family: 'Cinzel'; color: var(--gold);">SkyLynx Flight Search</h1>
+    <p style="text-align: center; margin-bottom: 30px;">Real-time Search Test (Amadeus Engine)</p>
+
+    <div class="search-box">
+        <form id="searchForm" onsubmit="event.preventDefault(); handleSearch();">
+            <div class="input-group">
+                <input type="text" id="fromInput" placeholder="From (e.g. RUH)" required>
+                <input type="text" id="toInput" placeholder="To (e.g. DXB)" required>
+                <input type="date" id="dateInput" required>
+                <button type="submit" class="search-btn">Find Flights</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="results">
+        </div>
+</div>
+
+<script>
+    async function handleSearch() {
+        const from = document.getElementById('fromInput').value.toUpperCase();
+        const to = document.getElementById('toInput').value.toUpperCase();
+        const date = document.getElementById('dateInput').value;
+        const resultsDiv = document.getElementById('results');
+
+        // 1. مسح النتائج القديمة وإظهار رسالة تحميل
+        resultsDiv.innerHTML = '<div class="loading">Searching SkyLynx Database for best prices...</div>';
+
+        try {
+            // 2. الاتصال بـ Netlify Function (تأكد أن الموقع مرفوع على Netlify ليعمل هذا الرابط)
+            // ملاحظة: إذا كنت تجرب الملف محلياً "Localhost" قد تحتاج لرفع التغييرات لـ Netlify لتفعيل الـ API
+            const response = await fetch(`/.netlify/functions/get-flights?origin=${from}&destination=${to}&departureDate=${date}`);
+            
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            const data = await response.json();
+
+            // 3. معالجة وعرض البيانات
+            if (data.data && data.data.length > 0) {
+                resultsDiv.innerHTML = ''; // مسح رسالة التحميل
+                
+                data.data.forEach(flight => {
+                    const price = flight.price.total;
+                    const currency = flight.price.currency;
+                    const airline = flight.validatingAirlineCodes[0];
+                    
+                    resultsDiv.innerHTML += `
+                        <div class="flight-card">
+                            <div>
+                                <div style="font-weight: bold; color: var(--gold);">${airline} Airlines</div>
+                                <div style="font-size: 1.2em;">${from} ➔ ${to}</div>
+                                <div style="font-size: 0.8em; opacity: 0.7;">Departure: ${date}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="price">${price} ${currency}</div>
+                                <button class="search-btn" style="padding: 5px 15px; font-size: 0.8em;">Select Flight</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsDiv.innerHTML = '<div style="text-align:center;">No flights found. Try (RUH to DXB) for testing.</div>';
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            resultsDiv.innerHTML = `
+                <div style="text-align:center; color: #ff4444; border: 1px solid #ff4444; padding: 10px; border-radius: 10px;">
+                    <strong>System Note:</strong> The search engine needs to be live on Netlify to fetch real data.<br>
+                    Make sure your API keys are set in Netlify Environment Variables.
+                </div>`;
+        }
+    }
+</script>
+
+</body>
+</html>
