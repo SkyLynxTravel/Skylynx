@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Jet Results | SkyLynx Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --deep-ocean: #051923; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .results-header {
+            background: linear-gradient(rgba(5, 25, 35, 0.9), rgba(5, 25, 35, 0.7)),
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .results-header h1 {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .search-info {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        [lang="ar"] .back-btn {
+            left: auto;
+            right: 5%;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Main Container */
+        .results-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            height: fit-content;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .filter-section h3 {
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .filter-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--sky-glow);
+        }
+        
+        .price-slider {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--sky-glow);
+            cursor: pointer;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+        
+        /* Results List */
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sort-options select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .results-count {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* Jet Card */
+        .jet-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 150px 1fr 180px;
+            gap: 25px;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jet-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .jet-card.best-deal::before {
+            content: 'VIP CHARTER';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--deep-ocean);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        [lang="ar"] .jet-card.best-deal::before {
+            content: 'شتر خاص';
+            right: auto;
+            left: 15px;
+        }
+        
+        .jet-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .jet-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--deep-ocean);
+            font-weight: 700;
+        }
+        
+        .jet-name {
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .jet-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .jet-specs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .spec-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .spec-label {
+            font-size: 0.85rem;
+            color: var(--silver);
+        }
+        
+        .jet-features {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Price Section */
+        .price-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--silver);
+        }
+        
+        .inquire-btn {
+            background: linear-gradient(90deg, var(--gold), #b38f00);
+            color: #051923;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .inquire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .details-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .details-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+        
+        /* Provider Tags */
+        .provider-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: var(--silver);
+        }
+        
+        [lang="ar"] .provider-tag {
+            left: auto;
+            right: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 20px 15px;
+                gap: 20px;
+            }
+            
+            .jet-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .jet-info {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .jet-specs {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .price-section {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .inquire-btn, .details-btn {
+                width: auto;
+                min-width: 140px;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+            }
+            
+            .sort-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Footer */
+        .results-footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<button class="back-btn" onclick="goBackToMain()" id="backBtn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to Search</span>
+</button>
+
+<div class="results-header">
+    <h1 id="resultsTitle">Private Jet Charters</h1>
+    <div class="search-info" id="searchInfo">
+        <!-- سيتم ملؤه بالجافاسكريبت -->
+    </div>
+</div>
+
+<div class="results-container">
+    <!-- Filters Sidebar -->
+    <aside class="filters-sidebar">
+        <div class="filter-section">
+            <h3><i class="fas fa-filter"></i> <span id="filterTitle">Jet Category</span></h3>
+            
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="catHeavy" checked>
+                    <span id="heavyLabel">Heavy Jets (12-16 Pax)</span>
+                </label>
+            </div>
+            
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="catMid" checked>
+                    <span id="midLabel">Super Mid-Size (8-10 Pax)</span>
+                </label>
+            </div>
+            
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="catLight" checked>
+                    <span id="lightLabel">Light Jets (4-6 Pax)</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3><i class="fas fa-dollar-sign"></i> <span id="priceTitle">Price Range (per hour)</span></h3>
+            <input type="range" class="price-slider" id="priceSlider" min="5000" max="50000" value="50000">
+            <div class="price-range">
+                <span id="minPrice">5,000 CAD</span>
+                <span id="maxPrice">50,000 CAD</span>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3><i class="fas fa-crown"></i> <span id="amenitiesTitle">Amenities</span></h3>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="amenity-filter" value="wifi">
+                    <span id="wifiLabel">Wi-Fi</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="amenity-filter" value="bedroom">
+                    <span id="bedroomLabel">Bedroom Suite</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="amenity-filter" value="conference">
+                    <span id="conferenceLabel">Conference Room</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="amenity-filter" value="chef">
+                    <span id="chefLabel">On-board Chef</span>
+                </label>
+            </div>
+        </div>
+        
+        <button class="inquire-btn" onclick="applyFilters()" id="applyFiltersBtn">
+            <i class="fas fa-sync-alt"></i> <span>Apply Filters</span>
+        </button>
+        <button class="details-btn" onclick="resetFilters()" style="margin-top: 10px;" id="resetFiltersBtn">
+            <i class="fas fa-redo"></i> <span>Reset All Filters</span>
+        </button>
+    </aside>
+    
+    <!-- Results List -->
+    <main class="results-main">
+        <div class="sort-bar">
+            <div class="results-count" id="resultsCount">
+                Loading private jets...
+            </div>
+            <div class="sort-options">
+                <select id="sortBy" onchange="sortJets()">
+                    <option value="price">Sort by: Price (Low to High)</option>
+                    <option value="price-desc">Sort by: Price (High to Low)</option>
+                    <option value="capacity">Sort by: Capacity</option>
+                    <option value="range">Sort by: Range</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="results-list" id="jetResults">
+            <!-- سيتم ملؤه بالجافاسكريبت -->
+            <div class="loading" id="loadingIndicator">
+                <div class="loader"></div>
+                <p id="loadingText">Searching for available private jets...</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="results-footer">
+    <p id="footerText">© 2025 SkyLynx Travel | Exclusive Private Jet Partners</p>
+</div>
+
+<script>
+// بيانات الترجمة
+const langData = {
+    en: {
+        title: "Private Jet Charters",
+        back: "Back to Search",
+        loading: "Searching for available private jets...",
+        noResults: "No jets found matching your criteria",
+        results: "jets found",
+        inquire: "Inquire Now",
+        details: "Details",
+        from: "From",
+        to: "To",
+        depart: "Departure Date",
+        return: "Return Date",
+        guests: "Guests",
+        category: "Jet Category",
+        filterTitle: "Jet Category",
+        heavyLabel: "Heavy Jets (12-16 Pax)",
+        midLabel: "Super Mid-Size (8-10 Pax)",
+        lightLabel: "Light Jets (4-6 Pax)",
+        priceTitle: "Price Range (per hour)",
+        amenitiesTitle: "Amenities",
+        wifiLabel: "Wi-Fi",
+        bedroomLabel: "Bedroom Suite",
+        conferenceLabel: "Conference Room",
+        chefLabel: "On-board Chef",
+        applyFilters: "Apply Filters",
+        resetFilters: "Reset All Filters",
+        footerText: "© 2025 SkyLynx Travel | Exclusive Private Jet Partners",
+        allResults: "Showing all jets",
+        failedLoad: "Failed to load jets",
+        retry: "Retry",
+        capacity: "Capacity",
+        range: "Range",
+        crew: "Crew",
+        passengers: "Passengers",
+        nm: "nm",
+        perHour: "/hour"
+    },
+    ar: {
+        title: "طائرات خاصة للشتر",
+        back: "العودة للبحث",
+        loading: "جاري البحث عن طائرات خاصة متاحة...",
+        noResults: "لا توجد طائرات تطابق معايير البحث",
+        results: "طائرة موجودة",
+        inquire: "استعلم الآن",
+        details: "التفاصيل",
+        from: "من",
+        to: "إلى",
+        depart: "تاريخ المغادرة",
+        return: "تاريخ العودة",
+        guests: "الضيوف",
+        category: "نوع الطائرة",
+        filterTitle: "نوع الطائرة",
+        heavyLabel: "طائرات كبيرة (12-16 راكب)",
+        midLabel: "متوسطة الحجم (8-10 راكب)",
+        lightLabel: "طائرات خفيفة (4-6 راكب)",
+        priceTitle: "نطاق السعر (للساعة)",
+        amenitiesTitle: "المرافق",
+        wifiLabel: "واي فاي",
+        bedroomLabel: "غرفة نوم",
+        conferenceLabel: "غرفة اجتماعات",
+        chefLabel: "شيف على متن الطائرة",
+        applyFilters: "تطبيق الفلاتر",
+        resetFilters: "إعادة تعيين جميع الفلاتر",
+        footerText: "© 2025 سكايلينكس للسياحة | شركاء حصريون للطائرات الخاصة",
+        allResults: "عرض جميع الطائرات",
+        failedLoad: "فشل تحميل الطائرات",
+        retry: "إعادة المحاولة",
+        capacity: "السعة",
+        range: "المدى",
+        crew: "الطاقم",
+        passengers: "الركاب",
+        nm: "ميل بحري",
+        perHour: "/ساعة"
+    }
+};
+
+// المتغيرات
+let currentLang = 'en';
+let currentCurrency = 'CAD';
+let searchData = {};
+let allJets = [];
+let filteredJets = [];
+
+// تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    // تحميل التفضيلات
+    loadPreferences();
+    
+    // تحميل بيانات البحث
+    loadSearchData();
+    
+    // تحميل الطائرات
+    setTimeout(loadJets, 1000);
+    
+    // إعداد الفلاتر
+    setupFilters();
+});
+
+// تحميل التفضيلات
+function loadPreferences() {
+    // اللغة
+    const savedLang = localStorage.getItem('language') || 'en';
+    currentLang = savedLang;
+    document.getElementById('main-html').setAttribute('lang', savedLang);
+    
+    // العملة
+    const savedCurrency = localStorage.getItem('currency') || 'CAD';
+    currentCurrency = savedCurrency;
+    
+    // تحديث أسعار العملة في العرض
+    document.getElementById('minPrice').textContent = `5,000 ${currentCurrency}`;
+    document.getElementById('maxPrice').textContent = `50,000 ${currentCurrency}`;
+    
+    // ترجمة الصفحة
+    translatePage();
+}
+
+// العودة للصفحة الرئيسية
+function goBackToMain() {
+    window.location.href = 'index.html';
+}
+
+// ترجمة الصفحة
+function translatePage() {
+    const lang = langData[currentLang];
+    
+    // تحديث العناوين
+    document.getElementById('resultsTitle').textContent = lang.title;
+    document.getElementById('backBtn').querySelector('span').textContent = lang.back;
+    document.getElementById('loadingText').textContent = lang.loading;
+    document.getElementById('filterTitle').textContent = lang.filterTitle;
+    document.getElementById('heavyLabel').textContent = lang.heavyLabel;
+    document.getElementById('midLabel').textContent = lang.midLabel;
+    document.getElementById('lightLabel').textContent = lang.lightLabel;
+    document.getElementById('priceTitle').textContent = lang.priceTitle;
+    document.getElementById('amenitiesTitle').textContent = lang.amenitiesTitle;
+    document.getElementById('wifiLabel').textContent = lang.wifiLabel;
+    document.getElementById('bedroomLabel').textContent = lang.bedroomLabel;
+    document.getElementById('conferenceLabel').textContent = lang.conferenceLabel;
+    document.getElementById('chefLabel').textContent = lang.chefLabel;
+    document.getElementById('applyFiltersBtn').querySelector('span').textContent = lang.applyFilters;
+    document.getElementById('resetFiltersBtn').querySelector('span').textContent = lang.resetFilters;
+    document.getElementById('footerText').textContent = lang.footerText;
+    
+    // تحديث select الترتيب
+    const sortSelect = document.getElementById('sortBy');
+    if (currentLang === 'ar') {
+        sortSelect.innerHTML = `
+            <option value="price">ترتيب حسب: السعر (من الأقل)</option>
+            <option value="price-desc">ترتيب حسب: السعر (من الأعلى)</option>
+            <option value="capacity">ترتيب حسب: السعة</option>
+            <option value="range">ترتيب حسب: المدى</option>
+        `;
+    }
+}
+
+// تحميل بيانات البحث
+function loadSearchData() {
+    try {
+        searchData = JSON.parse(localStorage.getItem('privateJetSearchData')) || {
+            origin: 'VIP Hangar',
+            destination: 'Anywhere',
+            departure: new Date().toISOString().split('T')[0],
+            return: '',
+            guests: 4,
+            category: 'Heavy Jet (12-16 Pax)',
+            currency: currentCurrency,
+            language: currentLang
+        };
+        
+        // عرض معلومات البحث
+        displaySearchInfo();
+    } catch (error) {
+        console.error('Error loading search data:', error);
+        searchData = {
+            origin: 'VIP Hangar',
+            destination: 'Anywhere',
+            departure: new Date().toISOString().split('T')[0],
+            guests: 4,
+            category: 'Heavy Jet',
+            currency: 'CAD'
+        };
+        displaySearchInfo();
+    }
+}
+
+// عرض معلومات البحث
+function displaySearchInfo() {
+    const lang = langData[currentLang];
+    const infoDiv = document.getElementById('searchInfo');
+    
+    const fromLoc = searchData.origin || 'VIP Hangar';
+    const toLoc = searchData.destination || 'Anywhere';
+    
+    infoDiv.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+            <div><strong>${lang.from}:</strong> ${fromLoc}</div>
+            <div><strong>${lang.to}:</strong> ${toLoc}</div>
+            <div><strong>${lang.depart}:</strong> ${formatDate(searchData.departure)}</div>
+            ${searchData.return ? `<div><strong>${lang.return}:</strong> ${formatDate(searchData.return)}</div>` : ''}
+            <div><strong>${lang.guests}:</strong> ${searchData.guests || 4}</div>
+            <div><strong>${lang.category}:</strong> ${searchData.category || 'Heavy Jet'}</div>
+        </div>
+    `;
+}
+
+// تنسيق التاريخ
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString(currentLang === 'ar' ? 'ar-SA' : 'en-CA', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+// توليد بيانات الطائرات
+function generateJets() {
+    const exchangeRates = {
+        'CAD': 1,
+        'USD': 0.73,
+        'SAR': 2.74,
+        'EUR': 0.68,
+        'GBP': 0.58
+    };
+    
+    const jets = [
+        {
+            id: 'G650ER',
+            name: 'Gulfstream G650ER',
+            category: 'Heavy Jet',
+            capacity: '14 passengers',
+            range: '7,500 nm',
+            crew: '2 pilots + 1 attendant',
+            price: Math.round(15000 * exchangeRates[currentCurrency]),
+            currency: currentCurrency,
+            provider: 'NetJets',
+            amenities: ['Wi-Fi', 'Conference Room', 'Bedroom', 'Gourmet Kitchen', 'Stand-up Cabin', '4K Entertainment'],
+            imageCode: 'G6'
+        },
+        {
+            id: 'G7500',
+            name: 'Bombardier Global 7500',
+            category: 'Ultra-Long Range',
+            capacity: '16 passengers',
+            range: '7,700 nm',
+            crew: '2 pilots + 2 attendants',
+            price: Math.round(18000 * exchangeRates[currentCurrency]),
+            currency: currentCurrency,
+            provider: 'Flexjet',
+            amenities: ['Wellness Area', 'Private Suite', 'Dining Area', 'Cinema', 'Shower'],
+            imageCode: 'B7'
+        },
+        {
+            id: 'F8X',
+            name: 'Dassault Falcon 8X',
+            category: 'Super Mid-Size',
+            capacity: '10 passengers',
+            range: '6,450 nm',
+            crew: '2 pilots + 1 attendant',
+            price: Math.round(12000 * exchangeRates[currentCurrency]),
+            currency: currentCurrency,
+            provider: 'Air Partner',
+            amenities: ['Quiet Cabin', 'Large Windows', 'Office Setup', 'Quick Turnaround'],
+            imageCode: 'D8'
+        },
+        {
+            id: 'P600',
+            name: 'Embraer Praetor 600',
+            category: 'Super Mid-Size',
+            capacity: '9 passengers',
+            range: '4,018 nm',
+            crew: '2 pilots',
+            price: Math.round(8500 * exchangeRates[currentCurrency]),
+            currency: currentCurrency,
+            provider: 'XO',
+            amenities: ['High Speed', 'Fuel Efficient', 'Baggage Space', 'Cabin Comfort'],
+            imageCode: 'E6'
+        },
+        {
+            id: 'CL',
+            name: 'Cessna Citation Longitude',
+            category: 'Super Mid-Size',
+            capacity: '8 passengers',
+            range: '3,500 nm',
+            crew: '2 pilots',
+            price: Math.round(7500 * exchangeRates[currentCurrency]),
+            currency: currentCurrency,
+            provider: 'Wheels Up',
+            amenities: ['Advanced Avionics', 'Flat Floor', 'Entertainment System', 'Refreshment Center'],
+            imageCode: 'CL'
+        }
+    ];
+    
+    return jets;
+}
+
+// تحميل الطائرات
+async function loadJets() {
+    try {
+        // توليد الطائرات
+        allJets = generateJets();
+        
+        // إخفاء التحميل بعد 1 ثانية
+        setTimeout(() => {
+            document.getElementById('loadingIndicator').style.display = 'none';
+            
+            // عرض جميع الطائرات
+            showAllJets();
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error loading jets:', error);
+        const lang = langData[currentLang];
+        document.getElementById('loadingIndicator').innerHTML = `
+            <div style="color: var(--danger); text-align: center;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3>${lang.failedLoad}</h3>
+                <button class="details-btn" onclick="location.reload()" style="margin-top: 20px;">
+                    <i class="fas fa-redo"></i> ${lang.retry}
+                </button>
+            </div>
+        `;
+    }
+}
+
+// عرض جميع الطائرات بدون فلاتر
+function showAllJets() {
+    filteredJets = [...allJets]; // نسخ جميع الطائرات
+    sortJets();
+    displayJets();
+}
+
+// إعداد الفلاتر
+function setupFilters() {
+    // تحديث النتائج عند تغيير الفلاتر
+    const filterInputs = document.querySelectorAll('input[type="checkbox"], #priceSlider, #sortBy');
+    filterInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            // إذا كان المستخدم يغير الفلاتر، يتم تطبيقها
+            applyFilters();
+        });
+    });
+    
+    // تحديث سعر العرض
+    const slider = document.getElementById('priceSlider');
+    const maxPrice = document.getElementById('maxPrice');
+    
+    slider.addEventListener('input', function() {
+        maxPrice.textContent = `${parseInt(this.value).toLocaleString()} ${currentCurrency}`;
+    });
+    
+    // زر إعادة تعيين الفلاتر
+    document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
+}
+
+// تطبيق الفلاتر
+function applyFilters() {
+    const maxPrice = parseInt(document.getElementById('priceSlider').value);
+    
+    // الحصول على الفئات المحددة
+    const selectedCategories = [];
+    if (document.getElementById('catHeavy').checked) selectedCategories.push('Heavy Jet', 'Ultra-Long Range');
+    if (document.getElementById('catMid').checked) selectedCategories.push('Super Mid-Size');
+    if (document.getElementById('catLight').checked) selectedCategories.push('Light Jet');
+    
+    // الحصول على المرافق المحددة
+    const selectedAmenities = [];
+    document.querySelectorAll('.amenity-filter:checked').forEach(checkbox => {
+        selectedAmenities.push(checkbox.value);
+    });
+    
+    // إذا لم يتم اختيار أي فلاتر، عرض جميع النتائج
+    if (selectedCategories.length === 0 && selectedAmenities.length === 0) {
+        showAllJets();
+        return;
+    }
+    
+    // تصفية الطائرات
+    filteredJets = allJets.filter(jet => {
+        // تصفية حسب السعر
+        if (jet.price > maxPrice) return false;
+        
+        // تصفية حسب الفئة (إذا اختار المستخدم)
+        if (selectedCategories.length > 0) {
+            if (!selectedCategories.includes(jet.category)) return false;
+        }
+        
+        // تصفية حسب المرافق (إذا اختار المستخدم)
+        if (selectedAmenities.length > 0) {
+            const hasAllAmenities = selectedAmenities.every(amenity => 
+                jet.amenities.some(a => a.toLowerCase().includes(amenity.toLowerCase()))
+            );
+            if (!hasAllAmenities) return false;
+        }
+        
+        return true;
+    });
+    
+    // تطبيق الترتيب
+    sortJets();
+    
+    // عرض النتائج
+    displayJets();
+}
+
+// ترتيب الطائرات
+function sortJets() {
+    const sortBy = document.getElementById('sortBy').value;
+    
+    filteredJets.sort((a, b) => {
+        switch (sortBy) {
+            case 'price':
+                return a.price - b.price;
+            case 'price-desc':
+                return b.price - a.price;
+            case 'capacity':
+                const aCap = parseInt(a.capacity);
+                const bCap = parseInt(b.capacity);
+                return aCap - bCap;
+            case 'range':
+                const aRange = parseInt(a.range.replace(',', ''));
+                const bRange = parseInt(b.range.replace(',', ''));
+                return aRange - bRange;
+            default:
+                return a.price - b.price;
+        }
+    });
+    
+    displayJets();
+}
+
+// عرض الطائرات
+function displayJets() {
+    const resultsDiv = document.getElementById('jetResults');
+    const lang = langData[currentLang];
+    
+    if (filteredJets.length === 0) {
+        resultsDiv.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-plane-slash" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3>${lang.noResults}</h3>
+                <button class="details-btn" onclick="resetFilters()" style="margin-top: 20px;">
+                    <i class="fas fa-redo"></i> ${lang.resetFilters}
+                </button>
+            </div>
+        `;
+        document.getElementById('resultsCount').textContent = `0 ${lang.results}`;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredJets.forEach((jet, index) => {
+        const isBestDeal = jet.price === Math.min(...filteredJets.map(j => j.price));
+        
+        html += `
+            <div class="jet-card ${isBestDeal ? 'best-deal' : ''}">
+                <div class="provider-tag">${jet.provider}</div>
+                
+                <div class="jet-info">
+                    <div class="jet-logo">${jet.imageCode}</div>
+                    <div class="jet-name">${jet.name}</div>
+                    <div style="font-size: 0.8rem; color: var(--silver);">${jet.category}</div>
+                </div>
+                
+                <div class="jet-details">
+                    <div class="jet-specs">
+                        <div class="spec-section">
+                            <div class="spec-value">${jet.capacity.split(' ')[0]}</div>
+                            <div class="spec-label">${lang.passengers}</div>
+                        </div>
+                        
+                        <div class="spec-section">
+                            <div class="spec-value">${jet.range.split(' ')[0]}</div>
+                            <div class="spec-label">${lang.range} ${lang.nm}</div>
+                        </div>
+                        
+                        <div class="spec-section">
+                            <div class="spec-value">${jet.crew.split(' ')[0]}</div>
+                            <div class="spec-label">${lang.crew}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="jet-features">
+                        ${jet.amenities.slice(0, 4).map(amenity => `
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i> ${amenity}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="price-section">
+                    <div class="price">
+                        ${jet.price.toLocaleString()} <span>${jet.currency}${lang.perHour}</span>
+                    </div>
+                    <button class="inquire-btn" onclick="inquireJet('${jet.id}')">
+                        <i class="fas fa-crown"></i> ${lang.inquire}
+                    </button>
+                    <button class="details-btn" onclick="showJetDetails('${jet.id}')">
+                        <i class="fas fa-info-circle"></i> ${lang.details}
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    resultsDiv.innerHTML = html;
+    
+    // تحديث عدد النتائج
+    if (filteredJets.length === allJets.length) {
+        document.getElementById('resultsCount').textContent = `${filteredJets.length} ${lang.results} (${lang.allResults})`;
+    } else {
+        document.getElementById('resultsCount').textContent = `${filteredJets.length} ${lang.results}`;
+    }
+}
+
+// إعادة تعيين الفلاتر
+function resetFilters() {
+    // إعادة تعيين جميع checkboxes
+    document.getElementById('catHeavy').checked = true;
+    document.getElementById('catMid').checked = true;
+    document.getElementById('catLight').checked = true;
+    
+    document.querySelectorAll('.amenity-filter').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // إعادة تعيين السعر
+    document.getElementById('priceSlider').value = 50000;
+    document.getElementById('maxPrice').textContent = `50,000 ${currentCurrency}`;
+    
+    // عرض جميع الطائرات
+    showAllJets();
+}
+
+// استعلام عن طائرة
+function inquireJet(jetId) {
+    const jet = allJets.find(j => j.id === jetId);
+    if (!jet) {
+        alert(currentLang === 'ar' ? 'الطائرة غير موجودة' : 'Jet not found');
+        return;
+    }
+    
+    // حفظ الطائرة المختارة
+    localStorage.setItem('selectedJet', JSON.stringify(jet));
+    
+    // عرض رسالة تأكيد
+    const lang = langData[currentLang];
+    alert(`${lang.inquire}: ${jet.name}\n${lang.category}: ${jet.category}\n${lang.capacity}: ${jet.capacity}\nPrice: ${jet.price.toLocaleString()} ${jet.currency}${lang.perHour}\n\n${currentLang === 'ar' ? 'سيتصل بك مستشار الطائرات الخاصة خلال 30 دقيقة' : 'Our private jet specialist will contact you within 30 minutes.'}`);
+}
+
+// عرض تفاصيل الطائرة
+function showJetDetails(jetId) {
+    const jet = allJets.find(j => j.id === jetId);
+    if (!jet) return;
+    
+    const lang = langData[currentLang];
+    
+    alert(`${jet.name}\n\n` +
+          `${lang.category}: ${jet.category}\n` +
+          `${lang.capacity}: ${jet.capacity}\n` +
+          `${lang.range}: ${jet.range}\n` +
+          `${lang.crew}: ${jet.crew}\n` +
+          `Price: ${jet.price.toLocaleString()} ${jet.currency}${lang.perHour}\n` +
+          `Provider: ${jet.provider}\n` +
+          `${lang.amenitiesTitle}: ${jet.amenities.join(', ')}`);
+}
+</script>
+</body>
+</html>

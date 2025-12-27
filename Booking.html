@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Booking | SkyLynx Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --deep-ocean: #051923; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        /* Header */
+        .booking-header {
+            background: linear-gradient(rgba(5, 25, 35, 0.9), rgba(5, 25, 35, 0.7)),
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .booking-header h1 {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid transparent;
+        }
+        
+        .step.active .step-circle {
+            background: var(--sky-glow);
+            border-color: var(--sky-glow);
+        }
+        
+        .step.completed .step-circle {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+        
+        .step.active .step-label {
+            color: var(--sky-glow);
+            font-weight: 600;
+        }
+        
+        /* Main Container */
+        .booking-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Flight Summary */
+        .flight-summary {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .flight-summary h2 {
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .flight-details {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .airline-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            color: var(--deep-ocean);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .flight-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .flight-route {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .route-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .airport {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+        
+        .duration {
+            text-align: center;
+            color: var(--sky-glow);
+            font-weight: 600;
+        }
+        
+        /* Booking Forms */
+        .booking-form {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-section h3 {
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sky-glow);
+            box-shadow: 0 0 0 2px rgba(0, 166, 251, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* Passenger List */
+        .passenger-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .passenger-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .passenger-title {
+            font-weight: 700;
+            color: var(--sky-glow);
+        }
+        
+        /* Price Summary */
+        .price-summary {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 20px;
+        }
+        
+        .price-summary h3 {
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--sky-glow), #006494);
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 166, 251, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--sky-glow);
+            color: var(--sky-glow);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 166, 251, 0.1);
+        }
+        
+        .btn-back {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        [lang="ar"] .btn-back {
+            left: auto;
+            right: 5%;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--deep-ocean);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 0 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .flight-route {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .booking-steps {
+                gap: 20px;
+            }
+            
+            .btn-back {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 20px;
+            }
+        }
+        
+        /* Additional Styles */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--sky-glow);
+        }
+    </style>
+</head>
+<body>
+
+<a href="results.html" class="btn-back" id="backBtn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to Results</span>
+</a>
+
+<div class="booking-header">
+    <h1 id="bookingTitle">Complete Your Booking</h1>
+    
+    <div class="booking-steps">
+        <div class="step completed" id="step1">
+            <div class="step-circle"><i class="fas fa-check"></i></div>
+            <div class="step-label" id="step1Label">Flight Selected</div>
+        </div>
+        <div class="step active" id="step2">
+            <div class="step-circle">2</div>
+            <div class="step-label" id="step2Label">Passenger Details</div>
+        </div>
+        <div class="step" id="step3">
+            <div class="step-circle">3</div>
+            <div class="step-label" id="step3Label">Payment</div>
+        </div>
+        <div class="step" id="step4">
+            <div class="step-circle">4</div>
+            <div class="step-label" id="step4Label">Confirmation</div>
+        </div>
+    </div>
+</div>
+
+<div class="booking-container">
+    <!-- Left Column: Forms -->
+    <div class="booking-forms">
+        <!-- Flight Summary -->
+        <div class="flight-summary" id="flightSummary">
+            <!-- سيتم ملؤه بالجافاسكريبت -->
+        </div>
+        
+        <!-- Passenger Details Form -->
+        <form id="passengerForm" class="booking-form">
+            <div class="form-section">
+                <h3><i class="fas fa-user"></i> <span id="passengerSectionTitle">Passenger Details</span></h3>
+                
+                <div id="passengerForms">
+                    <!-- سيتم إنشاء نماذج المسافرين ديناميكياً -->
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3><i class="fas fa-phone"></i> <span id="contactSectionTitle">Contact Information</span></h3>
+                
+                <div class="form-group">
+                    <label for="contactEmail" id="emailLabel">Email Address</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactPhone" id="phoneLabel">Phone Number</label>
+                        <input type="tel" id="contactPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryCode" id="countryLabel">Country Code</label>
+                        <select id="countryCode">
+                            <option value="+1">+1 (Canada/US)</option>
+                            <option value="+966">+966 (Saudi Arabia)</option>
+                            <option value="+971">+971 (UAE)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+33">+33 (France)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3><i class="fas fa-credit-card"></i> <span id="paymentSectionTitle">Payment Method</span></h3>
+                
+                <div class="form-group">
+                    <label for="cardNumber" id="cardLabel">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiryDate" id="expiryLabel">Expiry Date</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv" id="cvvLabel">CVV</label>
+                        <input type="password" id="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cardName" id="cardNameLabel">Name on Card</label>
+                    <input type="text" id="cardName" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="specialRequests" id="requestsLabel">Special Requests (Optional)</label>
+                <textarea id="specialRequests" rows="3" placeholder="Any special requests or notes..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="termsAgreement" required>
+                    <span id="termsText">I agree to the Terms & Conditions and Privacy Policy</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                <i class="fas fa-lock"></i> <span id="submitText">Complete Booking & Pay</span>
+            </button>
+        </form>
+    </div>
+    
+    <!-- Right Column: Price Summary -->
+    <div class="price-summary">
+        <h3 id="priceTitle">Price Summary</h3>
+        
+        <div class="price-line">
+            <span id="baseFareLabel">Base Fare</span>
+            <span id="baseFarePrice">0 CAD</span>
+        </div>
+        
+        <div class="price-line">
+            <span id="taxesLabel">Taxes & Fees</span>
+            <span id="taxesPrice">0 CAD</span>
+        </div>
+        
+        <div class="price-line">
+            <span id="serviceLabel">Service Fee</span>
+            <span id="servicePrice">0 CAD</span>
+        </div>
+        
+        <div class="price-total">
+            <span id="totalLabel">Total</span>
+            <span id="totalPrice">0 CAD</span>
+        </div>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: var(--silver); font-size: 0.9rem; margin-bottom: 15px;" id="secureText">
+                <i class="fas fa-shield-alt"></i> Your payment is secure and encrypted
+            </p>
+            <p style="color: var(--silver); font-size: 0.9rem;" id="cancellationText">
+                <i class="fas fa-info-circle"></i> Free cancellation within 24 hours
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 id="modalTitle">Booking Successful!</h2>
+        <p id="modalMessage">Your booking has been confirmed. Check your email for details.</p>
+        <div style="margin-top: 30px;">
+            <button class="btn btn-primary" onclick="redirectToProvider()" id="redirectBtn">
+                <i class="fas fa-external-link-alt"></i> Continue to Airline Website
+            </button>
+            <button class="btn btn-secondary" onclick="closeModal()" style="margin-top: 10px;" id="closeBtn">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// بيانات الترجمة
+const langData = {
+    en: {
+        title: "Complete Your Booking",
+        back: "Back to Results",
+        step1: "Flight Selected",
+        step2: "Passenger Details",
+        step3: "Payment",
+        step4: "Confirmation",
+        passengerTitle: "Passenger Details",
+        contactTitle: "Contact Information",
+        paymentTitle: "Payment Method",
+        emailLabel: "Email Address",
+        phoneLabel: "Phone Number",
+        countryLabel: "Country Code",
+        cardLabel: "Card Number",
+        expiryLabel: "Expiry Date",
+        cvvLabel: "CVV",
+        cardNameLabel: "Name on Card",
+        requestsLabel: "Special Requests (Optional)",
+        termsText: "I agree to the Terms & Conditions and Privacy Policy",
+        submitText: "Complete Booking & Pay",
+        priceTitle: "Price Summary",
+        baseFare: "Base Fare",
+        taxes: "Taxes & Fees",
+        service: "Service Fee",
+        total: "Total",
+        secureText: "Your payment is secure and encrypted",
+        cancellationText: "Free cancellation within 24 hours",
+        modalTitle: "Booking Successful!",
+        modalMessage: "Your booking has been confirmed. Check your email for details.",
+        redirectBtn: "Continue to Airline Website",
+        closeBtn: "Close",
+        adult: "Adult",
+        child: "Child",
+        infant: "Infant",
+        passenger: "Passenger",
+        flightDetails: "Flight Details",
+        from: "From",
+        to: "To",
+        direct: "Direct",
+        stops: "stops"
+    },
+    ar: {
+        title: "أكمل حجزك",
+        back: "العودة للنتائج",
+        step1: "تم اختيار الرحلة",
+        step2: "بيانات المسافر",
+        step3: "الدفع",
+        step4: "التأكيد",
+        passengerTitle: "بيانات المسافرين",
+        contactTitle: "معلومات الاتصال",
+        paymentTitle: "طريقة الدفع",
+        emailLabel: "البريد الإلكتروني",
+        phoneLabel: "رقم الهاتف",
+        countryLabel: "رمز الدولة",
+        cardLabel: "رقم البطاقة",
+        expiryLabel: "تاريخ الانتهاء",
+        cvvLabel: "رمز التحقق",
+        cardNameLabel: "الاسم على البطاقة",
+        requestsLabel: "طلبات خاصة (اختياري)",
+        termsText: "أوافق على الشروط والأحكام وسياسة الخصوصية",
+        submitText: "أكمل الحجز والدفع",
+        priceTitle: "ملخص السعر",
+        baseFare: "أجرة الأساس",
+        taxes: "الضرائب والرسوم",
+        service: "رسوم الخدمة",
+        total: "الإجمالي",
+        secureText: "دفعتك آمنة ومشفرة",
+        cancellationText: "إلغاء مجاني خلال 24 ساعة",
+        modalTitle: "تم الحجز بنجاح!",
+        modalMessage: "تم تأكيد حجزك. تحقق من بريدك الإلكتروني للتفاصيل.",
+        redirectBtn: "المتابعة لموقع الشركة",
+        closeBtn: "إغلاق",
+        adult: "بالغ",
+        child: "طفل", 
+        infant: "رضيع",
+        passenger: "مسافر",
+        flightDetails: "تفاصيل الرحلة",
+        from: "من",
+        to: "إلى",
+        direct: "مباشر",
+        stops: "توقفات"
+    }
+};
+
+// المتغيرات
+let currentLang = 'en';
+let currentCurrency = 'CAD';
+let selectedFlight = null;
+let searchData = null;
+
+// تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    // تحميل التفضيلات
+    loadPreferences();
+    
+    // تحميل البيانات
+    loadBookingData();
+    
+    // ترجمة الصفحة
+    translatePage();
+    
+    // إعداد النماذج
+    setupForms();
+    
+    // إعداد معالجة النموذج
+    document.getElementById('passengerForm').addEventListener('submit', processBooking);
+});
+
+// تحميل التفضيلات
+function loadPreferences() {
+    // اللغة
+    const savedLang = localStorage.getItem('language') || 'en';
+    currentLang = savedLang;
+    document.getElementById('main-html').setAttribute('lang', savedLang);
+    
+    // العملة
+    const savedCurrency = localStorage.getItem('currency') || 'CAD';
+    currentCurrency = savedCurrency;
+}
+
+// ترجمة الصفحة
+function translatePage() {
+    const lang = langData[currentLang];
+    
+    // تحديث العناوين
+    document.getElementById('bookingTitle').textContent = lang.title;
+    document.getElementById('backBtn').querySelector('span').textContent = lang.back;
+    
+    // تحديث الخطوات
+    document.getElementById('step1Label').textContent = lang.step1;
+    document.getElementById('step2Label').textContent = lang.step2;
+    document.getElementById('step3Label').textContent = lang.step3;
+    document.getElementById('step4Label').textContent = lang.step4;
+    
+    // تحديث عناوين الأقسام
+    document.getElementById('passengerSectionTitle').textContent = lang.passengerTitle;
+    document.getElementById('contactSectionTitle').textContent = lang.contactTitle;
+    document.getElementById('paymentSectionTitle').textContent = lang.paymentTitle;
+    
+    // تحديث التسميات
+    document.getElementById('emailLabel').textContent = lang.emailLabel;
+    document.getElementById('phoneLabel').textContent = lang.phoneLabel;
+    document.getElementById('countryLabel').textContent = lang.countryLabel;
+    document.getElementById('cardLabel').textContent = lang.cardLabel;
+    document.getElementById('expiryLabel').textContent = lang.expiryLabel;
+    document.getElementById('cvvLabel').textContent = lang.cvvLabel;
+    document.getElementById('cardNameLabel').textContent = lang.cardNameLabel;
+    document.getElementById('requestsLabel').textContent = lang.requestsLabel;
+    document.getElementById('termsText').textContent = lang.termsText;
+    document.getElementById('submitText').textContent = lang.submitText;
+    
+    // تحديث ملخص السعر
+    document.getElementById('priceTitle').textContent = lang.priceTitle;
+    document.getElementById('baseFareLabel').textContent = lang.baseFare;
+    document.getElementById('taxesLabel').textContent = lang.taxes;
+    document.getElementById('serviceLabel').textContent = lang.service;
+    document.getElementById('totalLabel').textContent = lang.total;
+    document.getElementById('secureText').textContent = lang.secureText;
+    document.getElementById('cancellationText').textContent = lang.cancellationText;
+    
+    // تحديث المودال
+    document.getElementById('modalTitle').textContent = lang.modalTitle;
+    document.getElementById('modalMessage').textContent = lang.modalMessage;
+    document.getElementById('redirectBtn').textContent = lang.redirectBtn;
+    document.getElementById('closeBtn').textContent = lang.closeBtn;
+}
+
+// تحميل بيانات الحجز
+function loadBookingData() {
+    try {
+        // تحميل الرحلة المختارة
+        selectedFlight = JSON.parse(localStorage.getItem('selectedFlight'));
+        
+        // تحميل بيانات البحث
+        searchData = JSON.parse(localStorage.getItem('flightSearchData'));
+        
+        if (!selectedFlight) {
+            // إذا لم توجد رحلة، العودة للنتائج
+            alert('No flight selected. Redirecting to results...');
+            window.location.href = 'results.html';
+            return;
+        }
+        
+        // عرض ملخص الرحلة
+        displayFlightSummary();
+        
+        // تحديث ملخص السعر
+        updatePriceSummary();
+        
+        // إنشاء نماذج المسافرين
+        createPassengerForms();
+        
+    } catch (error) {
+        console.error('Error loading booking data:', error);
+        alert('Error loading booking data. Please try again.');
+        window.location.href = 'results.html';
+    }
+}
+
+// عرض ملخص الرحلة
+function displayFlightSummary() {
+    const summaryDiv = document.getElementById('flightSummary');
+    const lang = langData[currentLang];
+    
+    let passengersText = '';
+    if (searchData && searchData.passengers) {
+        const p = searchData.passengers;
+        passengersText = `${p.adults} ${p.adults > 1 ? lang.adult + 's' : lang.adult}`;
+        if (p.children > 0) passengersText += `, ${p.children} ${p.children > 1 ? lang.child + 'ren' : lang.child}`;
+        if (p.infants > 0) passengersText += `, ${p.infants} ${p.infants > 1 ? lang.infant + 's' : lang.infant}`;
+    }
+    
+    const stopsText = selectedFlight.stops === 0 ? lang.direct : 
+                     `${selectedFlight.stops} ${lang.stops}`;
+    
+    summaryDiv.innerHTML = `
+        <h2><i class="fas fa-plane"></i> ${lang.flightDetails}</h2>
+        <div class="flight-details">
+            <div class="airline-logo">${selectedFlight.airlineCode}</div>
+            <div class="flight-info">
+                <div style="font-weight: 700; font-size: 1.2rem;">${selectedFlight.airline}</div>
+                <div style="color: var(--silver);">${selectedFlight.flightNumber}</div>
+                <div style="margin-top: 5px;">${passengersText} • ${searchData?.class || 'Economy'}</div>
+            </div>
+        </div>
+        
+        <div class="flight-route">
+            <div class="route-point">
+                <div class="time">${selectedFlight.departureTime}</div>
+                <div class="airport">${selectedFlight.departureAirport}</div>
+                <div style="font-size: 0.8rem; color: var(--silver); margin-top: 5px;">${lang.from}</div>
+            </div>
+            
+            <div class="duration">
+                ${selectedFlight.duration}<br>
+                ${stopsText}
+            </div>
+            
+            <div class="route-point">
+                <div class="time">${selectedFlight.arrivalTime}</div>
+                <div class="airport">${selectedFlight.arrivalAirport}</div>
+                <div style="font-size: 0.8rem; color: var(--silver); margin-top: 5px;">${lang.to}</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px;">
+            ${selectedFlight.features.map(feature => `
+                <div style="background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">
+                    <i class="fas fa-check-circle" style="color: var(--sky-glow);"></i> ${feature}
+                </div>
+            `).join('')}
+            ${selectedFlight.refundable ? `
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; color: var(--success);">
+                    <i class="fas fa-shield-alt"></i> Refundable
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+// إنشاء نماذج المسافرين
+function createPassengerForms() {
+    const formsDiv = document.getElementById('passengerForms');
+    const lang = langData[currentLang];
+    
+    if (!searchData || !searchData.passengers) return;
+    
+    formsDiv.innerHTML = '';
+    const passengers = searchData.passengers;
+    let passengerIndex = 1;
+    
+    // البالغون
+    for (let i = 0; i < passengers.adults; i++) {
+        formsDiv.innerHTML += createPassengerForm(passengerIndex, 'adult', lang.adult + (passengers.adults > 1 ? ` ${i + 1}` : ''), lang);
+        passengerIndex++;
+    }
+    
+    // الأطفال
+    for (let i = 0; i < passengers.children; i++) {
+        formsDiv.innerHTML += createPassengerForm(passengerIndex, 'child', lang.child + (passengers.children > 1 ? ` ${i + 1}` : ''), lang);
+        passengerIndex++;
+    }
+    
+    // الرضع
+    for (let i = 0; i < passengers.infants; i++) {
+        formsDiv.innerHTML += createPassengerForm(passengerIndex, 'infant', lang.infant + (passengers.infants > 1 ? ` ${i + 1}` : ''), lang);
+        passengerIndex++;
+    }
+}
+
+function createPassengerForm(index, type, title, lang) {
+    const passengerLabel = currentLang === 'ar' ? 'مسافر' : 'Passenger';
+    
+    return `
+        <div class="passenger-card">
+            <div class="passenger-header">
+                <div class="passenger-title">${title}</div>
+                <div style="font-size: 0.8rem; color: var(--silver);">${passengerLabel} ${index}</div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>${currentLang === 'ar' ? 'الاسم الأول' : 'First Name'}</label>
+                    <input type="text" class="passenger-firstname" required>
+                </div>
+                <div class="form-group">
+                    <label>${currentLang === 'ar' ? 'اسم العائلة' : 'Last Name'}</label>
+                    <input type="text" class="passenger-lastname" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>${currentLang === 'ar' ? 'الجنس' : 'Gender'}</label>
+                    <select class="passenger-gender">
+                        <option value="male">${currentLang === 'ar' ? 'ذكر' : 'Male'}</option>
+                        <option value="female">${currentLang === 'ar' ? 'أنثى' : 'Female'}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>${currentLang === 'ar' ? 'تاريخ الميلاد' : 'Date of Birth'}</label>
+                    <input type="date" class="passenger-dob" required>
+                </div>
+            </div>
+            
+            ${type === 'adult' || type === 'child' ? `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${currentLang === 'ar' ? 'رقم الجواز' : 'Passport Number'}</label>
+                        <input type="text" class="passenger-passport" required>
+                    </div>
+                    <div class="form-group">
+                        <label>${currentLang === 'ar' ? 'انتهاء الجواز' : 'Passport Expiry'}</label>
+                        <input type="date" class="passenger-passport-expiry" required>
+                    </div>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+// تحديث ملخص السعر
+function updatePriceSummary() {
+    if (!selectedFlight || !searchData) return;
+    
+    // أسعار الصرف
+    const exchangeRates = {
+        'CAD': 1,
+        'USD': 0.73,
+        'SAR': 2.74,
+        'EUR': 0.68,
+        'GBP': 0.58
+    };
+    
+    const baseFareCAD = 450; // سعر أساسي بالدولار الكندي
+    const exchangeRate = exchangeRates[currentCurrency] || 1;
+    
+    const baseFare = Math.round(baseFareCAD * exchangeRate);
+    const taxes = Math.round(baseFare * 0.15); // 15% taxes
+    const serviceFee = Math.round(50 * exchangeRate); // Service fee
+    
+    const total = baseFare + taxes + serviceFee;
+    
+    document.getElementById('baseFarePrice').textContent = `${baseFare} ${currentCurrency}`;
+    document.getElementById('taxesPrice').textContent = `${taxes} ${currentCurrency}`;
+    document.getElementById('servicePrice').textContent = `${serviceFee} ${currentCurrency}`;
+    document.getElementById('totalPrice').textContent = `${total} ${currentCurrency}`;
+}
+
+// إعداد النماذج
+function setupForms() {
+    // تنسيق رقم البطاقة
+    document.getElementById('cardNumber').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        let formatted = value.replace(/(\d{4})/g, '$1 ').trim();
+        e.target.value = formatted.substring(0, 19);
+    });
+    
+    // تنسيق تاريخ الانتهاء
+    document.getElementById('expiryDate').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        e.target.value = value.substring(0, 5);
+    });
+    
+    // تنسيق CVV
+    document.getElementById('cvv').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+    });
+    
+    // تعيين التواريخ الافتراضية للمسافرين
+    setTimeout(() => {
+        const today = new Date();
+        const tenYearsAgo = new Date();
+        tenYearsAgo.setFullYear(today.getFullYear() - 30);
+        
+        const fiveYearsFromNow = new Date();
+        fiveYearsFromNow.setFullYear(today.getFullYear() + 5);
+        
+        document.querySelectorAll('.passenger-dob').forEach(input => {
+            input.value = tenYearsAgo.toISOString().split('T')[0];
+        });
+        
+        document.querySelectorAll('.passenger-passport-expiry').forEach(input => {
+            input.value = fiveYearsFromNow.toISOString().split('T')[0];
+        });
+    }, 100);
+}
+
+// معالجة الحجز
+function processBooking(event) {
+    event.preventDefault();
+    
+    // جمع بيانات المسافرين
+    const passengers = collectPassengerData();
+    
+    // جمع بيانات الاتصال
+    const contactInfo = {
+        email: document.getElementById('contactEmail').value,
+        phone: document.getElementById('contactPhone').value,
+        countryCode: document.getElementById('countryCode').value
+    };
+    
+    // جمع بيانات الدفع
+    const paymentInfo = {
+        cardNumber: document.getElementById('cardNumber').value.replace(/\s/g, ''),
+        expiryDate: document.getElementById('expiryDate').value,
+        cvv: document.getElementById('cvv').value,
+        cardName: document.getElementById('cardName').value
+    };
+    
+    // إنشاء كائن الحجز
+    const booking = {
+        flight: selectedFlight,
+        passengers: passengers,
+        contactInfo: contactInfo,
+        paymentInfo: paymentInfo,
+        specialRequests: document.getElementById('specialRequests').value,
+        bookingDate: new Date().toISOString(),
+        bookingReference: generateBookingReference(),
+        totalAmount: calculateTotalAmount(),
+        currency: currentCurrency
+    };
+    
+    // حفظ الحجز في localStorage
+    localStorage.setItem('bookingConfirmation', JSON.stringify(booking));
+    
+    // إرسال بريد إلكتروني (محاكاة)
+    sendConfirmationEmail(booking);
+    
+    // عرض رسالة النجاح
+    showSuccessModal();
+}
+
+// جمع بيانات المسافرين
+function collectPassengerData() {
+    const passengers = [];
+    const forms = document.querySelectorAll('.passenger-card');
+    
+    forms.forEach((form, index) => {
+        const passenger = {
+            firstName: form.querySelector('.passenger-firstname').value,
+            lastName: form.querySelector('.passenger-lastname').value,
+            gender: form.querySelector('.passenger-gender').value,
+            dateOfBirth: form.querySelector('.passenger-dob').value,
+            passportNumber: form.querySelector('.passenger-passport')?.value || '',
+            passportExpiry: form.querySelector('.passenger-passport-expiry')?.value || '',
+            passengerNumber: index + 1
+        };
+        passengers.push(passenger);
+    });
+    
+    return passengers;
+}
+
+// حساب المبلغ الإجمالي
+function calculateTotalAmount() {
+    const baseFare = parseInt(document.getElementById('baseFarePrice').textContent);
+    const taxes = parseInt(document.getElementById('taxesPrice').textContent);
+    const serviceFee = parseInt(document.getElementById('servicePrice').textContent);
+    
+    return baseFare + taxes + serviceFee;
+}
+
+// إنشاء رقم مرجعي للحجز
+function generateBookingReference() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = 'SKY-';
+    for (let i = 0; i < 8; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
+// إرسال بريد تأكيد (محاكاة)
+function sendConfirmationEmail(booking) {
+    console.log('Sending confirmation email for booking:', booking.bookingReference);
+    // في الواقع، هنا ستكون API call لإرسال البريد الإلكتروني
+}
+
+// عرض مودال النجاح
+function showSuccessModal() {
+    document.getElementById('successModal').style.display = 'flex';
+    
+    // تحديث الخطوات
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('step3').classList.add('completed');
+    document.getElementById('step4').classList.add('active');
+}
+
+// إغلاق المودال
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none';
+    // يمكن إعادة التوجيه للصفحة الرئيسية
+    // window.location.href = 'index.html';
+}
+
+// التوجيه لموقع شركة الطيران
+function redirectToProvider() {
+    // روابط شركات الطيران الكندية
+    const airlineUrls = {
+        'Air Canada': 'https://www.aircanada.com',
+        'WestJet': 'https://www.westjet.com',
+        'Air Transat': 'https://www.airtransat.com',
+        'Porter Airlines': 'https://www.flyporter.com'
+    };
+    
+    const url = airlineUrls[selectedFlight.airline] || 'https://www.expedia.com';
+    window.open(url, '_blank');
+    
+    // إغلاق المودال بعد التوجيه
+    setTimeout(() => {
+        closeModal();
+    }, 1000);
+}
+
+// حفظ بيانات النموذج في حالة تحديث الصفحة
+window.addEventListener('beforeunload', function() {
+    // يمكن حفظ بيانات النموذج المؤقتة هنا
+});
+</script>
+</body>
+</html>

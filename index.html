@@ -1,0 +1,3286 @@
+<!DOCTYPE html>
+<html lang="en" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLynx Travel | Luxury Travel Concierge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --deep-ocean: #051923; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+        }
+        
+        /* ========== نظام الذكاء الاصطناعي الجديد ========== */
+        .ai-minimal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9997;
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        [lang="ar"] .ai-minimal {
+            right: auto;
+            left: 30px;
+        }
+        
+        .ai-bubble {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--sky-glow), var(--gold));
+            border-radius: 50%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 166, 251, 0.4);
+            transition: all 0.3s;
+            border: none;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .ai-bubble.pulse {
+            animation: gentlePulse 2s infinite;
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 166, 251, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 40px rgba(0, 166, 251, 0.7); }
+        }
+        
+        .ai-tooltip {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: rgba(5, 25, 35, 0.95);
+            border: 1px solid var(--sky-glow);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9998;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        [lang="ar"] .ai-tooltip {
+            right: auto;
+            left: 0;
+        }
+        
+        .ai-tooltip h4 {
+            color: var(--sky-glow);
+            font-family: 'Cinzel';
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .ai-tooltip p {
+            color: var(--silver);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .ai-suggestion {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .ai-suggestion:hover {
+            background: rgba(0, 166, 251, 0.1);
+            border-color: var(--sky-glow);
+            transform: translateX(5px);
+        }
+        
+        [lang="ar"] .ai-suggestion:hover {
+            transform: translateX(-5px);
+        }
+        
+        .ai-suggestion i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        
+        [lang="ar"] .ai-suggestion i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        
+        /* علامات "For you" على الوجهات */
+        .ai-personal-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--deep-ocean);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 2;
+            animation: badgeAppear 0.5s ease;
+        }
+        
+        @keyframes badgeAppear {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        [lang="ar"] .ai-personal-badge {
+            right: auto;
+            left: 15px;
+        }
+        
+        .dest-card:hover .ai-personal-badge {
+            background: rgba(0, 166, 251, 0.9);
+            color: white;
+        }
+        
+        /* شارة التحليلات المصغرة */
+        .analytics-badge {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(5, 25, 35, 0.8);
+            border: 1px solid var(--success);
+            border-radius: 10px;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            color: var(--success);
+            backdrop-filter: blur(10px);
+            z-index: 9996;
+            animation: slideInLeft 0.5s ease;
+            display: none;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        [lang="ar"] .analytics-badge {
+            left: auto;
+            right: 30px;
+            animation: slideInRight 0.5s ease;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* مؤشر النظام الذكي */
+        .smart-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(5, 25, 35, 0.8);
+            border: 1px solid var(--sky-glow);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            color: var(--silver);
+            backdrop-filter: blur(10px);
+            z-index: 9996;
+            animation: slideInUp 0.5s ease;
+            display: none;
+        }
+        
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        [lang="ar"] .smart-indicator {
+            left: auto;
+            right: 30px;
+        }
+        
+        /* إشعارات الذكاء الاصطناعي */
+        .ai-notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: rgba(5, 25, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--sky-glow);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 300px;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.5s ease;
+        }
+        
+        [lang="ar"] .ai-notification {
+            right: auto;
+            left: 30px;
+            animation: slideInLeft 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .ai-minimal {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            [lang="ar"] .ai-minimal {
+                right: auto;
+                left: 20px;
+            }
+            
+            .ai-bubble {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .ai-tooltip {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 70px;
+            }
+            
+            [lang="ar"] .ai-tooltip {
+                left: 20px;
+            }
+            
+            .analytics-badge {
+                top: 20px;
+                left: 20px;
+            }
+            
+            [lang="ar"] .analytics-badge {
+                left: auto;
+                right: 20px;
+            }
+            
+            .smart-indicator {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            [lang="ar"] .smart-indicator {
+                left: auto;
+                right: 20px;
+            }
+            
+            .ai-notification {
+                top: 80px;
+                right: 20px;
+                left: 20px;
+                max-width: none;
+            }
+            
+            [lang="ar"] .ai-notification {
+                right: 20px;
+                left: 20px;
+            }
+        }
+        
+        /* ========== الأنماط الأصلية ========== */
+        .config { 
+            position: absolute; 
+            top: 25px; 
+            right: 5%; 
+            z-index: 1000; 
+            display: flex; 
+            gap: 15px; 
+        }
+        
+        [lang="ar"] .config { 
+            right: auto; 
+            left: 5%; 
+        }
+        
+        .config select { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            backdrop-filter: blur(10px); 
+            font-size: 0.9rem;
+        }
+
+        header { 
+            height: 90vh; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .video-bg { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto; 
+            height: auto; 
+            z-index: 1; 
+            transform: translate(-50%, -50%); 
+            object-fit: cover; 
+            filter: brightness(40%); 
+        }
+
+        .logo-container { 
+            position: relative; 
+            z-index: 2; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 10px; 
+            margin-top: -60px; 
+        }
+        
+        .logo-top-row { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        
+        .logo-line { 
+            width: 80px; 
+            height: 2px; 
+            background: linear-gradient(90deg, transparent, var(--sky-glow), transparent); 
+            box-shadow: 0 0 15px var(--sky-glow); 
+        }
+        
+        .logo-triangle { 
+            color: var(--sky-glow); 
+            font-size: 28px; 
+            text-shadow: 0 0 20px var(--sky-glow); 
+            animation: pulse 3s infinite; 
+        }
+        
+        .logo-text { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 6rem; 
+            font-weight: 700; 
+            color: white; 
+            letter-spacing: -4px; 
+            line-height: 0.9; 
+        }
+        
+        .logo-subtext { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: var(--sky-glow); 
+            letter-spacing: 15px; 
+            text-transform: uppercase; 
+            margin-right: -15px; 
+        }
+        
+        @keyframes pulse { 
+            0%, 100% { opacity: 0.5; } 
+            50% { opacity: 1; } 
+        }
+        
+        #tag { 
+            position: relative; 
+            z-index: 2; 
+            margin-top: 25px; 
+            font-weight: 300; 
+            font-size: 1.3rem; 
+            letter-spacing: 2px; 
+            text-shadow: 0 2px 10px black; 
+        }
+
+        .search-container { 
+            width: 95%; 
+            max-width: 1250px; 
+            margin: -160px auto 40px; 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 40px; 
+            padding: 45px; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.7); 
+            z-index: 100; 
+            position: relative; 
+        }
+        
+        .tabs { 
+            display: flex; 
+            justify-content: center; 
+            gap: 35px; 
+            margin-bottom: 35px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+        
+        .tab { 
+            padding: 15px 25px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            color: rgba(255,255,255,0.4); 
+            border-bottom: 3px solid transparent; 
+            transition: 0.4s; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        
+        .tab.active { 
+            color: var(--sky-glow); 
+            border-bottom-color: var(--sky-glow); 
+        }
+
+        .input-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 20px; 
+            align-items: end; 
+        }
+        
+        .field { 
+            position: relative;
+        }
+        
+        .field label { 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            color: var(--sky-glow); 
+            text-transform: uppercase; 
+            display: block; 
+            margin-bottom: 10px; 
+        }
+        
+        /* ========== إصلاح تناسق حقول التاريخ على جميع الأجهزة ========== */
+        .field input, 
+        .field select { 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            background: white; 
+            color: #051923; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            height: 48px;
+            min-height: 48px;
+            line-height: normal;
+        }
+        
+        /* إصلاح خاص لحقول التاريخ والوقت */
+        .field input[type="date"],
+        .field input[type="time"] {
+            height: 48px;
+            min-height: 48px;
+            padding: 14px;
+            font-size: 0.9rem;
+            -webkit-appearance: none;
+            appearance: none;
+            line-height: 1.2;
+        }
+        
+        /* إصلاح لحقول التاريخ في iOS */
+        .field input[type="date"]::-webkit-date-and-time-value {
+            line-height: 1.2;
+            height: auto;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* إصلاح لحقول الوقت */
+        .field input[type="time"]::-webkit-date-and-time-value {
+            line-height: 1.2;
+        }
+        
+        .trip-type-buttons {
+            display: flex;
+            gap: 10px;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .trip-option {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .trip-option input[type="radio"] {
+            display: none;
+        }
+        
+        .trip-option label {
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #051923;
+            transition: all 0.3s;
+            margin-bottom: 0;
+            height: 36px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .trip-option input[type="radio"]:checked + label {
+            background: var(--sky-glow);
+            color: white;
+        }
+        
+        .search-btn { 
+            grid-column: 1 / -1; 
+            margin-top: 20px; 
+            padding: 22px; 
+            background: linear-gradient(90deg, #003554, var(--sky-glow)); 
+            border: none; 
+            border-radius: 15px; 
+            color: white; 
+            font-weight: 700; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            text-transform: uppercase; 
+            transition: 0.3s; 
+        }
+        
+        .search-btn:hover { 
+            box-shadow: 0 0 30px rgba(0, 166, 251, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        .car-options-row { 
+            grid-column: 1 / -1; 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            margin-top: 10px; 
+            background: rgba(255,255,255,0.03); 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+        }
+        
+        .car-toggle { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            cursor: pointer; 
+            font-size: 0.85rem; 
+            color: var(--silver); 
+        }
+
+        .passenger-input {
+            padding: 14px;
+            background: white;
+            border-radius: 12px;
+            color: #051923;
+            cursor: pointer;
+            position: relative;
+            height: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .passenger-modal {
+            display: none;
+            position: absolute;
+            background: white;
+            color: #051923;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            width: 300px;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+        }
+        
+        [lang="ar"] .passenger-modal {
+            left: auto;
+            right: 0;
+        }
+        
+        .passenger-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .passenger-control label {
+            font-weight: 600;
+            color: #051923;
+        }
+        
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .counter button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--sky-glow);
+            background: white;
+            color: var(--sky-glow);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .counter button:hover {
+            background: var(--sky-glow);
+            color: white;
+        }
+        
+        .counter span {
+            font-weight: 700;
+            font-size: 1.2rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .destinations { 
+            padding: 60px 5%; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            text-align: center; 
+        }
+        
+        .dest-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px; 
+            margin-top: 40px; 
+        }
+        
+        .dest-card { 
+            height: 350px;
+            border-radius: 25px; 
+            overflow: hidden; 
+            position: relative; 
+            cursor: pointer; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
+            transition: transform 0.3s ease;
+        }
+        
+        .dest-card:hover { 
+            transform: translateY(-10px); 
+        }
+        
+        .dest-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 1s; 
+        }
+        
+        .dest-card:hover img { 
+            transform: scale(1.1); 
+            filter: saturate(1.2); 
+        }
+        
+        .dest-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            width: 100%; 
+            padding: 25px; 
+            background: linear-gradient(transparent, rgba(5,25,35,0.98)); 
+            text-align: left; 
+        }
+        
+        [lang="ar"] .dest-overlay { 
+            text-align: right; 
+        }
+        
+        .dest-overlay h3 { 
+            font-family: 'Cinzel'; 
+            font-size: 1.8rem; 
+            margin-bottom: 5px; 
+        }
+
+        .premium-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 40px auto 60px;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            border-radius: 40px;
+        }
+        
+        .premium-section h2 {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 50px;
+        }
+        
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+        
+        .premium-card {
+            background: rgba(255,255,255,0.03);
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--sky-glow);
+            box-shadow: 0 20px 40px rgba(0, 166, 251, 0.1);
+        }
+        
+        .premium-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .premium-card h3 {
+            font-family: 'Cinzel';
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--sky-glow);
+        }
+        
+        .premium-card p {
+            color: var(--silver);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .confidence-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            border-radius: 40px;
+        }
+        
+        .confidence-section h2 {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 50px;
+        }
+        
+        .confidence-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .confidence-card {
+            background: rgba(255,255,255,0.03);
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .confidence-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--sky-glow);
+            box-shadow: 0 20px 40px rgba(0, 166, 251, 0.1);
+        }
+        
+        .confidence-card i {
+            font-size: 2.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+        }
+        
+        .confidence-card h3 {
+            font-family: 'Cinzel';
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-section { 
+            padding: 100px 5%; 
+            max-width: 1200px; 
+            margin: 60px auto; 
+            background: rgba(255,255,255,0.02); 
+            border-radius: 40px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 60px; 
+        }
+        
+        .contact-info h2 { 
+            font-family: 'Cinzel'; 
+            font-size: 2.5rem; 
+            color: var(--sky-glow); 
+            margin-bottom: 30px; 
+        }
+        
+        .contact-form input, 
+        .contact-form textarea { 
+            width: 100%; 
+            padding: 18px; 
+            margin-bottom: 15px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(255,255,255,0.05); 
+            color: white; 
+        }
+        
+        .contact-form button { 
+            background: var(--sky-glow); 
+            color: var(--deep-ocean); 
+            padding: 20px; 
+            border: none; 
+            border-radius: 15px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            width: 100%; 
+            text-transform: uppercase; 
+        }
+
+        footer { 
+            padding: 80px; 
+            background: #01080c; 
+            text-align: center; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+        }
+        
+        .hidden { 
+            display: none !important; 
+        }
+        
+        @media (max-width: 1200px) {
+            .dest-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .premium-grid,
+            .confidence-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 25px;
+                margin: -120px auto 30px;
+            }
+            
+            .tabs {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .logo-text {
+                font-size: 3.5rem;
+            }
+            
+            .logo-subtext {
+                font-size: 1.2rem;
+                letter-spacing: 8px;
+            }
+            
+            .dest-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .dest-card {
+                height: 300px;
+            }
+            
+            .premium-grid,
+            .confidence-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .premium-section,
+            .confidence-section {
+                padding: 50px 5%;
+            }
+            
+            .premium-section h2,
+            .confidence-section h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            footer {
+                padding: 40px 20px;
+            }
+            
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* ========== تحسينات للجوال ========== */
+            .field input,
+            .field select,
+            .field input[type="date"],
+            .field input[type="time"] {
+                height: 50px;
+                min-height: 50px;
+                padding: 15px;
+                font-size: 16px; /* منع التكبير التلقائي في iOS */
+            }
+            
+            .passenger-input {
+                height: 50px;
+                min-height: 50px;
+                padding: 15px;
+            }
+            
+            .trip-option label {
+                height: 40px;
+                line-height: 20px;
+                padding: 10px 5px;
+            }
+            
+            /* تحسين تنسيق الحقول المتجاورة */
+            .input-grid {
+                gap: 15px;
+            }
+            
+            .car-options-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+
+        .admin-link {
+            position: fixed;
+            bottom: 90px; /* رفع فوق الذكاء الاصطناعي */
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .admin-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        [lang="ar"] .admin-link {
+            right: auto;
+            left: 20px;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 25, 35, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--sky-glow);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--sky-glow);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        [lang="ar"] .footer-links a {
+            flex-direction: row-reverse;
+        }
+        
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .password-box {
+            background: var(--deep-ocean);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid var(--sky-glow);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .password-box h3 {
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+            font-family: 'Cinzel';
+            text-align: center;
+        }
+        
+        .password-box input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .password-box button {
+            width: 100%;
+            padding: 15px;
+            background: var(--sky-glow);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .password-box button:hover {
+            background: #0095e0;
+        }
+        
+        .error-message {
+            color: var(--danger);
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 25, 35, 0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .admin-box {
+            background: var(--deep-ocean);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid var(--sky-glow);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        /* زر الإغلاق في Admin Panel */
+        .admin-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--danger);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .admin-close-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .admin-box h2 {
+            color: var(--sky-glow);
+            margin-bottom: 30px;
+            font-family: 'Cinzel';
+            text-align: center;
+            padding-right: 30px;
+        }
+        
+        .admin-section {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .admin-section h3 {
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--sky-glow);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .admin-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .admin-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .admin-btn.primary {
+            background: var(--sky-glow);
+            border-color: var(--sky-glow);
+        }
+        
+        .admin-btn.primary:hover {
+            background: #0095e0;
+        }
+        
+        .admin-btn.danger {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+        
+        .admin-btn.danger:hover {
+            background: #dc2626;
+        }
+        
+        /* تحسين تنسيق حقول التاريخ والوقت */
+        .date-time-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+    </style>
+</head>
+<body>
+
+<div class="config">
+    <select id="curr-sel">
+        <option value="CAD">CAD 🇨🇦</option>
+        <option value="USD">USD 🇺🇸</option>
+        <option value="SAR">SAR 🇸🇦</option>
+        <option value="EUR">EUR 🇪🇺</option>
+        <option value="GBP">GBP 🇬🇧</option>
+    </select>
+    <select id="lang-sel">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+    </select>
+</div>
+
+<!-- ========== نظام الذكاء الاصطناعي الجديد ========== -->
+<div class="ai-minimal" id="aiMinimal">
+    <div class="ai-tooltip" id="aiTooltip">
+        <h4 id="aiTitle">💡 Smart Suggestions</h4>
+        <p id="aiMessage">Analyzing your interests...</p>
+        <div id="aiSuggestions"></div>
+    </div>
+    <button class="ai-bubble pulse" id="aiBubble" onclick="toggleAITooltip()">
+        <i class="fas fa-sparkles"></i>
+    </button>
+</div>
+
+<div class="analytics-badge" id="analyticsBadge">
+    <i class="fas fa-chart-line"></i> <span id="analyticsText">Analyzing...</span>
+</div>
+
+<div class="smart-indicator" id="smartIndicator">
+    <i class="fas fa-brain"></i> <span id="indicatorText">Smart System Active</span>
+</div>
+
+<!-- رابط لوحة التحكم -->
+<a href="#" class="admin-link" id="adminLink" onclick="showPasswordModal(); return false;">
+    <i class="fas fa-cog"></i>
+    <span id="adminText">Admin Panel</span>
+</a>
+
+<!-- Password Protection Modal -->
+<div class="password-modal" id="passwordModal">
+    <div class="password-box">
+        <h3 id="passwordTitle">Admin Panel Access</h3>
+        <input type="password" id="adminPasswordInput" placeholder="Enter admin password">
+        <button onclick="checkAdminPassword()" id="passwordButton">Submit</button>
+        <div class="error-message" id="passwordError"></div>
+    </div>
+</div>
+
+<!-- Admin Panel (Updated with AI Analytics) -->
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-box">
+        <button class="admin-close-btn" onclick="closeAdminPanel()">&times;</button>
+        <h2><i class="fas fa-cog"></i> SkyLynx Admin Panel</h2>
+        
+        <div class="admin-section">
+            <h3><i class="fas fa-chart-bar"></i> AI Analytics</h3>
+            <div class="admin-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="statActiveUsers">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statSearches">0</div>
+                    <div class="stat-label">Total Searches</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statDestinations">0</div>
+                    <div class="stat-label">Destinations Viewed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statAIInteractions">0</div>
+                    <div class="stat-label">AI Interactions</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="admin-section">
+            <h3><i class="fas fa-robot"></i> AI System Control</h3>
+            <div class="admin-actions">
+                <button class="admin-btn" onclick="viewUserPatterns()">
+                    <i class="fas fa-user-chart"></i> View Patterns
+                </button>
+                <button class="admin-btn" onclick="exportAIData()">
+                    <i class="fas fa-database"></i> Export AI Data
+                </button>
+                <button class="admin-btn primary" onclick="runAIAnalysis()">
+                    <i class="fas fa-brain"></i> Run Analysis
+                </button>
+            </div>
+        </div>
+        
+        <div class="admin-section">
+            <h3><i class="fas fa-tools"></i> System Tools</h3>
+            <div class="admin-actions">
+                <button class="admin-btn" onclick="clearCache()">
+                    <i class="fas fa-broom"></i> Clear Cache
+                </button>
+                <button class="admin-btn" onclick="backupSystem()">
+                    <i class="fas fa-save"></i> Backup System
+                </button>
+                <button class="admin-btn danger" onclick="closeAdminPanel()">
+                    <i class="fas fa-times"></i> Close Panel
+                </button>
+            </div>
+        </div>
+        
+        <div class="admin-section">
+            <h3><i class="fas fa-info-circle"></i> AI System Info</h3>
+            <div style="color: var(--silver); font-size: 0.9rem;">
+                <p><strong>AI Version:</strong> SkyLynx AI 3.0</p>
+                <p><strong>Learning Mode:</strong> <span id="aiLearningMode">Active</span></p>
+                <p><strong>Patterns Detected:</strong> <span id="patternsDetected">0</span></p>
+                <p><strong>Last Analysis:</strong> <span id="lastAnalysis">Just now</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+    <p id="loadingText">Searching for the best flights...</p>
+</div>
+
+<header>
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+    </video>
+    
+    <div class="logo-container">
+        <div class="logo-top-row">
+            <div class="logo-line"></div>
+            <div class="logo-triangle">▲</div>
+            <div class="logo-line"></div>
+        </div>
+        <div class="logo-text">SkyLynx</div>
+        <div class="logo-subtext">TRAVEL</div>
+    </div>
+    <p id="tag">Elevating Your Journey Beyond Horizons</p>
+</header>
+
+<div class="search-container">
+    <div class="tabs">
+        <div class="tab active" onclick="openSection(event, 'flights')" id="t-fl">
+            <i class="fas fa-plane"></i> <span>Flights</span>
+        </div>
+        <div class="tab" onclick="openSection(event, 'private')" id="t-pr">
+            <i class="fas fa-crown"></i> <span>Private Jet</span>
+        </div>
+        <div class="tab" onclick="openSection(event, 'hotels')" id="t-ho">
+            <i class="fas fa-hotel"></i> <span>Hotels</span>
+        </div>
+        <div class="tab" onclick="openSection(event, 'cars')" id="t-ca">
+            <i class="fas fa-car"></i> <span>Cars</span>
+        </div>
+    </div>
+
+    <!-- ========== FLIGHTS FORM ========== -->
+    <form id="flights" class="form-content">
+        <div class="input-grid">
+            <div class="field">
+                <label id="l-f-fr">From</label>
+                <input type="text" 
+                       id="flight-from" 
+                       placeholder="Ottawa (YOW)"
+                       value="Ottawa (YOW)"
+                       required>
+            </div>
+            
+            <div class="field">
+                <label id="l-f-to">To</label>
+                <input type="text" 
+                       id="flight-to" 
+                       placeholder="Vancouver (YVR)"
+                       value="Vancouver (YVR)"
+                       required>
+            </div>
+            
+            <div class="field">
+                <label id="l-f-type">Trip Type</label>
+                <div class="trip-type-buttons">
+                    <div class="trip-option">
+                        <input type="radio" id="roundtrip" name="tripType" value="roundtrip" checked onclick="toggleReturnDate(true)">
+                        <label for="roundtrip" id="l-f-rt">Round Trip</label>
+                    </div>
+                    <div class="trip-option">
+                        <input type="radio" id="oneway" name="tripType" value="oneway" onclick="toggleReturnDate(false)">
+                        <label for="oneway" id="l-f-ow">One Way</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label id="l-f-de">Departure</label>
+                <input type="date" 
+                       id="flight-departure" 
+                       required>
+            </div>
+            
+            <div class="field" id="return-date-field">
+                <label id="l-f-re">Return (Optional)</label>
+                <input type="date" 
+                       id="flight-return">
+            </div>
+            
+            <div class="field" style="position: relative;">
+                <label id="l-f-pa">Passengers</label>
+                <div class="passenger-input" onclick="togglePassengerModal()">
+                    <span id="passenger-summary">1 Adult</span>
+                    <i class="fas fa-chevron-down" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%);"></i>
+                </div>
+                <div class="passenger-modal" id="passengerModal">
+                    <div class="passenger-control">
+                        <label>Adults (12+ years)</label>
+                        <div class="counter">
+                            <button type="button" onclick="updatePassenger('adults', -1)">-</button>
+                            <span id="adults-count">1</span>
+                            <button type="button" onclick="updatePassenger('adults', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="passenger-control">
+                        <label>Children (2-11 years)</label>
+                        <div class="counter">
+                            <button type="button" onclick="updatePassenger('children', -1)">-</button>
+                            <span id="children-count">0</span>
+                            <button type="button" onclick="updatePassenger('children', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="passenger-control">
+                        <label>Infants (under 2)</label>
+                        <div class="counter">
+                            <button type="button" onclick="updatePassenger('infants', -1)">-</button>
+                            <span id="infants-count">0</span>
+                            <button type="button" onclick="updatePassenger('infants', 1)">+</button>
+                        </div>
+                    </div>
+                    <button type="button" 
+                            onclick="closePassengerModal()"
+                            style="width: 100%; padding: 12px; background: var(--sky-glow); color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px;">
+                        Done
+                    </button>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label id="l-f-cl">Travel Class</label>
+                <select id="travel-class">
+                    <option value="ECONOMY">Economy</option>
+                    <option value="PREMIUM_ECONOMY">Premium Economy</option>
+                    <option value="BUSINESS">Business Class</option>
+                    <option value="FIRST">First Class</option>
+                </select>
+            </div>
+            
+            <div class="car-options-row" style="cursor:pointer" onclick="alert('سيتم توجيهك لصفحة الحجز الجماعي')">
+                <i class="fas fa-users" style="color:var(--sky-glow)"></i> 
+                <span id="group-txt">Group Booking (10+ Passengers)</span>
+            </div>
+            
+            <button type="button" 
+                    class="search-btn" 
+                    id="b-fl"
+                    onclick="searchFlights()">
+                <i class="fas fa-search"></i>
+                <span>Search Luxury Flights</span>
+            </button>
+        </div>
+    </form>
+
+    <!-- ========== PRIVATE JET FORM ========== -->
+    <form id="private" class="form-content hidden">
+        <div class="input-grid">
+            <div class="field">
+                <label id="l-p-fr">Origin Terminal</label>
+                <input type="text" 
+                       id="private-origin" 
+                       placeholder="VIP Hangar">
+            </div>
+            
+            <div class="field">
+                <label id="l-p-to">Destination</label>
+                <input type="text" 
+                       id="private-destination" 
+                       placeholder="Anywhere">
+            </div>
+            
+            <div class="field">
+                <label id="l-p-de">Departure Date</label>
+                <input type="date" 
+                       id="private-departure">
+            </div>
+            
+            <div class="field">
+                <label id="l-p-re">Return Date (Optional)</label>
+                <input type="date" 
+                       id="private-return">
+            </div>
+            
+            <div class="field">
+                <label id="l-p-pa">Total Guests</label>
+                <input type="number" 
+                       id="private-guests" 
+                       value="4" 
+                       min="1">
+            </div>
+            
+            <div class="field">
+                <label id="l-p-je">Jet Category</label>
+                <select id="jet-category">
+                    <option value="Heavy Jet (12-16 Pax)">Heavy Jet (12-16 Pax)</option>
+                    <option value="Super Mid-Size (8-10 Pax)">Super Mid-Size (8-10 Pax)</option>
+                    <option value="Light Jet (4-6 Pax)">Light Jet (4-6 Pax)</option>
+                </select>
+            </div>
+            
+            <button type="button" 
+                    class="search-btn" 
+                    id="b-pr"
+                    onclick="searchPrivateJet()">
+                <i class="fas fa-crown"></i>
+                <span>Inquire Private Charter</span>
+            </button>
+        </div>
+    </form>
+
+    <!-- ========== HOTELS FORM ========== -->
+    <form id="hotels" class="form-content hidden">
+        <div class="input-grid">
+            <div class="field">
+                <label id="l-h-lo">Location</label>
+                <input type="text" 
+                       id="hotel-location" 
+                       placeholder="Dubai">
+            </div>
+            
+            <div class="field">
+                <label id="l-h-ci">Check-in</label>
+                <input type="date" 
+                       id="hotel-checkin">
+            </div>
+            
+            <div class="field">
+                <label id="l-h-co">Check-out</label>
+                <input type="date" 
+                       id="hotel-checkout">
+            </div>
+            
+            <div class="field">
+                <label id="l-h-ro">Rooms</label>
+                <input type="number" 
+                       id="hotel-rooms" 
+                       value="1" 
+                       min="1">
+            </div>
+            
+            <div class="field">
+                <label id="l-h-gu">Guests</label>
+                <input type="number" 
+                       id="hotel-guests" 
+                       value="2" 
+                       min="1">
+            </div>
+            
+            <div class="field">
+                <label id="l-h-st">Star Rating</label>
+                <select id="hotel-stars">
+                    <option value="5 Stars / Palace">5 Stars / Palace</option>
+                    <option value="4 Stars / Boutique">4 Stars / Boutique</option>
+                    <option value="3 Stars">3 Stars</option>
+                </select>
+            </div>
+            
+            <button type="button" 
+                    class="search-btn" 
+                    id="b-ho"
+                    onclick="searchHotels()">
+                <i class="fas fa-hotel"></i>
+                <span>Find Elite Stays</span>
+            </button>
+        </div>
+    </form>
+
+    <!-- ========== CARS FORM ========== -->
+    <form id="cars" class="form-content hidden">
+        <div class="input-grid">
+            <div class="field">
+                <label id="l-c-fr">Pick-up Location</label>
+                <input type="text" 
+                       id="car-pickup" 
+                       placeholder="Dubai Airport">
+            </div>
+            
+            <div class="field" id="car-drop-field" style="display:none;">
+                <label id="l-c-to">Drop-off Location</label>
+                <input type="text" 
+                       id="car-dropoff" 
+                       placeholder="City or Address">
+            </div>
+            
+            <div class="field">
+                <label id="l-c-sd">Start Date</label>
+                <input type="date" 
+                       id="car-start-date">
+            </div>
+            
+            <div class="field">
+                <label id="l-c-st">Pick-up Time</label>
+                <input type="time" 
+                       id="car-pickup-time" 
+                       value="10:00">
+            </div>
+            
+            <div class="field">
+                <label id="l-c-ed">End Date</label>
+                <input type="date" 
+                       id="car-end-date">
+            </div>
+            
+            <div class="field">
+                <label id="l-c-et">Return Time</label>
+                <input type="time" 
+                       id="car-return-time" 
+                       value="18:00">
+            </div>
+            
+            <div class="car-options-row">
+                <div class="car-toggle">
+                    <input type="checkbox" 
+                           id="same-loc" 
+                           checked 
+                           onchange="toggleCarDrop(this.checked)">
+                    <label for="same-loc" id="l-c-sa">Return to same location</label>
+                </div>
+                <div class="car-toggle">
+                    <input type="checkbox" id="driver-opt">
+                    <label for="driver-opt" id="l-c-dr">With Chauffeur</label>
+                </div>
+            </div>
+            
+            <button type="button" 
+                    class="search-btn" 
+                    id="b-ca"
+                    onclick="searchCars()">
+                <i class="fas fa-car"></i>
+                <span>View Luxury Fleet</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Destinations Section -->
+<section class="destinations">
+    <h2 id="h-dest" style="font-family:'Cinzel'; font-size: 3rem;">World-Class Destinations</h2>
+    <div class="dest-grid">
+        <div class="dest-card" onclick="searchDestination('Ottawa')">
+            <img src="https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=1200" alt="Ottawa Parliament">
+            <div class="dest-overlay">
+                <h3>Ottawa</h3>
+                <p>Capital Elegance • Our Headquarters</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Toronto')">
+            <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=1200" alt="Toronto Skyline">
+            <div class="dest-overlay">
+                <h3>Toronto</h3>
+                <p>Dynamic Metropolis</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Vancouver')">
+            <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&q=80&w=1200" alt="Vancouver Skyline">
+            <div class="dest-overlay">
+                <h3>Vancouver</h3>
+                <p>Coastal Paradise • Mountains & Ocean</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('London')">
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200" alt="London Big Ben">
+            <div class="dest-overlay">
+                <h3>London</h3>
+                <p>Royal Elegance</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('New York')">
+            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1200" alt="New York Skyline">
+            <div class="dest-overlay">
+                <h3>New York</h3>
+                <p>The City Lights</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Paris')">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=1200" alt="Paris Eiffel Tower">
+            <div class="dest-overlay">
+                <h3>Paris</h3>
+                <p>Romantic Escape</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Dubai')">
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" alt="Dubai Burj Khalifa">
+            <div class="dest-overlay">
+                <h3>Dubai</h3>
+                <p>Modern Luxury</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Maldives')">
+            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=1200" alt="Maldives Beach">
+            <div class="dest-overlay">
+                <h3>Maldives</h3>
+                <p>Island Paradise</p>
+            </div>
+        </div>
+        
+        <div class="dest-card" onclick="searchDestination('Tokyo')">
+            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1200" alt="Tokyo City">
+            <div class="dest-overlay">
+                <h3>Tokyo</h3>
+                <p>Future Heritage</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium Travel Experience Section -->
+<section class="premium-section">
+    <h2 id="h-premium">Premium Travel Experience</h2>
+    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 40px; color: var(--silver);">
+        Join thousands of satisfied travelers who trust SkyLynx for their luxury journeys
+    </p>
+    
+    <div class="premium-grid">
+        <div class="premium-card">
+            <i class="fas fa-plane-departure"></i>
+            <h3>Exclusive Flights</h3>
+            <p>Access to premium airlines and exclusive flight deals worldwide</p>
+        </div>
+        <div class="premium-card">
+            <i class="fas fa-concierge-bell"></i>
+            <h3>Personal Concierge</h3>
+            <p>Dedicated travel expert assigned to handle all your arrangements</p>
+        </div>
+        <div class="premium-card">
+            <i class="fas fa-hotel"></i>
+            <h3>Luxury Selection</h3>
+            <p>Curated collection of 5-star hotels and premium services</p>
+        </div>
+        <div class="premium-card">
+            <i class="fas fa-exchange-alt"></i>
+            <h3>Flexible Options</h3>
+            <p>24-hour free cancellation on most bookings for your peace of mind</p>
+        </div>
+    </div>
+    
+    <h2 id="h-confidence" style="margin-top: 80px;">
+        Why Choose SkyLynx Travel?
+    </h2>
+    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 40px; color: var(--silver);" id="confidence-sub">
+        Experience luxury travel with confidence and peace of mind
+    </p>
+    
+    <div class="confidence-grid">
+        <div class="confidence-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Secure Booking</h3>
+            <p>Your payments and personal information are protected with bank-level security</p>
+        </div>
+        <div class="confidence-card">
+            <i class="fas fa-medal"></i>
+            <h3>Best Price Guarantee</h3>
+            <p>We'll match any lower price you find within 24 hours of booking</p>
+        </div>
+        <div class="confidence-card">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Our concierge team is available round-the-clock to assist you</p>
+        </div>
+        <div class="confidence-card">
+            <i class="fas fa-star"></i>
+            <h3>Verified Reviews</h3>
+            <p>Read genuine feedback from our community of luxury travelers</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="contact-info">
+        <h2 id="h-cont">Concierge Desk</h2>
+        <p style="display: none;"><i class="fas fa-envelope"></i> skylynxtravel@gmail.com</p>
+        <p><i class="fas fa-envelope"></i> concierge@skylynx.com</p>
+        <p><i class="fas fa-phone"></i> +1 (800) SKY-LYNX</p>
+        <p><i class="fas fa-clock"></i> 24/7 Service</p>
+        <p><i class="fas fa-map-marker-alt"></i> Ottawa, Canada (Head Office)</p>
+        <p><i class="fas fa-building"></i> SkyLynx Travel International Inc.</p>
+    </div>
+    <form class="contact-form">
+        <input type="text" id="contact-name" placeholder="Name" required>
+        <input type="email" id="contact-email" placeholder="Email" required>
+        <textarea id="contact-message" placeholder="Your bespoke requirements..." rows="5"></textarea>
+        <button type="button" id="b-cont" onclick="sendInquiry()">
+            <i class="fas fa-paper-plane"></i>
+            <span>Send Inquiry</span>
+        </button>
+    </form>
+</section>
+
+<footer>
+    <p id="f-copy">© 2025 SkyLynx International - Luxury Travel Concierge</p>
+    
+    <div class="footer-links">
+        <a href="terms.html">
+            <i class="fas fa-file-contract"></i>
+            <span id="terms-link">Terms & Conditions</span>
+        </a>
+        <a href="privacy.html">
+            <i class="fas fa-shield-alt"></i>
+            <span id="privacy-link">Privacy Policy</span>
+        </a>
+        <a href="contact.html">
+            <i class="fas fa-phone-alt"></i>
+            <span id="contact-link">Contact Us</span>
+        </a>
+        <a href="booking-confirmation.html" id="confirmation-link">
+            <i class="fas fa-check-circle"></i>
+            <span>Booking Confirmation</span>
+        </a>
+        <a href="#" onclick="showPasswordModal(); return false;">
+            <i class="fas fa-cog"></i>
+            <span id="admin-link-text">Admin Panel</span>
+        </a>
+    </div>
+</footer>
+
+<script>
+// ========== نظام الذكاء الاصطناعي المتقدم ==========
+const AISystem = {
+    userProfile: {},
+    behaviorPatterns: [],
+    suggestions: [],
+    analytics: {
+        totalSearches: 0,
+        destinationsViewed: 0,
+        userInteractions: 0,
+        patternsDetected: 0
+    },
+    
+    analyzeUser: function() {
+        const profile = {
+            device: window.innerWidth < 768 ? 'mobile' : 
+                   window.innerWidth < 1024 ? 'tablet' : 'desktop',
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            hour: new Date().getHours(),
+            month: new Date().getMonth(),
+            isFirstVisit: !localStorage.getItem('skylynx_visited'),
+            previousVisits: parseInt(localStorage.getItem('skylynx_visits')) || 0,
+            lastVisit: localStorage.getItem('skylynx_last_visit') || null
+        };
+        
+        localStorage.setItem('skylynx_visited', 'true');
+        localStorage.setItem('skylynx_visits', (profile.previousVisits + 1).toString());
+        localStorage.setItem('skylynx_last_visit', new Date().toISOString());
+        
+        this.userProfile = profile;
+        return profile;
+    },
+    
+    detectPatterns: function() {
+        const patterns = [];
+        const hour = this.userProfile.hour;
+        
+        if (hour >= 6 && hour < 12) {
+            patterns.push({ type: 'morning_travel', confidence: 0.8, description: 'Morning planning user' });
+        } else if (hour >= 12 && hour < 18) {
+            patterns.push({ type: 'afternoon_research', confidence: 0.7, description: 'Afternoon research user' });
+        } else if (hour >= 18 && hour < 24) {
+            patterns.push({ type: 'evening_planning', confidence: 0.7, description: 'Evening planning user' });
+        } else {
+            patterns.push({ type: 'night_browsing', confidence: 0.6, description: 'Late night browser' });
+        }
+        
+        if (this.userProfile.device === 'mobile') {
+            patterns.push({ type: 'quick_search', confidence: 0.9, description: 'Mobile quick searcher' });
+        } else {
+            patterns.push({ type: 'detailed_planning', confidence: 0.6, description: 'Desktop detailed planner' });
+        }
+        
+        if (this.userProfile.previousVisits > 0) {
+            patterns.push({ type: 'returning_user', confidence: 1.0, description: 'Returning customer' });
+        } else {
+            patterns.push({ type: 'new_user', confidence: 1.0, description: 'First time visitor' });
+        }
+        
+        this.behaviorPatterns = patterns;
+        this.analytics.patternsDetected = patterns.length;
+        return patterns;
+    },
+    
+    generateSuggestions: function() {
+        const hour = new Date().getHours();
+        const month = new Date().getMonth();
+        const suggestions = [];
+        
+        if (hour >= 21 || hour < 6) {
+            suggestions.push({
+                title: '🌙 Late Night Travel',
+                description: 'Perfect destinations for night travel',
+                destinations: ['Dubai', 'Tokyo', 'Singapore'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Dubai';
+                    this.showSmartNotification('Night Travel', 'Dubai suggested for late night travel', 'info');
+                }
+            });
+        }
+        
+        if (hour >= 6 && hour < 12) {
+            suggestions.push({
+                title: '🌅 Morning Inspiration',
+                description: 'Start your day with amazing destinations',
+                destinations: ['Maldives', 'Bali', 'Seychelles'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Maldives';
+                    this.showSmartNotification('Morning Getaway', 'Maldives suggested for morning planning', 'info');
+                }
+            });
+        }
+        
+        if (month >= 11 || month <= 2) {
+            suggestions.push({
+                title: '☀️ Winter Escape',
+                description: 'Warm destinations for winter',
+                destinations: ['Dubai', 'Maldives', 'Thailand'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Dubai';
+                    this.showSmartNotification('Winter Escape', 'Dubai suggested for winter travel', 'info');
+                }
+            });
+        } else if (month >= 6 && month <= 8) {
+            suggestions.push({
+                title: '🏖️ Summer Getaway',
+                description: 'Perfect summer destinations',
+                destinations: ['Greece', 'Italy', 'Spain'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Greece';
+                    this.showSmartNotification('Summer Getaway', 'Greece suggested for summer travel', 'info');
+                }
+            });
+        } else {
+            suggestions.push({
+                title: '🌸 Seasonal Travel',
+                description: 'Great destinations for this season',
+                destinations: ['Paris', 'London', 'New York'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Paris';
+                    this.showSmartNotification('Seasonal Pick', 'Paris suggested for seasonal travel', 'info');
+                }
+            });
+        }
+        
+        if (this.userProfile.isFirstVisit) {
+            suggestions.push({
+                title: '✨ Welcome Offer',
+                description: 'Special destinations for new users',
+                destinations: ['Paris', 'London', 'New York'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Paris';
+                    this.showSmartNotification('Welcome!', 'Paris suggested as welcome destination', 'success');
+                }
+            });
+        }
+        
+        if (this.userProfile.previousVisits > 2) {
+            suggestions.push({
+                title: '⭐ For You',
+                description: 'Based on your previous visits',
+                destinations: ['Tokyo', 'Dubai', 'Maldives'],
+                action: () => {
+                    document.getElementById('flight-to').value = 'Tokyo';
+                    this.showSmartNotification('Personalized', 'Tokyo suggested based on your history', 'success');
+                }
+            });
+        }
+        
+        this.suggestions = suggestions;
+        return suggestions;
+    },
+    
+    updateAISuggestions: function() {
+        const tooltip = document.getElementById('aiTooltip');
+        const suggestionsDiv = document.getElementById('aiSuggestions');
+        const title = document.getElementById('aiTitle');
+        const message = document.getElementById('aiMessage');
+        
+        const hour = new Date().getHours();
+        let timeBasedMsg = '';
+        
+        if (hour >= 6 && hour < 12) {
+            timeBasedMsg = 'Perfect time for morning travel planning!';
+        } else if (hour >= 12 && hour < 18) {
+            timeBasedMsg = 'Great afternoon for finding travel deals!';
+        } else if (hour >= 18 && hour < 22) {
+            timeBasedMsg = 'Evening is ideal for relaxed travel planning!';
+        } else {
+            timeBasedMsg = 'Late night browsing? Perfect for last-minute deals!';
+        }
+        
+        title.textContent = '💡 Smart Suggestions';
+        message.textContent = timeBasedMsg;
+        
+        suggestionsDiv.innerHTML = '';
+        
+        this.suggestions.slice(0, 3).forEach(suggestion => {
+            const suggestionDiv = document.createElement('div');
+            suggestionDiv.className = 'ai-suggestion';
+            suggestionDiv.onclick = suggestion.action;
+            
+            suggestionDiv.innerHTML = `
+                <i class="fas fa-compass"></i>
+                <div>
+                    <strong>${suggestion.title}</strong>
+                    <div style="font-size:0.8rem; color:var(--silver); margin-top:5px;">
+                        ${suggestion.description}
+                    </div>
+                </div>
+            `;
+            
+            suggestionsDiv.appendChild(suggestionDiv);
+        });
+        
+        const analyticsText = document.getElementById('analyticsText');
+        if (this.analytics.destinationsViewed > 0) {
+            analyticsText.textContent = `Viewed ${this.analytics.destinationsViewed} destinations`;
+            document.getElementById('analyticsBadge').style.display = 'block';
+        }
+    },
+    
+    trackInteraction: function(type, data) {
+        this.analytics.userInteractions++;
+        
+        switch(type) {
+            case 'destination_view':
+                this.analytics.destinationsViewed++;
+                this.learnFromDestination(data);
+                break;
+            case 'search':
+                this.analytics.totalSearches++;
+                break;
+            case 'ai_interaction':
+                break;
+        }
+        
+        this.updateAnalyticsDisplay();
+        this.saveAnalytics();
+    },
+    
+    learnFromDestination: function(destination) {
+        let favorites = JSON.parse(localStorage.getItem('skylynx_favorites')) || [];
+        if (!favorites.includes(destination)) {
+            favorites.push(destination);
+            localStorage.setItem('skylynx_favorites', JSON.stringify(favorites));
+            
+            this.addPersonalizationBadge(destination);
+        }
+    },
+    
+    addPersonalizationBadge: function(destination) {
+        document.querySelectorAll('.dest-card h3').forEach((h3, index) => {
+            if (h3.textContent === destination) {
+                const card = h3.closest('.dest-card');
+                if (card && !card.querySelector('.ai-personal-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'ai-personal-badge';
+                    badge.innerHTML = '⭐ For you';
+                    card.style.position = 'relative';
+                    card.appendChild(badge);
+                }
+            }
+        });
+    },
+    
+    showSmartNotification: function(title, message, type) {
+        const notification = document.createElement('div');
+        notification.className = 'ai-notification';
+        
+        notification.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                                  type === 'info' ? 'info-circle' : 
+                                  'lightbulb'}" 
+                   style="color:${type === 'success' ? 'var(--success)' : 
+                                type === 'info' ? 'var(--sky-glow)' : 
+                                'var(--gold)'};"></i>
+                <strong style="color:${type === 'success' ? 'var(--success)' : 
+                                   type === 'info' ? 'var(--sky-glow)' : 
+                                   'var(--gold)'};">${title}</strong>
+            </div>
+            <div style="color:var(--silver); font-size:0.9rem;">${message}</div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 5000);
+    },
+    
+    updateAnalyticsDisplay: function() {
+        document.getElementById('statActiveUsers').textContent = 
+            this.userProfile.previousVisits + 1;
+        document.getElementById('statSearches').textContent = 
+            this.analytics.totalSearches;
+        document.getElementById('statDestinations').textContent = 
+            this.analytics.destinationsViewed;
+        document.getElementById('statAIInteractions').textContent = 
+            this.analytics.userInteractions;
+        document.getElementById('patternsDetected').textContent = 
+            this.analytics.patternsDetected;
+        document.getElementById('lastAnalysis').textContent = 
+            new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    },
+    
+    saveAnalytics: function() {
+        localStorage.setItem('skylynx_analytics', JSON.stringify(this.analytics));
+    },
+    
+    loadAnalytics: function() {
+        const saved = localStorage.getItem('skylynx_analytics');
+        if (saved) {
+            this.analytics = JSON.parse(saved);
+        }
+    },
+    
+    init: function() {
+        this.loadAnalytics();
+        this.analyzeUser();
+        this.detectPatterns();
+        this.generateSuggestions();
+        this.setupTracking();
+        this.updateAnalyticsDisplay();
+        
+        setTimeout(() => {
+            const indicator = document.getElementById('smartIndicator');
+            indicator.style.display = 'block';
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 3000);
+        }, 2000);
+        
+        const favorites = JSON.parse(localStorage.getItem('skylynx_favorites')) || [];
+        favorites.forEach(dest => this.addPersonalizationBadge(dest));
+        
+        return true;
+    },
+    
+    setupTracking: function() {
+        document.querySelectorAll('.dest-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const destination = card.querySelector('h3').textContent;
+                this.trackInteraction('destination_view', destination);
+            });
+        });
+        
+        const searchButtons = ['b-fl', 'b-pr', 'b-ho', 'b-ca'];
+        searchButtons.forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    this.trackInteraction('search', {
+                        type: id.replace('b-', ''),
+                        timestamp: new Date().toISOString()
+                    });
+                });
+            }
+        });
+        
+        let timeOnPage = 0;
+        const timeInterval = setInterval(() => {
+            timeOnPage++;
+            if (timeOnPage % 30 === 0) {
+                this.trackInteraction('time_spent', { seconds: timeOnPage });
+            }
+            
+            if (timeOnPage >= 300) {
+                clearInterval(timeInterval);
+            }
+        }, 1000);
+    }
+};
+
+// ========== وظائف نظام الذكاء الاصطناعي ==========
+function toggleAITooltip() {
+    const tooltip = document.getElementById('aiTooltip');
+    const bubble = document.getElementById('aiBubble');
+    
+    if (tooltip.style.display === 'block') {
+        tooltip.style.display = 'none';
+        bubble.classList.add('pulse');
+    } else {
+        tooltip.style.display = 'block';
+        bubble.classList.remove('pulse');
+        AISystem.updateAISuggestions();
+        
+        AISystem.trackInteraction('ai_interaction', { action: 'open_tooltip' });
+    }
+}
+
+document.addEventListener('click', function(e) {
+    const tooltip = document.getElementById('aiTooltip');
+    const bubble = document.getElementById('aiBubble');
+    
+    if (tooltip && bubble) {
+        if (!e.target.closest('#aiTooltip') && !e.target.closest('#aiBubble')) {
+            tooltip.style.display = 'none';
+            bubble.classList.add('pulse');
+        }
+    }
+});
+
+function viewUserPatterns() {
+    const patterns = AISystem.behaviorPatterns;
+    let patternText = 'Detected Patterns:\n\n';
+    patterns.forEach((pattern, index) => {
+        patternText += `${index + 1}. ${pattern.description}\n`;
+        patternText += `   Confidence: ${Math.round(pattern.confidence * 100)}%\n\n`;
+    });
+    
+    alert(patternText);
+}
+
+function exportAIData() {
+    const data = {
+        userProfile: AISystem.userProfile,
+        analytics: AISystem.analytics,
+        patterns: AISystem.behaviorPatterns,
+        suggestions: AISystem.suggestions,
+        timestamp: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'skylynx-ai-data.json';
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    AISystem.showSmartNotification(
+        'Data Exported',
+        'AI data has been exported successfully',
+        'success'
+    );
+}
+
+function runAIAnalysis() {
+    document.getElementById('aiLearningMode').textContent = 'Analyzing...';
+    
+    setTimeout(() => {
+        AISystem.detectPatterns();
+        AISystem.generateSuggestions();
+        AISystem.updateAnalyticsDisplay();
+        
+        document.getElementById('aiLearningMode').textContent = 'Active';
+        
+        AISystem.showSmartNotification(
+            'Analysis Complete',
+            `Patterns: ${AISystem.behaviorPatterns.length}\nSuggestions: ${AISystem.suggestions.length}`,
+            'success'
+        );
+    }, 1000);
+}
+
+// ========== بدء النظام عند تحميل الصفحة ==========
+window.addEventListener('DOMContentLoaded', function() {
+    const aiBubble = document.getElementById('aiBubble');
+    if (aiBubble) {
+        aiBubble.classList.add('pulse');
+    }
+    
+    setTimeout(() => {
+        AISystem.init();
+        
+        setTimeout(() => {
+            AISystem.showSmartNotification(
+                'SkyLynx AI Activated',
+                'Smart system is now tracking preferences',
+                'info'
+            );
+        }, 1500);
+    }, 1000);
+});
+
+// ========== الكود الأصلي للبحث مع التصحيحات ==========
+const langData = {
+    en: { 
+        tag: "Elevating Your Journey Beyond Horizons", 
+        dest: "World-Class Destinations", 
+        fl: "Flights", 
+        pr: "Private Jet", 
+        ho: "Hotels", 
+        ca: "Cars", 
+        b_fl: "Search Luxury Flights", 
+        group: "Group Booking (10+ Passengers)", 
+        sa: "Return to same location", 
+        dr: "With Chauffeur",
+        contact: "Concierge Desk",
+        copyright: "© 2025 SkyLynx International - Luxury Travel Concierge",
+        searching: "Searching...",
+        search_failed: "Search failed",
+        admin: "Admin Panel",
+        terms: "Terms & Conditions",
+        privacy: "Privacy Policy",
+        contact_us: "Contact Us",
+        loading_flights: "Searching for the best flights...",
+        loading_hotels: "Finding elite stays...",
+        loading_private: "Inquiring private charters...",
+        loading_cars: "Searching luxury fleet...",
+        roundtrip: "Round Trip",
+        oneway: "One Way",
+        premium: "Premium Travel Experience",
+        confidence: "Why Choose SkyLynx Travel?",
+        confidence_sub: "Experience luxury travel with confidence and peace of mind",
+        password_title: "Admin Panel Access",
+        password_button: "Submit"
+    },
+    ar: { 
+        tag: "نحو آفاق جديدة من الفخامة", 
+        dest: "وجهات عالمية فاخرة", 
+        fl: "الطيران", 
+        pr: "طائرة خاصة", 
+        ho: "الفنادق", 
+        ca: "السيارات", 
+        b_fl: "بحث عن رحلات فاخرة", 
+        group: "حجز المجموعات (10 مسافرين فأكثر)", 
+        sa: "العودة لنفس الموقع", 
+        dr: "مع سائق خاص",
+        contact: "مكتب الكونسيرج",
+        copyright: "© 2025 سكايلينكس إنترناشيونال - خدمات السفر الفاخرة",
+        searching: "جاري البحث...",
+        search_failed: "فشل البحث",
+        admin: "لوحة التحكم",
+        terms: "الشروط والأحكام",
+        privacy: "سياسة الخصوصية",
+        contact_us: "اتصل بنا",
+        loading_flights: "جاري البحث عن أفضل الرحلات...",
+        loading_hotels: "جاري البحث عن أفضل الفنادق...",
+        loading_private: "جاري البحث عن طائرات خاصة...",
+        loading_cars: "جاري البحث عن أسطول سيارات فاخرة...",
+        roundtrip: "ذهاب وعودة",
+        oneway: "ذهاب فقط",
+        premium: "تجربة السفر الفاخرة",
+        confidence: "لماذا تختار SkyLynx Travel؟",
+        confidence_sub: "اختبر رحلات السفر الفاخرة بثقة وراحة بال",
+        password_title: "الوصول إلى لوحة التحكم",
+        password_button: "إرسال"
+    }
+};
+
+const adminPassword = "SkyLynx2025";
+
+let currentLang = localStorage.getItem('language') || 'en';
+let currentCurrency = localStorage.getItem('currency') || 'CAD';
+
+let passengers = JSON.parse(localStorage.getItem('passengers')) || {
+    adults: 1,
+    children: 0,
+    infants: 0
+};
+
+let stats = JSON.parse(localStorage.getItem('skylynxStats')) || {
+    flights: 0,
+    hotels: 0,
+    private: 0,
+    cars: 0,
+    lastUpdated: new Date().toISOString()
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadPreferences();
+    setDefaultDates();
+    updatePassengerSummary();
+    document.getElementById('adults-count').textContent = passengers.adults;
+    document.getElementById('children-count').textContent = passengers.children;
+    document.getElementById('infants-count').textContent = passengers.infants;
+    updateConfirmationLink();
+    updateStatsDisplay();
+    setupEventListeners();
+    initializeTripType();
+    document.getElementById('flight-from').value = "Ottawa (YOW)";
+});
+
+// ========== إصلاح زر الإغلاق في Admin Panel ==========
+function showPasswordModal() {
+    document.getElementById('passwordModal').style.display = 'flex';
+    document.getElementById('adminPasswordInput').focus();
+    
+    const lang = langData[currentLang];
+    document.getElementById('passwordTitle').textContent = lang.password_title;
+    document.getElementById('passwordButton').textContent = lang.password_button;
+    document.getElementById('passwordError').textContent = '';
+}
+
+function checkAdminPassword() {
+    const input = document.getElementById('adminPasswordInput').value;
+    const errorElement = document.getElementById('passwordError');
+    
+    if (input === adminPassword) {
+        document.getElementById('passwordModal').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'flex';
+        document.getElementById('adminPasswordInput').value = '';
+        
+        AISystem.updateAnalyticsDisplay();
+    } else {
+        errorElement.textContent = currentLang === 'ar' ? 'كلمة المرور غير صحيحة' : 'Incorrect password';
+        document.getElementById('adminPasswordInput').value = '';
+        document.getElementById('adminPasswordInput').focus();
+    }
+}
+
+// إصلاح دالة إغلاق Admin Panel
+function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+}
+
+function updateStatsDisplay() {
+    // هذه دالة للإحصائيات القديمة، يمكنك إزالتها إذا لم تعد تحتاجها
+}
+
+function incrementStat(statName) {
+    if (stats[statName] !== undefined) {
+        stats[statName]++;
+        stats.lastUpdated = new Date().toISOString();
+        localStorage.setItem('skylynxStats', JSON.stringify(stats));
+        updateStatsDisplay();
+    }
+}
+
+// ========== إصلاح وظائف البحث ==========
+function validateRequiredFields(fields, names) {
+    for (let i = 0; i < fields.length; i++) {
+        if (!fields[i] || !fields[i].value.trim()) {
+            alert(currentLang === 'ar' ? 
+                `الرجاء إدخال ${names[i]}` : 
+                `Please enter ${names[i]}`);
+            if (fields[i]) fields[i].focus();
+            return false;
+        }
+    }
+    return true;
+}
+
+async function searchFlights() {
+    const from = document.getElementById('flight-from');
+    const to = document.getElementById('flight-to');
+    const departure = document.getElementById('flight-departure');
+    const returnDate = document.getElementById('flight-return');
+    const travelClass = document.getElementById('travel-class');
+    const tripType = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
+    
+    if (!from || !to || !departure) {
+        alert(currentLang === 'ar' ? 'الرجاء ملء الحقول المطلوبة' : 'Please fill required fields');
+        return;
+    }
+    
+    if (!validateRequiredFields([from, to, departure], 
+        currentLang === 'ar' ? ['المدينة الأصلية', 'المدينة الوجهة', 'تاريخ المغادرة'] : 
+        ['origin city', 'destination city', 'departure date'])) {
+        return;
+    }
+    
+    if (tripType === 'roundtrip' && returnDate && !returnDate.value) {
+        alert(currentLang === 'ar' ? 'الرجاء إدخال تاريخ العودة' : 'Please enter return date');
+        if (returnDate) returnDate.focus();
+        return;
+    }
+    
+    const searchBtn = document.getElementById('b-fl');
+    if (!searchBtn) return;
+    
+    const originalText = searchBtn.innerHTML;
+    const lang = langData[currentLang];
+    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + lang.searching;
+    searchBtn.disabled = true;
+    
+    incrementStat('flights');
+    
+    showLoading(lang.loading_flights);
+    
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        const searchData = {
+            type: 'flights',
+            from: from.value,
+            to: to.value,
+            departure: departure.value,
+            return: tripType === 'roundtrip' && returnDate ? returnDate.value : null,
+            tripType: tripType,
+            passengers: passengers,
+            class: travelClass ? travelClass.value : 'ECONOMY',
+            currency: currentCurrency,
+            language: currentLang,
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('flightSearchData', JSON.stringify(searchData));
+        generateBookingConfirmation('flight', searchData);
+        
+        // الانتقال إلى صفحة النتائج
+        window.location.href = 'flight-results.html';
+        
+    } catch (error) {
+        console.error('Search failed:', error);
+        alert(currentLang === 'ar' ? lang.search_failed : 'Search failed');
+    } finally {
+        searchBtn.innerHTML = originalText;
+        searchBtn.disabled = false;
+        hideLoading();
+    }
+}
+
+async function searchPrivateJet() {
+    const origin = document.getElementById('private-origin');
+    const destination = document.getElementById('private-destination');
+    const departure = document.getElementById('private-departure');
+    const returnDate = document.getElementById('private-return');
+    const guests = document.getElementById('private-guests');
+    const category = document.getElementById('jet-category');
+    
+    if (!validateRequiredFields([origin, destination, departure], 
+        currentLang === 'ar' ? ['المكان الأصلي', 'الوجهة', 'تاريخ المغادرة'] : 
+        ['origin', 'destination', 'departure date'])) {
+        return;
+    }
+    
+    const searchBtn = document.getElementById('b-pr');
+    if (!searchBtn) return;
+    
+    const originalText = searchBtn.innerHTML;
+    const lang = langData[currentLang];
+    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + lang.searching;
+    searchBtn.disabled = true;
+    
+    incrementStat('private');
+    
+    showLoading(lang.loading_private);
+    
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        const searchData = {
+            type: 'private',
+            origin: origin.value,
+            destination: destination.value,
+            departure: departure.value,
+            return: returnDate ? returnDate.value : null,
+            guests: guests ? guests.value : 4,
+            category: category ? category.value : 'Heavy Jet (12-16 Pax)',
+            currency: currentCurrency,
+            language: currentLang,
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('privateJetSearchData', JSON.stringify(searchData));
+        generateBookingConfirmation('private-jet', searchData);
+        
+        window.location.href = 'private-results.html';
+        
+    } catch (error) {
+        console.error('Search failed:', error);
+        alert(currentLang === 'ar' ? lang.search_failed : 'Search failed');
+    } finally {
+        searchBtn.innerHTML = originalText;
+        searchBtn.disabled = false;
+        hideLoading();
+    }
+}
+
+async function searchHotels() {
+    const location = document.getElementById('hotel-location');
+    const checkin = document.getElementById('hotel-checkin');
+    const checkout = document.getElementById('hotel-checkout');
+    const rooms = document.getElementById('hotel-rooms');
+    const guests = document.getElementById('hotel-guests');
+    const stars = document.getElementById('hotel-stars');
+    
+    if (!validateRequiredFields([location, checkin, checkout], 
+        currentLang === 'ar' ? ['الموقع', 'تاريخ الوصول', 'تاريخ المغادرة'] : 
+        ['location', 'check-in date', 'check-out date'])) {
+        return;
+    }
+    
+    if (new Date(checkout.value) <= new Date(checkin.value)) {
+        alert(currentLang === 'ar' ? 'تاريخ المغادرة يجب أن يكون بعد تاريخ الوصول' : 'Check-out date must be after check-in date');
+        return;
+    }
+    
+    const searchBtn = document.getElementById('b-ho');
+    if (!searchBtn) return;
+    
+    const originalText = searchBtn.innerHTML;
+    const lang = langData[currentLang];
+    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + lang.searching;
+    searchBtn.disabled = true;
+    
+    incrementStat('hotels');
+    
+    showLoading(lang.loading_hotels);
+    
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const nights = calculateNights(checkin.value, checkout.value);
+        
+        const searchData = {
+            type: 'hotels',
+            location: location.value,
+            checkin: checkin.value,
+            checkout: checkout.value,
+            rooms: rooms ? rooms.value : 1,
+            guests: guests ? guests.value : 2,
+            stars: stars ? stars.value : '5 Stars / Palace',
+            nights: nights,
+            currency: currentCurrency,
+            language: currentLang,
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('hotelSearchData', JSON.stringify(searchData));
+        generateBookingConfirmation('hotel', searchData);
+        
+        window.location.href = 'hotels-results.html';
+        
+    } catch (error) {
+        console.error('Search failed:', error);
+        alert(currentLang === 'ar' ? lang.search_failed : 'Search failed');
+    } finally {
+        searchBtn.innerHTML = originalText;
+        searchBtn.disabled = false;
+        hideLoading();
+    }
+}
+
+async function searchCars() {
+    const location = document.getElementById('car-pickup');
+    const startDate = document.getElementById('car-start-date');
+    const endDate = document.getElementById('car-end-date');
+    const pickupTime = document.getElementById('car-pickup-time');
+    const returnTime = document.getElementById('car-return-time');
+    const withDriver = document.getElementById('driver-opt') ? document.getElementById('driver-opt').checked : false;
+    const sameLocation = document.getElementById('same-loc') ? document.getElementById('same-loc').checked : true;
+    const dropoffLocation = sameLocation ? (location ? location.value : '') : 
+                          (document.getElementById('car-dropoff') ? document.getElementById('car-dropoff').value : '');
+    
+    if (!validateRequiredFields([location, startDate, endDate], 
+        currentLang === 'ar' ? ['موقع الاستلام', 'تاريخ البدء', 'تاريخ الإرجاع'] : 
+        ['pickup location', 'start date', 'end date'])) {
+        return;
+    }
+    
+    if (new Date(endDate.value) < new Date(startDate.value)) {
+        alert(currentLang === 'ar' ? 'تاريخ الإرجاع يجب أن يكون بعد تاريخ الاستلام' : 'Return date must be after pickup date');
+        return;
+    }
+    
+    const searchBtn = document.getElementById('b-ca');
+    if (!searchBtn) return;
+    
+    const originalText = searchBtn.innerHTML;
+    const lang = langData[currentLang];
+    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + lang.searching;
+    searchBtn.disabled = true;
+    
+    incrementStat('cars');
+    
+    showLoading(lang.loading_cars);
+    
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        const days = calculateDays(startDate.value, endDate.value);
+        
+        const searchData = {
+            type: 'cars',
+            pickupLocation: location.value,
+            dropoffLocation: dropoffLocation,
+            startDate: startDate.value,
+            endDate: endDate.value,
+            pickupTime: pickupTime ? pickupTime.value : '10:00',
+            returnTime: returnTime ? returnTime.value : '18:00',
+            withDriver: withDriver,
+            sameLocation: sameLocation,
+            days: days,
+            currency: currentCurrency,
+            language: currentLang,
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('carSearchData', JSON.stringify(searchData));
+        generateBookingConfirmation('car', searchData);
+        
+        window.location.href = 'cars-results.html';
+        
+    } catch (error) {
+        console.error('Search failed:', error);
+        alert(currentLang === 'ar' ? lang.search_failed : 'Search failed');
+    } finally {
+        searchBtn.innerHTML = originalText;
+        searchBtn.disabled = false;
+        hideLoading();
+    }
+}
+
+// ========== بقية الدوال الإضافية ==========
+function loadPreferences() {
+    const savedLang = localStorage.getItem('language');
+    if (savedLang) {
+        currentLang = savedLang;
+        document.getElementById('lang-sel').value = savedLang;
+        updateLang(savedLang);
+    }
+    
+    const savedCurrency = localStorage.getItem('currency');
+    if (savedCurrency) {
+        currentCurrency = savedCurrency;
+        document.getElementById('curr-sel').value = savedCurrency;
+    }
+}
+
+function setupEventListeners() {
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('passengerModal');
+        const passengerInput = document.querySelector('.passenger-input');
+        
+        if (!event.target.closest('.passenger-input') && !event.target.closest('.passenger-modal')) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('curr-sel').addEventListener('change', updateCurrency);
+    document.getElementById('lang-sel').addEventListener('change', function() {
+        updateLang(this.value);
+    });
+    
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('passwordModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    document.addEventListener('click', function(event) {
+        const panel = document.getElementById('adminPanel');
+        if (event.target === panel) {
+            closeAdminPanel();
+        }
+    });
+    
+    document.getElementById('adminPasswordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAdminPassword();
+        }
+    });
+}
+
+function savePreferences() {
+    localStorage.setItem('language', currentLang);
+    localStorage.setItem('currency', currentCurrency);
+    localStorage.setItem('passengers', JSON.stringify(passengers));
+}
+
+function updateConfirmationLink() {
+    const confirmationLink = document.getElementById('confirmation-link');
+    if (confirmationLink) {
+        confirmationLink.querySelector('span').textContent = 
+            currentLang === 'ar' ? 'تأكيد الحجز' : 'Booking Confirmation';
+    }
+}
+
+function updateLang(l) {
+    currentLang = l;
+    document.getElementById('lang-sel').value = l;
+    document.getElementById('main-html').setAttribute('lang', l);
+    const d = langData[l];
+    
+    document.getElementById('tag').innerText = d.tag;
+    document.getElementById('h-dest').innerText = d.dest;
+    document.getElementById('t-fl').querySelector('span').innerText = d.fl;
+    document.getElementById('t-pr').querySelector('span').innerText = d.pr;
+    document.getElementById('t-ho').querySelector('span').innerText = d.ho;
+    document.getElementById('t-ca').querySelector('span').innerText = d.ca;
+    document.getElementById('b-fl').querySelector('span').innerText = d.b_fl;
+    document.getElementById('group-txt').innerText = d.group;
+    document.getElementById('l-c-sa').innerText = d.sa;
+    document.getElementById('l-c-dr').innerText = d.dr;
+    document.getElementById('h-cont').innerText = d.contact;
+    document.getElementById('b-cont').querySelector('span').innerText = d.contact;
+    document.getElementById('f-copy').innerText = d.copyright;
+    document.getElementById('adminText').textContent = d.admin;
+    document.getElementById('admin-link-text').textContent = d.admin;
+    document.getElementById('loadingText').textContent = d.loading_flights;
+    document.getElementById('l-f-rt').textContent = d.roundtrip;
+    document.getElementById('l-f-ow').textContent = d.oneway;
+    document.getElementById('h-premium').textContent = d.premium;
+    document.getElementById('h-confidence').textContent = d.confidence;
+    document.getElementById('confidence-sub').textContent = d.confidence_sub;
+    
+    if (l === 'ar') {
+        document.getElementById('flight-from').placeholder = "أوتاوا (YOW)";
+        document.getElementById('flight-from').value = "أوتاوا (YOW)";
+    } else {
+        document.getElementById('flight-from').placeholder = "Ottawa (YOW)";
+        document.getElementById('flight-from').value = "Ottawa (YOW)";
+    }
+    
+    updateFooterLinks();
+    updateConfirmationLink();
+    savePreferences();
+}
+
+function updateFooterLinks() {
+    const lang = langData[currentLang];
+    document.getElementById('terms-link').textContent = lang.terms;
+    document.getElementById('privacy-link').textContent = lang.privacy;
+    document.getElementById('contact-link').textContent = lang.contact_us;
+}
+
+function updateCurrency() {
+    currentCurrency = document.getElementById('curr-sel').value;
+    savePreferences();
+}
+
+function setDefaultDates() {
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    const nextWeek = new Date();
+    nextWeek.setDate(today.getDate() + 7);
+    
+    const formatDate = (date) => date.toISOString().split('T')[0];
+    
+    const flightDeparture = document.getElementById('flight-departure');
+    const flightReturn = document.getElementById('flight-return');
+    const privateDeparture = document.getElementById('private-departure');
+    const privateReturn = document.getElementById('private-return');
+    const hotelCheckin = document.getElementById('hotel-checkin');
+    const hotelCheckout = document.getElementById('hotel-checkout');
+    const carStartDate = document.getElementById('car-start-date');
+    const carEndDate = document.getElementById('car-end-date');
+    
+    if (flightDeparture) {
+        flightDeparture.value = formatDate(tomorrow);
+        flightDeparture.min = formatDate(today);
+    }
+    
+    if (flightReturn) {
+        flightReturn.value = formatDate(nextWeek);
+        flightReturn.min = formatDate(today);
+    }
+    
+    if (privateDeparture) {
+        privateDeparture.value = formatDate(tomorrow);
+        privateDeparture.min = formatDate(today);
+    }
+    
+    if (privateReturn) {
+        privateReturn.value = formatDate(nextWeek);
+        privateReturn.min = formatDate(today);
+    }
+    
+    if (hotelCheckin) {
+        hotelCheckin.value = formatDate(tomorrow);
+        hotelCheckin.min = formatDate(today);
+    }
+    
+    if (hotelCheckout) {
+        hotelCheckout.value = formatDate(nextWeek);
+        hotelCheckout.min = formatDate(today);
+    }
+    
+    if (carStartDate) {
+        carStartDate.value = formatDate(tomorrow);
+        carStartDate.min = formatDate(today);
+    }
+    
+    if (carEndDate) {
+        carEndDate.value = formatDate(nextWeek);
+        carEndDate.min = formatDate(today);
+    }
+}
+
+function initializeTripType() {
+    toggleReturnDate(true);
+}
+
+function toggleReturnDate(show) {
+    const returnDateField = document.getElementById('return-date-field');
+    const returnDateInput = document.getElementById('flight-return');
+    
+    if (show) {
+        returnDateField.style.display = 'block';
+        returnDateInput.required = false;
+    } else {
+        returnDateField.style.display = 'none';
+        returnDateInput.value = '';
+    }
+}
+
+function openSection(evt, sectionName) {
+    let content = document.getElementsByClassName("form-content");
+    for (let i = 0; i < content.length; i++) {
+        content[i].classList.add("hidden");
+    }
+    
+    let tabs = document.getElementsByClassName("tab");
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    
+    document.getElementById(sectionName).classList.remove("hidden");
+    evt.currentTarget.classList.add("active");
+}
+
+function togglePassengerModal() {
+    const modal = document.getElementById('passengerModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+
+function closePassengerModal() {
+    document.getElementById('passengerModal').style.display = 'none';
+    updatePassengerSummary();
+    savePreferences();
+}
+
+function updatePassenger(type, delta) {
+    if (type === 'adults') {
+        passengers.adults = Math.max(1, passengers.adults + delta);
+    } else if (type === 'children') {
+        passengers.children = Math.max(0, passengers.children + delta);
+    } else if (type === 'infants') {
+        passengers.infants = Math.max(0, passengers.infants + delta);
+    }
+    
+    document.getElementById('adults-count').textContent = passengers.adults;
+    document.getElementById('children-count').textContent = passengers.children;
+    document.getElementById('infants-count').textContent = passengers.infants;
+    
+    updatePassengerSummary();
+}
+
+function updatePassengerSummary() {
+    const summary = document.getElementById('passenger-summary');
+    const lang = currentLang === 'ar' ? {
+        adult: 'بالغ',
+        adults: 'بالغين',
+        child: 'طفل',
+        children: 'أطفال',
+        infant: 'رضيع',
+        infants: 'رضع'
+    } : {
+        adult: 'Adult',
+        adults: 'Adults',
+        child: 'Child',
+        children: 'Children',
+        infant: 'Infant',
+        infants: 'Infants'
+    };
+    
+    let text = `${passengers.adults} ${passengers.adults > 1 ? lang.adults : lang.adult}`;
+    
+    if (passengers.children > 0) {
+        text += `, ${passengers.children} ${passengers.children > 1 ? lang.children : lang.child}`;
+    }
+    
+    if (passengers.infants > 0) {
+        text += `, ${passengers.infants} ${passengers.infants > 1 ? lang.infants : lang.infant}`;
+    }
+    
+    summary.textContent = text;
+}
+
+function toggleCarDrop(isSame) {
+    const dropField = document.getElementById('car-drop-field');
+    if (!dropField) return;
+    
+    if (isSame) {
+        dropField.style.display = 'none';
+        document.getElementById('car-dropoff').value = '';
+    } else {
+        dropField.style.display = 'block';
+    }
+}
+
+function searchDestination(destination) {
+    document.getElementById('flight-to').value = destination;
+    openSection({currentTarget: document.querySelector('.tab.active')}, 'flights');
+    
+    AISystem.trackInteraction('destination_view', destination);
+    
+    const lang = currentLang === 'ar' ? 
+        `جار البحث عن ${destination}` : 
+        `Searching for ${destination}...`;
+    
+    showLoading(lang);
+    
+    setTimeout(() => {
+        hideLoading();
+    }, 1000);
+}
+
+function calculateNights(checkin, checkout) {
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+    const diffTime = Math.abs(checkoutDate - checkinDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+}
+
+function calculateDays(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays === 0 ? 1 : diffDays;
+}
+
+function showLoading(message) {
+    const overlay = document.getElementById('loadingOverlay');
+    const loadingText = document.getElementById('loadingText');
+    
+    if (loadingText && message) {
+        loadingText.textContent = message;
+    }
+    
+    if (overlay) {
+        overlay.style.display = 'flex';
+    }
+}
+
+function hideLoading() {
+    const overlay = document.getElementById('loadingOverlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
+}
+
+function generateBookingConfirmation(type, data) {
+    const confirmationData = {
+        type: type,
+        data: data,
+        confirmationNumber: 'SLX-' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+        timestamp: new Date().toISOString(),
+        status: 'confirmed'
+    };
+    
+    localStorage.setItem('bookingConfirmation', JSON.stringify(confirmationData));
+}
+
+function sendInquiry() {
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-message').value;
+    
+    if (!name || !email || !message) {
+        alert(currentLang === 'ar' ? 
+            'الرجاء ملء جميع الحقول' : 
+            'Please fill all fields');
+        return;
+    }
+    
+    const inquiryData = {
+        name: name,
+        email: email,
+        message: message,
+        timestamp: new Date().toISOString(),
+        language: currentLang
+    };
+    
+    const btn = document.getElementById('b-cont');
+    const originalText = btn.innerHTML;
+    const lang = langData[currentLang];
+    
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + lang.searching;
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        localStorage.setItem('inquiryData', JSON.stringify(inquiryData));
+        
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        
+        document.getElementById('contact-name').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-message').value = '';
+        
+        AISystem.showSmartNotification(
+            'Inquiry Sent',
+            'Our concierge team will contact you within 24 hours',
+            'success'
+        );
+    }, 1500);
+}
+
+// ========== وظائف لوحة التحكم ==========
+function clearCache() {
+    localStorage.removeItem('skylynx_analytics');
+    localStorage.removeItem('skylynx_favorites');
+    localStorage.removeItem('skylynx_visits');
+    localStorage.removeItem('skylynx_last_visit');
+    
+    AISystem.analytics = {
+        totalSearches: 0,
+        destinationsViewed: 0,
+        userInteractions: 0,
+        patternsDetected: 0
+    };
+    
+    AISystem.updateAnalyticsDisplay();
+    
+    AISystem.showSmartNotification(
+        'Cache Cleared',
+        'All AI data has been cleared',
+        'info'
+    );
+}
+
+function backupSystem() {
+    const backupData = {
+        system: 'SkyLynx AI System',
+        version: '3.0',
+        timestamp: new Date().toISOString(),
+        userProfile: AISystem.userProfile,
+        analytics: AISystem.analytics,
+        patterns: AISystem.behaviorPatterns,
+        suggestions: AISystem.suggestions
+    };
+    
+    const dataStr = JSON.stringify(backupData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'skylynx-backup-' + new Date().toISOString().split('T')[0] + '.json';
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    AISystem.showSmartNotification(
+        'Backup Created',
+        'System backup has been downloaded',
+        'success'
+    );
+}
+</script>
+</body>
+</html>

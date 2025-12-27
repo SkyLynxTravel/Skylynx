@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Results | SkyLynx Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --deep-ocean: #051923; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .results-header {
+            background: linear-gradient(rgba(5, 25, 35, 0.9), rgba(5, 25, 35, 0.7)),
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .results-header h1 {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .search-info {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        [lang="ar"] .back-btn {
+            left: auto;
+            right: 5%;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Main Container */
+        .results-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 25px;
+            height: fit-content;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .filter-section h3 {
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .filter-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--sky-glow);
+        }
+        
+        .price-slider {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--sky-glow);
+            cursor: pointer;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+        
+        /* Results List */
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sort-options select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .results-count {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* Flight Card */
+        .flight-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 150px 1fr 180px;
+            gap: 25px;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flight-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(0, 166, 251, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .flight-card.best-deal::before {
+            content: 'BEST DEAL';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--deep-ocean);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        [lang="ar"] .flight-card.best-deal::before {
+            content: 'أفضل عرض';
+            right: auto;
+            left: 15px;
+        }
+        
+        .airline-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .airline-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--deep-ocean);
+            font-weight: 700;
+        }
+        
+        .airline-name {
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .flight-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .flight-times {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .time-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .airport {
+            font-size: 0.85rem;
+            color: var(--silver);
+        }
+        
+        .flight-duration {
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .duration {
+            font-weight: 600;
+            color: var(--sky-glow);
+        }
+        
+        .stops {
+            font-size: 0.8rem;
+            color: var(--silver);
+            margin-top: 5px;
+        }
+        
+        .flight-features {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Price Section */
+        .price-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--silver);
+        }
+        
+        .book-btn {
+            background: linear-gradient(90deg, var(--sky-glow), #006494);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 166, 251, 0.3);
+        }
+        
+        .book-btn.secondary {
+            background: transparent;
+            border: 2px solid var(--sky-glow);
+            color: var(--sky-glow);
+        }
+        
+        .book-btn.secondary:hover {
+            background: rgba(0, 166, 251, 0.1);
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--sky-glow);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+        
+        /* Provider Tags */
+        .provider-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: var(--silver);
+        }
+        
+        [lang="ar"] .provider-tag {
+            left: auto;
+            right: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 20px 15px;
+                gap: 20px;
+            }
+            
+            .flight-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .airline-info {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .flight-times {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .price-section {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .book-btn {
+                width: auto;
+                min-width: 140px;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+            }
+            
+            .sort-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Footer */
+        .results-footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn" id="backBtn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to Search</span>
+</a>
+
+<div class="results-header">
+    <h1 id="resultsTitle">Flight Search Results</h1>
+    <div class="search-info" id="searchInfo">
+        <!-- سيتم ملؤه بالجافاسكريبت -->
+    </div>
+</div>
+
+<div class="results-container">
+    <!-- Filters Sidebar -->
+    <aside class="filters-sidebar">
+        <div class="filter-section">
+            <h3><i class="fas fa-filter"></i> <span id="filterTitle">Filters</span></h3>
+            
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="filterDirect">
+                    <span id="directLabel">Direct Flights Only</span>
+                </label>
+            </div>
+            
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="filterRefundable">
+                    <span id="refundableLabel">Refundable Fares</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3><i class="fas fa-dollar-sign"></i> <span id="priceTitle">Price Range</span></h3>
+            <input type="range" class="price-slider" id="priceSlider" min="0" max="5000" value="5000">
+            <div class="price-range">
+                <span id="minPrice">0 CAD</span>
+                <span id="maxPrice">5000 CAD</span>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3><i class="fas fa-plane"></i> <span id="airlinesTitle">Airlines</span></h3>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="airline-filter" value="aircanada">
+                    <span>Air Canada</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="airline-filter" value="westjet">
+                    <span>WestJet</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="airline-filter" value="airtransat">
+                    <span>Air Transat</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" class="airline-filter" value="porter">
+                    <span>Porter Airlines</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3><i class="fas fa-clock"></i> <span id="timeTitle">Departure Time</span></h3>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="timeMorning">
+                    <span id="morningLabel">Morning (6am - 12pm)</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="timeAfternoon">
+                    <span id="afternoonLabel">Afternoon (12pm - 6pm)</span>
+                </label>
+            </div>
+            <div class="filter-option">
+                <label>
+                    <input type="checkbox" id="timeEvening">
+                    <span id="eveningLabel">Evening (6pm - 12am)</span>
+                </label>
+            </div>
+        </div>
+        
+        <button class="book-btn secondary" onclick="applyFilters()" id="applyFiltersBtn">
+            <i class="fas fa-sync-alt"></i> <span>Apply Filters</span>
+        </button>
+        <button class="book-btn secondary" onclick="resetFilters()" style="margin-top: 10px;" id="resetFiltersBtn">
+            <i class="fas fa-redo"></i> <span>Reset All Filters</span>
+        </button>
+    </aside>
+    
+    <!-- Results List -->
+    <main class="results-main">
+        <div class="sort-bar">
+            <div class="results-count" id="resultsCount">
+                Loading flights...
+            </div>
+            <div class="sort-options">
+                <select id="sortBy" onchange="sortFlights()">
+                    <option value="price">Sort by: Price (Low to High)</option>
+                    <option value="price-desc">Sort by: Price (High to Low)</option>
+                    <option value="duration">Sort by: Duration</option>
+                    <option value="departure">Sort by: Departure Time</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="results-list" id="flightResults">
+            <!-- سيتم ملؤه بالجافاسكريبت -->
+            <div class="loading" id="loadingIndicator">
+                <div class="loader"></div>
+                <p id="loadingText">Searching for the best flights...</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="results-footer">
+    <p id="footerText">© 2025 SkyLynx Travel | Results powered by Expedia & Booking.com APIs</p>
+</div>
+
+<script>
+// بيانات الترجمة
+const langData = {
+    en: {
+        title: "Flight Search Results",
+        back: "Back to Search",
+        loading: "Searching for the best flights...",
+        noResults: "No flights found matching your criteria",
+        results: "flights found",
+        direct: "Direct",
+        stop: "stop",
+        stops: "stops",
+        book: "Book Now",
+        details: "Details",
+        from: "From",
+        to: "To",
+        depart: "Depart",
+        return: "Return",
+        passengers: "Passengers",
+        class: "Class",
+        filterTitle: "Filters",
+        directLabel: "Direct Flights Only",
+        refundableLabel: "Refundable Fares",
+        priceTitle: "Price Range",
+        airlinesTitle: "Airlines",
+        timeTitle: "Departure Time",
+        morningLabel: "Morning (6am - 12pm)",
+        afternoonLabel: "Afternoon (12pm - 6pm)",
+        eveningLabel: "Evening (6pm - 12am)",
+        applyFilters: "Apply Filters",
+        resetFilters: "Reset All Filters",
+        footerText: "© 2025 SkyLynx Travel | Results powered by Expedia & Booking.com APIs",
+        allResults: "Showing all flights",
+        failedLoad: "Failed to load flights",
+        retry: "Retry"
+    },
+    ar: {
+        title: "نتائج البحث عن الرحلات",
+        back: "العودة للبحث",
+        loading: "جاري البحث عن أفضل الرحلات...",
+        noResults: "لا توجد رحلات تطابق معايير البحث",
+        results: "رحلة موجودة",
+        direct: "مباشر",
+        stop: "توقف",
+        stops: "توقفات",
+        book: "احجز الآن",
+        details: "التفاصيل",
+        from: "من",
+        to: "إلى",
+        depart: "تاريخ الذهاب",
+        return: "تاريخ العودة",
+        passengers: "عدد المسافرين",
+        class: "فئة السفر",
+        filterTitle: "الفلاتر",
+        directLabel: "رحلات مباشرة فقط",
+        refundableLabel: "أسعار قابلة للاسترجاع",
+        priceTitle: "نطاق السعر",
+        airlinesTitle: "شركات الطيران",
+        timeTitle: "وقت المغادرة",
+        morningLabel: "الصباح (6ص - 12م)",
+        afternoonLabel: "بعد الظهر (12م - 6م)",
+        eveningLabel: "المساء (6م - 12ص)",
+        applyFilters: "تطبيق الفلاتر",
+        resetFilters: "إعادة تعيين جميع الفلاتر",
+        footerText: "© 2025 سكايلينكس للسياحة | النتائج مدعومة بواجهات برمجة إكسبيديا وبوكينج",
+        allResults: "عرض جميع الرحلات",
+        failedLoad: "فشل تحميل الرحلات",
+        retry: "إعادة المحاولة"
+    }
+};
+
+// المتغيرات
+let currentLang = 'en';
+let currentCurrency = 'CAD';
+let searchData = {};
+let allFlights = [];
+let filteredFlights = [];
+
+// تعريف كائن travelAPI
+const travelAPI = {
+    async searchFlights(searchData) {
+        // إرجاع وعود بنفس هيكل الرحلات السابق
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                // أسعار بالدولار الكندي
+                const exchangeRates = {
+                    'CAD': 1,
+                    'USD': 0.73,
+                    'SAR': 2.74,
+                    'EUR': 0.68,
+                    'GBP': 0.58
+                };
+                
+                const basePriceCAD = 450; // سعر أساسي بالدولار الكندي
+                
+                const flights = [
+                    {
+                        id: 'AC101',
+                        airline: 'Air Canada',
+                        airlineCode: 'AC',
+                        flightNumber: 'AC 123',
+                        departureTime: '08:00',
+                        arrivalTime: '10:30',
+                        departureAirport: 'YYZ',
+                        arrivalAirport: 'YVR',
+                        duration: '5h 30m',
+                        stops: 0,
+                        price: Math.round(basePriceCAD * exchangeRates[currentCurrency]),
+                        currency: currentCurrency,
+                        provider: 'Expedia',
+                        refundable: true,
+                        features: ['Meal Included', 'Free WiFi', '23kg Baggage', 'Entertainment'],
+                        departureDateTime: new Date().toISOString().split('T')[0] + 'T08:00:00'
+                    },
+                    {
+                        id: 'WS201',
+                        airline: 'WestJet',
+                        airlineCode: 'WS',
+                        flightNumber: 'WS 456',
+                        departureTime: '11:15',
+                        arrivalTime: '13:45',
+                        departureAirport: 'YYZ',
+                        arrivalAirport: 'YVR',
+                        duration: '5h 30m',
+                        stops: 0,
+                        price: Math.round((basePriceCAD - 50) * exchangeRates[currentCurrency]),
+                        currency: currentCurrency,
+                        provider: 'Booking.com',
+                        refundable: false,
+                        features: ['Snack', 'Streaming', '23kg Baggage'],
+                        departureDateTime: new Date().toISOString().split('T')[0] + 'T11:15:00'
+                    },
+                    {
+                        id: 'TS301',
+                        airline: 'Air Transat',
+                        airlineCode: 'TS',
+                        flightNumber: 'TS 789',
+                        departureTime: '14:30',
+                        arrivalTime: '17:00',
+                        departureAirport: 'YYZ',
+                        arrivalAirport: 'YVR',
+                        duration: '5h 30m',
+                        stops: 0,
+                        price: Math.round((basePriceCAD - 80) * exchangeRates[currentCurrency]),
+                        currency: currentCurrency,
+                        provider: 'Expedia',
+                        refundable: false,
+                        features: ['Meal', 'Entertainment', '23kg Baggage'],
+                        departureDateTime: new Date().toISOString().split('T')[0] + 'T14:30:00'
+                    },
+                    {
+                        id: 'PD401',
+                        airline: 'Porter Airlines',
+                        airlineCode: 'PD',
+                        flightNumber: 'PD 101',
+                        departureTime: '17:45',
+                        arrivalTime: '20:15',
+                        departureAirport: 'YTZ',
+                        arrivalAirport: 'YVR',
+                        duration: '5h 30m',
+                        stops: 1,
+                        price: Math.round((basePriceCAD - 100) * exchangeRates[currentCurrency]),
+                        currency: currentCurrency,
+                        provider: 'Booking.com',
+                        refundable: true,
+                        features: ['Free Snacks', 'Premium Seats', 'WiFi'],
+                        departureDateTime: new Date().toISOString().split('T')[0] + 'T17:45:00'
+                    },
+                    {
+                        id: 'AC102',
+                        airline: 'Air Canada',
+                        airlineCode: 'AC',
+                        flightNumber: 'AC 789',
+                        departureTime: '21:00',
+                        arrivalTime: '23:30',
+                        departureAirport: 'YYZ',
+                        arrivalAirport: 'YVR',
+                        duration: '5h 30m',
+                        stops: 0,
+                        price: Math.round((basePriceCAD + 50) * exchangeRates[currentCurrency]),
+                        currency: currentCurrency,
+                        provider: 'Expedia',
+                        refundable: true,
+                        features: ['Premium Meal', 'Lounge Access', '32kg Baggage', 'Priority Boarding'],
+                        departureDateTime: new Date().toISOString().split('T')[0] + 'T21:00:00'
+                    }
+                ];
+                resolve(flights);
+            }, 1000); // محاكاة تأخير الشبكة
+        });
+    }
+};
+
+// تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    // تحميل التفضيلات
+    loadPreferences();
+    
+    // تحميل بيانات البحث
+    loadSearchData();
+    
+    // تحميل الرحلات
+    setTimeout(loadFlights, 1000);
+    
+    // إعداد الفلاتر
+    setupFilters();
+});
+
+// تحميل التفضيلات
+function loadPreferences() {
+    // اللغة
+    const savedLang = localStorage.getItem('language') || 'en';
+    currentLang = savedLang;
+    document.getElementById('main-html').setAttribute('lang', savedLang);
+    
+    // العملة
+    const savedCurrency = localStorage.getItem('currency') || 'CAD';
+    currentCurrency = savedCurrency;
+    
+    // تحديث أسعار العملة في العرض
+    document.getElementById('minPrice').textContent = `0 ${currentCurrency}`;
+    document.getElementById('maxPrice').textContent = `5000 ${currentCurrency}`;
+    
+    // ترجمة الصفحة
+    translatePage();
+}
+
+// ترجمة الصفحة
+function translatePage() {
+    const lang = langData[currentLang];
+    
+    // تحديث العناوين
+    document.getElementById('resultsTitle').textContent = lang.title;
+    document.getElementById('backBtn').querySelector('span').textContent = lang.back;
+    document.getElementById('loadingText').textContent = lang.loading;
+    document.getElementById('filterTitle').textContent = lang.filterTitle;
+    document.getElementById('directLabel').textContent = lang.directLabel;
+    document.getElementById('refundableLabel').textContent = lang.refundableLabel;
+    document.getElementById('priceTitle').textContent = lang.priceTitle;
+    document.getElementById('airlinesTitle').textContent = lang.airlinesTitle;
+    document.getElementById('timeTitle').textContent = lang.timeTitle;
+    document.getElementById('morningLabel').textContent = lang.morningLabel;
+    document.getElementById('afternoonLabel').textContent = lang.afternoonLabel;
+    document.getElementById('eveningLabel').textContent = lang.eveningLabel;
+    document.getElementById('applyFiltersBtn').querySelector('span').textContent = lang.applyFilters;
+    document.getElementById('resetFiltersBtn').querySelector('span').textContent = lang.resetFilters;
+    document.getElementById('footerText').textContent = lang.footerText;
+    
+    // تحديث select الترتيب
+    const sortSelect = document.getElementById('sortBy');
+    if (currentLang === 'ar') {
+        sortSelect.innerHTML = `
+            <option value="price">ترتيب حسب: السعر (من الأقل)</option>
+            <option value="price-desc">ترتيب حسب: السعر (من الأعلى)</option>
+            <option value="duration">ترتيب حسب: المدة</option>
+            <option value="departure">ترتيب حسب: وقت المغادرة</option>
+        `;
+    }
+}
+
+// تحميل بيانات البحث
+function loadSearchData() {
+    try {
+        searchData = JSON.parse(localStorage.getItem('flightSearchData')) || {
+            from: 'Toronto (YYZ)',
+            to: 'Vancouver (YVR)',
+            departure: new Date().toISOString().split('T')[0],
+            return: '',
+            passengers: JSON.parse(localStorage.getItem('passengers')) || { adults: 1, children: 0, infants: 0 },
+            class: 'ECONOMY',
+            currency: currentCurrency,
+            language: currentLang
+        };
+        
+        // عرض معلومات البحث
+        displaySearchInfo();
+    } catch (error) {
+        console.error('Error loading search data:', error);
+        searchData = {
+            from: 'Toronto (YYZ)',
+            to: 'Vancouver (YVR)',
+            departure: new Date().toISOString().split('T')[0],
+            passengers: { adults: 1, children: 0, infants: 0 },
+            class: 'Economy',
+            currency: 'CAD'
+        };
+        displaySearchInfo();
+    }
+}
+
+// عرض معلومات البحث
+function displaySearchInfo() {
+    const lang = langData[currentLang];
+    const infoDiv = document.getElementById('searchInfo');
+    
+    let passengersText = '';
+    if (searchData.passengers) {
+        const p = searchData.passengers;
+        passengersText = `${p.adults} ${p.adults > 1 ? 'Adults' : 'Adult'}`;
+        if (p.children > 0) passengersText += `, ${p.children} ${p.children > 1 ? 'Children' : 'Child'}`;
+        if (p.infants > 0) passengersText += `, ${p.infants} ${p.infants > 1 ? 'Infants' : 'Infant'}`;
+    }
+    
+    const fromCity = searchData.from || 'Toronto';
+    const toCity = searchData.to || 'Vancouver';
+    
+    infoDiv.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+            <div><strong>${lang.from}:</strong> ${fromCity}</div>
+            <div><strong>${lang.to}:</strong> ${toCity}</div>
+            <div><strong>${lang.depart}:</strong> ${formatDate(searchData.departure)}</div>
+            ${searchData.return ? `<div><strong>${lang.return}:</strong> ${formatDate(searchData.return)}</div>` : ''}
+            <div><strong>${lang.passengers}:</strong> ${passengersText}</div>
+            <div><strong>${lang.class}:</strong> ${searchData.class || 'Economy'}</div>
+        </div>
+    `;
+}
+
+// تنسيق التاريخ
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString(currentLang === 'ar' ? 'ar-SA' : 'en-CA', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+// تحميل الرحلات
+async function loadFlights() {
+    try {
+        // محاولة الحصول على النتائج المحفوظة
+        const savedFlights = JSON.parse(localStorage.getItem('flightResults'));
+        
+        if (savedFlights && savedFlights.length > 0) {
+            allFlights = savedFlights;
+        } else {
+            // إذا لم توجد، استخدم API
+            const searchData = JSON.parse(localStorage.getItem('flightSearchData')) || {
+                from: 'Toronto (YYZ)',
+                to: 'Vancouver (YVR)',
+                departure: new Date().toISOString().split('T')[0],
+                currency: currentCurrency
+            };
+            
+            allFlights = await travelAPI.searchFlights(searchData);
+            localStorage.setItem('flightResults', JSON.stringify(allFlights));
+        }
+        
+        // إخفاء التحميل
+        document.getElementById('loadingIndicator').style.display = 'none';
+        
+        // عرض جميع الرحلات
+        showAllFlights();
+        
+    } catch (error) {
+        console.error('Error loading flights:', error);
+        const lang = langData[currentLang];
+        document.getElementById('loadingIndicator').innerHTML = `
+            <div style="color: var(--danger); text-align: center;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h3>${lang.failedLoad}</h3>
+                <button class="book-btn secondary" onclick="location.reload()" style="margin-top: 20px;">
+                    <i class="fas fa-redo"></i> ${lang.retry}
+                </button>
+            </div>
+        `;
+    }
+}
+
+// عرض جميع الرحلات بدون فلاتر
+function showAllFlights() {
+    filteredFlights = [...allFlights]; // نسخ جميع الرحلات
+    sortFlights();
+    displayFlights();
+}
+
+// إعداد الفلاتر
+function setupFilters() {
+    // تحديث النتائج عند تغيير الفلاتر
+    const filterInputs = document.querySelectorAll('input[type="checkbox"], #priceSlider, #sortBy');
+    filterInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            // إذا كان المستخدم يغير الفلاتر، يتم تطبيقها
+            applyFilters();
+        });
+    });
+    
+    // تحديث سعر العرض
+    const slider = document.getElementById('priceSlider');
+    const maxPrice = document.getElementById('maxPrice');
+    
+    slider.addEventListener('input', function() {
+        maxPrice.textContent = `${this.value} ${currentCurrency}`;
+    });
+    
+    // زر إعادة تعيين الفلاتر
+    document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
+}
+
+// تطبيق الفلاتر
+function applyFilters() {
+    const maxPrice = parseInt(document.getElementById('priceSlider').value);
+    const directOnly = document.getElementById('filterDirect').checked;
+    const refundableOnly = document.getElementById('filterRefundable').checked;
+    
+    // الحصول على شركات الطيران المحددة
+    const selectedAirlines = [];
+    document.querySelectorAll('.airline-filter:checked').forEach(checkbox => {
+        selectedAirlines.push(checkbox.value);
+    });
+    
+    // الحصول على أوقات المغادرة المحددة
+    const selectedTimes = [];
+    if (document.getElementById('timeMorning').checked) selectedTimes.push('morning');
+    if (document.getElementById('timeAfternoon').checked) selectedTimes.push('afternoon');
+    if (document.getElementById('timeEvening').checked) selectedTimes.push('evening');
+    
+    // إذا لم يتم اختيار أي فلاتر، عرض جميع النتائج
+    if (!directOnly && !refundableOnly && selectedAirlines.length === 0 && selectedTimes.length === 0) {
+        showAllFlights();
+        return;
+    }
+    
+    // تصفية الرحلات
+    filteredFlights = allFlights.filter(flight => {
+        // تصفية حسب السعر
+        if (flight.price > maxPrice) return false;
+        
+        // تصفية حسب التوقف (إذا اختار المستخدم)
+        if (directOnly && flight.stops > 0) return false;
+        
+        // تصفية حسب قابلية الاسترجاع (إذا اختار المستخدم)
+        if (refundableOnly && !flight.refundable) return false;
+        
+        // تصفية حسب شركة الطيران (إذا اختار المستخدم)
+        if (selectedAirlines.length > 0) {
+            const airlineMap = {
+                'aircanada': 'Air Canada',
+                'westjet': 'WestJet',
+                'airtransat': 'Air Transat',
+                'porter': 'Porter Airlines'
+            };
+            const flightAirline = airlineMap[selectedAirlines.find(a => 
+                flight.airline.toLowerCase().includes(a.toLowerCase())
+            )];
+            if (!flightAirline) return false;
+        }
+        
+        // تصفية حسب وقت المغادرة (إذا اختار المستخدم)
+        if (selectedTimes.length > 0) {
+            const hour = parseInt(flight.departureTime.split(':')[0]);
+            let timeCategory = '';
+            if (hour >= 6 && hour < 12) timeCategory = 'morning';
+            else if (hour >= 12 && hour < 18) timeCategory = 'afternoon';
+            else timeCategory = 'evening';
+            
+            if (!selectedTimes.includes(timeCategory)) return false;
+        }
+        
+        return true;
+    });
+    
+    // تطبيق الترتيب
+    sortFlights();
+    
+    // عرض النتائج
+    displayFlights();
+}
+
+// ترتيب الرحلات
+function sortFlights() {
+    const sortBy = document.getElementById('sortBy').value;
+    
+    filteredFlights.sort((a, b) => {
+        switch (sortBy) {
+            case 'price':
+                return a.price - b.price;
+            case 'price-desc':
+                return b.price - a.price;
+            case 'duration':
+                const aDuration = parseInt(a.duration);
+                const bDuration = parseInt(b.duration);
+                return aDuration - bDuration;
+            case 'departure':
+                return a.departureTime.localeCompare(b.departureTime);
+            default:
+                return a.price - b.price;
+        }
+    });
+    
+    displayFlights();
+}
+
+// عرض الرحلات
+function displayFlights() {
+    const resultsDiv = document.getElementById('flightResults');
+    const lang = langData[currentLang];
+    
+    if (filteredFlights.length === 0) {
+        resultsDiv.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-plane-slash" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3>${lang.noResults}</h3>
+                <button class="book-btn secondary" onclick="resetFilters()" style="margin-top: 20px;">
+                    <i class="fas fa-redo"></i> ${lang.resetFilters}
+                </button>
+            </div>
+        `;
+        document.getElementById('resultsCount').textContent = `0 ${lang.results}`;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredFlights.forEach((flight, index) => {
+        const isBestDeal = flight.price === Math.min(...filteredFlights.map(f => f.price));
+        const stopsText = flight.stops === 0 ? lang.direct : 
+                         flight.stops === 1 ? `1 ${lang.stop}` : 
+                         `${flight.stops} ${lang.stops}`;
+        
+        html += `
+            <div class="flight-card ${isBestDeal ? 'best-deal' : ''}">
+                <div class="provider-tag">${flight.provider}</div>
+                
+                <div class="airline-info">
+                    <div class="airline-logo">${flight.airlineCode}</div>
+                    <div class="airline-name">${flight.airline}</div>
+                    <div style="font-size: 0.8rem; color: var(--silver);">${flight.flightNumber}</div>
+                </div>
+                
+                <div class="flight-details">
+                    <div class="flight-times">
+                        <div class="time-section">
+                            <div class="time">${flight.departureTime}</div>
+                            <div class="airport">${flight.departureAirport}</div>
+                        </div>
+                        
+                        <div class="flight-duration">
+                            <div class="duration">${flight.duration}</div>
+                            <div class="stops">${stopsText}</div>
+                        </div>
+                        
+                        <div class="time-section">
+                            <div class="time">${flight.arrivalTime}</div>
+                            <div class="airport">${flight.arrivalAirport}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-features">
+                        ${flight.features.map(feature => `
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i> ${feature}
+                            </div>
+                        `).join('')}
+                        ${flight.refundable ? `
+                            <div class="feature" style="color: var(--success);">
+                                <i class="fas fa-shield-alt"></i> ${currentLang === 'ar' ? 'قابل للاسترجاع' : 'Refundable'}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                <div class="price-section">
+                    <div class="price">
+                        ${flight.price} <span>${flight.currency}</span>
+                    </div>
+                    <button class="book-btn" onclick="bookFlight('${flight.id}')">
+                        <i class="fas fa-shopping-cart"></i> ${lang.book}
+                    </button>
+                    <button class="book-btn secondary" onclick="showFlightDetails('${flight.id}')">
+                        <i class="fas fa-info-circle"></i> ${lang.details}
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    resultsDiv.innerHTML = html;
+    
+    // تحديث عدد النتائج
+    if (filteredFlights.length === allFlights.length) {
+        document.getElementById('resultsCount').textContent = `${filteredFlights.length} ${lang.results} (${lang.allResults})`;
+    } else {
+        document.getElementById('resultsCount').textContent = `${filteredFlights.length} ${lang.results}`;
+    }
+}
+
+// إعادة تعيين الفلاتر
+function resetFilters() {
+    // إعادة تعيين جميع checkboxes
+    document.getElementById('filterDirect').checked = false;
+    document.getElementById('filterRefundable').checked = false;
+    
+    document.querySelectorAll('.airline-filter').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    document.getElementById('timeMorning').checked = false;
+    document.getElementById('timeAfternoon').checked = false;
+    document.getElementById('timeEvening').checked = false;
+    
+    // إعادة تعيين السعر
+    document.getElementById('priceSlider').value = 5000;
+    document.getElementById('maxPrice').textContent = `5000 ${currentCurrency}`;
+    
+    // عرض جميع الرحلات
+    showAllFlights();
+}
+
+// حجز الرحلة
+function bookFlight(flightId) {
+    const flight = allFlights.find(f => f.id === flightId);
+    if (!flight) {
+        alert(currentLang === 'ar' ? 'الرحلة غير موجودة' : 'Flight not found');
+        return;
+    }
+    
+    // حفظ الرحلة المختارة
+    localStorage.setItem('selectedFlight', JSON.stringify(flight));
+    
+    // توجيه لصفحة الحجز
+    window.location.href = 'booking.html';
+}
+
+// عرض تفاصيل الرحلة
+function showFlightDetails(flightId) {
+    const flight = allFlights.find(f => f.id === flightId);
+    if (!flight) return;
+    
+    const lang = langData[currentLang];
+    
+    alert(`${flight.airline} - ${flight.flightNumber}\n\n` +
+          `${lang.depart}: ${flight.departureTime} from ${flight.departureAirport}\n` +
+          `${lang.to}: ${flight.arrivalTime} at ${flight.arrivalAirport}\n` +
+          `Duration: ${flight.duration} (${flight.stops === 0 ? lang.direct : flight.stops + ' ' + lang.stops})\n` +
+          `Price: ${flight.price} ${flight.currency}\n` +
+          `Provider: ${flight.provider}\n` +
+          `Features: ${flight.features.join(', ')}\n` +
+          `Refundable: ${flight.refundable ? (currentLang === 'ar' ? 'نعم' : 'Yes') : (currentLang === 'ar' ? 'لا' : 'No')}`);
+}
+</script>
+</body>
+</html>

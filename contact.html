@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - SkyLynx Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #051923;
+            color: white;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h1 {
+            color: #00a6fb;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .contact-card {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .contact-card:hover {
+            border-color: #00a6fb;
+            transform: translateY(-5px);
+        }
+        .contact-card i {
+            font-size: 2.5rem;
+            color: #00a6fb;
+            margin-bottom: 15px;
+        }
+        .contact-card h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+        }
+        .contact-form button {
+            background: #00a6fb;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .contact-form button:hover {
+            background: #006494;
+            transform: translateY(-2px);
+        }
+        .back-btn {
+            display: inline-block;
+            background: #00a6fb;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: #006494;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>اتصل بنا</h1>
+        
+        <div class="contact-methods">
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>الهاتف</h3>
+                <p>+1 (800) SKY-LYNX</p>
+                <p>24/7 خدمة العملاء</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>البريد الإلكتروني</h3>
+                <p>concierge@skylynx.com</p>
+                <p>للحجوزات والاستفسارات</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-headset"></i>
+                <h3>الدعم الفني</h3>
+                <p>support@skylynx.com</p>
+                <p>للأسئلة التقنية</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h3>ساعات العمل</h3>
+                <p>الأحد - الخميس: 8 ص - 10 م</p>
+                <p>الجمعة - السبت: 10 ص - 8 م</p>
+            </div>
+        </div>
+        
+        <h2 style="color: #d4af37; margin-top: 40px;">أرسل رسالة</h2>
+        <form class="contact-form" onsubmit="return submitContactForm()">
+            <input type="text" placeholder="الاسم الكامل" required>
+            <input type="email" placeholder="البريد الإلكتروني" required>
+            <input type="tel" placeholder="رقم الهاتف" required>
+            <select style="width:100%; padding:15px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
+                <option>نوع الاستفسار</option>
+                <option>استفسار عن حجز</option>
+                <option>استفسار عن خدمة</option>
+                <option>شكوى</option>
+                <option>اقتراح</option>
+            </select>
+            <textarea placeholder="رسالتك..." rows="5" required></textarea>
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> إرسال الرسالة
+            </button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function submitContactForm() {
+            alert('شكراً لتواصلك! سنرد عليك خلال 24 ساعة.');
+            return false; // لمنع إعادة تحميل الصفحة
+        }
+    </script>
+</body>
+</html>
