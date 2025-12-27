@@ -1313,6 +1313,98 @@
             gap: 15px;
             align-items: end;
         }
+
+        /* ========== أنماط نتائج الرحلات الجديدة ========== */
+        .flights-results {
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .flight-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .flight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 166, 251, 0.2);
+            border-color: var(--sky-glow);
+        }
+
+        .flight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .airline {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .route {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .city {
+            font-weight: bold;
+        }
+
+        .separator {
+            color: var(--sky-glow);
+            font-size: 1.2rem;
+        }
+
+        .time {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        .duration {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        .select-btn {
+            background: var(--sky-glow);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .select-btn:hover {
+            background: #0095e0;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -1587,6 +1679,12 @@
             </button>
         </div>
     </form>
+
+    <!-- ========== منطقة نتائج الرحلات ========== -->
+    <div id="flight-results-container" style="margin-top: 40px; display: none;">
+        <h3 style="font-family:'Cinzel'; color:var(--sky-glow); margin-bottom:20px;" id="results-title">Flight Results</h3>
+        <div id="results" class="flights-results"></div>
+    </div>
 
     <!-- ========== PRIVATE JET FORM ========== -->
     <form id="private" class="form-content hidden">
@@ -1955,6 +2053,9 @@
         </a>
     </div>
 </footer>
+
+<!-- تضمين ملف JavaScript الخارجي -->
+<script src="script.js"></script>
 
 <script>
 // ========== نظام الذكاء الاصطناعي المتقدم ==========
