@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | SkyLynx Travel - AI-Powered Luxury Travel</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SkyLynx Travel Cookie Policy - Learn how we use cookies and similar technologies to enhance your travel experience.">
+    <meta name="keywords" content="cookie policy, privacy, data protection, tracking cookies, Awin, Travelpayouts">
+    <meta name="author" content="SkyLynx Travel">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- نفس الستايل الموجود في index.html -->
+    <style>
+        /* ========== RESET & BASE ========== */
+        :root { 
+            --deep-ocean: #00111c; 
+            --dark-navy: #00283c;
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+            --platinum: #e5e4e2;
+            --ai-purple: #9d4edd;
+            --ai-teal: #2ec4b6;
+            --gradient-blue: linear-gradient(135deg, #000d15 0%, #001926 50%, #000810 100%);
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+        }
+        
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 17, 28, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-logo i {
+            color: var(--sky-glow);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            padding: 8px 0;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--sky-glow);
+            border-bottom: 2px solid var(--sky-glow);
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--ai-purple); }
+            to { box-shadow: 0 0 20px var(--ai-teal); }
+        }
+        
+        /* ========== CONFIG BAR ========== */
+        .config { 
+            display: flex; 
+            gap: 15px; 
+        }
+        
+        .config select { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            backdrop-filter: blur(10px); 
+            font-size: 0.9rem;
+        }
+        
+        /* ========== HERO SECTION ========== */
+        .policy-hero {
+            background: linear-gradient(rgba(0, 8, 16, 0.85), rgba(0, 17, 28, 0.95));
+            padding: 180px 5% 100px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 166, 251, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.15) 0%, transparent 50%);
+            animation: pulseBackground 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseBackground {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+        
+        .policy-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .policy-hero h1 {
+            font-family: 'Cinzel';
+            font-size: 3.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+        
+        .policy-hero p {
+            font-size: 1.2rem;
+            color: var(--silver);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .ai-tagline {
+            display: inline-block;
+            margin-top: 30px;
+            background: rgba(157, 78, 221, 0.2);
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.4);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ai-tagline i {
+            color: var(--ai-purple);
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ========== POLICY CONTENT ========== */
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+        
+        .policy-content {
+            font-size: 1.1rem;
+            color: var(--silver);
+        }
+        
+        .policy-content h2 {
+            font-family: 'Cinzel';
+            color: var(--sky-glow);
+            margin: 40px 0 20px;
+            font-size: 2rem;
+            border-bottom: 2px solid rgba(0, 166, 251, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .policy-content h3 {
+            color: white;
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .policy-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .policy-content ul, .policy-content ol {
+            margin: 20px 0 20px 30px;
+        }
+        
+        .policy-content li {
+            margin-bottom: 10px;
+        }
+        
+        /* Boxes */
+        .info-box {
+            background: rgba(0, 166, 251, 0.1);
+            border-left: 4px solid var(--sky-glow);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 166, 251, 0.05), transparent);
+        }
+        
+        .info-box > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info-box-title {
+            font-weight: 700;
+            color: var(--sky-glow);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: #f59e0b;
+        }
+        
+        .info-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+        
+        /* Cookie Types Table */
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .cookie-table th {
+            background: rgba(0, 166, 251, 0.2);
+            color: var(--sky-glow);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-family: 'Cinzel';
+        }
+        
+        .cookie-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .cookie-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .cookie-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        .cookie-type.essential {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .cookie-type.analytics {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+        
+        .cookie-type.marketing {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+        
+        /* ========== AI ASSISTANT BUTTON ========== */
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite;
+            border: none;
+            outline: none;
+        }
+        
+        .ai-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.6);
+        }
+        
+        .ai-assistant-btn i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            padding: 80px 5%;
+            background: #000810;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Cinzel';
+            color: var(--sky-glow);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--sky-glow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-left {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .ai-badge {
+                margin-top: 10px;
+            }
+            
+            .policy-hero {
+                padding: 150px 5% 80px;
+                margin-top: 140px;
+            }
+            
+            .policy-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .policy-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cookie-table th,
+            .cookie-table td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="/" class="nav-logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyLynx</span>
+            </a>
+            
+            <div class="ai-badge">
+                <i class="fas fa-brain"></i>
+                <span>AI-Powered</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="/"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span class="nav-text">Bookings</span></a></li>
+                <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
+                <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
+                <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-right">
+            <div class="config">
+                <select id="curr-sel">
+                    <option value="CAD">🇨🇦 CAD</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="SAR">🇸🇦 SAR</option>
+                </select>
+                <select id="lang-sel">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="policy-hero">
+        <div class="policy-hero-content">
+            <h1>Cookie Policy</h1>
+            <p>Learn how SkyLynx Travel uses cookies and similar technologies to enhance your AI-powered luxury travel experience while protecting your privacy.</p>
+            
+            <div class="ai-tagline">
+                <i class="fas fa-robot"></i>
+                <span id="aiTaglineText">AI-Enhanced Privacy & Personalization</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Content -->
+    <div class="policy-container">
+        <article class="policy-content">
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-cookie-bite"></i>
+                    <span>Cookie Consent Notice</span>
+                </div>
+                <p>By using SkyLynx Travel's website and services, you consent to our use of cookies and similar technologies as described in this policy. You can manage your cookie preferences at any time through your browser settings or our cookie consent tool.</p>
+            </div>
+            
+            <h2>What Are Cookies?</h2>
+            
+            <p>Cookies are small text files that are placed on your device (computer, tablet, or mobile phone) when you visit our website. They help us:</p>
+            
+            <ul>
+                <li>Remember your preferences and settings</li>
+                <li>Understand how you interact with our website</li>
+                <li>Provide personalized content and recommendations</li>
+                <li>Measure the effectiveness of our services</li>
+                <li>Enable affiliate tracking for our partners</li>
+            </ul>
+            
+            <div class="info-box success">
+                <div class="info-box-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Your Privacy First</span>
+                </div>
+                <p>We only use cookies that are necessary for website functionality and those that enhance your experience with your consent. We never use cookies to collect sensitive personal information without your explicit permission.</p>
+            </div>
+            
+            <h2>Types of Cookies We Use</h2>
+            
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Cookie Type</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="cookie-type essential">Essential</span>
+                        </td>
+                        <td>Required for basic website functionality, security, and fraud prevention</td>
+                        <td>Session to 1 year</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="cookie-type analytics">Analytics</span>
+                        </td>
+                        <td>Help us understand how visitors use our site and improve performance</td>
+                        <td>30 to 90 days</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="cookie-type marketing">Marketing</span>
+                        </td>
+                        <td>Enable affiliate tracking and personalized travel recommendations</td>
+                        <td>30 to 180 days</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="cookie-type essential">Preference</span>
+                        </td>
+                        <td>Remember your language, currency, and travel preferences</td>
+                        <td>1 year</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Essential Cookies</h3>
+            <p>These cookies are strictly necessary for the website to function properly. They include:</p>
+            <ul>
+                <li><strong>Security cookies:</strong> Protect against fraud and unauthorized access</li>
+                <li><strong>Session cookies:</strong> Maintain your login state and shopping cart</li>
+                <li><strong>Load balancing cookies:</strong> Distribute traffic across servers</li>
+            </ul>
+            
+            <h3>Analytics Cookies</h3>
+            <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us:</p>
+            <ul>
+                <li>Count visits and traffic sources</li>
+                <li>Measure and improve site performance</li>
+                <li>Understand which pages are most popular</li>
+                <li>Identify and fix technical issues</li>
+            </ul>
+            
+            <h3>Marketing & Affiliate Cookies</h3>
+            <p>These cookies are used for:</p>
+            <ul>
+                <li><strong>Affiliate tracking:</strong> Track referrals to our partners (Awin, Travelpayouts, etc.)</li>
+                <li><strong>Personalization:</strong> Show relevant travel offers based on your interests</li>
+                <li><strong>Retargeting:</strong> Display ads for services you've shown interest in</li>
+                <li><strong>Conversion tracking:</strong> Measure the effectiveness of our marketing</li>
+            </ul>
+            
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Third-Party Cookies</span>
+                </div>
+                <p>Our partners (Awin, Travelpayouts, Google Analytics, etc.) may also place cookies on your device. These third-party cookies are subject to the respective privacy policies of these organizations. We have data processing agreements with all our partners to ensure your data is handled responsibly.</p>
+            </div>
+            
+            <h2>Our Affiliate Tracking Partners</h2>
+            
+            <p>To provide you with the best travel deals and support our operations, we work with trusted affiliate partners who use cookies for tracking purposes:</p>
+            
+            <h3>Awin Network</h3>
+            <p>Awin cookies track referrals to partner websites (like Booking.com, Expedia) and attribute commissions to SkyLynx Travel when you make a purchase. These cookies typically expire within 30-90 days.</p>
+            
+            <h3>Travelpayouts</h3>
+            <p>Travelpayouts cookies track airline, hotel, and car rental bookings made through our links. These cookies help ensure we receive proper credit for referrals.</p>
+            
+            <h3>Google Analytics</h3>
+            <p>We use Google Analytics to understand how visitors use our site. Google Analytics cookies collect information in an anonymous form, including the number of visitors, where they come from, and pages visited.</p>
+            
+            <h2>Managing Your Cookie Preferences</h2>
+            
+            <h3>Browser Controls</h3>
+            <p>Most web browsers allow you to control cookies through their settings. Here's how to manage cookies in popular browsers:</p>
+            
+            <ul>
+                <li><strong>Google Chrome:</strong> Settings → Privacy and security → Cookies and other site data</li>
+                <li><strong>Mozilla Firefox:</strong> Options → Privacy & Security → Cookies and Site Data</li>
+                <li><strong>Safari:</strong> Preferences → Privacy → Cookies and website data</li>
+                <li><strong>Microsoft Edge:</strong> Settings → Cookies and site permissions → Cookies and site data</li>
+            </ul>
+            
+            <h3>Our Cookie Consent Tool</h3>
+            <p>When you first visit our website, you'll see a cookie consent banner that allows you to:</p>
+            <ul>
+                <li>Accept all cookies</li>
+                <li>Customize your cookie preferences</li>
+                <li>Reject non-essential cookies</li>
+            </ul>
+            
+            <p>You can change your preferences at any time by clicking the "Cookie Settings" link in our website footer.</p>
+            
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Device Controls</span>
+                </div>
+                <p>Mobile devices also provide cookie controls through their browser settings. Additionally, you can use "private" or "incognito" browsing modes to limit cookie storage during individual sessions.</p>
+            </div>
+            
+            <h2>What Happens If You Disable Cookies?</h2>
+            
+            <p>If you choose to disable cookies, please be aware that:</p>
+            
+            <ul>
+                <li>Some website features may not function properly</li>
+                <li>You may need to re-enter information more frequently</li>
+                <li>Personalized recommendations may not be available</li>
+                <li>Affiliate tracking for purchases may not work</li>
+                <li>Some security features may be limited</li>
+            </ul>
+            
+            <h2>AI-Powered Cookie Management</h2>
+            
+            <p>As an AI-powered platform, SkyLynx Travel uses intelligent cookie management that:</p>
+            
+            <ul>
+                <li><strong>Minimizes data collection:</strong> We only collect data necessary for providing our services</li>
+                <li><strong>Automated expiration:</strong> Non-essential cookies are automatically cleared after their useful life</li>
+                <li><strong>Smart categorization:</strong> Our AI categorizes cookies based on their purpose and necessity</li>
+                <li><strong>Privacy by design:</strong> We design our systems with privacy as a core principle</li>
+            </ul>
+            
+            <h2>Data Protection & Security</h2>
+            
+            <p>We take cookie security seriously by:</p>
+            
+            <ul>
+                <li>Using secure, HTTP-only cookies where appropriate</li>
+                <li>Implementing SameSite cookie attributes to prevent CSRF attacks</li>
+                <li>Regularly auditing our cookie usage and third-party partners</li>
+                <li>Encrypting sensitive cookie data</li>
+                <li>Complying with global data protection regulations (GDPR, CCPA, etc.)</li>
+            </ul>
+            
+            <h2>Cookie Policy Updates</h2>
+            
+            <p>We may update this Cookie Policy from time to time to reflect changes in our practices, technology, or legal requirements. When we make significant changes, we will:</p>
+            
+            <ul>
+                <li>Update the "Last Updated" date at the bottom of this page</li>
+                <li>Provide notice on our website when appropriate</li>
+                <li>Request renewed consent for significant changes</li>
+            </ul>
+            
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Questions & Contact</span>
+                </div>
+                <p>If you have any questions about our use of cookies or this Cookie Policy, please contact us:</p>
+                <p><strong>SkyLynx Travel Privacy Team</strong><br>
+                Email: privacy@skylynx.travel<br>
+                Address: 123 Luxury Lane, Suite 100, Ottawa, ON K1P 5G9, Canada</p>
+            </div>
+            
+            <p><strong>Last Updated:</strong> March 15, 2024</p>
+            
+            <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 10px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.05);">
+                <p style="font-size: 0.9rem; color: rgba(224, 225, 221, 0.7); margin: 0;">
+                    <i class="fas fa-info-circle" style="color: var(--sky-glow); margin-right: 8px;"></i>
+                    This Cookie Policy is part of our comprehensive <a href="/privacy.html" style="color: var(--sky-glow);">Privacy Policy</a>. By using our website, you acknowledge that you have read and understood how we use cookies and similar technologies.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>SkyLynx Travel</h3>
+                <p style="color: var(--silver); line-height: 1.6;">
+                    World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal Documents</h3>
+                <ul>
+                    <li><a href="/privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
+                    <li><a href="/terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
+                    <li><a href="/affiliate.html"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
+                    <li><a href="/cookie-policy.html" class="active"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></a></li>
+                    <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span>About SkyLynx</span></a></li>
+                    <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span>Travel Blog</span></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);">
+                This website uses cookies to enhance your experience. By continuing to browse, you agree to our use of cookies.
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 5px; color: var(--ai-teal);">
+                <i class="fas fa-robot"></i> <span>Powered by SkyLynx AI 3.0 • Patent Pending</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Button -->
+    <button class="ai-assistant-btn" id="aiAssistantBtn" aria-label="Open AI Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <script>
+        // ========== تهيئة الصفحة ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Cookie Policy page loaded');
+            
+            // تعيين اللغة والعملة من localStorage
+            let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+            let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
+            
+            document.getElementById('lang-sel').value = currentLang;
+            document.getElementById('curr-sel').value = currentCurrency;
+            
+            // تغيير اللغة
+            document.getElementById('lang-sel').addEventListener('change', function() {
+                const lang = this.value;
+                localStorage.setItem('skylynx_lang', lang);
+                updateLanguage(lang);
+            });
+            
+            // تغيير العملة
+            document.getElementById('curr-sel').addEventListener('change', function() {
+                const currency = this.value;
+                localStorage.setItem('skylynx_currency', currency);
+            });
+            
+            // مساعد الذكاء الاصطناعي
+            const aiBtn = document.getElementById('aiAssistantBtn');
+            if (aiBtn) {
+                aiBtn.addEventListener('click', function() {
+                    alert(currentLang === 'ar' ? 
+                        'مساعد الذكاء الاصطناعي: يمكنني الإجابة على أسئلتك حول سياسة ملفات تعريف الارتباط أو إعدادات الخصوصية!' : 
+                        'AI Assistant: I can answer questions about our cookie policy or privacy settings!');
+                });
+            }
+            
+            // تحديث اللغة الأولية
+            updateLanguage(currentLang);
+            
+            // إضافة رابط إدارة الكوكيز في الفوتر
+            const cookieLink = document.createElement('a');
+            cookieLink.href = 'javascript:void(0)';
+            cookieLink.style.cssText = 'color: var(--sky-glow); text-decoration: none; font-size: 0.8rem; margin-left: 10px;';
+            cookieLink.textContent = 'Manage Cookies';
+            cookieLink.onclick = function() {
+                if (window.SkyLynxCookies) {
+                    window.SkyLynxCookies.showSettings();
+                } else {
+                    alert(currentLang === 'ar' ? 
+                        'أداة إدارة ملفات تعريف الارتباط غير متوفرة حاليًا. يمكنك إدارة الإعدادات من خلال متصفحك.' : 
+                        'Cookie management tool is not currently available. You can manage settings through your browser.');
+                }
+            };
+            
+            const copyright = document.querySelector('.copyright p');
+            if (copyright) {
+                copyright.appendChild(document.createTextNode(' • '));
+                copyright.appendChild(cookieLink);
+            }
+        });
+        
+        function updateLanguage(lang) {
+            document.getElementById('main-html').setAttribute('lang', lang);
+            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // تحديث النصوص حسب اللغة
+            if (lang === 'ar') {
+                document.querySelector('.ai-badge span').textContent = 'مدعوم بالذكاء الاصطناعي';
+                document.getElementById('aiTaglineText').textContent = 'خصوصية وتخصيص معزز بالذكاء الاصطناعي';
+                document.querySelector('.policy-hero h1').textContent = 'سياسة ملفات تعريف الارتباط';
+                document.querySelector('.policy-hero p').textContent = 'تعرف على كيفية استخدام سكاي لينكس للسفر لملفات تعريف الارتباط والتقنيات المشابهة لتعزيز تجربة سفرك الفاخرة المدعومة بالذكاء الاصطناعي مع حماية خصوصيتك.';
+                
+                document.querySelectorAll('.nav-text').forEach(el => {
+                    const text = el.textContent;
+                    const translations = {
+                        'Home': 'الرئيسية',
+                        'Bookings': 'الحجوزات',
+                        'Blog': 'المدونة',
+                        'About': 'من نحن',
+                        'Contact': 'اتصل بنا'
+                    };
+                    if (translations[text]) {
+                        el.textContent = translations[text];
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

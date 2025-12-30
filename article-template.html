@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Article | SkyLynx Travel</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read this exclusive travel article on SkyLynx Travel - AI-powered luxury travel insights and expert guides">
+    <meta name="keywords" content="travel article, luxury travel guide, travel tips, destination review">
+    <meta name="author" content="SkyLynx Travel">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- نفس الستايل الموجود في index.html -->
+    <style>
+        /* ========== RESET & BASE ========== */
+        :root { 
+            --deep-ocean: #00111c; 
+            --dark-navy: #00283c;
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --success: #10b981;
+            --danger: #ef4444;
+            --platinum: #e5e4e2;
+            --ai-purple: #9d4edd;
+            --ai-teal: #2ec4b6;
+            --gradient-blue: linear-gradient(135deg, #000d15 0%, #001926 50%, #000810 100%);
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        
+        body { 
+            background-color: var(--deep-ocean); 
+            color: white; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+        }
+        
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 17, 28, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-logo i {
+            color: var(--sky-glow);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            padding: 8px 0;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--sky-glow);
+            border-bottom: 2px solid var(--sky-glow);
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--ai-purple); }
+            to { box-shadow: 0 0 20px var(--ai-teal); }
+        }
+        
+        /* ========== CONFIG BAR ========== */
+        .config { 
+            display: flex; 
+            gap: 15px; 
+        }
+        
+        .config select { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            backdrop-filter: blur(10px); 
+            font-size: 0.9rem;
+        }
+        
+        /* ========== ARTICLE HERO ========== */
+        .article-hero {
+            background: linear-gradient(rgba(0, 8, 16, 0.85), rgba(0, 17, 28, 0.95));
+            padding: 180px 5% 100px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 166, 251, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.15) 0%, transparent 50%);
+            animation: pulseBackground 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseBackground {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+        
+        .article-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-category {
+            display: inline-block;
+            background: rgba(0, 166, 251, 0.1);
+            color: var(--sky-glow);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .article-title {
+            font-family: 'Cinzel';
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: var(--silver);
+            font-size: 0.9rem;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* ========== ARTICLE CONTENT ========== */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            color: var(--silver);
+        }
+        
+        .article-content h2 {
+            font-family: 'Cinzel';
+            color: var(--sky-glow);
+            margin: 40px 0 20px;
+            font-size: 2rem;
+            border-bottom: 2px solid rgba(0, 166, 251, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .article-content h3 {
+            color: white;
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        /* مربعات المعلومات */
+        .info-box {
+            background: rgba(0, 166, 251, 0.1);
+            border-left: 4px solid var(--sky-glow);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 166, 251, 0.05), transparent);
+        }
+        
+        .info-box > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: #f59e0b;
+        }
+        
+        .info-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+        
+        .info-box-title {
+            font-weight: 700;
+            color: var(--sky-glow);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* روابط تابعة */
+        .affiliate-section {
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            text-align: center;
+        }
+        
+        .affiliate-section h4 {
+            color: var(--ai-purple);
+            margin-bottom: 15px;
+            font-family: 'Cinzel';
+            font-size: 1.5rem;
+        }
+        
+        .affiliate-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--sky-glow), #0066cc);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .affiliate-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 166, 251, 0.3);
+        }
+        
+        /* معلومات الكاتب */
+        .author-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 60px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--sky-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .author-details h4 {
+            color: var(--sky-glow);
+            font-family: 'Cinzel';
+            margin-bottom: 5px;
+        }
+        
+        .author-title {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* مشاركة المقال */
+        .share-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 40px 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .share-label {
+            color: var(--silver);
+            font-weight: 600;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .share-btn.facebook { background: #1877F2; }
+        .share-btn.twitter { background: #1DA1F2; }
+        .share-btn.linkedin { background: #0077B5; }
+        .share-btn.whatsapp { background: #25D366; }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* مقالات ذات صلة */
+        .related-articles {
+            margin: 80px 0;
+        }
+        
+        .related-articles h3 {
+            font-family: 'Cinzel';
+            color: var(--sky-glow);
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .related-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sky-glow);
+        }
+        
+        .related-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .related-content {
+            padding: 15px;
+        }
+        
+        .related-card .post-category {
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            margin-bottom: 8px;
+        }
+        
+        .related-card h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        /* ========== AI ASSISTANT BUTTON ========== */
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite;
+            border: none;
+            outline: none;
+        }
+        
+        .ai-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.6);
+        }
+        
+        .ai-assistant-btn i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            padding: 80px 5%;
+            background: #000810;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Cinzel';
+            color: var(--sky-glow);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--sky-glow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* ========== UTILITY CLASSES ========== */
+        .btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sky-glow), #0066cc);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 166, 251, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: var(--silver);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-left {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .ai-badge {
+                margin-top: 10px;
+            }
+            
+            .article-hero {
+                padding: 150px 5% 80px;
+                margin-top: 140px;
+            }
+            
+            .article-title {
+                font-size: 2.2rem;
+            }
+            
+            .article-image {
+                height: 250px;
+            }
+            
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .share-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .share-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="/" class="nav-logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyLynx</span>
+            </a>
+            
+            <div class="ai-badge">
+                <i class="fas fa-brain"></i>
+                <span>AI-Powered</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="/"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span class="nav-text">Bookings</span></a></li>
+                <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
+                <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
+                <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-right">
+            <div class="config">
+                <select id="curr-sel">
+                    <option value="CAD">🇨🇦 CAD</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="SAR">🇸🇦 SAR</option>
+                </select>
+                <select id="lang-sel">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="article-hero-content">
+            <span class="article-category" id="article-category">⭐ Luxury</span>
+            <h1 class="article-title" id="article-title">Complete Guide to Luxury Travel in Dubai 2024</h1>
+            
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span id="article-author">Mohammad AlSafar</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span id="article-date">March 15, 2024</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="article-read-time">8 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <div class="article-container">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" 
+             alt="Dubai Luxury Travel" 
+             class="article-image" 
+             id="article-image">
+        
+        <article class="article-content" id="article-content">
+            <p>Welcome to our comprehensive guide to luxury travel in Dubai for 2024. As the world's premier destination for opulence and innovation, Dubai continues to redefine luxury travel with groundbreaking hotels, Michelin-starred dining, and exclusive experiences.</p>
+            
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Pro Tip</span>
+                </div>
+                <p>The best time to visit Dubai is between November and March when temperatures are pleasant, ranging from 20°C to 30°C (68°F to 86°F).</p>
+            </div>
+            
+            <h2>Top Luxury Hotels in Dubai</h2>
+            
+            <p>Dubai boasts some of the world's most spectacular hotels. Here are our top picks for 2024:</p>
+            
+            <h3>Burj Al Arab Jumeirah</h3>
+            <p>The iconic sail-shaped hotel remains Dubai's most famous landmark. With its 202-star service, private beach, and suites starting from 170 square meters, it's the epitome of luxury.</p>
+            
+            <h3>Atlantis The Royal</h3>
+            <p>The newest addition to Dubai's luxury scene features celebrity chef restaurants, stunning water features, and breathtaking views of the Palm Jumeirah.</p>
+            
+            <div class="affiliate-section">
+                <h4>Ready to Experience Dubai Luxury?</h4>
+                <p>Book your stay at one of Dubai's premier hotels through our exclusive partners and enjoy special benefits:</p>
+                <a href="https://www.booking.com/dubai-luxury-hotels" class="affiliate-link" target="_blank" rel="nofollow">
+                    <i class="fas fa-hotel"></i>
+                    <span>Book Luxury Hotels in Dubai</span>
+                </a>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: rgba(255,255,255,0.7);">
+                    <i class="fas fa-info-circle"></i> We earn a commission from bookings at no extra cost to you.
+                </p>
+            </div>
+            
+            <h2>Michelin-Star Dining Experiences</h2>
+            
+            <p>Dubai's culinary scene has exploded in recent years, with numerous restaurants earning Michelin stars:</p>
+            
+            <ul>
+                <li><strong>STAY by Yannick Alléno</strong> - Three Michelin stars, French cuisine with a modern twist</li>
+                <li><strong>Hakkasan Dubai</strong> - One Michelin star, contemporary Cantonese cuisine</li>
+                <li><strong>Zuma Dubai</strong> - One Michelin star, modern Japanese izakaya</li>
+                <li><strong>Ossiano</strong> - One Michelin star, seafood with underwater views at Atlantis</li>
+            </ul>
+            
+            <div class="info-box success">
+                <div class="info-box-title">
+                    <i class="fas fa-star"></i>
+                    <span>Exclusive Experience</span>
+                </div>
+                <p>For the ultimate dining experience, book the Chef's Table at STAY by Yannick Alléno. You'll enjoy a personalized menu with wine pairing while watching the kitchen team work their magic.</p>
+            </div>
+            
+            <h2>Exclusive Activities & Experiences</h2>
+            
+            <p>Beyond the hotels and restaurants, Dubai offers unique luxury experiences:</p>
+            
+            <h3>Private Yacht Charter</h3>
+            <p>Explore the Dubai coastline on a private yacht. Options range from 40-foot yachts for intimate gatherings to 150-foot superyachts for larger groups.</p>
+            
+            <h3>Helicopter Tour</h3>
+            <p>See Dubai's iconic skyline from above with a private helicopter tour. The 25-minute "Iconic Dubai" tour covers all major landmarks.</p>
+            
+            <div class="affiliate-section">
+                <h4>Book Exclusive Dubai Experiences</h4>
+                <a href="https://www.expedia.com/Dubai.dx982" class="affiliate-link" target="_blank" rel="nofollow">
+                    <i class="fas fa-gem"></i>
+                    <span>View Luxury Experiences Packages</span>
+                </a>
+            </div>
+            
+            <h2>Luxury Shopping Guide</h2>
+            
+            <p>Dubai is a shopper's paradise with these luxury destinations:</p>
+            
+            <ul>
+                <li><strong>The Dubai Mall</strong> - World's largest shopping mall with over 1,200 stores</li>
+                <li><strong>Mall of the Emirates</strong> - Home to Ski Dubai and luxury boutiques</li>
+                <li><strong>Dubai Design District (d3)</strong> - Emerging luxury and designer brands</li>
+                <li><strong>Gold Souk</strong> - Traditional market for gold and jewelry</li>
+            </ul>
+            
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Important Note</span>
+                </div>
+                <p>Dubai has a Value Added Tax (VAT) of 5%. However, tourists can claim VAT refunds on purchases over AED 250 at designated stores.</p>
+            </div>
+        </article>
+        
+        <!-- Author Info -->
+        <section class="author-section">
+            <div class="author-info">
+                <div class="author-avatar">M</div>
+                <div class="author-details">
+                    <h4>Mohammad AlSafar</h4>
+                    <p class="author-title">Senior Luxury Travel Expert</p>
+                    <p>With over 15 years of experience in luxury travel, Mohammad has visited Dubai more than 50 times and specializes in curating bespoke travel experiences for discerning clients.</p>
+                </div>
+            </div>
+            <a href="/blog.html?author=mohammad" class="btn btn-secondary">
+                <i class="fas fa-newspaper"></i>
+                <span>View All Articles by Mohammad</span>
+            </a>
+        </section>
+        
+        <!-- Share Article -->
+        <section class="share-section">
+            <div class="share-label">Share this article:</div>
+            <div class="share-buttons">
+                <a href="#" class="share-btn facebook" aria-label="Share on Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="share-btn twitter" aria-label="Share on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="share-btn linkedin" aria-label="Share on LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="share-btn whatsapp" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <h3>You Might Also Like</h3>
+            <div class="related-grid">
+                <article class="related-card">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=400" alt="Paris Hotels">
+                    <div class="related-content">
+                        <span class="post-category">🏨 Hotels</span>
+                        <h4>Top 10 Luxury Hotels in Paris 2024</h4>
+                    </div>
+                </article>
+                
+                <article class="related-card">
+                    <img src="https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=400" alt="Flight Tips">
+                    <div class="related-content">
+                        <span class="post-category">💰 Tips</span>
+                        <h4>10 Ways to Get Free Flight Upgrades</h4>
+                    </div>
+                </article>
+                
+                <article class="related-card">
+                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=400" alt="Maldives">
+                    <div class="related-content">
+                        <span class="post-category">🌍 Destinations</span>
+                        <h4>Maldives: Best Resorts for Families</h4>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>SkyLynx Travel</h3>
+                <p style="color: var(--silver); line-height: 1.6;">
+                    World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
+                    <li><a href="/terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
+                    <li><a href="/affiliate.html"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
+                    <li><a href="/cookies.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></a></li>
+                    <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span>About SkyLynx</span></a></li>
+                    <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span>Travel Blog</span></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);">
+                This article contains affiliate links. We may earn a commission through these links at no additional cost to you.
+            </p>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Button -->
+    <button class="ai-assistant-btn" id="aiAssistantBtn" aria-label="Open AI Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <script>
+        // ========== تهيئة الصفحة ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Article template loaded');
+            
+            // تعيين اللغة والعملة من localStorage
+            let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+            let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
+            
+            document.getElementById('lang-sel').value = currentLang;
+            document.getElementById('curr-sel').value = currentCurrency;
+            
+            // تغيير اللغة
+            document.getElementById('lang-sel').addEventListener('change', function() {
+                const lang = this.value;
+                localStorage.setItem('skylynx_lang', lang);
+                updateLanguage(lang);
+            });
+            
+            // تغيير العملة
+            document.getElementById('curr-sel').addEventListener('change', function() {
+                const currency = this.value;
+                localStorage.setItem('skylynx_currency', currency);
+            });
+            
+            // مساعد الذكاء الاصطناعي
+            const aiBtn = document.getElementById('aiAssistantBtn');
+            if (aiBtn) {
+                aiBtn.addEventListener('click', function() {
+                    alert(currentLang === 'ar' ? 
+                        'مساعد الذكاء الاصطناعي: يمكنني الإجابة على أسئلتك حول هذه المقالة أو تقديم نصائح سفر إضافية!' : 
+                        'AI Assistant: I can answer questions about this article or provide additional travel tips!');
+                });
+            }
+            
+            // تحديث اللغة الأولية
+            updateLanguage(currentLang);
+        });
+        
+        function updateLanguage(lang) {
+            document.getElementById('main-html').setAttribute('lang', lang);
+            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            
+            // تحديث النصوص حسب اللغة
+            if (lang === 'ar') {
+                document.querySelector('.ai-badge span').textContent = 'مدعوم بالذكاء الاصطناعي';
+                document.querySelectorAll('.nav-text').forEach(el => {
+                    const text = el.textContent;
+                    const translations = {
+                        'Home': 'الرئيسية',
+                        'Bookings': 'الحجوزات',
+                        'Blog': 'المدونة',
+                        'About': 'من نحن',
+                        'Contact': 'اتصل بنا'
+                    };
+                    if (translations[text]) {
+                        el.textContent = translations[text];
+                    }
+                });
+            }
+        }
+        
+        // مشاركة المقال
+        function shareArticle(platform) {
+            const url = window.location.href;
+            const title = document.getElementById('article-title').textContent;
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+        
+        // إضافة مستمعين لأزرار المشاركة
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.classList[1]; // facebook, twitter, etc.
+                    shareArticle(platform);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

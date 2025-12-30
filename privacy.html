@@ -3,81 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الخصوصية - SkyLynx Travel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #051923;
-            color: white;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        h1 {
-            color: #00a6fb;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        h2 {
-            color: #d4af37;
-            margin: 25px 0 15px 0;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .back-btn {
-            display: inline-block;
-            background: #00a6fb;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
-            text-decoration: none;
-            margin-top: 30px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: #006494;
-            transform: translateY(-2px);
-        }
-    </style>
+    <title>سياسة الخصوصية - سفريات</title>
+    <meta name="description" content="سياسة الخصوصية لموقع سفريات. نقدم شفافية كاملة حول كيفية جمع واستخدام وحماية بياناتك الشخصية.">
+    
+    <!-- إعدادات SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="فريق سفريات">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.safriyat.com/privacy.html">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>سياسة الخصوصية</h1>
-        
-        <h2>1. المعلومات التي نجمعها</h2>
-        <p>نجمع المعلومات التي تقدمها لنا عند الحجز: الاسم، البريد الإلكتروني، رقم الهاتف، تفاصيل السفر.</p>
-        
-        <h2>2. كيفية استخدام المعلومات</h2>
-        <p>نستخدم معلوماتك لمعالجة الحجوزات، التواصل معك، تحسين خدماتنا، وإرسال عروض خاصة.</p>
-        
-        <h2>3. مشاركة المعلومات</h2>
-        <p>نشارك المعلومات الضرورية مع شركائنا (شركات الطيران، الفنادق) لإتمام الحجز فقط.</p>
-        
-        <h2>4. حماية المعلومات</h2>
-        <p>نستخدم تقنيات تشفير متقدمة لحماية بياناتك. نلتزم بمعايير أمان صناعة السفر.</p>
-        
-        <h2>5. حقوقك</h2>
-        <p>لك الحق في الوصول لبياناتك، تصحيحها، حذفها، أو سحب الموافقة على معالجتها.</p>
-        
-        <h2>6. ملفات تعريف الارتباط (Cookies)</h2>
-        <p>نستخدم cookies لتحسين تجربتك. يمكنك إدارة إعدادات cookies من متصفحك.</p>
-        
-        <h2>7. التواصل معنا</h2>
-        <p>لأي استفسارات حول الخصوصية، راسلنا على: privacy@skylynx.com</p>
-        
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
-        </a>
-    </div>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-plane"></i> سفريات
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="blog.html">المدونة</a></li>
+                <li><a href="destinations.html">الوجهات</a></li>
+                <li><a href="hotels.html">الفنادق</a></li>
+                <li><a href="flights.html">الطيران</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+                <li><a href="affiliate.html">برنامج الشركاء</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <header class="page-header">
+        <div class="container">
+            <h1>سياسة الخصوصية</h1>
+            <p>آخر تحديث: يناير 2024</p>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <main class="container privacy-content">
+        <section class="privacy-section">
+            <h2>مقدمة</h2>
+            <p>نحن في "سفريات" نعتبر خصوصيتك أمراً بالغ الأهمية. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية معلوماتك الشخصية عند استخدام موقعنا الإلكتروني وتطبيقاتنا وخدماتنا.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>المعلومات التي نجمعها</h2>
+            
+            <h3>1. المعلومات التي تقدمها لنا:</h3>
+            <ul>
+                <li>معلومات التسجيل (الاسم، البريد الإلكتروني)</li>
+                <li>معلومات الاتصال عند استخدام نموذج الاتصال</li>
+                <li>معلومات الدفع عند الاشتراك في خدمات مدفوعة</li>
+                <li>المحتوى الذي تنشره على موقعنا</li>
+            </ul>
+            
+            <h3>2. المعلومات التي نجمعها تلقائياً:</h3>
+            <ul>
+                <li>معلومات الجهاز والمتصفح (نوع الجهاز، نظام التشغيل، المتصفح)</li>
+                <li>عنوان IP والموقع الجغرافي</li>
+                <li>بيانات الاستخدام (الصفحات التي تزورها، وقت الزيارة)</li>
+                <li>ملفات تعريف الارتباط (الكوكيز) وبيانات التتبع</li>
+            </ul>
+            
+            <h3>3. المعلومات من مصادر خارجية:</h3>
+            <ul>
+                <li>معلومات من مواقع التواصل الاجتماعي عندما تتفاعل معنا</li>
+                <li>معلومات من شركائنا في التسويق بالعمولة (Awin, Travelpayouts)</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>كيف نستخدم معلوماتك</h2>
+            <ul>
+                <li>تقديم وتحسين خدماتنا</li>
+                <li>معالجة طلباتك ومعاملاتك</li>
+                <li>إرسال تحديثات وعروض ترويجية (بموافقتك)</li>
+                <li>تحليل استخدام الموقع وتحسين تجربة المستخدم</li>
+                <li>الامتثال للالتزامات القانونية</li>
+                <li>الكشف عن الاحتيال والمخالفات الأمنية</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>مشاركة المعلومات</h2>
+            <p>قد نشارك معلوماتك مع:</p>
+            
+            <h3>1. شركاء الخدمة:</h3>
+            <ul>
+                <li>مواقع الحجز (Booking.com, Expedia, etc.)</li>
+                <li>مزودي خدمات الدفع</li>
+                <li>مزودي خدمات التحليلات</li>
+                <li>مزودي خدمات البريد الإلكتروني</li>
+            </ul>
+            
+            <h3>2. شبكات التسويق بالعمولة:</h3>
+            <ul>
+                <li>Awin (للتسويق بالعمولة)</li>
+                <li>Travelpayouts (لخدمات السفر)</li>
+            </ul>
+            
+            <h3>3. لأسباب قانونية:</h3>
+            <ul>
+                <li>عندما يقتضي القانون ذلك</li>
+                <li>لحماية حقوقنا وممتلكاتنا</li>
+                <li>للتحقيق في أنشطة احتيالية أو غير قانونية</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>ملفات تعريف الارتباط (الكوكيز)</h2>
+            <p>نستخدم ملفات تعريف الارتباط لعدة أغراض:</p>
+            
+            <h3>1. الكوكيز الأساسية:</h3>
+            <p>ضرورية لتشغيل الموقع، مثل حفظ تفضيلات اللغة.</p>
+            
+            <h3>2. كوكيز الأداء:</h3>
+            <p>تجمع معلومات حول كيفية استخدام الموقع لتحسينه.</p>
+            
+            <h3>3. كوكيز الوظائف:</h3>
+            <p>تذكر اختياراتك لتوفير تجربة مخصصة.</p>
+            
+            <h3>4. كوكيز الإعلان:</h3>
+            <p>تستخدم لعرض إعلانات ملائمة لك.</p>
+            
+            <p>يمكنك التحكم في ملفات تعريف الارتباط من خلال إعدادات المتصفح.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>التسويق بالعمولة</h2>
+            <p>يحتوي موقعنا على روابط تابعة لشركائنا. عند النقر على هذه الروابط:</p>
+            <ul>
+                <li>يتم تخزين ملف تعريف ارتباط (كوكي) في متصفحك</li>
+                <li>إذا قمت بالحجز من خلال الرابط، قد نتلقى عمولة</li>
+                <li>لا تزيد تكلفة الحجز بالنسبة لك</li>
+                <li>نحن شركاء مع شبكات مثل Awin وTravelpayouts</li>
+                <li>نستخدم علامات التتبع لتسجيل العمولات بشكل دقيق</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>حماية البيانات</h2>
+            <p>نتخذ إجراءات أمنية معقولة لحماية معلوماتك من:</p>
+            <ul>
+                <li>الوصول غير المصرح به</li>
+                <li>التعديل أو الكشف غير المصرح به</li>
+                <li>التدمير غير المصرح به</li>
+            </ul>
+            <p>نستخدم تشفير SSL لتأمين نقل البيانات. ومع ذلك، لا يمكن ضمان أمان الإنترنت بنسبة 100%.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>حقوقك</h2>
+            <p>لديك الحق في:</p>
+            <ul>
+                <li>الوصول إلى معلوماتك الشخصية</li>
+                <li>تصحيح المعلومات غير الدقيقة</li>
+                <li>حذف معلوماتك (حق النسيان)</li>
+                <li>تقييد معالجة معلوماتك</li>
+                <li>نقل بياناتك إلى خدمة أخرى</li>
+                <li>الاعتراض على معالجة معلوماتك</li>
+                <li>سحب الموافقة في أي وقت</li>
+            </ul>
+            <p>للمطالبة بأي من هذه الحقوق، راسلنا على <a href="mailto:privacy@safriyat.com">privacy@safriyat.com</a>.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>الاحتفاظ بالبيانات</h2>
+            <p>نحتفظ ببياناتك طالما:</p>
+            <ul>
+                <li>ضرورية لتقديم خدماتنا</li>
+                <li>مطلوبة قانونياً</li>
+                <li>ضرورية لحل النزاعات</li>
+                <li>أنت تستخدم خدماتنا بشكل نشط</li>
+            </ul>
+            <p>عندما لا نحتاج إلى معلوماتك، نحذفها بشكل آمن أو نجعلها مجهولة.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>الخصوصية الدولية</h2>
+            <p>يقع خادمنا في منطقة الشرق الأوسط. إذا كنت تزورنا من خارج المنطقة:</p>
+            <ul>
+                <li>قد تنتقل بياناتك عبر الحدود</li>
+                <li>قد تخضع بياناتك لقوانين مختلفة</li>
+                <li>نضمن حماية بياناتك وفق أعلى المعايير</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>تغييرات على سياسة الخصوصية</h2>
+            <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. عند القيام بذلك:</p>
+            <ul>
+                <li>سننشر السياسة المحدثة على هذه الصفحة</li>
+                <li>سنقوم بتحديث تاريخ "آخر تحديث"</li>
+                <li>للتغييرات الجوهرية، سنرسل إشعاراً</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>اتصل بنا</h2>
+            <p>إذا كان لديك أي أسئلة حول سياسة الخصوصية:</p>
+            <p>
+                البريد الإلكتروني: <a href="mailto:privacy@safriyat.com">privacy@safriyat.com</a><br>
+                الصفحة: <a href="contact.html">اتصل بنا</a>
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>السلطات الرقابية</h2>
+            <p>إذا كنت تعتقد أن معالجتنا لبياناتك تنتهك قانون حماية البيانات:</p>
+            <p>لديك الحق في تقديم شكوى إلى السلطة الرقابية المختصة في بلد إقامتك.</p>
+        </section>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>سفريات</h3>
+                    <p>دليلك الشامل للسياحة والسفر حول العالم. نقدم نصائح سفر موثوقة وعروض حصرية.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="affiliate.html">برنامج الشركاء</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>الشروط والأحكام</h3>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="terms.html">الشروط والأحكام</a></li>
+                        <li><a href="affiliate.html">إخلاء المسؤولية</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 سفريات. جميع الحقوق محفوظة.</p>
+                <p>هذا الموقع يحتوي على روابط تابعة. قد نربح عمولة إذا قمت بالحجز من خلال روابطنا.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // تفعيل القائمة المتنقلة
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

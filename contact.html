@@ -3,165 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصل بنا - SkyLynx Travel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #051923;
-            color: white;
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        h1 {
-            color: #00a6fb;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .contact-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        .contact-card {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        .contact-card:hover {
-            border-color: #00a6fb;
-            transform: translateY(-5px);
-        }
-        .contact-card i {
-            font-size: 2.5rem;
-            color: #00a6fb;
-            margin-bottom: 15px;
-        }
-        .contact-card h3 {
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: white;
-            font-family: 'Cairo', sans-serif;
-        }
-        .contact-form button {
-            background: #00a6fb;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        .contact-form button:hover {
-            background: #006494;
-            transform: translateY(-2px);
-        }
-        .back-btn {
-            display: inline-block;
-            background: #00a6fb;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
-            text-decoration: none;
-            margin-top: 30px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: #006494;
-            transform: translateY(-2px);
-        }
-    </style>
+    <title>اتصل بنا - تواصل مع فريق سفريات | سفريات</title>
+    <meta name="description" content="تواصل مع فريق سفريات للاستفسارات، التعاون، أو المشاركة في برنامج الشركاء. نحن هنا لمساعدتك.">
+    
+    <!-- إعدادات SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="فريق سفريات">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.safriyat.com/contact.html">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>اتصل بنا</h1>
-        
-        <div class="contact-methods">
-            <div class="contact-card">
-                <i class="fas fa-phone-alt"></i>
-                <h3>الهاتف</h3>
-                <p>+1 (800) SKY-LYNX</p>
-                <p>24/7 خدمة العملاء</p>
-            </div>
-            
-            <div class="contact-card">
-                <i class="fas fa-envelope"></i>
-                <h3>البريد الإلكتروني</h3>
-                <p>concierge@skylynx.com</p>
-                <p>للحجوزات والاستفسارات</p>
-            </div>
-            
-            <div class="contact-card">
-                <i class="fas fa-headset"></i>
-                <h3>الدعم الفني</h3>
-                <p>support@skylynx.com</p>
-                <p>للأسئلة التقنية</p>
-            </div>
-            
-            <div class="contact-card">
-                <i class="fas fa-clock"></i>
-                <h3>ساعات العمل</h3>
-                <p>الأحد - الخميس: 8 ص - 10 م</p>
-                <p>الجمعة - السبت: 10 ص - 8 م</p>
-            </div>
-        </div>
-        
-        <h2 style="color: #d4af37; margin-top: 40px;">أرسل رسالة</h2>
-        <form class="contact-form" onsubmit="return submitContactForm()">
-            <input type="text" placeholder="الاسم الكامل" required>
-            <input type="email" placeholder="البريد الإلكتروني" required>
-            <input type="tel" placeholder="رقم الهاتف" required>
-            <select style="width:100%; padding:15px; margin-bottom:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <option>نوع الاستفسار</option>
-                <option>استفسار عن حجز</option>
-                <option>استفسار عن خدمة</option>
-                <option>شكوى</option>
-                <option>اقتراح</option>
-            </select>
-            <textarea placeholder="رسالتك..." rows="5" required></textarea>
-            <button type="submit">
-                <i class="fas fa-paper-plane"></i> إرسال الرسالة
-            </button>
-        </form>
-        
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-plane"></i> سفريات
             </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="blog.html">المدونة</a></li>
+                <li><a href="destinations.html">الوجهات</a></li>
+                <li><a href="hotels.html">الفنادق</a></li>
+                <li><a href="flights.html">الطيران</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="contact.html" class="active">اتصل بنا</a></li>
+                <li><a href="affiliate.html">برنامج الشركاء</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-    </div>
+    </nav>
 
+    <!-- رأس الصفحة -->
+    <header class="page-header">
+        <div class="container">
+            <h1>اتصل بنا</h1>
+            <p>نحن هنا للإجابة على جميع استفساراتك</p>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <main class="container">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>معلومات التواصل</h2>
+                
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>البريد الإلكتروني</h3>
+                        <p>للعام: <a href="mailto:info@safriyat.com">info@safriyat.com</a></p>
+                        <p>للشركاء: <a href="mailto:affiliates@safriyat.com">affiliates@safriyat.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>ساعات العمل</h3>
+                        <p>الأحد - الخميس: 9 صباحاً - 5 مساءً</p>
+                        <p>الجمعة - السبت: مغلق</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>المكان</h3>
+                        <p>دبي، الإمارات العربية المتحدة</p>
+                        <p>(خدمة رقمية - لا يوجد مكتب فعلي)</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <h3>تابعنا</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2>أرسل رسالة</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">الموضوع *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">اختر الموضوع</option>
+                            <option value="general">استفسار عام</option>
+                            <option value="partnership">تعاون وشراكة</option>
+                            <option value="affiliate">برنامج الشركاء</option>
+                            <option value="advertising">إعلانات</option>
+                            <option value="technical">مشكلة فنية</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">الرسالة *</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">أرغب في تلقي النشرة الإخبارية والعروض الحصرية</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <section class="faq-section">
+            <h2>أسئلة متكررة</h2>
+            <div class="faq">
+                <div class="faq-item">
+                    <h3>كم تستغرق وقتاً للرد على الاستفسارات؟</h3>
+                    <p>نرد على جميع الاستفسارات خلال 24-48 ساعة عمل.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>هل تقدمون خدمات حجز مباشرة؟</h3>
+                    <p>نحن نقدم روابط تابعة لشركائنا من مواقع الحجز. لا نقوم بالحجز المباشر.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>كيف يمكنني المشاركة في برنامج الشركاء؟</h3>
+                    <p>يمكنك التقديم من خلال صفحة <a href="affiliate.html">برنامج الشركاء</a>.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>هل يمكنني الكتابة لمدونتكم؟</h3>
+                    <p>نعم، نرحب بمقترحات المحتوى. أرسل عينات كتابتك مع نبذة عنك.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>سفريات</h3>
+                    <p>دليلك الشامل للسياحة والسفر حول العالم. نقدم نصائح سفر موثوقة وعروض حصرية.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="affiliate.html">برنامج الشركاء</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>الشروط والأحكام</h3>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="terms.html">الشروط والأحكام</a></li>
+                        <li><a href="affiliate.html">إخلاء المسؤولية</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 سفريات. جميع الحقوق محفوظة.</p>
+                <p>هذا الموقع يحتوي على روابط تابعة. قد نربح عمولة إذا قمت بالحجز من خلال روابطنا.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        function submitContactForm() {
-            alert('شكراً لتواصلك! سنرد عليك خلال 24 ساعة.');
-            return false; // لمنع إعادة تحميل الصفحة
-        }
+        // تفعيل القائمة المتنقلة
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // نموذج الاتصال
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // هنا يمكن إضافة كود إرسال النموذج
+            alert('شكراً لتواصلك! سنرد عليك في أقرب وقت.');
+            this.reset();
+        });
     </script>
 </body>
 </html>
