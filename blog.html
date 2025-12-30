@@ -162,8 +162,7 @@
         
         /* ========== BLOG HERO ========== */
         .blog-hero {
-            background: linear-gradient(rgba(0, 8, 16, 0.85), rgba(0, 17, 28, 0.95)),
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=2070');
+            background: linear-gradient(rgba(0, 8, 16, 0.85), rgba(0, 17, 28, 0.95));
             background-size: cover;
             background-position: center;
             padding: 180px 5% 100px;
@@ -360,6 +359,7 @@
             align-items: center;
             gap: 8px;
             transition: gap 0.3s;
+            cursor: pointer;
         }
         
         .read-btn:hover {
@@ -455,198 +455,6 @@
             box-shadow: 0 10px 20px rgba(0, 166, 251, 0.2);
         }
         
-        /* ========== AI ASSISTANT BUTTON ========== */
-        .ai-assistant-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
-            transition: all 0.3s;
-            animation: float 3s ease-in-out infinite;
-            border: none;
-            outline: none;
-        }
-        
-        .ai-assistant-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.6);
-        }
-        
-        .ai-assistant-btn i {
-            font-size: 28px;
-            color: white;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        /* ========== AI ASSISTANT MODAL ========== */
-        .ai-assistant-modal {
-            position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: 380px;
-            max-height: 500px;
-            background: rgba(0, 17, 28, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(157, 78, 221, 0.3);
-            z-index: 1001;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            overflow: hidden;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.3s, opacity 0.3s;
-        }
-        
-        .ai-assistant-modal.show {
-            display: flex;
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .ai-modal-header {
-            padding: 20px;
-            background: rgba(157, 78, 221, 0.15);
-            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
-        
-        .ai-modal-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--ai-purple);
-            font-size: 1.1rem;
-            margin: 0;
-        }
-        
-        .ai-close-btn {
-            background: none;
-            border: none;
-            color: var(--silver);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 5px;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-        }
-        
-        .ai-close-btn:hover {
-            color: var(--ai-purple);
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .ai-chat-container {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            min-height: 300px;
-            max-height: 350px;
-        }
-        
-        .ai-message {
-            max-width: 85%;
-            padding: 15px;
-            border-radius: 18px;
-            line-height: 1.4;
-            font-size: 0.9rem;
-            animation: messageAppear 0.3s ease-out;
-        }
-        
-        @keyframes messageAppear {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .ai-message.bot {
-            background: rgba(157, 78, 221, 0.15);
-            border: 1px solid rgba(157, 78, 221, 0.2);
-            align-self: flex-start;
-        }
-        
-        .ai-message.user {
-            background: rgba(0, 166, 251, 0.15);
-            border: 1px solid rgba(0, 166, 251, 0.2);
-            align-self: flex-end;
-        }
-        
-        .ai-input-container {
-            padding: 15px 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            gap: 10px;
-            flex-shrink: 0;
-            background: rgba(0, 17, 28, 0.8);
-        }
-        
-        .ai-input {
-            flex: 1;
-            padding: 12px 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(157, 78, 221, 0.3);
-            border-radius: 25px;
-            color: white;
-            font-size: 0.9rem;
-            font-family: inherit;
-        }
-        
-        .ai-input:focus {
-            outline: none;
-            border-color: var(--ai-purple);
-            box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.2);
-        }
-        
-        .ai-send-btn {
-            background: var(--ai-purple);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-        
-        .ai-send-btn:hover {
-            background: var(--ai-teal);
-            transform: scale(1.05);
-        }
-        
         /* ========== FOOTER ========== */
         footer {
             padding: 80px 5%;
@@ -699,75 +507,6 @@
             font-size: 0.9rem;
         }
         
-        /* ========== LOADING OVERLAY ========== */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 17, 28, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--ai-purple);
-            animation: spin 1s linear infinite;
-        }
-        
-        .loading-text {
-            color: white;
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 300px;
-        }
-        
-        /* ========== UTILITY CLASSES ========== */
-        .btn {
-            padding: 12px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--sky-glow), #0066cc);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 166, 251, 0.3);
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .mt-4 {
-            margin-top: 40px;
-        }
-        
-        .mb-4 {
-            margin-bottom: 40px;
-        }
-        
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .main-nav {
@@ -810,17 +549,6 @@
                 flex-direction: column;
             }
             
-            .ai-assistant-modal {
-                width: 90%;
-                right: 5%;
-                bottom: 100px;
-                max-height: 450px;
-            }
-            
-            .ai-chat-container {
-                max-height: 280px;
-            }
-            
             .blog-filters {
                 gap: 10px;
             }
@@ -851,7 +579,7 @@
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-left">
-            <a href="/" class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <i class="fas fa-plane"></i>
                 <span>SkyLynx</span>
             </a>
@@ -862,12 +590,12 @@
             </div>
             
             <ul class="nav-menu">
-                <li><a href="/"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
-                <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span class="nav-text">Bookings</span></a></li>
-                <li><a href="/blog.html" class="active"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
-                <li><a href="/destinations.html"><i class="fas fa-map-marker-alt"></i> <span class="nav-text">Destinations</span></a></li>
-                <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
-                <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="blog.html" class="active"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
+                <li><a href="affiliate-disclosure.html"><i class="fas fa-handshake"></i> <span class="nav-text">Affiliate Disclosure</span></a></li>
+                <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span class="nav-text">Privacy Policy</span></a></li>
+                <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span class="nav-text">Cookie Policy</span></a></li>
+                <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span class="nav-text">Terms</span></a></li>
             </ul>
         </div>
         
@@ -947,9 +675,9 @@
                     </div>
                     <h3 class="post-title">Complete Guide to Luxury Travel in Dubai 2024</h3>
                     <p class="post-excerpt">Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.</p>
-                    <a href="/blog/dubai-luxury-guide-2024.html" class="read-btn">
+                    <span class="read-btn" data-article="1">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -963,9 +691,9 @@
                     </div>
                     <h3 class="post-title">Top 10 Luxury Hotels in Paris 2024</h3>
                     <p class="post-excerpt">Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.</p>
-                    <a href="/blog/paris-luxury-hotels-2024.html" class="read-btn">
+                    <span class="read-btn" data-article="2">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -979,9 +707,9 @@
                     </div>
                     <h3 class="post-title">10 Ways to Get Free Flight Upgrades</h3>
                     <p class="post-excerpt">Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.</p>
-                    <a href="/blog/free-flight-upgrades-tips.html" class="read-btn">
+                    <span class="read-btn" data-article="3">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -995,9 +723,9 @@
                     </div>
                     <h3 class="post-title">Maldives: Choosing the Best Resorts for Families & Couples</h3>
                     <p class="post-excerpt">Detailed guide to choosing the right resort in the Maldives. Comparison between family-friendly and romantic resorts with booking tips.</p>
-                    <a href="/blog/maldives-resorts-guide.html" class="read-btn">
+                    <span class="read-btn" data-article="4">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1011,9 +739,9 @@
                     </div>
                     <h3 class="post-title">Tokyo in 5 Days: Journey Between Tradition and Modernity</h3>
                     <p class="post-excerpt">Complete tourist program for visiting Tokyo. Guide to landmarks, restaurants, and unique experiences you must try in the Japanese capital.</p>
-                    <a href="/blog/tokyo-5-day-itinerary.html" class="read-btn">
+                    <span class="read-btn" data-article="5">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1027,9 +755,9 @@
                     </div>
                     <h3 class="post-title">Ultimate Guide to Luxury Car Rental in Europe</h3>
                     <p class="post-excerpt">Everything you need to know about renting luxury cars in Europe. From required documents to best companies and important money-saving tips.</p>
-                    <a href="/blog/luxury-car-rental-europe.html" class="read-btn">
+                    <span class="read-btn" data-article="6">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1043,9 +771,9 @@
                     </div>
                     <h3 class="post-title">Smart Packing: What to Bring on a 2-Week Luxury Trip</h3>
                     <p class="post-excerpt">Professional packing tips for luxury travelers. Learn how to pack efficiently, avoid overweight luggage, and always look your best.</p>
-                    <a href="/blog/luxury-packing-guide.html" class="read-btn">
+                    <span class="read-btn" data-article="7">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1059,9 +787,9 @@
                     </div>
                     <h3 class="post-title">Maximizing Hotel Loyalty Programs for Free Nights</h3>
                     <p class="post-excerpt">How to get the most value from hotel loyalty programs. Strategies for earning points, getting elite status, and redeeming for free luxury stays.</p>
-                    <a href="/blog/hotel-loyalty-programs-guide.html" class="read-btn">
+                    <span class="read-btn" data-article="8">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1075,9 +803,9 @@
                     </div>
                     <h3 class="post-title">Business Class vs First Class: What's Really Different?</h3>
                     <p class="post-excerpt">Detailed comparison between business class and first class on major airlines. Is the extra cost worth it? We break down the real differences.</p>
-                    <a href="/blog/business-class-vs-first-class.html" class="read-btn">
+                    <span class="read-btn" data-article="9">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1091,9 +819,9 @@
                     </div>
                     <h3 class="post-title">Santorini: Beyond the Blue Domes - Luxury Experiences</h3>
                     <p class="post-excerpt">Discover the hidden luxury experiences in Santorini beyond the tourist spots. Private yacht tours, exclusive wine tastings, and more.</p>
-                    <a href="/blog/santorini-luxury-experiences.html" class="read-btn">
+                    <span class="read-btn" data-article="10">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1107,9 +835,9 @@
                     </div>
                     <h3 class="post-title">Travel Insurance for Luxury Trips: What You Need to Know</h3>
                     <p class="post-excerpt">Comprehensive guide to travel insurance for high-value trips. Coverage for luxury items, medical evacuation, trip cancellation, and more.</p>
-                    <a href="/blog/luxury-travel-insurance-guide.html" class="read-btn">
+                    <span class="read-btn" data-article="11">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
 
@@ -1123,9 +851,9 @@
                     </div>
                     <h3 class="post-title">Best Luxury Cars to Rent for a European Road Trip</h3>
                     <p class="post-excerpt">Our top picks for luxury cars perfect for European road trips. From sportscars for the Amalfi Coast to SUVs for Swiss Alps adventures.</p>
-                    <a href="/blog/best-luxury-cars-europe-roadtrip.html" class="read-btn">
+                    <span class="read-btn" data-article="12">
                         Read Article <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </span>
                 </div>
             </article>
         </div>
@@ -1178,32 +906,32 @@
             <div class="footer-column">
                 <h3>Categories</h3>
                 <ul>
-                    <li><a href="/blog.html?filter=luxury"><i class="fas fa-star"></i> <span>Luxury Travel</span></a></li>
-                    <li><a href="/blog.html?filter=hotels"><i class="fas fa-hotel"></i> <span>Hotel Reviews</span></a></li>
-                    <li><a href="/blog.html?filter=flights"><i class="fas fa-plane"></i> <span>Flight Tips</span></a></li>
-                    <li><a href="/blog.html?filter=destinations"><i class="fas fa-globe"></i> <span>Destination Guides</span></a></li>
-                    <li><a href="/blog.html?filter=cars"><i class="fas fa-car"></i> <span>Car Rental</span></a></li>
+                    <li><a href="blog.html?filter=luxury"><i class="fas fa-star"></i> <span>Luxury Travel</span></a></li>
+                    <li><a href="blog.html?filter=hotels"><i class="fas fa-hotel"></i> <span>Hotel Reviews</span></a></li>
+                    <li><a href="blog.html?filter=flights"><i class="fas fa-plane"></i> <span>Flight Tips</span></a></li>
+                    <li><a href="blog.html?filter=destinations"><i class="fas fa-globe"></i> <span>Destination Guides</span></a></li>
+                    <li><a href="blog.html?filter=cars"><i class="fas fa-car"></i> <span>Car Rental</span></a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="/"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span>Bookings</span></a></li>
-                    <li><a href="/blog.html" class="active"><i class="fas fa-newspaper"></i> <span>Blog</span></a></li>
-                    <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
-                    <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="blog.html" class="active"><i class="fas fa-newspaper"></i> <span>Blog</span></a></li>
+                    <li><a href="affiliate-disclosure.html"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
+                    <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h3>Legal</h3>
                 <ul>
-                    <li><a href="/privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
-                    <li><a href="/terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
-                    <li><a href="/cookies.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
-                    <li><a href="/affiliate.html"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
+                    <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
+                    <li><a href="affiliate-disclosure.html"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
                 </ul>
             </div>
         </div>
@@ -1219,161 +947,35 @@
         </div>
     </footer>
 
-    <!-- AI Assistant Button -->
-    <button class="ai-assistant-btn" id="aiAssistantBtn" aria-label="Open AI Assistant">
-        <i class="fas fa-robot"></i>
-    </button>
-
-    <!-- AI Assistant Modal -->
-    <div class="ai-assistant-modal" id="aiAssistantModal">
-        <div class="ai-modal-header">
-            <h3>
-                <i class="fas fa-robot"></i>
-                <span id="aiModalTitle">SkyLynx AI Assistant</span>
-            </h3>
-            <button class="ai-close-btn" id="aiCloseBtn" aria-label="Close AI Assistant">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="ai-chat-container" id="aiChatContainer">
-            <div class="ai-message bot" id="aiWelcomeMessage">
-                👋 Hello! I'm your AI travel assistant. I can help you find the best travel articles and tips on our blog!
-            </div>
-            <div class="ai-message bot">
-                I can help you with:
-                • Finding articles by category
-                • Travel planning advice
-                • Destination recommendations
-                • Answering travel questions
-            </div>
-        </div>
-        
-        <div class="ai-input-container">
-            <input type="text" class="ai-input" id="aiInput" placeholder="Ask me about travel articles or tips...">
-            <button class="ai-send-btn" id="aiSendBtn" aria-label="Send message">
-                <i class="fas fa-paper-plane"></i>
-            </button>
+    <!-- Article Modal (Hidden by default) -->
+    <div id="articleModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #00111c; border: 2px solid #00a6fb; border-radius: 20px; padding: 40px; max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative;">
+            <button onclick="closeArticleModal()" style="position: absolute; top: 15px; right: 15px; background: #00a6fb; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">×</button>
+            <h2 id="modalTitle" style="color: #00a6fb; margin-bottom: 20px; font-family: 'Cinzel';"></h2>
+            <div id="modalContent" style="color: #e0e1dd; line-height: 1.8;"></div>
         </div>
     </div>
 
     <script>
-        // ========== المتغيرات الأساسية ==========
-        let currentLang = localStorage.getItem('skylynx_lang') || 'en';
-        let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
-        let aiModalOpen = false;
-
         // ========== تهيئة الصفحة ==========
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Blog page loaded, initializing...');
+            console.log('Blog page loaded');
             
             // تعيين اللغة والعملة
+            let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+            let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
+            
             document.getElementById('lang-sel').value = currentLang;
             document.getElementById('curr-sel').value = currentCurrency;
             
             // تهيئة الأنظمة
-            initializeAIAssistant();
             initializeFilters();
+            initializeReadButtons();
             initializeEventListeners();
             
             // تحديث اللغة
             updateLanguage(currentLang);
-            
-            console.log('Blog initialization complete');
         });
-
-        // ========== مساعد الذكاء الاصطناعي ==========
-        function initializeAIAssistant() {
-            const aiBtn = document.getElementById('aiAssistantBtn');
-            const aiModal = document.getElementById('aiAssistantModal');
-            const aiCloseBtn = document.getElementById('aiCloseBtn');
-            const aiSendBtn = document.getElementById('aiSendBtn');
-            const aiInput = document.getElementById('aiInput');
-            
-            if (!aiBtn || !aiModal) return;
-            
-            // فتح مساعد الذكاء الاصطناعي
-            aiBtn.addEventListener('click', function() {
-                aiModal.classList.add('show');
-                aiModalOpen = true;
-                aiInput.focus();
-            });
-            
-            // إغلاق مساعد الذكاء الاصطناعي
-            aiCloseBtn.addEventListener('click', function() {
-                aiModal.classList.remove('show');
-                aiModalOpen = false;
-            });
-            
-            // إغلاق عند النقر خارج النافذة
-            document.addEventListener('click', function(event) {
-                if (aiModalOpen && 
-                    !aiModal.contains(event.target) && 
-                    !aiBtn.contains(event.target)) {
-                    aiModal.classList.remove('show');
-                    aiModalOpen = false;
-                }
-            });
-            
-            // إرسال الرسالة
-            aiSendBtn.addEventListener('click', sendAIMessage);
-            
-            aiInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendAIMessage();
-                }
-            });
-            
-            function sendAIMessage() {
-                const message = aiInput.value.trim();
-                if (!message) return;
-                
-                addAIMessage(message, 'user');
-                aiInput.value = '';
-                
-                setTimeout(() => {
-                    const response = getAIResponse(message);
-                    addAIMessage(response, 'bot');
-                    scrollToBottom();
-                }, 800);
-            }
-        }
-        
-        function addAIMessage(text, type) {
-            const aiChatContainer = document.getElementById('aiChatContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `ai-message ${type}`;
-            messageDiv.textContent = text;
-            aiChatContainer.appendChild(messageDiv);
-            scrollToBottom();
-        }
-        
-        function scrollToBottom() {
-            const aiChatContainer = document.getElementById('aiChatContainer');
-            aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
-        }
-        
-        function getAIResponse(input) {
-            const lowerInput = input.toLowerCase();
-            
-            if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
-                return "👋 Hello! I'm your AI travel assistant. How can I help you explore our travel blog?";
-            }
-            
-            if (lowerInput.includes('dubai')) {
-                return "✈️ We have a great article about luxury travel in Dubai! Check out our 'Complete Guide to Luxury Travel in Dubai 2024'.";
-            }
-            
-            if (lowerInput.includes('flight') || lowerInput.includes('upgrade')) {
-                return "💰 We have an article about getting free flight upgrades! Look for '10 Ways to Get Free Flight Upgrades' in our tips section.";
-            }
-            
-            if (lowerInput.includes('hotel')) {
-                return "🏨 Check out our hotel reviews section! We have articles about luxury hotels in Paris and maximizing hotel loyalty programs.";
-            }
-            
-            return "🤖 I can help you find articles about luxury travel, hotels, flights, and destinations. Try asking about a specific topic!";
-        }
 
         // ========== تصفية المقالات ==========
         function initializeFilters() {
@@ -1407,19 +1009,82 @@
             });
         }
 
+        // ========== أزرار قراءة المقالات ==========
+        function initializeReadButtons() {
+            const readButtons = document.querySelectorAll('.read-btn');
+            
+            readButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const articleCard = this.closest('.blog-post-card');
+                    const articleNumber = this.getAttribute('data-article');
+                    const articleTitle = articleCard.querySelector('.post-title').textContent;
+                    const articleExcerpt = articleCard.querySelector('.post-excerpt').textContent;
+                    
+                    showArticleModal(articleTitle, articleExcerpt, articleNumber);
+                });
+            });
+        }
+        
+        function showArticleModal(title, excerpt, articleNumber) {
+            const modal = document.getElementById('articleModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            // تحديث المحتوى
+            modalTitle.textContent = title;
+            
+            // محتوى المقالة الموسع (يمكنك إضافة المزيد هنا)
+            const fullContent = `
+                <p>${excerpt}</p>
+                
+                <h3 style="color: #00a6fb; margin: 25px 0 15px;">Key Highlights</h3>
+                <ul style="margin-bottom: 20px; padding-left: 20px;">
+                    <li>Expert travel insights based on real experiences</li>
+                    <li>AI-powered recommendations for optimal planning</li>
+                    <li>Money-saving tips without compromising on luxury</li>
+                    <li>Exclusive access to premium travel services</li>
+                </ul>
+                
+                <h3 style="color: #00a6fb; margin: 25px 0 15px;">Why This Matters</h3>
+                <p>This comprehensive guide provides everything you need to plan the perfect luxury travel experience. Our AI-powered analysis ensures you get the best value while enjoying premium services.</p>
+                
+                <div style="background: rgba(0, 166, 251, 0.1); padding: 20px; border-radius: 10px; margin: 25px 0; border-left: 4px solid #00a6fb;">
+                    <p style="margin: 0; font-style: italic;">
+                        <strong>Pro Tip:</strong> For the best deals, book at least 3 months in advance and consider traveling during shoulder seasons.
+                    </p>
+                </div>
+                
+                <p style="font-style: italic; color: rgba(224, 225, 221, 0.7); margin-top: 30px;">
+                    Full article content is currently being enhanced with additional sections, images, and interactive elements. Check back soon for the complete version!
+                </p>
+            `;
+            
+            modalContent.innerHTML = fullContent;
+            
+            // إظهار النافذة
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeArticleModal() {
+            const modal = document.getElementById('articleModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         // ========== المستمعون للأحداث ==========
         function initializeEventListeners() {
             // تغيير اللغة
             document.getElementById('lang-sel').addEventListener('change', function() {
-                currentLang = this.value;
-                localStorage.setItem('skylynx_lang', currentLang);
-                updateLanguage(currentLang);
+                const lang = this.value;
+                localStorage.setItem('skylynx_lang', lang);
+                updateLanguage(lang);
             });
             
             // تغيير العملة
             document.getElementById('curr-sel').addEventListener('change', function() {
-                currentCurrency = this.value;
-                localStorage.setItem('skylynx_currency', currentCurrency);
+                const currency = this.value;
+                localStorage.setItem('skylynx_currency', currency);
             });
             
             // النشرة البريدية
@@ -1429,19 +1094,11 @@
                     e.preventDefault();
                     const email = this.querySelector('input[type="email"]').value;
                     
-                    showLoading(currentLang === 'ar' ? 
-                        'جارٍ التسجيل في النشرة البريدية...' : 
-                        'Subscribing to newsletter...');
+                    showLoading('Subscribing to newsletter...');
                     
                     setTimeout(() => {
                         hideLoading();
-                        
-                        if (currentLang === 'ar') {
-                            alert(`شكراً لتسجيلك مع البريد الإلكتروني: ${email}! ستتلقى نشرتنا القادمة قريباً.`);
-                        } else {
-                            alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter soon.`);
-                        }
-                        
+                        alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter soon.`);
                         this.reset();
                     }, 1500);
                 });
@@ -1451,32 +1108,33 @@
             const pageBtns = document.querySelectorAll('.page-btn:not(.active)');
             pageBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    showLoading(currentLang === 'ar' ? 
-                        'جارٍ تحميل الصفحة...' : 
-                        'Loading page...');
+                    showLoading('Loading page...');
                     
                     setTimeout(() => {
                         hideLoading();
-                        alert(currentLang === 'ar' ? 
-                            'ميزة الصفحات قيد التطوير. ستعمل قريباً!' : 
-                            'Pagination feature is under development. Coming soon!');
+                        alert('Pagination feature is under development. Coming soon!');
                     }, 1000);
                 });
+            });
+            
+            // إغلاق النافذة عند النقر خارجها
+            document.getElementById('articleModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeArticleModal();
+                }
             });
         }
 
         // ========== نظام الترجمة ==========
         function updateLanguage(lang) {
-            currentLang = lang;
             document.getElementById('main-html').setAttribute('lang', lang);
             document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             
-            // تحديث النصوص الأساسية
             if (lang === 'ar') {
                 document.getElementById('aiTaglineText').textContent = 'ذكاء اصطناعي في خدمة السفر الفاخر';
-                document.getElementById('aiModalTitle').textContent = 'مساعد SkyLynx الذكي';
-                document.getElementById('aiInput').placeholder = 'اسألني عن مقالات السفر أو النصائح...';
                 document.querySelector('.ai-badge span').textContent = 'مدعوم بالذكاء الاصطناعي';
+                document.querySelector('.blog-hero h1').textContent = 'مدونة سكاي لينكس للسفر';
+                document.querySelector('.blog-hero p').textContent = 'دليل السفر الفاخر المدعوم بالذكاء الاصطناعي، مراجعات الفنادق، نصائح الرحلات، ورؤى حصرية للوجهات للمسافرين المميزين.';
                 
                 // تحديث نصوص الفلاتر
                 const filters = {
@@ -1495,19 +1153,6 @@
                         btn.querySelector('span').textContent = filters[filter];
                     }
                 });
-                
-                // تحديث نصوص أخرى
-                document.querySelector('.blog-hero h1').textContent = 'مدونة سكاي لينكس للسفر';
-                document.querySelector('.blog-hero p').textContent = 'دليل السفر الفاخر المدعوم بالذكاء الاصطناعي، مراجعات الفنادق، نصائح الرحلات، ورؤى حصرية للوجهات للمسافرين المميزين.';
-            } else {
-                document.getElementById('aiTaglineText').textContent = 'AI-Powered Travel Intelligence';
-                document.getElementById('aiModalTitle').textContent = 'SkyLynx AI Assistant';
-                document.getElementById('aiInput').placeholder = 'Ask me about travel articles or tips...';
-                document.querySelector('.ai-badge span').textContent = 'AI-Powered';
-                
-                // إعادة النصوص الإنجليزية
-                document.querySelector('.blog-hero h1').textContent = 'SkyLynx Travel Blog';
-                document.querySelector('.blog-hero p').textContent = 'Expert AI-powered luxury travel guides, hotel reviews, flight tips, and exclusive destination insights for discerning travelers.';
             }
         }
 
@@ -1516,17 +1161,23 @@
             const overlay = document.createElement('div');
             overlay.className = 'loading-overlay';
             overlay.id = 'loading-overlay';
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 17, 28, 0.95); display: flex; justify-content: center; align-items: center; z-index: 9999; flex-direction: column; gap: 20px;';
             
             const spinner = document.createElement('div');
-            spinner.className = 'loading-spinner';
+            spinner.style.cssText = 'width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #9d4edd; animation: spin 1s linear infinite;';
             
             const text = document.createElement('div');
-            text.className = 'loading-text';
+            text.style.cssText = 'color: white; font-size: 1.1rem; text-align: center; max-width: 300px;';
             text.textContent = message;
             
             overlay.appendChild(spinner);
             overlay.appendChild(text);
             document.body.appendChild(overlay);
+            
+            // إضافة أنيميشن السبينر
+            const style = document.createElement('style');
+            style.textContent = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+            document.head.appendChild(style);
         }
 
         function hideLoading() {
