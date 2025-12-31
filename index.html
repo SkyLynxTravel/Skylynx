@@ -172,7 +172,7 @@
             margin-top: 0;
         }
         
-        /* خلفية متحركة جميلة بدلاً من الفيديو */
+        /* خلفية متحركة جميلة بدلاً من الفيديو المحذوف */
         .hero-background {
             position: absolute;
             top: 0;
@@ -210,19 +210,6 @@
                 linear-gradient(transparent 49%, rgba(0, 166, 251, 0.2) 50%, transparent 51%);
             background-size: 50px 50px;
             opacity: 0.1;
-        }
-        
-        /* فيديو الخلفية - نسخة محسنة */
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.2;
-            filter: brightness(30%) contrast(120%);
         }
         
         @keyframes pulseBackground {
@@ -595,7 +582,8 @@
         }
         
         .field input, 
-        .field select { 
+        .field select, 
+        .field textarea { 
             width: 100%; 
             padding: 14px; 
             border-radius: 12px; 
@@ -608,8 +596,15 @@
             font-family: inherit;
         }
         
+        .field textarea {
+            height: auto;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
         .field input:focus,
-        .field select:focus {
+        .field select:focus,
+        .field textarea:focus {
             outline: none;
             border-color: var(--sky-glow);
             box-shadow: 0 0 0 2px rgba(0, 166, 251, 0.2);
@@ -1655,6 +1650,17 @@
                 grid-template-columns: 1fr;
             }
             
+            /* جعل جميع حقول التواريخ متساوية في الجوال */
+            .field input[type="date"],
+            .field input[type="time"],
+            .field input[type="text"],
+            .field select,
+            .field textarea {
+                font-size: 16px; /* منع التكبير في iOS */
+                padding: 16px;
+                height: 52px;
+            }
+            
             .ai-assistant-modal {
                 width: 90%;
                 right: 5%;
@@ -1706,6 +1712,12 @@
             .group-options-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .group-booking-note {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1726,6 +1738,37 @@
             .passengers-dropdown {
                 min-width: 260px;
             }
+            
+            .field input[type="date"],
+            .field input[type="time"],
+            .field input[type="text"],
+            .field select {
+                font-size: 14px;
+                padding: 14px;
+                height: 48px;
+            }
+        }
+        
+        /* تحسينات للأجهزة الصغيرة جداً */
+        @media (max-width: 360px) {
+            .logo-text {
+                font-size: 2.2rem;
+            }
+            
+            .logo-subtext {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+            
+            .tab {
+                padding: 8px 10px;
+                font-size: 0.7rem;
+            }
+            
+            .search-container {
+                padding: 15px;
+                border-radius: 15px;
+            }
         }
     </style>
 </head>
@@ -1734,23 +1777,23 @@
 <!-- Navigation -->
 <nav class="main-nav">
     <div class="nav-left">
-        <a href="/" class="nav-logo">
+        <a href="#" class="nav-logo" id="home-link">
             <i class="fas fa-plane"></i>
             <span>SkyLynx</span>
         </a>
         
         <div class="ai-badge">
             <i class="fas fa-brain"></i>
-            <span>AI-Powered</span>
+            <span id="aiBadgeText">AI-Powered</span>
         </div>
         
         <ul class="nav-menu">
-            <li><a href="/" class="active"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
-            <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span class="nav-text">Bookings</span></a></li>
-            <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
-            <li><a href="/destinations.html"><i class="fas fa-map-marker-alt"></i> <span class="nav-text">Destinations</span></a></li>
-            <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
-            <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li>
+            <li><a href="#" class="active"><i class="fas fa-home"></i> <span class="nav-text" data-key="home">Home</span></a></li>
+            <li><a href="#booking"><i class="fas fa-calendar-alt"></i> <span class="nav-text" data-key="bookings">Bookings</span></a></li>
+            <li><a href="#blog"><i class="fas fa-newspaper"></i> <span class="nav-text" data-key="blog">Blog</span></a></li>
+            <li><a href="#destinations"><i class="fas fa-map-marker-alt"></i> <span class="nav-text" data-key="destinations">Destinations</span></a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> <span class="nav-text" data-key="about">About</span></a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> <span class="nav-text" data-key="contact">Contact</span></a></li>
         </ul>
     </div>
     
@@ -1773,12 +1816,6 @@
 
 <!-- Hero Section -->
 <header>
-    <video autoplay muted loop playsinline class="video-background" id="mainVideo">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-view-of-a-clear-night-sky-with-stars-and-clouds-42940-large.mp4" type="video/mp4">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-blue-sky-with-moving-clouds-42938-large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
     <div class="hero-background"></div>
     
     <div class="logo-container">
@@ -1839,19 +1876,19 @@
 </div>
 
 <!-- Booking Section -->
-<div class="search-container">
+<div class="search-container" id="booking">
     <div class="tabs">
         <div class="tab active" data-tab="flights">
-            <i class="fas fa-plane"></i> <span class="tab-text">Flights</span>
+            <i class="fas fa-plane"></i> <span class="tab-text" data-key="flights">Flights</span>
         </div>
         <div class="tab" data-tab="private">
-            <i class="fas fa-crown"></i> <span class="tab-text">Private Jet</span>
+            <i class="fas fa-crown"></i> <span class="tab-text" data-key="privateJet">Private Jet</span>
         </div>
         <div class="tab" data-tab="hotels">
-            <i class="fas fa-hotel"></i> <span class="tab-text">Hotels</span>
+            <i class="fas fa-hotel"></i> <span class="tab-text" data-key="hotels">Hotels</span>
         </div>
         <div class="tab" data-tab="cars">
-            <i class="fas fa-car"></i> <span class="tab-text">Cars</span>
+            <i class="fas fa-car"></i> <span class="tab-text" data-key="cars">Cars</span>
         </div>
     </div>
 
@@ -1953,10 +1990,10 @@
             <div class="field">
                 <label class="form-label" data-key="travelClass">Travel Class</label>
                 <select id="travel-class">
-                    <option value="ECONOMY">Economy</option>
-                    <option value="PREMIUM_ECONOMY">Premium Economy</option>
-                    <option value="BUSINESS">Business Class</option>
-                    <option value="FIRST">First Class</option>
+                    <option value="ECONOMY" data-key="economy">Economy</option>
+                    <option value="PREMIUM_ECONOMY" data-key="premiumEconomy">Premium Economy</option>
+                    <option value="BUSINESS" data-key="businessClass">Business Class</option>
+                    <option value="FIRST" data-key="firstClass">First Class</option>
                 </select>
             </div>
             
@@ -1977,7 +2014,7 @@
         </div>
     </form>
 
-    <!-- بقية النماذج -->
+    <!-- Private Jet Form -->
     <form id="private-form" class="form-content">
         <div class="input-grid">
             <div class="field">
@@ -2008,9 +2045,9 @@
             <div class="field">
                 <label class="form-label" data-key="jetType">Jet Type</label>
                 <select id="jet-type">
-                    <option value="LIGHT">Light Jet (4-6 passengers)</option>
-                    <option value="MID">Super Mid-Size (8-10 passengers)</option>
-                    <option value="HEAVY">Heavy Jet (12-16 passengers)</option>
+                    <option value="LIGHT" data-key="lightJet">Light Jet (4-6 passengers)</option>
+                    <option value="MID" data-key="midJet">Super Mid-Size (8-10 passengers)</option>
+                    <option value="HEAVY" data-key="heavyJet">Heavy Jet (12-16 passengers)</option>
                 </select>
             </div>
             
@@ -2021,6 +2058,7 @@
         </div>
     </form>
 
+    <!-- Hotels Form -->
     <form id="hotels-form" class="form-content">
         <div class="input-grid">
             <div class="field">
@@ -2041,29 +2079,29 @@
             <div class="field">
                 <label class="form-label" data-key="rooms">Rooms</label>
                 <select id="hotel-rooms">
-                    <option value="1">1 Room</option>
-                    <option value="2">2 Rooms</option>
-                    <option value="3">3 Rooms</option>
-                    <option value="4">4+ Rooms</option>
+                    <option value="1" data-key="oneRoom">1 Room</option>
+                    <option value="2" data-key="twoRooms">2 Rooms</option>
+                    <option value="3" data-key="threeRooms">3 Rooms</option>
+                    <option value="4" data-key="fourRooms">4+ Rooms</option>
                 </select>
             </div>
             
             <div class="field">
                 <label class="form-label" data-key="guests">Guests</label>
                 <select id="hotel-guests">
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
+                    <option value="1" data-key="oneGuest">1 Guest</option>
+                    <option value="2" data-key="twoGuests">2 Guests</option>
+                    <option value="3" data-key="threeGuests">3 Guests</option>
+                    <option value="4" data-key="fourGuests">4 Guests</option>
                 </select>
             </div>
             
             <div class="field">
                 <label class="form-label" data-key="starRating">Star Rating</label>
                 <select id="hotel-stars">
-                    <option value="5">5 Stars / Palace</option>
-                    <option value="4">4 Stars / Boutique</option>
-                    <option value="3">3 Stars</option>
+                    <option value="5" data-key="fiveStars">5 Stars / Palace</option>
+                    <option value="4" data-key="fourStars">4 Stars / Boutique</option>
+                    <option value="3" data-key="threeStars">3 Stars</option>
                 </select>
             </div>
             
@@ -2074,6 +2112,7 @@
         </div>
     </form>
 
+    <!-- Cars Form -->
     <form id="cars-form" class="form-content">
         <div class="input-grid">
             <div class="field">
@@ -2109,11 +2148,11 @@
             <div class="field">
                 <label class="form-label" data-key="carType">Car Type</label>
                 <select id="car-type">
-                    <option value="ECONOMY">Economy</option>
-                    <option value="COMPACT">Compact</option>
-                    <option value="SUV">SUV</option>
-                    <option value="LUXURY">Luxury</option>
-                    <option value="VAN">Van</option>
+                    <option value="ECONOMY" data-key="economy">Economy</option>
+                    <option value="COMPACT" data-key="compact">Compact</option>
+                    <option value="SUV" data-key="suv">SUV</option>
+                    <option value="LUXURY" data-key="luxury">Luxury</option>
+                    <option value="VAN" data-key="van">Van</option>
                 </select>
             </div>
             
@@ -2243,8 +2282,8 @@
 <!-- AI Features Section -->
 <section class="ai-features-section">
     <div class="ai-features-content">
-        <h2 class="section-title" id="aiFeaturesTitle">AI-Powered Travel Intelligence</h2>
-        <p class="section-subtitle" id="aiFeaturesSubtitle">Experience the future of luxury travel with our advanced AI technology</p>
+        <h2 class="section-title" data-key="aiFeaturesTitle">AI-Powered Travel Intelligence</h2>
+        <p class="section-subtitle" data-key="aiFeaturesSubtitle">Experience the future of luxury travel with our advanced AI technology</p>
         
         <div class="ai-features-grid">
             <div class="ai-feature-card">
@@ -2252,10 +2291,10 @@
                     <i class="fas fa-brain"></i>
                 </div>
                 <span class="ai-feature-badge">Smart Assistant</span>
-                <h3 id="aiFeature1Title">AI Travel Planner</h3>
-                <p id="aiFeature1Desc">Intelligent itinerary creation based on your preferences, budget, and travel style. Our AI analyzes millions of data points to create your perfect trip.</p>
-                <a href="#" class="read-more">
-                    <span>Try AI Planner</span>
+                <h3 data-key="aiFeature1Title">AI Travel Planner</h3>
+                <p data-key="aiFeature1Desc">Intelligent itinerary creation based on your preferences, budget, and travel style. Our AI analyzes millions of data points to create your perfect trip.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="tryAiPlanner">Try AI Planner</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2265,10 +2304,10 @@
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <span class="ai-feature-badge">Price Intelligence</span>
-                <h3 id="aiFeature2Title">Smart Price Predictor</h3>
-                <p id="aiFeature2Desc">Predict the best time to book with 92% accuracy. Our AI monitors prices across all providers and alerts you when it's the optimal time to purchase.</p>
-                <a href="#" class="read-more">
-                    <span>View Predictions</span>
+                <h3 data-key="aiFeature2Title">Smart Price Predictor</h3>
+                <p data-key="aiFeature2Desc">Predict the best time to book with 92% accuracy. Our AI monitors prices across all providers and alerts you when it's the optimal time to purchase.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="viewPredictions">View Predictions</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2278,10 +2317,10 @@
                     <i class="fas fa-magic"></i>
                 </div>
                 <span class="ai-feature-badge">Personalized</span>
-                <h3 id="aiFeature3Title">Personalized Recommendations</h3>
-                <p id="aiFeature3Desc">Get hotel, restaurant, and activity suggestions tailored specifically to your tastes. Learns from your preferences to improve recommendations over time.</p>
-                <a href="#" class="read-more">
-                    <span>Get Recommendations</span>
+                <h3 data-key="aiFeature3Title">Personalized Recommendations</h3>
+                <p data-key="aiFeature3Desc">Get hotel, restaurant, and activity suggestions tailored specifically to your tastes. Learns from your preferences to improve recommendations over time.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="getRecommendations">Get Recommendations</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2291,10 +2330,10 @@
                     <i class="fas fa-comments"></i>
                 </div>
                 <span class="ai-feature-badge">24/7 Support</span>
-                <h3 id="aiFeature4Title">AI Concierge Service</h3>
-                <p id="aiFeature4Desc">Instant answers to all your travel questions. From visa requirements to local customs, our AI assistant is available 24/7 in multiple languages.</p>
-                <a href="#" class="read-more">
-                    <span>Chat Now</span>
+                <h3 data-key="aiFeature4Title">AI Concierge Service</h3>
+                <p data-key="aiFeature4Desc">Instant answers to all your travel questions. From visa requirements to local customs, our AI assistant is available 24/7 in multiple languages.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="chatNow">Chat Now</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2304,10 +2343,10 @@
                     <i class="fas fa-sitemap"></i>
                 </div>
                 <span class="ai-feature-badge">Optimization</span>
-                <h3 id="aiFeature5Title">Route Optimization</h3>
-                <p id="aiFeature5Desc">AI-powered travel routing that minimizes layovers and maximizes comfort. Calculates the most efficient paths considering weather and traffic.</p>
-                <a href="#" class="read-more">
-                    <span>Optimize Route</span>
+                <h3 data-key="aiFeature5Title">Route Optimization</h3>
+                <p data-key="aiFeature5Desc">AI-powered travel routing that minimizes layovers and maximizes comfort. Calculates the most efficient paths considering weather and traffic.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="optimizeRoute">Optimize Route</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2317,10 +2356,10 @@
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <span class="ai-feature-badge">Security</span>
-                <h3 id="aiFeature6Title">AI Travel Security</h3>
-                <p id="aiFeature6Desc">Real-time safety alerts and travel advisories. Our AI monitors global situations to keep you informed and safe throughout your journey.</p>
-                <a href="#" class="read-more">
-                    <span>Learn More</span>
+                <h3 data-key="aiFeature6Title">AI Travel Security</h3>
+                <p data-key="aiFeature6Desc">Real-time safety alerts and travel advisories. Our AI monitors global situations to keep you informed and safe throughout your journey.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="learnMore">Learn More</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2329,20 +2368,20 @@
 </section>
 
 <!-- Blog Section -->
-<section class="blog-section">
-    <h2 class="section-title">Latest Travel Articles & Guides</h2>
-    <p class="section-subtitle">Explore our comprehensive travel guides, tips, and exclusive insights for luxury travelers</p>
+<section class="blog-section" id="blog">
+    <h2 class="section-title" data-key="latestArticles">Latest Travel Articles & Guides</h2>
+    <p class="section-subtitle" data-key="articlesSubtitle">Explore our comprehensive travel guides, tips, and exclusive insights for luxury travelers</p>
     
     <div class="blog-grid">
         <!-- Article 1 -->
         <article class="blog-card">
             <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" alt="Dubai Luxury Guide" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
-                <span class="blog-category">⭐ Luxury</span>
-                <h3 class="blog-title">Complete Guide to Luxury Travel in Dubai 2024</h3>
-                <p class="blog-excerpt">Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.</p>
-                <a href="/blog/dubai-luxury-guide.html" class="read-more">
-                    <span>Read More</span>
+                <span class="blog-category">⭐ <span data-key="luxury">Luxury</span></span>
+                <h3 class="blog-title" data-key="article1Title">Complete Guide to Luxury Travel in Dubai 2024</h3>
+                <p class="blog-excerpt" data-key="article1Desc">Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2352,11 +2391,11 @@
         <article class="blog-card">
             <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800" alt="Paris Hotels" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
-                <span class="blog-category">🏨 Hotels</span>
-                <h3 class="blog-title">Top 10 Luxury Hotels in Paris 2024</h3>
-                <p class="blog-excerpt">Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.</p>
-                <a href="/blog/paris-luxury-hotels.html" class="read-more">
-                    <span>Read More</span>
+                <span class="blog-category">🏨 <span data-key="hotels">Hotels</span></span>
+                <h3 class="blog-title" data-key="article2Title">Top 10 Luxury Hotels in Paris 2024</h3>
+                <p class="blog-excerpt" data-key="article2Desc">Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2366,11 +2405,11 @@
         <article class="blog-card">
             <img src="https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=800" alt="Flight Tips" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
-                <span class="blog-category">💰 Tips</span>
-                <h3 class="blog-title">10 Ways to Get Free Flight Upgrades</h3>
-                <p class="blog-excerpt">Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.</p>
-                <a href="/blog/free-flight-upgrades.html" class="read-more">
-                    <span>Read More</span>
+                <span class="blog-category">💰 <span data-key="tips">Tips</span></span>
+                <h3 class="blog-title" data-key="article3Title">10 Ways to Get Free Flight Upgrades</h3>
+                <p class="blog-excerpt" data-key="article3Desc">Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.</p>
+                <a href="#ai-assistant" class="read-more">
+                    <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2378,69 +2417,69 @@
     </div>
     
     <div class="text-center mt-4">
-        <a href="/blog.html" class="btn btn-primary">
+        <a href="#ai-assistant" class="btn btn-primary">
             <i class="fas fa-newspaper"></i>
-            <span>View All Articles</span>
+            <span data-key="viewAllArticles">View All Articles</span>
         </a>
     </div>
 </section>
 
 <!-- Services Section -->
 <section class="services-section">
-    <h2 class="section-title">Premium Travel Services</h2>
-    <p class="section-subtitle">Comprehensive travel services for the discerning traveler</p>
+    <h2 class="section-title" data-key="premiumServices">Premium Travel Services</h2>
+    <p class="section-subtitle" data-key="servicesSubtitle">Comprehensive travel services for the discerning traveler</p>
     
     <div class="services-grid">
         <div class="service-card">
             <i class="fas fa-plane-departure"></i>
-            <h3>Flight Bookings</h3>
-            <p>Access to premium airlines and exclusive flight deals worldwide with 24/7 support.</p>
+            <h3 data-key="flightBookings">Flight Bookings</h3>
+            <p data-key="flightDesc">Access to premium airlines and exclusive flight deals worldwide with 24/7 support.</p>
         </div>
         
         <div class="service-card">
             <i class="fas fa-hotel"></i>
-            <h3>Luxury Hotels</h3>
-            <p>Curated collection of 5-star hotels and premium resorts with best price guarantee.</p>
+            <h3 data-key="luxuryHotels">Luxury Hotels</h3>
+            <p data-key="hotelDesc">Curated collection of 5-star hotels and premium resorts with best price guarantee.</p>
         </div>
         
         <div class="service-card">
             <i class="fas fa-car"></i>
-            <h3>Car Rental</h3>
-            <p>Premium car fleet with or without chauffeur in all major destinations worldwide.</p>
+            <h3 data-key="carRental">Car Rental</h3>
+            <p data-key="carDesc">Premium car fleet with or without chauffeur in all major destinations worldwide.</p>
         </div>
         
         <div class="service-card">
             <i class="fas fa-crown"></i>
-            <h3>Private Jets</h3>
-            <p>Exclusive private jet service for a unique and luxurious travel experience.</p>
+            <h3 data-key="privateJets">Private Jets</h3>
+            <p data-key="jetDesc">Exclusive private jet service for a unique and luxurious travel experience.</p>
         </div>
         
         <div class="service-card">
             <i class="fas fa-concierge-bell"></i>
-            <h3>Travel Concierge</h3>
-            <p>Personal concierge service to arrange all details of your trip from start to finish.</p>
+            <h3 data-key="travelConcierge">Travel Concierge</h3>
+            <p data-key="conciergeDesc">Personal concierge service to arrange all details of your trip from start to finish.</p>
         </div>
         
         <div class="service-card">
             <i class="fas fa-shield-alt"></i>
-            <h3>Travel Insurance</h3>
-            <p>Comprehensive travel insurance packages for complete peace of mind.</p>
+            <h3 data-key="travelInsurance">Travel Insurance</h3>
+            <p data-key="insuranceDesc">Comprehensive travel insurance packages for complete peace of mind.</p>
         </div>
     </div>
 </section>
 
 <!-- Featured Destinations -->
-<section class="destinations-section">
-    <h2 class="section-title">Global Luxury Destinations</h2>
-    <p class="section-subtitle">Curated selection of the world's most exclusive travel experiences</p>
+<section class="destinations-section" id="destinations">
+    <h2 class="section-title" data-key="globalDestinations">Global Luxury Destinations</h2>
+    <p class="section-subtitle" data-key="destinationsSubtitle">Curated selection of the world's most exclusive travel experiences</p>
     
     <div class="destinations-grid">
         <!-- New York -->
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1200" alt="New York Skyline at Dusk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>New York</h3>
-                <p>The City That Never Sleeps • Luxury Penthouse Stays</p>
+                <h3 data-key="newYork">New York</h3>
+                <p data-key="newYorkDesc">The City That Never Sleeps • Luxury Penthouse Stays</p>
             </div>
         </div>
         
@@ -2448,8 +2487,8 @@
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200" alt="London Tower Bridge at Night" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>London</h3>
-                <p>Royal Elegance • 5-Star Boutique Hotels</p>
+                <h3 data-key="london">London</h3>
+                <p data-key="londonDesc">Royal Elegance • 5-Star Boutique Hotels</p>
             </div>
         </div>
         
@@ -2457,8 +2496,8 @@
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" alt="Dubai Burj Khalifa" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>Dubai</h3>
-                <p>Modern Opulence • 7-Star Hospitality</p>
+                <h3 data-key="dubai">Dubai</h3>
+                <p data-key="dubaiDesc">Modern Opulence • 7-Star Hospitality</p>
             </div>
         </div>
         
@@ -2466,8 +2505,8 @@
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&q=80&w=1200" alt="Vancouver Skyline" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>Vancouver</h3>
-                <p>Coastal Luxury • Mountains & Ocean Resorts</p>
+                <h3 data-key="vancouver">Vancouver</h3>
+                <p data-key="vancouverDesc">Coastal Luxury • Mountains & Ocean Resorts</p>
             </div>
         </div>
         
@@ -2475,8 +2514,8 @@
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=1200" alt="Ottawa Parliament at Night" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>Ottawa</h3>
-                <p>Capital Grandeur • Our Global Headquarters</p>
+                <h3 data-key="ottawa">Ottawa</h3>
+                <p data-key="ottawaDesc">Capital Grandeur • Our Global Headquarters</p>
             </div>
         </div>
         
@@ -2484,50 +2523,50 @@
         <div class="destination-card">
             <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=1200" alt="Toronto Skyline" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
-                <h3>Toronto</h3>
-                <p>Urban Sophistication • Luxury Waterfront Living</p>
+                <h3 data-key="toronto">Toronto</h3>
+                <p data-key="torontoDesc">Urban Sophistication • Luxury Waterfront Living</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- About Section -->
-<section class="about-section">
+<section class="about-section" id="about">
     <div class="about-content">
-        <h2>About SkyLynx Travel</h2>
+        <h2 data-key="aboutTitle">About SkyLynx Travel</h2>
         
-        <p>Welcome to <strong>SkyLynx Travel</strong>, the world's first AI-powered luxury travel platform based in Ottawa, Canada. We combine cutting-edge artificial intelligence with personalized service to deliver exceptional travel experiences.</p>
+        <p data-key="aboutDesc1">Welcome to <strong>SkyLynx Travel</strong>, the world's first AI-powered luxury travel platform based in Ottawa, Canada. We combine cutting-edge artificial intelligence with personalized service to deliver exceptional travel experiences.</p>
         
-        <p>Our mission is to revolutionize luxury travel through intelligent technology. From predictive price algorithms to personalized itinerary planning, we leverage AI to create seamless, unforgettable journeys tailored specifically to you.</p>
+        <p data-key="aboutDesc2">Our mission is to revolutionize luxury travel through intelligent technology. From predictive price algorithms to personalized itinerary planning, we leverage AI to create seamless, unforgettable journeys tailored specifically to you.</p>
         
-        <p><strong>Why choose SkyLynx?</strong></p>
+        <p><strong data-key="whyChoose">Why choose SkyLynx?</strong></p>
         
         <ul style="color: var(--silver); padding-left: 20px; margin-bottom: 20px;">
-            <li>✅ World's first AI-powered luxury travel platform</li>
-            <li>✅ Predictive price intelligence with 92% accuracy</li>
-            <li>✅ Personalized AI travel assistant 24/7</li>
-            <li>✅ Multi-currency support (CAD, USD, EUR, GBP, SAR)</li>
-            <li>✅ Bilingual AI assistant (English & Arabic)</li>
-            <li>✅ Secure AI-powered fraud detection</li>
+            <li>✅ <span data-key="reason1">World's first AI-powered luxury travel platform</span></li>
+            <li>✅ <span data-key="reason2">Predictive price intelligence with 92% accuracy</span></li>
+            <li>✅ <span data-key="reason3">Personalized AI travel assistant 24/7</span></li>
+            <li>✅ <span data-key="reason4">Multi-currency support (CAD, USD, EUR, GBP, SAR)</span></li>
+            <li>✅ <span data-key="reason5">Bilingual AI assistant (English & Arabic)</span></li>
+            <li>✅ <span data-key="reason6">Secure AI-powered fraud detection</span></li>
         </ul>
         
-        <p>We partner with leading travel providers worldwide while developing proprietary AI technology to ensure our clients receive the most intelligent, personalized travel service available anywhere.</p>
+        <p data-key="aboutDesc3">We partner with leading travel providers worldwide while developing proprietary AI technology to ensure our clients receive the most intelligent, personalized travel service available anywhere.</p>
         
         <div class="text-center mt-4">
-            <a href="/about.html" class="btn btn-primary">
+            <a href="#ai-assistant" class="btn btn-primary">
                 <i class="fas fa-info-circle"></i>
-                <span>Learn More About Us</span>
+                <span data-key="learnMoreAbout">Learn More About Us</span>
             </a>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer>
+<footer id="contact">
     <div class="footer-content">
         <div class="footer-column">
             <h3>SkyLynx Travel</h3>
-            <p>World's first AI-powered luxury travel platform based in Ottawa, Canada. Intelligent booking, personalized recommendations, and premium service.</p>
+            <p data-key="footerDesc">World's first AI-powered luxury travel platform based in Ottawa, Canada. Intelligent booking, personalized recommendations, and premium service.</p>
             <div style="display: flex; gap: 15px; margin-top: 20px;">
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -2537,44 +2576,44 @@
         </div>
         
         <div class="footer-column">
-            <h3>Services</h3>
+            <h3 data-key="servicesFooter">Services</h3>
             <ul>
-                <li><a href="/booking.html#flights"><i class="fas fa-plane"></i> <span>Flight Booking</span></a></li>
-                <li><a href="/booking.html#hotels"><i class="fas fa-hotel"></i> <span>Hotel Reservations</span></a></li>
-                <li><a href="/booking.html#cars"><i class="fas fa-car"></i> <span>Car Rental</span></a></li>
-                <li><a href="/booking.html#private"><i class="fas fa-crown"></i> <span>Private Jets</span></a></li>
-                <li><a href="/ai-services.html"><i class="fas fa-robot"></i> <span>AI Travel Services</span></a></li>
+                <li><a href="#booking"><i class="fas fa-plane"></i> <span data-key="flightBooking">Flight Booking</span></a></li>
+                <li><a href="#booking"><i class="fas fa-hotel"></i> <span data-key="hotelReservations">Hotel Reservations</span></a></li>
+                <li><a href="#booking"><i class="fas fa-car"></i> <span data-key="carRentalFooter">Car Rental</span></a></li>
+                <li><a href="#booking"><i class="fas fa-crown"></i> <span data-key="privateJetsFooter">Private Jets</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-robot"></i> <span data-key="aiTravelServices">AI Travel Services</span></a></li>
             </ul>
         </div>
         
         <div class="footer-column">
-            <h3>Company</h3>
+            <h3 data-key="companyFooter">Company</h3>
             <ul>
-                <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span>About Us</span></a></li>
-                <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span>Travel Blog</span></a></li>
-                <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></a></li>
-                <li><a href="/careers.html"><i class="fas fa-briefcase"></i> <span>Careers</span></a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> <span data-key="aboutUs">About Us</span></a></li>
+                <li><a href="#blog"><i class="fas fa-newspaper"></i> <span data-key="travelBlog">Travel Blog</span></a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-key="contactUs">Contact Us</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-briefcase"></i> <span data-key="careers">Careers</span></a></li>
             </ul>
         </div>
         
         <div class="footer-column">
-            <h3>Legal</h3>
+            <h3 data-key="legalFooter">Legal</h3>
             <ul>
-                <li><a href="/privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
-                <li><a href="/terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
-                <li><a href="/cookies.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
-                <li><a href="/ai-ethics.html"><i class="fas fa-brain"></i> <span>AI Ethics Policy</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-shield-alt"></i> <span data-key="privacyPolicy">Privacy Policy</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-file-contract"></i> <span data-key="termsConditions">Terms & Conditions</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-cookie-bite"></i> <span data-key="cookiePolicy">Cookie Policy</span></a></li>
+                <li><a href="#ai-assistant"><i class="fas fa-brain"></i> <span data-key="aiEthics">AI Ethics Policy</span></a></li>
             </ul>
         </div>
     </div>
     
     <div class="copyright">
-        <p>© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);">
+        <p data-key="copyright">© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);" data-key="affiliate">
             This website contains affiliate links. We may earn a commission through these links at no additional cost to you.
         </p>
         <p style="font-size: 0.8rem; margin-top: 5px; color: var(--ai-teal);">
-            <i class="fas fa-robot"></i> <span>Powered by SkyLynx AI 3.0 • Patent Pending</span>
+            <i class="fas fa-robot"></i> <span data-key="poweredBy">Powered by SkyLynx AI 3.0 • Patent Pending</span>
         </p>
     </div>
 </footer>
@@ -2589,6 +2628,468 @@
         adults: 1,
         children: 0,
         infants: 0
+    };
+
+    // نظام الترجمة الكامل
+    const translations = {
+        en: {
+            // Navigation
+            home: "Home",
+            bookings: "Bookings",
+            blog: "Blog",
+            destinations: "Destinations",
+            about: "About",
+            contact: "Contact",
+            aiPowered: "AI-Powered",
+            
+            // Hero Section
+            aiTagline: "World's First AI-Powered Luxury Travel Platform",
+            tagline: "Elevating Your Journey Beyond Horizons",
+            
+            // AI Assistant
+            aiModalTitle: "SkyLynx AI Assistant",
+            aiInputPlaceholder: "Ask me anything about travel...",
+            
+            // Tabs
+            flights: "Flights",
+            privateJet: "Private Jet",
+            hotels: "Hotels",
+            cars: "Cars",
+            
+            // Form Labels
+            from: "From",
+            to: "To",
+            tripType: "Trip Type",
+            roundTrip: "Round Trip",
+            oneWay: "One Way",
+            departure: "Departure",
+            return: "Return",
+            passengers: "Passengers",
+            travelClass: "Travel Class",
+            economy: "Economy",
+            premiumEconomy: "Premium Economy",
+            businessClass: "Business Class",
+            firstClass: "First Class",
+            origin: "Origin",
+            destination: "Destination",
+            departureDate: "Departure Date",
+            returnDate: "Return Date",
+            jetType: "Jet Type",
+            lightJet: "Light Jet (4-6 passengers)",
+            midJet: "Super Mid-Size (8-10 passengers)",
+            heavyJet: "Heavy Jet (12-16 passengers)",
+            checkIn: "Check-in Date",
+            checkOut: "Check-out Date",
+            rooms: "Rooms",
+            oneRoom: "1 Room",
+            twoRooms: "2 Rooms",
+            threeRooms: "3 Rooms",
+            fourRooms: "4+ Rooms",
+            guests: "Guests",
+            oneGuest: "1 Guest",
+            twoGuests: "2 Guests",
+            threeGuests: "3 Guests",
+            fourGuests: "4 Guests",
+            starRating: "Star Rating",
+            fiveStars: "5 Stars / Palace",
+            fourStars: "4 Stars / Boutique",
+            threeStars: "3 Stars",
+            pickupLocation: "Pick-up Location",
+            dropoffLocation: "Drop-off Location",
+            pickupDate: "Pick-up Date",
+            pickupTime: "Pick-up Time",
+            returnDate: "Return Date",
+            returnTime: "Return Time",
+            carType: "Car Type",
+            compact: "Compact",
+            suv: "SUV",
+            luxury: "Luxury",
+            van: "Van",
+            sameLocation: "Return to same location",
+            withDriver: "With Chauffeur",
+            
+            // Passenger Dropdown
+            adults: "Adults",
+            adultsSub: "12+ years",
+            children: "Children",
+            childrenSub: "2-11 years",
+            infants: "Infants",
+            infantsSub: "Under 2 years",
+            total: "Total:",
+            done: "Done",
+            
+            // Group Booking
+            groupBookingTitle: "Special Group Rates",
+            groupBookingSubtitle: "Traveling with 9+ passengers? Get exclusive discounts & services",
+            groupCorporate: "Corporate Groups",
+            groupCorporateDesc: "Business trips, conferences, and corporate retreats with VIP services",
+            groupFamily: "Family & Friends",
+            groupFamilyDesc: "Large family gatherings, weddings, and special celebrations",
+            groupIncentive: "Incentive Travel",
+            groupIncentiveDesc: "Reward programs and motivational trips for employees",
+            groupEducational: "Educational Groups",
+            groupEducationalDesc: "School trips, study tours, and educational expeditions",
+            groupFrom: "Departure From",
+            groupTo: "Destination",
+            groupDepartureDate: "Departure Date",
+            groupReturnDate: "Return Date",
+            groupPassengers: "Number of Passengers",
+            groupType: "Group Type",
+            groupTypeCorporate: "Corporate/Business",
+            groupTypeFamily: "Family/Friends",
+            groupTypeIncentive: "Incentive/Reward",
+            groupTypeEducational: "Educational",
+            groupTypeReligious: "Religious/Pilgrimage",
+            groupTypeSports: "Sports Team",
+            groupBudget: "Budget Range (per person)",
+            budgetPremium: "Premium ($2,000 - $5,000)",
+            budgetLuxury: "Luxury ($5,000 - $10,000)",
+            budgetUltra: "Ultra Luxury ($10,000+)",
+            groupRequirements: "Special Requirements",
+            groupReqPlaceholder: "Please specify any special needs, dietary restrictions, or additional services required...",
+            groupCancel: "Cancel",
+            groupRequestQuote: "Request Group Quote",
+            
+            // Buttons
+            searchFlights: "Search Luxury Flights",
+            requestQuote: "Request Quote",
+            searchHotels: "Search Luxury Hotels",
+            searchCars: "Search Luxury Cars",
+            
+            // AI Features
+            aiFeaturesTitle: "AI-Powered Travel Intelligence",
+            aiFeaturesSubtitle: "Experience the future of luxury travel with our advanced AI technology",
+            aiFeature1Title: "AI Travel Planner",
+            aiFeature1Desc: "Intelligent itinerary creation based on your preferences, budget, and travel style. Our AI analyzes millions of data points to create your perfect trip.",
+            tryAiPlanner: "Try AI Planner",
+            aiFeature2Title: "Smart Price Predictor",
+            aiFeature2Desc: "Predict the best time to book with 92% accuracy. Our AI monitors prices across all providers and alerts you when it's the optimal time to purchase.",
+            viewPredictions: "View Predictions",
+            aiFeature3Title: "Personalized Recommendations",
+            aiFeature3Desc: "Get hotel, restaurant, and activity suggestions tailored specifically to your tastes. Learns from your preferences to improve recommendations over time.",
+            getRecommendations: "Get Recommendations",
+            aiFeature4Title: "AI Concierge Service",
+            aiFeature4Desc: "Instant answers to all your travel questions. From visa requirements to local customs, our AI assistant is available 24/7 in multiple languages.",
+            chatNow: "Chat Now",
+            aiFeature5Title: "Route Optimization",
+            aiFeature5Desc: "AI-powered travel routing that minimizes layovers and maximizes comfort. Calculates the most efficient paths considering weather and traffic.",
+            optimizeRoute: "Optimize Route",
+            aiFeature6Title: "AI Travel Security",
+            aiFeature6Desc: "Real-time safety alerts and travel advisories. Our AI monitors global situations to keep you informed and safe throughout your journey.",
+            learnMore: "Learn More",
+            
+            // Blog
+            latestArticles: "Latest Travel Articles & Guides",
+            articlesSubtitle: "Explore our comprehensive travel guides, tips, and exclusive insights for luxury travelers",
+            luxury: "Luxury",
+            hotels: "Hotels",
+            tips: "Tips",
+            article1Title: "Complete Guide to Luxury Travel in Dubai 2024",
+            article1Desc: "Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.",
+            article2Title: "Top 10 Luxury Hotels in Paris 2024",
+            article2Desc: "Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.",
+            article3Title: "10 Ways to Get Free Flight Upgrades",
+            article3Desc: "Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.",
+            readMore: "Read More",
+            viewAllArticles: "View All Articles",
+            
+            // Services
+            premiumServices: "Premium Travel Services",
+            servicesSubtitle: "Comprehensive travel services for the discerning traveler",
+            flightBookings: "Flight Bookings",
+            flightDesc: "Access to premium airlines and exclusive flight deals worldwide with 24/7 support.",
+            luxuryHotels: "Luxury Hotels",
+            hotelDesc: "Curated collection of 5-star hotels and premium resorts with best price guarantee.",
+            carRental: "Car Rental",
+            carDesc: "Premium car fleet with or without chauffeur in all major destinations worldwide.",
+            privateJets: "Private Jets",
+            jetDesc: "Exclusive private jet service for a unique and luxurious travel experience.",
+            travelConcierge: "Travel Concierge",
+            conciergeDesc: "Personal concierge service to arrange all details of your trip from start to finish.",
+            travelInsurance: "Travel Insurance",
+            insuranceDesc: "Comprehensive travel insurance packages for complete peace of mind.",
+            
+            // Destinations
+            globalDestinations: "Global Luxury Destinations",
+            destinationsSubtitle: "Curated selection of the world's most exclusive travel experiences",
+            newYork: "New York",
+            newYorkDesc: "The City That Never Sleeps • Luxury Penthouse Stays",
+            london: "London",
+            londonDesc: "Royal Elegance • 5-Star Boutique Hotels",
+            dubai: "Dubai",
+            dubaiDesc: "Modern Opulence • 7-Star Hospitality",
+            vancouver: "Vancouver",
+            vancouverDesc: "Coastal Luxury • Mountains & Ocean Resorts",
+            ottawa: "Ottawa",
+            ottawaDesc: "Capital Grandeur • Our Global Headquarters",
+            toronto: "Toronto",
+            torontoDesc: "Urban Sophistication • Luxury Waterfront Living",
+            
+            // About
+            aboutTitle: "About SkyLynx Travel",
+            aboutDesc1: "Welcome to SkyLynx Travel, the world's first AI-powered luxury travel platform based in Ottawa, Canada. We combine cutting-edge artificial intelligence with personalized service to deliver exceptional travel experiences.",
+            aboutDesc2: "Our mission is to revolutionize luxury travel through intelligent technology. From predictive price algorithms to personalized itinerary planning, we leverage AI to create seamless, unforgettable journeys tailored specifically to you.",
+            whyChoose: "Why choose SkyLynx?",
+            reason1: "World's first AI-powered luxury travel platform",
+            reason2: "Predictive price intelligence with 92% accuracy",
+            reason3: "Personalized AI travel assistant 24/7",
+            reason4: "Multi-currency support (CAD, USD, EUR, GBP, SAR)",
+            reason5: "Bilingual AI assistant (English & Arabic)",
+            reason6: "Secure AI-powered fraud detection",
+            aboutDesc3: "We partner with leading travel providers worldwide while developing proprietary AI technology to ensure our clients receive the most intelligent, personalized travel service available anywhere.",
+            learnMoreAbout: "Learn More About Us",
+            
+            // Footer
+            footerDesc: "World's first AI-powered luxury travel platform based in Ottawa, Canada. Intelligent booking, personalized recommendations, and premium service.",
+            servicesFooter: "Services",
+            flightBooking: "Flight Booking",
+            hotelReservations: "Hotel Reservations",
+            carRentalFooter: "Car Rental",
+            privateJetsFooter: "Private Jets",
+            aiTravelServices: "AI Travel Services",
+            companyFooter: "Company",
+            aboutUs: "About Us",
+            travelBlog: "Travel Blog",
+            contactUs: "Contact Us",
+            careers: "Careers",
+            legalFooter: "Legal",
+            privacyPolicy: "Privacy Policy",
+            termsConditions: "Terms & Conditions",
+            cookiePolicy: "Cookie Policy",
+            aiEthics: "AI Ethics Policy",
+            copyright: "© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.",
+            affiliate: "This website contains affiliate links. We may earn a commission through these links at no additional cost to you.",
+            poweredBy: "Powered by SkyLynx AI 3.0 • Patent Pending"
+        },
+        ar: {
+            // Navigation
+            home: "الرئيسية",
+            bookings: "الحجوزات",
+            blog: "المدونة",
+            destinations: "الوجهات",
+            about: "عنّا",
+            contact: "اتصل بنا",
+            aiPowered: "مدعوم بالذكاء الاصطناعي",
+            
+            // Hero Section
+            aiTagline: "أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم",
+            tagline: "نحو آفاق جديدة من الفخامة",
+            
+            // AI Assistant
+            aiModalTitle: "مساعد SkyLynx الذكي",
+            aiInputPlaceholder: "اسألني أي شيء عن السفر...",
+            
+            // Tabs
+            flights: "رحلات الطيران",
+            privateJet: "طائرة خاصة",
+            hotels: "الفنادق",
+            cars: "السيارات",
+            
+            // Form Labels
+            from: "من",
+            to: "إلى",
+            tripType: "نوع الرحلة",
+            roundTrip: "ذهاب وعودة",
+            oneWay: "ذهاب فقط",
+            departure: "تاريخ الذهاب",
+            return: "تاريخ العودة",
+            passengers: "المسافرون",
+            travelClass: "فئة السفر",
+            economy: "الاقتصادية",
+            premiumEconomy: "الاقتصادية المميزة",
+            businessClass: "درجة رجال الأعمال",
+            firstClass: "الدرجة الأولى",
+            origin: "المكان الأصل",
+            destination: "الوجهة",
+            departureDate: "تاريخ المغادرة",
+            returnDate: "تاريخ العودة",
+            jetType: "نوع الطائرة",
+            lightJet: "طائرة خفيفة (4-6 مسافرين)",
+            midJet: "طائرة متوسطة الحجم (8-10 مسافرين)",
+            heavyJet: "طائرة كبيرة (12-16 مسافرين)",
+            checkIn: "تاريخ الوصول",
+            checkOut: "تاريخ المغادرة",
+            rooms: "الغرف",
+            oneRoom: "1 غرفة",
+            twoRooms: "2 غرف",
+            threeRooms: "3 غرف",
+            fourRooms: "4+ غرف",
+            guests: "الضيوف",
+            oneGuest: "1 ضيف",
+            twoGuests: "2 ضيف",
+            threeGuests: "3 ضيوف",
+            fourGuests: "4 ضيوف",
+            starRating: "التصنيف النجمي",
+            fiveStars: "5 نجوم / قصر",
+            fourStars: "4 نجوم / بوتيك",
+            threeStars: "3 نجوم",
+            pickupLocation: "مكان الاستلام",
+            dropoffLocation: "مكان التسليم",
+            pickupDate: "تاريخ الاستلام",
+            pickupTime: "وقت الاستلام",
+            returnDate: "تاريخ التسليم",
+            returnTime: "وقت التسليم",
+            carType: "نوع السيارة",
+            compact: "صغيرة",
+            suv: "دفع رباعي",
+            luxury: "فاخرة",
+            van: "فان",
+            sameLocation: "العودة لنفس المكان",
+            withDriver: "مع سائق",
+            
+            // Passenger Dropdown
+            adults: "بالغين",
+            adultsSub: "12+ سنة",
+            children: "أطفال",
+            childrenSub: "2-11 سنة",
+            infants: "رضع",
+            infantsSub: "أقل من سنتين",
+            total: "المجموع:",
+            done: "تم",
+            
+            // Group Booking
+            groupBookingTitle: "أسعار جماعية خاصة",
+            groupBookingSubtitle: "تسافر مع 9+ مسافرين؟ احصل على خصومات وخدمات حصرية",
+            groupCorporate: "مجموعات عمل",
+            groupCorporateDesc: "رحلات عمل ومؤتمرات وملتقيات مع خدمات VIP",
+            groupFamily: "عائلة وأصدقاء",
+            groupFamilyDesc: "تجمعات عائلية كبيرة وحفلات زفاف ومناسبات خاصة",
+            groupIncentive: "سفر تحفيزي",
+            groupIncentiveDesc: "برامج مكافآت ورحلات تحفيزية للموظفين",
+            groupEducational: "مجموعات تعليمية",
+            groupEducationalDesc: "رحلات مدرسية وجولات دراسية وبعثات تعليمية",
+            groupFrom: "المغادرة من",
+            groupTo: "الوجهة",
+            groupDepartureDate: "تاريخ المغادرة",
+            groupReturnDate: "تاريخ العودة",
+            groupPassengers: "عدد المسافرين",
+            groupType: "نوع المجموعة",
+            groupTypeCorporate: "عمل/أعمال",
+            groupTypeFamily: "عائلة/أصدقاء",
+            groupTypeIncentive: "تحفيزي/مكافآت",
+            groupTypeEducational: "تعليمي",
+            groupTypeReligious: "ديني/حج",
+            groupTypeSports: "فريق رياضي",
+            groupBudget: "نطاق الميزانية (للشخص)",
+            budgetPremium: "ممتاز ($2,000 - $5,000)",
+            budgetLuxury: "فاخر ($5,000 - $10,000)",
+            budgetUltra: "فاخر جداً ($10,000+)",
+            groupRequirements: "متطلبات خاصة",
+            groupReqPlaceholder: "يرجى تحديد أي احتياجات خاصة أو قيود غذائية أو خدمات إضافية مطلوبة...",
+            groupCancel: "إلغاء",
+            groupRequestQuote: "طلب عرض سعر جماعي",
+            
+            // Buttons
+            searchFlights: "بحث عن رحلات فاخرة",
+            requestQuote: "طلب عرض سعر",
+            searchHotels: "بحث عن فنادق فاخرة",
+            searchCars: "بحث عن سيارات فاخرة",
+            
+            // AI Features
+            aiFeaturesTitle: "ذكاء السفر بالذكاء الاصطناعي",
+            aiFeaturesSubtitle: "اختبر مستقبل السفر الفاخر مع تقنية الذكاء الاصطناعي المتقدمة",
+            aiFeature1Title: "مخطط رحلات بالذكاء الاصطناعي",
+            aiFeature1Desc: "إنشاء برامج سفر ذكية بناءً على تفضيلاتك وميزانيتك وأسلوب سفرك. يحلل الذكاء الاصطناعي لدينا ملايين نقاط البيانات لإنشاء رحلتك المثالية.",
+            tryAiPlanner: "جرب المخطط الذكي",
+            aiFeature2Title: "تنبؤ ذكي بالأسعار",
+            aiFeature2Desc: "توقع أفضل وقت للحجز بدقة 92٪. يراقب الذكاء الاصطناعي لدينا الأسعار عبر جميع المزودين ويخطرك عندما يكون الوقت الأمثل للشراء.",
+            viewPredictions: "عرض التوقعات",
+            aiFeature3Title: "توصيات مخصصة",
+            aiFeature3Desc: "احصل على اقتراحات للفنادق والمطاعم والأنشطة المصممة خصيصًا لذوقك. يتعلم من تفضيلاتك لتحسين التوصيات بمرور الوقت.",
+            getRecommendations: "الحصول على توصيات",
+            aiFeature4Title: "خدمة الكونسيرج بالذكاء الاصطناعي",
+            aiFeature4Desc: "إجابات فورية لجميع أسئلتك المتعلقة بالسفر. من متطلبات التأشيرة إلى العادات المحلية، مساعد الذكاء الاصطناعي لدينا متاح 24/7 بلغات متعددة.",
+            chatNow: "محادثة الآن",
+            aiFeature5Title: "تحسين المسار",
+            aiFeature5Desc: "توجيه السفر المدعوم بالذكاء الاصطناعي الذي يقلل من التوقف ويعزز الراحة. يحسب المسارات الأكثر كفاءة مع مراعاة الطقس والمرور.",
+            optimizeRoute: "تحسين المسار",
+            aiFeature6Title: "أمن السفر بالذكاء الاصطناعي",
+            aiFeature6Desc: "تنبيهات أمان فورية ونصائح سفر. يراقب الذكاء الاصطناعي لدينا الأوضاع العالمية لإبقائك على اطلاع وآمن طوال رحلتك.",
+            learnMore: "تعلم المزيد",
+            
+            // Blog
+            latestArticles: "أحدث مقالات ومقالات السفر",
+            articlesSubtitle: "استكشف أدلة السفر الشاملة والنصائح والرؤى الحصرية للمسافرين الفاخرين",
+            luxury: "فاخر",
+            hotels: "فنادق",
+            tips: "نصائح",
+            article1Title: "الدليل الكامل للسفر الفاخر في دبي 2024",
+            article1Desc: "اكتشف أفضل الفنادق الفاخرة ومطاعم ميشلان والتجارب الفريدة التي تنتظرك في دبي. دليل شامل مع نصائح حصرية من خبراء السفر.",
+            article2Title: "أفضل 10 فنادق فاخرة في باريس 2024",
+            article2Desc: "مراجعة مفصلة لأفضل الفنادق في باريس. قارن الخدمات والمواقع والمرافق مع نصائح للحصول على أفضل العروض والترقيات.",
+            article3Title: "10 طرق للحصول على ترقيات مجانية للطيران",
+            article3Desc: "أسرار وتجارب للحصول على ترقيات مجانية لدرجة رجال الأعمال أو الدرجة الأولى. تعلم من خبراء السفر كيفية تحسين فرصك في الترقية.",
+            readMore: "اقرأ المزيد",
+            viewAllArticles: "عرض جميع المقالات",
+            
+            // Services
+            premiumServices: "خدمات السفر المميزة",
+            servicesSubtitle: "خدمات سفر شاملة للمسافر المتميز",
+            flightBookings: "حجوزات الطيران",
+            flightDesc: "الوصول إلى شركات الطيران المميزة وعروض الرحلات الحصرية في جميع أنحاء العالم مع دعم على مدار الساعة.",
+            luxuryHotels: "فنادق فاخرة",
+            hotelDesc: "مجموعة مختارة من فنادق الخمس نجوم ومنتجعات فاخرة مع ضمان أفضل سعر.",
+            carRental: "تأجير سيارات",
+            carDesc: "أسطول سيارات فاخرة مع سائق أو بدونه في جميع الوجهات الرئيسية حول العالم.",
+            privateJets: "طائرات خاصة",
+            jetDesc: "خدمة طائرة خاصة حصرية لتجربة سفر فريدة وفاخرة.",
+            travelConcierge: "كونسيرج السفر",
+            conciergeDesc: "خدمة كونسيرج شخصية لترتيب جميع تفاصيل رحلتك من البداية إلى النهاية.",
+            travelInsurance: "تأمين السفر",
+            insuranceDesc: "باقات تأمين سفر شاملة لراحة البال الكاملة.",
+            
+            // Destinations
+            globalDestinations: "وجهات عالمية فاخرة",
+            destinationsSubtitle: "اختيار متميز لأكثر تجارب السفر حصرية في العالم",
+            newYork: "نيويورك",
+            newYorkDesc: "المدينة التي لا تنام • إقامة في شقق فاخرة",
+            london: "لندن",
+            londonDesc: "أناقة ملكية • فنادق بوتيك 5 نجوم",
+            dubai: "دبي",
+            dubaiDesc: "بذخ حديث • خدمات 7 نجوم",
+            vancouver: "فانكوفر",
+            vancouverDesc: "فخامة ساحلية • منتجعات جبلية وبحرية",
+            ottawa: "أوتاوا",
+            ottawaDesc: "عظمة العاصمة • مقرنا العالمي",
+            toronto: "تورنتو",
+            torontoDesc: "أناقة حضرية • إقامة فاخرة على الواجهة البحرية",
+            
+            // About
+            aboutTitle: "عن SkyLynx Travel",
+            aboutDesc1: "مرحبًا بك في SkyLynx Travel، أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم ومقرها أوتاوا، كندا. نجمع بين الذكاء الاصطناعي المتقدم والخدمة المخصصة لتقديم تجارب سفر استثنائية.",
+            aboutDesc2: "مهمتنا هي إحداث ثورة في عالم السفر الفاخر من خلال التكنولوجيا الذكية. من خوارزميات التنبؤ بالأسعار إلى تخطيط برامج السفر المخصصة، نستفيد من الذكاء الاصطناعي لخلق رحلات سلسة لا تنسى مصممة خصيصًا لك.",
+            whyChoose: "لماذا تختار SkyLynx؟",
+            reason1: "أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم",
+            reason2: "ذكاء تنبؤي بالأسعار بدقة 92٪",
+            reason3: "مساعد سفر بالذكاء الاصطناعي مخصص على مدار الساعة",
+            reason4: "دعم متعدد العملات (CAD, USD, EUR, GBP, SAR)",
+            reason5: "مساعد ذكاء اصطناعي ثنائي اللغة (الإنجليزية والعربية)",
+            reason6: "كشف احتيال آمن مدعوم بالذكاء الاصطناعي",
+            aboutDesc3: "نتعاون مع مزودي السفر الرائدين في جميع أنحاء العالم بينما نطور تكنولوجيا الذكاء الاصطناعي الخاصة بنا لضمان حصول عملائنا على خدمة السفر الأكثر ذكاءً وتخصيصًا المتاحة في أي مكان.",
+            learnMoreAbout: "تعلم المزيد عنا",
+            
+            // Footer
+            footerDesc: "أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم ومقرها أوتاوا، كندا. حجز ذكي، توصيات مخصصة، وخدمة مميزة.",
+            servicesFooter: "الخدمات",
+            flightBooking: "حجز الطيران",
+            hotelReservations: "حجز الفنادق",
+            carRentalFooter: "تأجير سيارات",
+            privateJetsFooter: "طائرات خاصة",
+            aiTravelServices: "خدمات السفر بالذكاء الاصطناعي",
+            companyFooter: "الشركة",
+            aboutUs: "عنّا",
+            travelBlog: "مدونة السفر",
+            contactUs: "اتصل بنا",
+            careers: "وظائف",
+            legalFooter: "قانوني",
+            privacyPolicy: "سياسة الخصوصية",
+            termsConditions: "الشروط والأحكام",
+            cookiePolicy: "سياسة الكوكيز",
+            aiEthics: "سياسة أخلاقيات الذكاء الاصطناعي",
+            copyright: "© 2024 SkyLynx Travel International Inc. - أوتاوا، كندا. جميع الحقوق محفوظة.",
+            affiliate: "يحتوي هذا الموقع على روابط تابعة. قد نربح عمولة من خلال هذه الروابط دون أي تكلفة إضافية عليك.",
+            poweredBy: "مدعوم بـ SkyLynx AI 3.0 • براءة اختراع قيد الانتظار"
+        }
     };
 
     // ========== دالة تحديث ملخص المسافرين ==========
@@ -2725,18 +3226,26 @@
         const lowerInput = input.toLowerCase();
         
         if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
-            return "👋 Hello! I'm your AI travel assistant. How can I help you today?";
+            return currentLang === 'ar' ? 
+                "👋 مرحبًا! أنا مساعد السفر الذكي الخاص بك. كيف يمكنني مساعدتك في تخطيط رحلتك الفاخرة اليوم؟" : 
+                "👋 Hello! I'm your AI travel assistant. How can I help you plan your luxury journey today?";
         }
         
-        if (lowerInput.includes('flight')) {
-            return "✈️ I can help you find the best flights! What's your departure and destination?";
+        if (lowerInput.includes('flight') || (currentLang === 'ar' && (lowerInput.includes('طيران') || lowerInput.includes('رحلة')))) {
+            return currentLang === 'ar' ?
+                "✈️ يمكنني مساعدتك في العثور على أفضل الرحلات! ما هي وجهة المغادرة والوجهة؟" :
+                "✈️ I can help you find the best flights! What's your departure and destination?";
         }
         
-        if (lowerInput.includes('group')) {
-            return "👥 For group bookings, please use our Group Travel Services feature in the booking form!";
+        if (lowerInput.includes('group') || (currentLang === 'ar' && (lowerInput.includes('مجموعة') || lowerInput.includes('جماعي')))) {
+            return currentLang === 'ar' ?
+                "👥 للحجوزات الجماعية، يرجى استخدام ميزة خدمات السفر الجماعي في نموذج الحجز!" :
+                "👥 For group bookings, please use our Group Travel Services feature in the booking form!";
         }
         
-        return "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
+        return currentLang === 'ar' ?
+            "🤖 أفهم أنك تسأل عن السفر. يمكنني المساعدة في الرحلات الجوية والفنادق والسيارات والحجوزات الجماعية. ما الذي تريد معرفته بالتحديد؟" :
+            "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
     }
 
     // ========== حاوية المسافرين المنسدلة - النسخة المصححة ==========
@@ -2988,6 +3497,29 @@
                 dropoffInput.placeholder = currentLang === 'ar' ? 'أدخل العنوان' : 'Enter address';
             }
         });
+        
+        // إضافة الروابط للنقرات في القائمة
+        document.getElementById('home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+        
+        // روابط التنقل الناعمة
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     }
 
     // ========== تعيين التواريخ الافتراضية ==========
@@ -3141,29 +3673,56 @@
         if (overlay) overlay.remove();
     }
 
-    // ========== نظام الترجمة المبسط ==========
+    // ========== نظام الترجمة الكامل ==========
     function updateLanguage(lang) {
         currentLang = lang;
+        const translation = translations[lang];
+        
+        // تحديث سمة HTML للغة
         document.getElementById('main-html').setAttribute('lang', lang);
         document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         
-        // تحديث نص المسافرين
+        // تحديث جميع العناصر ذات data-key
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const key = element.getAttribute('data-key');
+            if (translation[key]) {
+                element.textContent = translation[key];
+            }
+        });
+        
+        // تحديث النصوص الخاصة
+        document.getElementById('aiTaglineText').textContent = translation.aiTagline;
+        document.getElementById('tag').textContent = translation.tagline;
+        document.getElementById('aiModalTitle').textContent = translation.aiModalTitle;
+        document.getElementById('aiInput').placeholder = translation.aiInputPlaceholder;
+        document.getElementById('aiBadgeText').textContent = translation.aiPowered;
+        
+        // تحديث ملخص المسافرين
         updatePassengerSummary();
         
-        // تحديث النصوص الأساسية
-        if (lang === 'ar') {
-            document.getElementById('aiTaglineText').textContent = 'أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم';
-            document.getElementById('tag').textContent = 'نحو آفاق جديدة من الفخامة';
-            document.getElementById('aiModalTitle').textContent = 'مساعد SkyLynx الذكي';
-            document.getElementById('aiInput').placeholder = 'اسألني أي شيء عن السفر...';
-            document.querySelector('.ai-badge span').textContent = 'مدعوم بالذكاء الاصطناعي';
-        } else {
-            document.getElementById('aiTaglineText').textContent = 'World\'s First AI-Powered Luxury Travel Platform';
-            document.getElementById('tag').textContent = 'Elevating Your Journey Beyond Horizons';
-            document.getElementById('aiModalTitle').textContent = 'SkyLynx AI Assistant';
-            document.getElementById('aiInput').placeholder = 'Ask me anything about travel...';
-            document.querySelector('.ai-badge span').textContent = 'AI-Powered';
-        }
+        // تحديث أماكن العناصر النائبة
+        updatePlaceholders(lang);
+    }
+    
+    function updatePlaceholders(lang) {
+        const placeholders = {
+            'flight-from': lang === 'ar' ? 'أوتاوا (YOW)' : 'Ottawa (YOW)',
+            'flight-to': lang === 'ar' ? 'فانكوفر (YVR)' : 'Vancouver (YVR)',
+            'private-origin': lang === 'ar' ? 'مطار أو مدينة' : 'Airport or City',
+            'private-destination': lang === 'ar' ? 'أي وجهة' : 'Any Destination',
+            'hotel-destination': lang === 'ar' ? 'مدينة أو اسم فندق' : 'City or Hotel Name',
+            'car-pickup': lang === 'ar' ? 'مطار أو عنوان' : 'Airport or Address',
+            'car-dropoff': lang === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up',
+            'group-from': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport',
+            'group-to': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport'
+        };
+        
+        Object.keys(placeholders).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.placeholder = placeholders[id];
+            }
+        });
     }
 </script>
 </body>
