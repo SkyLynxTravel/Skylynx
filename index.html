@@ -1600,6 +1600,15 @@
         
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
+    .main-nav {
+        flex-wrap: wrap;
+    }
+    .nav-menu {
+        display: none;
+    }
+    .nav-logo {
+        font-size: 1.3rem;
+    }
             .main-nav {
                 flex-direction: column;
                 gap: 15px;
@@ -1612,14 +1621,6 @@
                 width: 100%;
             }
             
-            .nav-menu {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
             
             .ai-badge {
                 margin-top: 10px;
