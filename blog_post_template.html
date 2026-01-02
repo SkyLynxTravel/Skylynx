@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="post-title">Article Title | SkyLynx Travel Blog</title>
+    
+    <meta name="description" id="post-description" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" id="og-title" content="">
+    <meta property="og:description" id="og-description" content="">
+    <meta property="og:image" id="og-image" content="">
+    <meta property="og:type" content="article">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --deep-ocean: #00111c; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --ai-purple: #9d4edd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--deep-ocean);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+        }
+        
+        /* Hero Image */
+        .post-hero {
+            height: 60vh;
+            min-height: 500px;
+            position: relative;
+            background: linear-gradient(135deg, #0a1f35, #1a3a5f);
+            overflow: hidden;
+        }
+        
+        .post-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        
+        .post-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 17, 28, 0.95));
+            padding: 60px 5%;
+        }
+        
+        .post-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .post-category {
+            display: inline-block;
+            background: var(--sky-glow);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .post-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 30px;
+            color: var(--silver);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+        
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Article Container */
+        .article-container {
+            max-width: 900px;
+            margin: -80px auto 80px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .article-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            padding: 60px;
+            border: 1px solid rgba(0, 166, 251, 0.1);
+        }
+        
+        .article-body {
+            color: var(--silver);
+            font-size: 1.1rem;
+        }
+        
+        .article-body h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2rem;
+            margin: 50px 0 25px 0;
+        }
+        
+        .article-body h2:first-child {
+            margin-top: 0;
+        }
+        
+        .article-body h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin: 40px 0 20px 0;
+        }
+        
+        .article-body p {
+            margin-bottom: 25px;
+        }
+        
+        .article-body ul,
+        .article-body ol {
+            margin: 25px 0 25px 30px;
+        }
+        
+        .article-body li {
+            margin-bottom: 15px;
+        }
+        
+        .article-body strong {
+            color: white;
+        }
+        
+        .article-body a {
+            color: var(--sky-glow);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sky-glow);
+            transition: all 0.3s;
+        }
+        
+        .article-body a:hover {
+            border-bottom-width: 2px;
+        }
+        
+        .article-body blockquote {
+            border-left: 4px solid var(--sky-glow);
+            padding: 20px 30px;
+            margin: 30px 0;
+            background: rgba(0, 166, 251, 0.05);
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+        }
+        
+        .article-body img {
+            width: 100%;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(0, 166, 251, 0.1));
+            border: 1px solid rgba(0, 166, 251, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Tags */
+        .article-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tag {
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 166, 251, 0.2);
+            border-radius: 20px;
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: var(--sky-glow);
+            border-color: var(--sky-glow);
+            color: white;
+        }
+        
+        /* Share Buttons */
+        .share-section {
+            margin-top: 50px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+        }
+        
+        .share-section h3 {
+            margin-bottom: 25px;
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+        
+        .share-btn.facebook {
+            background: #4267B2;
+        }
+        
+        .share-btn.linkedin {
+            background: #0077B5;
+        }
+        
+        .share-btn.whatsapp {
+            background: #25D366;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Author Box */
+        .author-box {
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(0, 166, 251, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 166, 251, 0.2);
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ai-purple), var(--sky-glow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .author-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .author-info p {
+            color: var(--silver);
+            line-height: 1.6;
+        }
+        
+        /* Related Posts */
+        .related-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 5%;
+        }
+        
+        .related-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--sky-glow);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .related-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--sky-glow);
+        }
+        
+        .related-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #0a1f35, #1a3a5f);
+        }
+        
+        .related-content {
+            padding: 25px;
+        }
+        
+        .related-content .category {
+            color: var(--sky-glow);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .related-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .related-content .meta {
+            color: var(--silver);
+            font-size: 0.85rem;
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Back to Blog */
+        .back-to-blog {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--sky-glow);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: var(--sky-glow);
+            transform: translateY(-3px);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: rgba(0, 166, 251, 0.05);
+            border: 1px solid rgba(0, 166, 251, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .toc h4 {
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .toc a:hover {
+            color: var(--sky-glow);
+            padding-left: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-hero {
+                min-height: 400px;
+            }
+            
+            .post-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .article-content {
+                padding: 35px 25px;
+            }
+            
+            .article-body {
+                font-size: 1rem;
+            }
+            
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="post-hero">
+    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" alt="Dubai" id="hero-image">
+    <div class="post-hero-overlay">
+        <div class="post-hero-content">
+            <span class="post-category" id="post-cat">Luxury Travel</span>
+            <h1 id="main-title">Complete Guide to Luxury Travel in Dubai 2025</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-calendar"></i> <span id="post-date">January 5, 2025</span></span>
+                <span><i class="fas fa-clock"></i> <span id="read-time">12 min read</span></span>
+                <span><i class="fas fa-user"></i> <span id="author-name">SkyLynx Travel Team</span></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Article Content -->
+<div class="article-container">
+    <article class="article-content">
+        
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h4>
+                <i class="fas fa-list"></i>
+                Table of Contents
+            </h4>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hotels">Best Luxury Hotels</a></li>
+                <li><a href="#dining">Fine Dining Experiences</a></li>
+                <li><a href="#activities">Exclusive Activities</a></li>
+                <li><a href="#shopping">Shopping & Entertainment</a></li>
+                <li><a href="#tips">Insider Tips</a></li>
+            </ul>
+        </div>
+        
+        <!-- Article Body -->
+        <div class="article-body" id="article-content">
+            <h2 id="intro">Introduction to Luxury Dubai</h2>
+            <p>Dubai has long been synonymous with luxury, opulence, and architectural marvels. As we step into 2025, the city continues to redefine what it means to experience world-class hospitality and entertainment. This comprehensive guide will take you through everything you need to know to plan the ultimate luxury vacation in Dubai.</p>
+            
+            <p>From staying in 7-star hotels to dining at Michelin-starred restaurants, from exclusive desert experiences to private yacht charters, Dubai offers unparalleled luxury at every turn. Our AI-powered recommendations and expert insights will help you navigate the city's premium offerings with ease.</p>
+            
+            <div class="highlight-box">
+                <h4><i class="fas fa-lightbulb"></i> AI Travel Tip</h4>
+                <p>Our AI analysis shows that booking Dubai luxury hotels 3-4 months in advance can save you up to 30% compared to last-minute bookings, especially during peak season (November-March).</p>
+            </div>
+            
+            <h2 id="hotels">Best Luxury Hotels in Dubai 2025</h2>
+            <p>Dubai's hotel scene is legendary, featuring some of the world's most iconic properties. Here are our top picks for 2025:</p>
+            
+            <h3>1. Burj Al Arab Jumeirah</h3>
+            <p>The iconic sail-shaped hotel remains the epitome of luxury. With 202 duplex suites, each with floor-to-ceiling windows offering panoramic views, this 7-star property delivers an experience like no other.</p>
+            
+            <ul>
+                <li><strong>Starting from:</strong> $1,500 per night</li>
+                <li><strong>Highlights:</strong> Private butler service, Hermès bath amenities, chauffeur-driven Rolls-Royce</li>
+                <li><strong>Best for:</strong> Ultimate luxury seekers, honeymoons, special celebrations</li>
+            </ul>
+            
+            <h3>2. Atlantis The Royal</h3>
+            <p>The newest addition to Dubai's luxury landscape, opened in 2023, continues to impress with its ultra-modern design and world-class facilities.</p>
+            
+            <blockquote>
+                "Atlantis The Royal isn't just a hotel; it's a destination within a destination. The attention to detail is extraordinary." - Luxury Travel Magazine
+            </blockquote>
+            
+            <h2 id="dining">Fine Dining Experiences</h2>
+            <p>Dubai's culinary scene rivals any global gastronomic capital. With numerous Michelin-starred establishments and celebrity chef restaurants, food lovers are in for an incredible treat.</p>
+            
+            <h3>Michelin-Starred Restaurants</h3>
+            <ul>
+                <li><strong>Il Ristorante - Niko Romito:</strong> 2 Michelin stars, Italian fine dining</li>
+                <li><strong>STAY by Yannick Alléno:</strong> 2 Michelin stars, contemporary French</li>
+                <li><strong>Trèsind Studio:</strong> 1 Michelin star, modern Indian cuisine</li>
+            </ul>
+            
+            <h2 id="activities">Exclusive Activities & Experiences</h2>
+            <p>Beyond hotels and restaurants, Dubai offers countless exclusive experiences that define luxury travel.</p>
+            
+            <h3>Private Desert Safari with Overnight Stay</h3>
+            <p>Experience the Arabian desert in ultimate comfort with private camps featuring air-conditioned tents, gourmet dining under the stars, and traditional entertainment.</p>
+            
+            <h3>Helicopter Tour of Dubai</h3>
+            <p>See Dubai's architectural wonders from above with private helicopter tours starting from $400 per person.</p>
+            
+            <h2 id="shopping">Shopping & Entertainment</h2>
+            <p>From world-famous malls to traditional souks, Dubai offers shopping experiences for every taste and budget.</p>
+            
+            <h3>The Dubai Mall</h3>
+            <p>More than just a shopping destination, this mega-mall features:</p>
+            <ul>
+                <li>1,200+ retail outlets including luxury brands</li>
+                <li>Dubai Aquarium & Underwater Zoo</li>
+                <li>VR Park for cutting-edge entertainment</li>
+                <li>Over 200 dining options</li>
+            </ul>
+            
+            <h2 id="tips">Insider Tips for Luxury Travelers</h2>
+            
+            <div class="highlight-box">
+                <h4><i class="fas fa-crown"></i> Pro Tips</h4>
+                <ul>
+                    <li>Book restaurant reservations at least 2-3 weeks in advance for popular venues</li>
+                    <li>Many luxury hotels offer complimentary airport transfers - always ask when booking</li>
+                    <li>Consider purchasing a Dubai Pass for access to multiple attractions at a reduced rate</li>
+                    <li>The best time to visit is November through March when temperatures are pleasant</li>
+                </ul>
+            </div>
+            
+            <h2>Final Thoughts</h2>
+            <p>Dubai continues to set the standard for luxury travel worldwide. Whether you're seeking relaxation, adventure, culinary excellence, or all of the above, this incredible city delivers on every front. Use our AI-powered tools to find the best deals and create a personalized itinerary that matches your preferences perfectly.</p>
+            
+            <p>Ready to start planning your luxury Dubai experience? Visit our <a href="index.html">booking platform</a> to compare prices and get AI-powered recommendations tailored to your style and budget.</p>
+        </div>
+        
+        <!-- Tags -->
+        <div class="article-tags">
+            <a href="#" class="tag">#Dubai</a>
+            <a href="#" class="tag">#LuxuryTravel</a>
+            <a href="#" class="tag">#Hotels</a>
+            <a href="#" class="tag">#TravelGuide</a>
+            <a href="#" class="tag">#MiddleEast</a>
+            <a href="#" class="tag">#AITravel</a>
+        </div>
+        
+        <!-- Share Section -->
+        <div class="share-section">
+            <h3>Share This Article</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn twitter" aria-label="Share on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="share-btn facebook" aria-label="Share on Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="share-btn linkedin" aria-label="Share on LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="share-btn whatsapp" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Author Box -->
+        <div class="author-box">
+            <div class="author-avatar">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="author-info">
+                <h4>SkyLynx Travel Team</h4>
+                <p>Our team of travel experts and AI specialists work together to bring you the most comprehensive and up-to-date luxury travel guides. With decades of combined experience and cutting-edge AI analysis, we help you discover the world's finest destinations.</p>
+            </div>
+        </div>
+    </article>
+</div>
+
+<!-- Related Posts -->
+<section class="related-section">
+    <h2>Related Articles</h2>
+    <div class="related-grid">
+        
+        <a href="#" class="related-card">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=600" alt="Paris" class="related-image">
+            <div class="related-content">
+                <div class="category">🏨 Hotels</div>
+                <h3>Top 10 Luxury Hotels in Paris 2025</h3>
+                <div class="meta">
+                    <span><i class="fas fa-clock"></i> 8 min</span>
+                    <span><i class="fas fa-calendar"></i> Jan 3, 2025</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="#" class="related-card">
+            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&q=80&w=600" alt="Alps" class="related-image">
+            <div class="related-content">
+                <div class="category">⭐ Luxury</div>
+                <h3>Swiss Alps: Ultimate Luxury Ski Resorts</h3>
+                <div class="meta">
+                    <span><i class="fas fa-clock"></i> 9 min</span>
+                    <span><i class="fas fa-calendar"></i> Dec 15, 2024</span>
+                </div>
+            </div>
+        </a>
+        
+        <a href="#" class="related-card">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=600" alt="Flight" class="related-image">
+            <div class="related-content">
+                <div class="category">💡 Tips</div>
+                <h3>10 Ways to Get Free Flight Upgrades</h3>
+                <div class="meta">
+                    <span><i class="fas fa-clock"></i> 6 min</span>
+                    <span><i class="fas fa-calendar"></i> Dec 28, 2024</span>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+    
+    <div class="back-to-blog">
+        <a href="blog.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to All Articles</span>
+        </a>
+    </div>
+</section>
+
+<script>
+// Smooth scroll for TOC
+document.querySelectorAll('.toc a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+// Share buttons
+document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        
+        let shareUrl = '';
+        if (this.classList.contains('twitter')) {
+            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+        } else if (this.classList.contains('facebook')) {
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        } else if (this.classList.contains('linkedin')) {
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        } else if (this.classList.contains('whatsapp')) {
+            shareUrl = `https://wa.me/?text=${title}%20${url}`;
+        }
+        
+        if (shareUrl) {
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

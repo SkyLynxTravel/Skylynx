@@ -1,0 +1,194 @@
+backend:
+  name: github
+  repo: SkyLynxTravel/Skylynx
+  branch: main
+  base_url: https://skylynx.co
+
+# Local backend للتطوير المحلي (اختياري)
+# local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# إعدادات النشر
+publish_mode: editorial_workflow
+
+collections:
+  # Blog Posts
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title (Arabic)", name: "title_ar", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["Luxury", "Hotels", "Tips", "Destinations", "Travel Guides", "AI Travel"]}
+      - {label: "Category (Arabic)", name: "category_ar", widget: "select", options: ["فاخر", "فنادق", "نصائح", "وجهات", "أدلة السفر", "السفر الذكي"]}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: true}
+      - {label: "Excerpt (Arabic)", name: "excerpt_ar", widget: "text", required: true}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body (Arabic)", name: "body_ar", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", default: "SkyLynx Travel Team"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "SEO Title", name: "seo_title", widget: "string", required: false}
+      - {label: "SEO Description", name: "seo_description", widget: "text", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Read Time (minutes)", name: "read_time", widget: "number", default: 5}
+
+  # Pages
+  - name: "pages"
+    label: "Pages"
+    editor:
+      preview: true
+    files:
+      # About Page
+      - label: "About Page"
+        name: "about"
+        file: "content/pages/about.json"
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "About SkyLynx Travel"}
+          - {label: "Title (Arabic)", name: "title_ar", widget: "string", default: "عن SkyLynx Travel"}
+          - {label: "Hero Image", name: "hero_image", widget: "image"}
+          - {label: "Tagline", name: "tagline", widget: "text"}
+          - {label: "Tagline (Arabic)", name: "tagline_ar", widget: "text"}
+          - {label: "Story", name: "story", widget: "markdown"}
+          - {label: "Story (Arabic)", name: "story_ar", widget: "markdown"}
+          - {label: "Mission Statement", name: "mission", widget: "text"}
+          - {label: "Mission (Arabic)", name: "mission_ar", widget: "text"}
+          - {label: "Vision Statement", name: "vision", widget: "text"}
+          - {label: "Vision (Arabic)", name: "vision_ar", widget: "text"}
+          - {label: "SEO Title", name: "seo_title", widget: "string"}
+          - {label: "SEO Description", name: "seo_description", widget: "text"}
+      
+      # Contact Page
+      - label: "Contact Page"
+        name: "contact"
+        file: "content/pages/contact.json"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Title (Arabic)", name: "title_ar", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Support Email", name: "support_email", widget: "string"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Toll Free", name: "toll_free", widget: "string"}
+          - {label: "Address", name: "address", widget: "text"}
+          - {label: "Address (Arabic)", name: "address_ar", widget: "text"}
+          - {label: "Office Hours", name: "hours", widget: "text"}
+          - {label: "Office Hours (Arabic)", name: "hours_ar", widget: "text"}
+          - {label: "Social Media", name: "social", widget: "object", fields: [
+              {label: "Twitter", name: "twitter", widget: "string", required: false},
+              {label: "Instagram", name: "instagram", widget: "string", required: false},
+              {label: "Facebook", name: "facebook", widget: "string", required: false},
+              {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+            ]}
+      
+      # Privacy Policy
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "content/pages/privacy.json"
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "Privacy Policy"}
+          - {label: "Title (Arabic)", name: "title_ar", widget: "string", default: "سياسة الخصوصية"}
+          - {label: "Last Updated", name: "last_updated", widget: "datetime"}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Body (Arabic)", name: "body_ar", widget: "markdown"}
+      
+      # Terms & Conditions
+      - label: "Terms & Conditions"
+        name: "terms"
+        file: "content/pages/terms.json"
+        fields:
+          - {label: "Title", name: "title", widget: "string", default: "Terms & Conditions"}
+          - {label: "Title (Arabic)", name: "title_ar", widget: "string", default: "الشروط والأحكام"}
+          - {label: "Last Updated", name: "last_updated", widget: "datetime"}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Body (Arabic)", name: "body_ar", widget: "markdown"}
+
+      # Homepage Settings
+      - label: "Homepage"
+        name: "homepage"
+        file: "content/pages/homepage.json"
+        fields:
+          - {label: "Hero Title", name: "hero_title", widget: "string", default: "SkyLynx"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "string", default: "TRAVEL"}
+          - {label: "Hero Tagline", name: "hero_tagline", widget: "text"}
+          - {label: "Hero Tagline (Arabic)", name: "hero_tagline_ar", widget: "text"}
+          - {label: "AI Badge Text", name: "ai_badge", widget: "string"}
+          - {label: "AI Badge Text (Arabic)", name: "ai_badge_ar", widget: "string"}
+
+  # Destinations
+  - name: "destinations"
+    label: "Destinations"
+    folder: "content/destinations"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title (Arabic)", name: "title_ar", widget: "string"}
+      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Description (Arabic)", name: "description_ar", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body (Arabic)", name: "body_ar", widget: "markdown"}
+      - {label: "Country", name: "country", widget: "string"}
+      - {label: "Region", name: "region", widget: "string"}
+      - {label: "Best Time to Visit", name: "best_time", widget: "string", required: false}
+      - {label: "Average Temperature", name: "avg_temp", widget: "string", required: false}
+      - {label: "Currency", name: "currency", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Order", name: "order", widget: "number", default: 0}
+
+  # Site Settings
+  - name: "settings"
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "content/settings/general.json"
+        fields:
+          - {label: "Site Title", name: "site_title", widget: "string", default: "SkyLynx Travel"}
+          - {label: "Site Description", name: "site_description", widget: "text"}
+          - {label: "Site URL", name: "site_url", widget: "string", default: "https://skylynx.co"}
+          - {label: "Logo", name: "logo", widget: "image", required: false}
+          - {label: "Favicon", name: "favicon", widget: "image", required: false}
+          - {label: "Primary Color", name: "primary_color", widget: "color", default: "#00a6fb"}
+          - {label: "Secondary Color", name: "secondary_color", widget: "color", default: "#9d4edd"}
+          - {label: "Footer Copyright", name: "copyright", widget: "string"}
+          - {label: "Footer Copyright (Arabic)", name: "copyright_ar", widget: "string"}
+          - {label: "Google Analytics ID", name: "ga_id", widget: "string", required: false}
+
+      - label: "Navigation"
+        name: "navigation"
+        file: "content/settings/navigation.json"
+        fields:
+          - label: "Main Menu"
+            name: "main_menu"
+            widget: "list"
+            fields:
+              - {label: "Label", name: "label", widget: "string"}
+              - {label: "Label (Arabic)", name: "label_ar", widget: "string"}
+              - {label: "Link", name: "link", widget: "string"}
+              - {label: "Icon", name: "icon", widget: "string", hint: "Font Awesome class (e.g., fa-home)"}
+          
+          - label: "Footer Links"
+            name: "footer_links"
+            widget: "list"
+            fields:
+              - {label: "Section Title", name: "section", widget: "string"}
+              - {label: "Section Title (Arabic)", name: "section_ar", widget: "string"}
+              - label: "Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - {label: "Label", name: "label", widget: "string"}
+                  - {label: "Label (Arabic)", name: "label_ar", widget: "string"}
+                  - {label: "URL", name: "url", widget: "string"}

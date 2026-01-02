@@ -1,153 +1,277 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Home & Main Pages -->
-    <url>
-        <loc>https://skylynx.co/</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/booking.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/about.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/contact.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/affiliate.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- Blog Articles -->
-    <url>
-        <loc>https://skylynx.co/blog/dubai-luxury-guide-2024.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog/paris-luxury-hotels-2024.html</loc>
-        <lastmod>2024-03-12</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog/free-flight-upgrades-tips.html</loc>
-        <lastmod>2024-03-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog/maldives-resorts-guide.html</loc>
-        <lastmod>2024-03-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog/tokyo-5-day-itinerary.html</loc>
-        <lastmod>2024-03-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/blog/luxury-car-rental-europe.html</loc>
-        <lastmod>2024-03-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Legal Pages -->
-    <url>
-        <loc>https://skylynx.co/privacy.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/terms.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/cookies.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.2</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/disclaimer.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.2</priority>
-    </url>
-    
-    <!-- Destinations Pages -->
-    <url>
-        <loc>https://skylynx.co/destinations.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/destinations/dubai.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/destinations/paris.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/destinations/london.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://skylynx.co/destinations/newyork.html</loc>
-        <lastmod>2024-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://skylynx.co/</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skylynx.co/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://skylynx.co/ar/"/>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://skylynx.co/about</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://skylynx.co/contact</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://skylynx.co/blog</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://skylynx.co/privacy-policy</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Terms & Conditions -->
+  <url>
+    <loc>https://skylynx.co/terms-conditions</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Cookie Policy -->
+  <url>
+    <loc>https://skylynx.co/cookie-policy</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Blog Posts - English -->
+  <url>
+    <loc>https://skylynx.co/blog/luxury-hotels-paris-2026</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/free-flight-upgrades-secrets</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/luxury-travel-tokyo-guide</loc>
+    <lastmod>2026-01-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/group-travel-planning-guide</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/best-time-book-flights</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/maldives-luxury-resorts-2026</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/private-jet-charter-guide</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/london-luxury-experiences</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/travel-insurance-luxury-guide</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ai-travel-planning-future</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Posts - Arabic -->
+  <url>
+    <loc>https://skylynx.co/blog/ar/luxury-hotels-paris-2026-ar</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/free-flight-upgrades-secrets-ar</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/luxury-travel-tokyo-guide-ar</loc>
+    <lastmod>2026-01-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/group-travel-planning-guide-ar</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/best-time-book-flights-ar</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/maldives-luxury-resorts-2026-ar</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/private-jet-charter-guide-ar</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/london-luxury-experiences-ar</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/travel-insurance-luxury-guide-ar</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/ai-travel-planning-future-ar</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Canadian Content Articles - English -->
+  <url>
+    <loc>https://skylynx.co/blog/luxury-travel-guide-ottawa-canada</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/luxury-travel-canada-coast-to-coast</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/canadian-rockies-luxury-resorts-guide</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/toronto-vancouver-luxury-city-guide</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/quebec-montreal-luxury-french-canada</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Canadian Content Articles - Arabic -->
+  <url>
+    <loc>https://skylynx.co/blog/ar/luxury-travel-guide-ottawa-canada-ar</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/luxury-travel-canada-coast-to-coast-ar</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/canadian-rockies-luxury-resorts-guide-ar</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/toronto-vancouver-luxury-city-guide-ar</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://skylynx.co/blog/ar/quebec-montreal-luxury-french-canada-ar</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
