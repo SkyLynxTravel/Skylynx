@@ -42,13 +42,13 @@
         
         [lang="ar"] { 
             direction: rtl; 
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Cairo', sans-serif !important;
             text-align: right;
         }
         
         [lang="en"] { 
             direction: ltr; 
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif !important;
             text-align: left;
         }
         
@@ -1165,6 +1165,7 @@
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         
         .ai-feature-card::before {
@@ -1315,6 +1316,7 @@
             align-items: center;
             gap: 8px;
             transition: gap 0.3s;
+            cursor: pointer;
         }
         
         .read-more:hover {
@@ -2323,82 +2325,82 @@
         <p class="section-subtitle" data-key="aiFeaturesSubtitle">Experience the future of luxury travel with our advanced AI technology</p>
         
         <div class="ai-features-grid">
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=ai-travel-planning-future'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-brain"></i>
                 </div>
                 <span class="ai-feature-badge">Smart Assistant</span>
                 <h3 data-key="aiFeature1Title">AI Travel Planner</h3>
                 <p data-key="aiFeature1Desc">Intelligent itinerary creation based on your preferences, budget, and travel style. Our AI analyzes millions of data points to create your perfect trip.</p>
-                <a href="article.html?slug=ai-travel-planning-future" class="read-more">
+                <div class="read-more">
                     <span data-key="tryAiPlanner">Try AI Planner</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
             
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=best-time-book-flights'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <span class="ai-feature-badge">Price Intelligence</span>
                 <h3 data-key="aiFeature2Title">Smart Price Predictor</h3>
                 <p data-key="aiFeature2Desc">Predict the best time to book with 92% accuracy. Our AI monitors prices across all providers and alerts you when it's the optimal time to purchase.</p>
-                <a href="article.html?slug=best-time-book-flights" class="read-more">
+                <div class="read-more">
                     <span data-key="viewPredictions">View Predictions</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
             
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=ai-travel-planning-future'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-magic"></i>
                 </div>
                 <span class="ai-feature-badge">Personalized</span>
                 <h3 data-key="aiFeature3Title">Personalized Recommendations</h3>
                 <p data-key="aiFeature3Desc">Get hotel, restaurant, and activity suggestions tailored specifically to your tastes. Learns from your preferences to improve recommendations over time.</p>
-                <a href="article.html?slug=ai-travel-planning-future" class="read-more">
+                <div class="read-more">
                     <span data-key="getRecommendations">Get Recommendations</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
             
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=ai-travel-planning-future'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-comments"></i>
                 </div>
                 <span class="ai-feature-badge">24/7 Support</span>
                 <h3 data-key="aiFeature4Title">AI Concierge Service</h3>
                 <p data-key="aiFeature4Desc">Instant answers to all your travel questions. From visa requirements to local customs, our AI assistant is available 24/7 in multiple languages.</p>
-                <a href="article.html?slug=ai-travel-planning-future" class="read-more">
+                <div class="read-more">
                     <span data-key="chatNow">Chat Now</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
             
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=ai-travel-planning-future'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-sitemap"></i>
                 </div>
                 <span class="ai-feature-badge">Optimization</span>
                 <h3 data-key="aiFeature5Title">Route Optimization</h3>
                 <p data-key="aiFeature5Desc">AI-powered travel routing that minimizes layovers and maximizes comfort. Calculates the most efficient paths considering weather and traffic.</p>
-                <a href="article.html?slug=ai-travel-planning-future" class="read-more">
+                <div class="read-more">
                     <span data-key="optimizeRoute">Optimize Route</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
             
-            <div class="ai-feature-card">
+            <div class="ai-feature-card" onclick="window.location.href='article.html?slug=ai-travel-planning-future'">
                 <div class="ai-feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <span class="ai-feature-badge">Security</span>
                 <h3 data-key="aiFeature6Title">AI Travel Security</h3>
                 <p data-key="aiFeature6Desc">Real-time safety alerts and travel advisories. Our AI monitors global situations to keep you informed and safe throughout your journey.</p>
-                <a href="article.html?slug=ai-travel-planning-future" class="read-more">
+                <div class="read-more">
                     <span data-key="learnMore">Learn More</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
         </div>
     </div>
@@ -2411,44 +2413,44 @@
     
     <div class="blog-grid">
         <!-- Article 1 -->
-        <article class="blog-card">
+        <article class="blog-card" onclick="window.location.href='article.html?slug=luxury-travel-dubai-2026'">
             <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" alt="Dubai Luxury Guide" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
                 <span class="blog-category">⭐ <span data-key="luxury">Luxury</span></span>
-                <h3 class="blog-title" data-key="article1Title">Complete Guide to Luxury Travel in Dubai 2024</h3>
+                <h3 class="blog-title" data-key="article1Title">Complete Guide to Luxury Travel in Dubai 2026</h3>
                 <p class="blog-excerpt" data-key="article1Desc">Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.</p>
-                <a href="#ai-assistant" class="read-more">
+                <div class="read-more">
                     <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
         </article>
         
         <!-- Article 2 -->
-        <article class="blog-card">
+        <article class="blog-card" onclick="window.location.href='article.html?slug=luxury-hotels-paris-2026'">
             <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800" alt="Paris Hotels" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
                 <span class="blog-category">🏨 <span data-key="hotels">Hotels</span></span>
-                <h3 class="blog-title" data-key="article2Title">Top 10 Luxury Hotels in Paris 2024</h3>
+                <h3 class="blog-title" data-key="article2Title">Top 10 Luxury Hotels in Paris 2026</h3>
                 <p class="blog-excerpt" data-key="article2Desc">Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.</p>
-                <a href="#ai-assistant" class="read-more">
+                <div class="read-more">
                     <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
         </article>
         
         <!-- Article 3 -->
-        <article class="blog-card">
+        <article class="blog-card" onclick="window.location.href='article.html?slug=free-flight-upgrades-secrets'">
             <img src="https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=800" alt="Flight Tips" class="blog-image" onerror="this.src='https://images.unsplash.com/photo-1516893842880-5d8aada7acac?auto=format&fit=crop&q=80&w=800'">
             <div class="blog-content">
                 <span class="blog-category">💰 <span data-key="tips">Tips</span></span>
                 <h3 class="blog-title" data-key="article3Title">10 Ways to Get Free Flight Upgrades</h3>
                 <p class="blog-excerpt" data-key="article3Desc">Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.</p>
-                <a href="#ai-assistant" class="read-more">
+                <div class="read-more">
                     <span data-key="readMore">Read More</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </div>
             </div>
         </article>
     </div>
@@ -2512,7 +2514,7 @@
     
     <div class="destinations-grid">
         <!-- New York -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html?slug=new-york-luxury-hotels-guide'">
             <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1200" alt="New York Skyline at Dusk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="newYork">New York</h3>
@@ -2521,7 +2523,7 @@
         </div>
         
         <!-- London -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html'">
             <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200" alt="London Tower Bridge at Night" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="london">London</h3>
@@ -2530,7 +2532,7 @@
         </div>
         
         <!-- Dubai -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html?slug=luxury-travel-dubai-2026'">
             <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" alt="Dubai Burj Khalifa" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="dubai">Dubai</h3>
@@ -2539,7 +2541,7 @@
         </div>
         
         <!-- Vancouver -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html?slug=toronto-vancouver-luxury-city-guide'">
             <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&q=80&w=1200" alt="Vancouver Skyline" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="vancouver">Vancouver</h3>
@@ -2548,7 +2550,7 @@
         </div>
         
         <!-- Ottawa -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html?slug=luxury-travel-guide-ottawa-canada'">
             <img src="https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=1200" alt="Ottawa Parliament at Night" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="ottawa">Ottawa</h3>
@@ -2557,7 +2559,7 @@
         </div>
         
         <!-- Toronto -->
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='article.html?slug=toronto-vancouver-luxury-city-guide'">
             <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=1200" alt="Toronto Skyline" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=1200'">
             <div class="destination-overlay">
                 <h3 data-key="toronto">Toronto</h3>
@@ -2588,7 +2590,7 @@
         </ul>
         
         <p data-key="aboutDesc3">We partner with leading travel providers worldwide while developing proprietary AI technology to ensure our clients receive the most intelligent, personalized travel service available anywhere.</p>
-        <p style="margin-top:30px;font-size:1.1rem"><strong>Contact us:</strong> <a href="/cdn-cgi/l/email-protection#94fdfaf2fbd4e7ffedf8edfaecbaf7fb" style="color:var(--sky-glow);text-decoration:none"><span class="__cf_email__" data-cfemail="ee87808881ae9d859782978096c08d81">[email&#160;protected]</span></a><br><strong>Address:</strong> Rideau St., Ottawa, ON K1N 9J7, Canada</p>
+        <p style="margin-top:30px;font-size:1.1rem"><strong>Contact us:</strong> <a href="mailto:info@skylynx.co" style="color:var(--sky-glow);text-decoration:none">info@skylynx.co</a><br><strong>Address:</strong> Rideau St., Ottawa, ON K1N 9J7, Canada</p>
         
         <div class="text-center mt-4">
             <a href="about.html" class="btn btn-primary">
@@ -2656,19 +2658,43 @@
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ========== المتغيرات الأساسية ==========
-    let currentLang = localStorage.getItem('siteLang') || 'en';
-    let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
-    let aiModalOpen = false;
-    
-    let passengerCounts = {
-        adults: 1,
-        children: 0,
-        infants: 0
-    };
+<script>
+    // ========== نظام اللغة المحسن ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Initializing SkyLynx Travel...');
+        
+        // استرجاع اللغة من localStorage
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        console.log('Current language from storage:', currentLang);
+        
+        // تحديث اختيار اللغة في القائمة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.value = currentLang;
+            console.log('Set language select to:', currentLang);
+        }
+        
+        // تحديث اسم زر تغيير اللغة
+        const langText = document.getElementById('lang-text');
+        if (langText) {
+            langText.textContent = currentLang === 'en' ? 'العربية' : 'English';
+        }
+        
+        // تحديث اللغة فوراً
+        setTimeout(() => {
+            updateLanguage(currentLang);
+        }, 100);
+        
+        // تعيين التواريخ الافتراضية
+        setDefaultDates();
+        
+        // تهيئة جميع الأنظمة
+        initializeSystems();
+        
+        console.log('SkyLynx Travel initialized successfully');
+    });
 
-    // نظام الترجمة الكامل
+    // ========== نظام الترجمة الكامل ==========
     const translations = {
         en: {
             // Navigation
@@ -2822,9 +2848,9 @@
             luxury: "Luxury",
             hotels: "Hotels",
             tips: "Tips",
-            article1Title: "Complete Guide to Luxury Travel in Dubai 2024",
+            article1Title: "Complete Guide to Luxury Travel in Dubai 2026",
             article1Desc: "Discover the best luxury hotels, Michelin-star restaurants, and unique experiences waiting for you in Dubai. Comprehensive guide with exclusive tips from travel experts.",
-            article2Title: "Top 10 Luxury Hotels in Paris 2024",
+            article2Title: "Top 10 Luxury Hotels in Paris 2026",
             article2Desc: "Detailed review of the finest hotels in Paris. Compare services, locations, and amenities with tips for getting the best deals and upgrades.",
             article3Title: "10 Ways to Get Free Flight Upgrades",
             article3Desc: "Secrets and experiences for getting free upgrades to business or first class. Learn from travel experts how to improve your chances of an upgrade.",
@@ -3051,9 +3077,9 @@
             luxury: "فاخر",
             hotels: "فنادق",
             tips: "نصائح",
-            article1Title: "الدليل الكامل للسفر الفاخر في دبي 2024",
+            article1Title: "الدليل الكامل للسفر الفاخر في دبي 2026",
             article1Desc: "اكتشف أفضل الفنادق الفاخرة ومطاعم ميشلان والتجارب الفريدة التي تنتظرك في دبي. دليل شامل مع نصائح حصرية من خبراء السفر.",
-            article2Title: "أفضل 10 فنادق فاخرة في باريس 2024",
+            article2Title: "أفضل 10 فنادق فاخرة في باريس 2026",
             article2Desc: "مراجعة مفصلة لأفضل الفنادق في باريس. قارن الخدمات والمواقع والمرافق مع نصائح للحصول على أفضل العروض والترقيات.",
             article3Title: "10 طرق للحصول على ترقيات مجانية للطيران",
             article3Desc: "أسرار وتجارب للحصول على ترقيات مجانية لدرجة رجال الأعمال أو الدرجة الأولى. تعلم من خبراء السفر كيفية تحسين فرصك في الترقية.",
@@ -3130,59 +3156,161 @@
         }
     };
 
-    // ========== دالة تحديث ملخص المسافرين ==========
-    function updatePassengerSummary() {
-        const total = passengerCounts.adults + passengerCounts.children + passengerCounts.infants;
-        let summaryText = '';
+    // ========== دالة تحديث اللغة ==========
+    function updateLanguage(lang) {
+        console.log('Updating language to:', lang);
         
-        if (currentLang === 'ar') {
-            summaryText = `${passengerCounts.adults} بالغ`;
-            if (passengerCounts.children > 0) {
-                summaryText += `، ${passengerCounts.children} طفل`;
-            }
-            if (passengerCounts.infants > 0) {
-                summaryText += `، ${passengerCounts.infants} رضيع`;
-            }
-        } else {
-            summaryText = `${passengerCounts.adults} Adult`;
-            if (passengerCounts.children > 0) {
-                summaryText += `, ${passengerCounts.children} Child`;
-            }
-            if (passengerCounts.infants > 0) {
-                summaryText += `, ${passengerCounts.infants} Infant`;
-            }
+        // حفظ اللغة في localStorage
+        localStorage.setItem('siteLang', lang);
+        
+        // تحديث سمة HTML
+        document.getElementById('main-html').lang = lang;
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.style.fontFamily = lang === 'ar' ? "'Cairo', sans-serif" : "'Montserrat', sans-serif";
+        
+        // تحديث اسم زر تغيير اللغة
+        const langText = document.getElementById('lang-text');
+        if (langText) {
+            langText.textContent = lang === 'en' ? 'العربية' : 'English';
         }
         
-        document.getElementById('passengers-summary-text').textContent = summaryText;
-        document.getElementById('totalPassengers').textContent = total;
-    }
-
-    // ========== تهيئة الصفحة ==========
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Page loaded, initializing...');
+        // تحديث اختيار اللغة في القائمة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.value = lang;
+        }
         
-        // تعيين اللغة والعملة
-        document.getElementById('lang-sel').value = currentLang;
-        document.getElementById('curr-sel').value = currentCurrency;
+        // الحصول على الترجمة
+        const translation = translations[lang];
+        if (!translation) {
+            console.error('Translation not found for language:', lang);
+            return;
+        }
         
-        // تعيين التواريخ الافتراضية
-        setDefaultDates();
+        // تحديث جميع العناصر ذات data-key
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const key = element.getAttribute('data-key');
+            if (translation[key]) {
+                element.textContent = translation[key];
+            }
+        });
         
-        // تهيئة جميع الأنظمة
-        initializeAIAssistant();
-        initializeTabs();
-        initializePassengerDropdown();
-        initializeGroupBooking();
-        initializeEventListeners();
+        // تحديث أماكن العناصر النائبة
+        updatePlaceholders(lang);
         
-        // تحديث اللغة
-        updateLanguage(currentLang);
-        
-        // تحديث ملخص المسافرين الأولي
+        // تحديث ملخص المسافرين
         updatePassengerSummary();
         
-        console.log('Initialization complete');
-    });
+        console.log('Language updated successfully');
+    }
+
+    // ========== تعيين التواريخ الافتراضية ==========
+    function setDefaultDates() {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        const nextWeek = new Date(today);
+        nextWeek.setDate(today.getDate() + 7);
+        
+        const formatDate = (date) => date.toISOString().split('T')[0];
+        
+        // رحلات الطيران
+        const flightDeparture = document.getElementById('flight-departure');
+        const flightReturn = document.getElementById('flight-return');
+        if (flightDeparture) flightDeparture.value = formatDate(tomorrow);
+        if (flightReturn) flightReturn.value = formatDate(nextWeek);
+        
+        // الطائرات الخاصة
+        const privateDeparture = document.getElementById('private-departure');
+        const privateReturn = document.getElementById('private-return');
+        if (privateDeparture) privateDeparture.value = formatDate(tomorrow);
+        if (privateReturn) privateReturn.value = formatDate(nextWeek);
+        
+        // الفنادق
+        const hotelCheckin = document.getElementById('hotel-checkin');
+        const hotelCheckout = document.getElementById('hotel-checkout');
+        if (hotelCheckin) hotelCheckin.value = formatDate(tomorrow);
+        if (hotelCheckout) hotelCheckout.value = formatDate(nextWeek);
+        
+        // السيارات
+        const carPickupDate = document.getElementById('car-pickup-date');
+        const carReturnDate = document.getElementById('car-return-date');
+        if (carPickupDate) carPickupDate.value = formatDate(tomorrow);
+        if (carReturnDate) carReturnDate.value = formatDate(nextWeek);
+    }
+
+    // ========== تحديث أماكن العناصر النائبة ==========
+    function updatePlaceholders(lang) {
+        const placeholders = {
+            'flight-from': lang === 'ar' ? 'أوتاوا (YOW)' : 'Ottawa (YOW)',
+            'flight-to': lang === 'ar' ? 'فانكوفر (YVR)' : 'Vancouver (YVR)',
+            'private-origin': lang === 'ar' ? 'مطار أو مدينة' : 'Airport or City',
+            'private-destination': lang === 'ar' ? 'أي وجهة' : 'Any Destination',
+            'hotel-destination': lang === 'ar' ? 'مدينة أو اسم فندق' : 'City or Hotel Name',
+            'car-pickup': lang === 'ar' ? 'مطار أو عنوان' : 'Airport or Address',
+            'car-dropoff': lang === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up',
+            'group-from': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport',
+            'group-to': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport'
+        };
+        
+        Object.keys(placeholders).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.placeholder = placeholders[id];
+            }
+        });
+    }
+
+    // ========== تهيئة جميع الأنظمة ==========
+    function initializeSystems() {
+        console.log('Initializing systems...');
+        
+        // إضافة مستمع الأحداث لتغيير اللغة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const newLang = this.value;
+                console.log('Language changed via select:', newLang);
+                updateLanguage(newLang);
+            });
+        }
+        
+        // تهيئة علامات التبويب
+        initializeTabs();
+        
+        // تهيئة مساعد الذكاء الاصطناعي
+        initializeAIAssistant();
+        
+        // تهيئة حاوية المسافرين
+        initializePassengerDropdown();
+        
+        // تهيئة حجز المجموعات
+        initializeGroupBooking();
+        
+        // إضافة روابط للنقرات
+        addClickListeners();
+        
+        console.log('All systems initialized');
+    }
+
+    // ========== علامات التبويب ==========
+    function initializeTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // إزالة النشط من جميع علامات التبويب والنماذج
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.form-content').forEach(f => f.classList.remove('active'));
+                
+                // إضافة النشط للعلامة والنموذج المحدد
+                this.classList.add('active');
+                document.getElementById(`${tabId}-form`).classList.add('active');
+            });
+        });
+    }
 
     // ========== مساعد الذكاء الاصطناعي ==========
     function initializeAIAssistant() {
@@ -3192,14 +3320,12 @@
         const aiSendBtn = document.getElementById('aiSendBtn');
         const aiInput = document.getElementById('aiInput');
         
-        if (!aiBtn || !aiModal) {
-            console.error('AI elements not found');
-            return;
-        }
+        if (!aiBtn || !aiModal) return;
+        
+        let aiModalOpen = false;
         
         // فتح مساعد الذكاء الاصطناعي
         aiBtn.addEventListener('click', function() {
-            console.log('Opening AI Assistant');
             aiModal.classList.add('show');
             aiModalOpen = true;
             aiInput.focus();
@@ -3207,7 +3333,6 @@
         
         // إغلاق مساعد الذكاء الاصطناعي
         aiCloseBtn.addEventListener('click', function() {
-            console.log('Closing AI Assistant');
             aiModal.classList.remove('show');
             aiModalOpen = false;
         });
@@ -3224,7 +3349,6 @@
         
         // إرسال الرسالة
         aiSendBtn.addEventListener('click', sendAIMessage);
-        
         aiInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 sendAIMessage();
@@ -3244,54 +3368,90 @@
                 scrollToBottom();
             }, 800);
         }
-    }
-    
-    function addAIMessage(text, type) {
-        const aiChatContainer = document.getElementById('aiChatContainer');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `ai-message ${type}`;
-        messageDiv.textContent = text;
-        aiChatContainer.appendChild(messageDiv);
-        scrollToBottom();
-    }
-    
-    function scrollToBottom() {
-        const aiChatContainer = document.getElementById('aiChatContainer');
-        aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
-    }
-    
-    function getAIResponse(input) {
-        const lowerInput = input.toLowerCase();
         
-        if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
-            return currentLang === 'ar' ? 
-                "👋 مرحبًا! أنا مساعد السفر الذكي الخاص بك. كيف يمكنني مساعدتك في تخطيط رحلتك الفاخرة اليوم؟" : 
-                "👋 Hello! I'm your AI travel assistant. How can I help you plan your luxury journey today?";
+        function addAIMessage(text, type) {
+            const aiChatContainer = document.getElementById('aiChatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `ai-message ${type}`;
+            messageDiv.textContent = text;
+            aiChatContainer.appendChild(messageDiv);
+            scrollToBottom();
         }
         
-        if (lowerInput.includes('flight') || (currentLang === 'ar' && (lowerInput.includes('طيران') || lowerInput.includes('رحلة')))) {
+        function scrollToBottom() {
+            const aiChatContainer = document.getElementById('aiChatContainer');
+            aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
+        }
+        
+        function getAIResponse(input) {
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            const lowerInput = input.toLowerCase();
+            
+            if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
+                return currentLang === 'ar' ? 
+                    "👋 مرحبًا! أنا مساعد السفر الذكي الخاص بك. كيف يمكنني مساعدتك في تخطيط رحلتك الفاخرة اليوم؟" : 
+                    "👋 Hello! I'm your AI travel assistant. How can I help you plan your luxury journey today?";
+            }
+            
+            if (lowerInput.includes('flight') || (currentLang === 'ar' && (lowerInput.includes('طيران') || lowerInput.includes('رحلة')))) {
+                return currentLang === 'ar' ?
+                    "✈️ يمكنني مساعدتك في العثور على أفضل الرحلات! ما هي وجهة المغادرة والوجهة؟" :
+                    "✈️ I can help you find the best flights! What's your departure and destination?";
+            }
+            
+            if (lowerInput.includes('group') || (currentLang === 'ar' && (lowerInput.includes('مجموعة') || lowerInput.includes('جماعي')))) {
+                return currentLang === 'ar' ?
+                    "👥 للحجوزات الجماعية، يرجى استخدام ميزة خدمات السفر الجماعي في نموذج الحجز!" :
+                    "👥 For group bookings, please use our Group Travel Services feature in the booking form!";
+            }
+            
             return currentLang === 'ar' ?
-                "✈️ يمكنني مساعدتك في العثور على أفضل الرحلات! ما هي وجهة المغادرة والوجهة؟" :
-                "✈️ I can help you find the best flights! What's your departure and destination?";
+                "🤖 أفهم أنك تسأل عن السفر. يمكنني المساعدة في الرحلات الجوية والفنادق والسيارات والحجوزات الجماعية. ما الذي تريد معرفته بالتحديد؟" :
+                "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
         }
-        
-        if (lowerInput.includes('group') || (currentLang === 'ar' && (lowerInput.includes('مجموعة') || lowerInput.includes('جماعي')))) {
-            return currentLang === 'ar' ?
-                "👥 للحجوزات الجماعية، يرجى استخدام ميزة خدمات السفر الجماعي في نموذج الحجز!" :
-                "👥 For group bookings, please use our Group Travel Services feature in the booking form!";
-        }
-        
-        return currentLang === 'ar' ?
-            "🤖 أفهم أنك تسأل عن السفر. يمكنني المساعدة في الرحلات الجوية والفنادق والسيارات والحجوزات الجماعية. ما الذي تريد معرفته بالتحديد؟" :
-            "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
     }
 
-    // ========== حاوية المسافرين المنسدلة - النسخة المصححة ==========
+    // ========== حاوية المسافرين ==========
     function initializePassengerDropdown() {
         const passengersSelect = document.getElementById('passengers-select');
         const passengersDropdown = document.getElementById('passengers-dropdown');
         const doneBtn = document.getElementById('passengers-done');
         
+        if (!passengersSelect) return;
+        
+        let passengerCounts = {
+            adults: 1,
+            children: 0,
+            infants: 0
+        };
+
+        function updatePassengerSummary() {
+            const total = passengerCounts.adults + passengerCounts.children + passengerCounts.infants;
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            let summaryText = '';
+            
+            if (currentLang === 'ar') {
+                summaryText = `${passengerCounts.adults} بالغ`;
+                if (passengerCounts.children > 0) {
+                    summaryText += `، ${passengerCounts.children} طفل`;
+                }
+                if (passengerCounts.infants > 0) {
+                    summaryText += `، ${passengerCounts.infants} رضيع`;
+                }
+            } else {
+                summaryText = `${passengerCounts.adults} Adult`;
+                if (passengerCounts.children > 0) {
+                    summaryText += `, ${passengerCounts.children} Child`;
+                }
+                if (passengerCounts.infants > 0) {
+                    summaryText += `, ${passengerCounts.infants} Infant`;
+                }
+            }
+            
+            document.getElementById('passengers-summary-text').textContent = summaryText;
+            document.getElementById('totalPassengers').textContent = total;
+        }
+
         // فتح/إغلاق القائمة المنسدلة
         passengersSelect.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -3371,6 +3531,9 @@
                 updatePassengerSummary();
             }
         };
+        
+        // تحديث الملخص الأولي
+        updatePassengerSummary();
     }
 
     // ========== حجز المجموعات ==========
@@ -3378,28 +3541,21 @@
         const openBtn = document.getElementById('openGroupBooking');
         const closeBtn = document.getElementById('closeGroupModal');
         const groupModal = document.getElementById('groupModal');
-        const groupCards = document.querySelectorAll('.group-option-card');
-        const requestBtn = document.getElementById('requestGroupQuote');
         
-        if (!openBtn || !groupModal) {
-            console.error('Group booking elements not found');
-            return;
-        }
-        
-        console.log('Initializing group booking');
+        if (!openBtn || !groupModal) return;
         
         // فتح نافذة المجموعات
         openBtn.addEventListener('click', function() {
-            console.log('Opening group modal');
             groupModal.classList.add('show');
             
             // تعيين القيم الافتراضية من نموذج الطيران
-            document.getElementById('group-from').value = document.getElementById('flight-from').value;
-            document.getElementById('group-to').value = document.getElementById('flight-to').value;
-            document.getElementById('group-departure-date').value = document.getElementById('flight-departure').value;
-            document.getElementById('group-return-date').value = document.getElementById('flight-return').value;
-            const total = passengerCounts.adults + passengerCounts.children + passengerCounts.infants;
-            document.getElementById('group-passengers').value = total >= 9 ? total : 20;
+            const flightFrom = document.getElementById('flight-from');
+            const flightTo = document.getElementById('flight-to');
+            const flightDeparture = document.getElementById('flight-departure');
+            
+            if (flightFrom) document.getElementById('group-from').value = flightFrom.value;
+            if (flightTo) document.getElementById('group-to').value = flightTo.value;
+            if (flightDeparture) document.getElementById('group-departure-date').value = flightDeparture.value;
         });
         
         // إغلاق نافذة المجموعات
@@ -3413,136 +3569,49 @@
                 groupModal.classList.remove('show');
             }
         });
-        
-        // اختيار نوع المجموعة
-        groupCards.forEach(card => {
-            card.addEventListener('click', function() {
-                groupCards.forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                document.getElementById('group-type-select').value = card.getAttribute('data-group-type');
-            });
-        });
-        
-        // تحديث اختيار المجموعة عند تغيير القائمة المنسدلة
-        document.getElementById('group-type-select').addEventListener('change', function() {
-            const selectedType = this.value;
-            groupCards.forEach(card => {
-                card.classList.remove('selected');
-                if (card.getAttribute('data-group-type') === selectedType) {
-                    card.classList.add('selected');
-                }
-            });
-        });
-        
-        // طلب عرض سعر المجموعة
-        requestBtn.addEventListener('click', function() {
-            const from = document.getElementById('group-from').value;
-            const to = document.getElementById('group-to').value;
-            const departureDate = document.getElementById('group-departure-date').value;
-            const passengers = parseInt(document.getElementById('group-passengers').value);
-            
-            if (!from || !to || !departureDate || passengers < 9) {
-                alert(currentLang === 'ar' ? 
-                    'يرجى إدخال جميع الحقول المطلوبة وتأكد من أن عدد المسافرين 9 أو أكثر' :
-                    'Please fill all required fields and ensure passenger count is 9 or more');
-                return;
-            }
-            
-            showLoading(currentLang === 'ar' ? 
-                'جارٍ معالجة طلب حجز المجموعة...' : 
-                'Processing group booking request...');
-            
-            setTimeout(() => {
-                hideLoading();
-                
-                if (currentLang === 'ar') {
-                    alert(`✨ طلب حجز مجموعة تم إرساله بنجاح!\n\n📊 تفاصيل المجموعة:\n📍 من: ${from}\n📍 إلى: ${to}\n📅 تاريخ المغادرة: ${departureDate}\n👥 عدد المسافرين: ${passengers}\n\n🎯 سيتم تحويلك إلى صفحة الاستشارة الجماعية حيث سيتصل بك مستشار السفر الخاص خلال 24 ساعة.`);
-                } else {
-                    alert(`✨ Group booking request submitted successfully!\n\n📊 Group Details:\n📍 From: ${from}\n📍 To: ${to}\n📅 Departure Date: ${departureDate}\n👥 Passengers: ${passengers}\n\n🎯 You will be redirected to the group consultation page where our travel advisor will contact you within 24 hours.`);
-                }
-                
-                groupModal.classList.remove('show');
-                document.getElementById('group-requirements').value = '';
-                
-            }, 2000);
-        });
     }
 
-    // ========== علامات التبويب ==========
-    function initializeTabs() {
-        const tabs = document.querySelectorAll('.tab');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // إزالة النشط من جميع علامات التبويب والنماذج
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.form-content').forEach(f => f.classList.remove('active'));
-                
-                // إضافة النشط للعلامة والنموذج المحدد
-                this.classList.add('active');
-                document.getElementById(`${tabId}-form`).classList.add('active');
-            });
-        });
-    }
-
-    // ========== المستمعون للأحداث ==========
-    function initializeEventListeners() {
-        // تغيير اللغة
-        document.getElementById('lang-sel').addEventListener('change', function() {
-            currentLang = this.value;
-            localStorage.setItem('siteLang', currentLang);
-            updateLanguage(currentLang);
-        });
-        
-        // تغيير العملة
-        document.getElementById('curr-sel').addEventListener('change', function() {
-            currentCurrency = this.value;
-            localStorage.setItem('skylynx_currency', currentCurrency);
-        });
-        
-        // منع الإرسال التلقائي للنماذج وإضافة معالجة خاصة
-        document.getElementById('flights-form').addEventListener('submit', function(e) {
+    // ========== إضافة مستمعي النقر ==========
+    function addClickListeners() {
+        // منع الإرسال التلقائي للنماذج
+        document.getElementById('flights-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            searchFlights();
+            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن الرحلات...' : 'Searching flights...');
         });
         
-        document.getElementById('private-form').addEventListener('submit', function(e) {
+        document.getElementById('private-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            searchPrivateJet();
+            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ طلب عرض السعر...' : 'Requesting quote...');
         });
         
-        document.getElementById('hotels-form').addEventListener('submit', function(e) {
+        document.getElementById('hotels-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            searchHotels();
+            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن الفنادق...' : 'Searching hotels...');
         });
         
-        document.getElementById('cars-form').addEventListener('submit', function(e) {
+        document.getElementById('cars-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            searchCars();
+            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن السيارات...' : 'Searching cars...');
         });
         
         // نفس الموقع للسيارة
-        document.getElementById('same-location').addEventListener('change', function() {
-            const dropoffInput = document.getElementById('car-dropoff');
-            if (this.checked) {
-                dropoffInput.value = '';
-                dropoffInput.placeholder = currentLang === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up';
-                dropoffInput.disabled = true;
-            } else {
-                dropoffInput.disabled = false;
-                dropoffInput.placeholder = currentLang === 'ar' ? 'أدخل العنوان' : 'Enter address';
-            }
-        });
+        const sameLocationCheckbox = document.getElementById('same-location');
+        const dropoffInput = document.getElementById('car-dropoff');
         
-        // إضافة الروابط للنقرات في القائمة
-        document.getElementById('home-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        });
+        if (sameLocationCheckbox && dropoffInput) {
+            sameLocationCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    dropoffInput.value = '';
+                    dropoffInput.placeholder = localStorage.getItem('siteLang') === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up';
+                    dropoffInput.disabled = true;
+                } else {
+                    dropoffInput.disabled = false;
+                    dropoffInput.placeholder = localStorage.getItem('siteLang') === 'ar' ? 'أدخل العنوان' : 'Enter address';
+                }
+            });
+        }
         
-        // روابط التنقل الناعمة
+        // الروابط الناعمة للتنقل
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -3558,202 +3627,13 @@
                 }
             });
         });
-    }
-
-    // ========== تعيين التواريخ الافتراضية ==========
-    function setDefaultDates() {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        const nextWeek = new Date(today);
-        nextWeek.setDate(today.getDate() + 7);
         
-        const formatDate = (date) => date.toISOString().split('T')[0];
-        
-        // رحلات الطيران
-        const flightDeparture = document.getElementById('flight-departure');
-        const flightReturn = document.getElementById('flight-return');
-        if (flightDeparture) flightDeparture.value = formatDate(tomorrow);
-        if (flightReturn) flightReturn.value = formatDate(nextWeek);
-        
-        // الطائرات الخاصة
-        const privateDeparture = document.getElementById('private-departure');
-        const privateReturn = document.getElementById('private-return');
-        if (privateDeparture) privateDeparture.value = formatDate(tomorrow);
-        if (privateReturn) privateReturn.value = formatDate(nextWeek);
-        
-        // الفنادق
-        const hotelCheckin = document.getElementById('hotel-checkin');
-        const hotelCheckout = document.getElementById('hotel-checkout');
-        if (hotelCheckin) hotelCheckin.value = formatDate(tomorrow);
-        if (hotelCheckout) hotelCheckout.value = formatDate(nextWeek);
-        
-        // السيارات
-        const carPickupDate = document.getElementById('car-pickup-date');
-        const carReturnDate = document.getElementById('car-return-date');
-        if (carPickupDate) carPickupDate.value = formatDate(tomorrow);
-        if (carReturnDate) carReturnDate.value = formatDate(nextWeek);
-        
-        // المجموعات
-        const groupDepartureDate = document.getElementById('group-departure-date');
-        const groupReturnDate = document.getElementById('group-return-date');
-        if (groupDepartureDate) groupDepartureDate.value = formatDate(tomorrow);
-        if (groupReturnDate) groupReturnDate.value = formatDate(nextWeek);
-    }
-
-    // ========== دوال البحث الأساسية ==========
-    function searchFlights() {
-        const from = document.getElementById('flight-from').value;
-        const to = document.getElementById('flight-to').value;
-        const departure = document.getElementById('flight-departure').value;
-        const totalPassengers = passengerCounts.adults + passengerCounts.children + passengerCounts.infants;
-        
-        if (!from || !to || !departure) {
-            alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
-            return;
-        }
-        
-        console.log('🔍 Searching flights:', { from, to, departure, passengers: totalPassengers });
-        
-        showLoading(currentLang === 'ar' ? 'جارٍ البحث عن الرحلات...' : 'Searching for flights...');
-        
-        setTimeout(() => {
-            hideLoading();
-            
-            const message = currentLang === 'ar' 
-                ? `✨ تم العثور على رحلات من ${from} إلى ${to}\n👥 عدد المسافرين: ${totalPassengers}`
-                : `✨ Found flights from ${from} to ${to}\n👥 Passengers: ${totalPassengers}`;
-            
-            alert(message);
-        }, 1500);
-    }
-    
-    function searchPrivateJet() {
-        const origin = document.getElementById('private-origin').value;
-        const destination = document.getElementById('private-destination').value;
-        const departure = document.getElementById('private-departure').value;
-        
-        if (!origin || !destination || !departure) {
-            alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
-            return;
-        }
-        
-        showLoading(currentLang === 'ar' ? 'جارٍ طلب عرض السعر...' : 'Requesting quote...');
-        
-        setTimeout(() => {
-            hideLoading();
-            alert(currentLang === 'ar' 
-                ? '✅ توفر الطائرات الخاصة مؤكد\n💰 عرض السعر: $15,000 - $25,000'
-                : '✅ Private jet availability confirmed\n💰 Estimated quote: $15,000 - $25,000');
-        }, 1500);
-    }
-    
-    function searchHotels() {
-        const destination = document.getElementById('hotel-destination').value;
-        const checkin = document.getElementById('hotel-checkin').value;
-        const checkout = document.getElementById('hotel-checkout').value;
-        
-        if (!destination || !checkin || !checkout) {
-            alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
-            return;
-        }
-        
-        showLoading(currentLang === 'ar' ? 'جارٍ البحث عن الفنادق...' : 'Searching hotels...');
-        
-        setTimeout(() => {
-            hideLoading();
-            alert(currentLang === 'ar' 
-                ? `✨ تم العثور على فنادق في ${destination}`
-                : `✨ Found hotels in ${destination}`);
-        }, 1500);
-    }
-    
-    function searchCars() {
-        const pickup = document.getElementById('car-pickup').value;
-        const pickupDate = document.getElementById('car-pickup-date').value;
-        const returnDate = document.getElementById('car-return-date').value;
-        
-        if (!pickup || !pickupDate || !returnDate) {
-            alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
-            return;
-        }
-        
-        showLoading(currentLang === 'ar' ? 'جارٍ البحث عن السيارات...' : 'Searching cars...');
-        
-        setTimeout(() => {
-            hideLoading();
-            alert(currentLang === 'ar' 
-                ? `✨ تم العثور على سيارات في ${pickup}`
-                : `✨ Found cars at ${pickup}`);
-        }, 1500);
-    }
-
-    // ========== وظائف المساعدة ==========
-    function showLoading(message) {
-        const overlay = document.createElement('div');
-        overlay.className = 'loading-overlay';
-        overlay.id = 'loading-overlay';
-        
-        const spinner = document.createElement('div');
-        spinner.className = 'loading-spinner';
-        
-        const text = document.createElement('div');
-        text.className = 'loading-text';
-        text.textContent = message;
-        
-        overlay.appendChild(spinner);
-        overlay.appendChild(text);
-        document.body.appendChild(overlay);
-    }
-
-    function hideLoading() {
-        const overlay = document.getElementById('loading-overlay');
-        if (overlay) overlay.remove();
-    }
-
-    // ========== نظام الترجمة الكامل ==========
-    function updateLanguage(lang) {
-        currentLang = lang;
-        const translation = translations[lang];
-        
-        // تحديث سمة HTML للغة
-        document.getElementById('main-html').setAttribute('lang', lang);
-        document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        
-        // تحديث جميع العناصر ذات data-key
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.getAttribute('data-key');
-            if (translation[key]) {
-                element.textContent = translation[key];
-            }
+        // العودة للأعلى
+        document.getElementById('home-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
-        
-        // تحديث النصوص الخاصة
-        document.getElementById('aiTaglineText').textContent = translation.aiTagline;
-        document.getElementById('tag').textContent = translation.tagline;
-        document.getElementById('aiModalTitle').textContent = translation.aiModalTitle;
-        document.getElementById('aiInput').placeholder = translation.aiInputPlaceholder;
-        document.getElementById('aiBadgeText').textContent = translation.aiPowered;
-        
-        // تحديث ملخص المسافرين
-        updatePassengerSummary();
-        
-        // تحديث أماكن العناصر النائبة
-        updatePlaceholders(lang);
     }
-    
-    function updatePlaceholders(lang) {
-        const placeholders = {
-            'flight-from': lang === 'ar' ? 'أوتاوا (YOW)' : 'Ottawa (YOW)',
-            'flight-to': lang === 'ar' ? 'فانكوفر (YVR)' : 'Vancouver (YVR)',
-            'private-origin': lang === 'ar' ? 'مطار أو مدينة' : 'Airport or City',
-            'private-destination': lang === 'ar' ? 'أي وجهة' : 'Any Destination',
-            'hotel-destination': lang === 'ar' ? 'مدينة أو اسم فندق' : 'City or Hotel Name',
-            'car-pickup': lang === 'ar' ? 'مطار أو عنوان' : 'Airport or Address',
-            'car-dropoff': lang === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up',
-            'group-from': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport',
-            'group-to': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport'
-        };
-        
-        Object.keys(placeholders).forEach(id => {
-        
+</script>
+</body>
+</html>
