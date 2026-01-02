@@ -1,77 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Articles | SkyLynx Travel</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title id="page-title">Blog | SkyLynx Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>:root{--deep-ocean:#00111c;--sky-glow:#00a6fb;--silver:#e0e1dd}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--deep-ocean);color:white;font-family:'Montserrat',sans-serif;line-height:1.8}.main-nav{position:fixed;top:0;width:100%;background:rgba(0,17,28,0.98);z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)}.nav-logo{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-size:1.5rem;font-weight:700}.nav-logo i{color:var(--sky-glow)}.hero{min-height:60vh;background:linear-gradient(rgba(0,17,28,0.85),rgba(0,17,28,0.92)),var(--hero-bg) center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 20px 50px;text-align:center}.hero .category{color:var(--sky-glow);font-size:1rem;margin-bottom:15px;text-transform:uppercase;letter-spacing:2px}.hero h1{font-family:'Cinzel',serif;font-size:3.5rem;color:white;margin-bottom:20px;max-width:900px}.hero .meta{display:flex;gap:30px;color:var(--silver);font-size:1rem;justify-content:center;flex-wrap:wrap}.hero .meta span{display:flex;align-items:center;gap:8px}.article-content{max-width:800px;margin:80px auto;padding:0 5%;font-size:1.1rem}.article-content h2{font-family:'Cinzel',serif;font-size:2.2rem;color:var(--sky-glow);margin:50px 0 25px}.article-content h3{color:var(--sky-glow);font-size:1.6rem;margin:35px 0 20px}.article-content h4{color:var(--sky-glow);font-size:1.3rem;margin:25px 0 15px}.article-content p{color:var(--silver);margin-bottom:25px}.article-content ul{margin:20px 0 25px 40px;color:var(--silver)}.article-content li{margin-bottom:12px}.article-content strong{color:white}.back-btn{display:inline-block;margin:60px 0;padding:15px 40px;background:var(--sky-glow);color:white;text-decoration:none;border-radius:30px;font-weight:600}.back-btn:hover{background:#0088cc}.article-list{max-width:900px;margin:80px auto;padding:0 5%}.article-card{background:rgba(255,255,255,0.03);padding:30px;margin-bottom:25px;border-radius:15px;border:1px solid rgba(0,166,251,0.2);cursor:pointer;transition:all 0.3s}.article-card:hover{border-color:var(--sky-glow);transform:translateY(-3px)}.article-card h3{color:var(--sky-glow);margin-bottom:15px;font-size:1.5rem}.article-card p{color:var(--silver);margin-bottom:15px}.article-card .meta{display:flex;gap:20px;font-size:0.9rem;color:#888}.available{color:#10b981;font-weight:600}.coming{color:#888;font-style:italic}@media(max-width:768px){.hero h1{font-size:2.5rem}}</style>
+<style>:root{--deep-ocean:#00111c;--sky-glow:#00a6fb;--silver:#e0e1dd}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--deep-ocean);color:white;font-family:'Montserrat',sans-serif;line-height:1.8}[lang="ar"]{direction:rtl;font-family:'Cairo',sans-serif}.main-nav{position:fixed;top:0;width:100%;background:rgba(0,17,28,0.98);z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)}.nav-logo{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-size:1.5rem;font-weight:700}.nav-logo i{color:var(--sky-glow)}.lang-toggle{background:rgba(0,166,251,0.2);padding:8px 20px;border-radius:20px;cursor:pointer}.lang-toggle:hover{background:var(--sky-glow)}.hero{min-height:60vh;background:linear-gradient(rgba(0,17,28,0.85),rgba(0,17,28,0.92)),var(--hero-bg) center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 20px 50px;text-align:center}.hero .category{color:var(--sky-glow);font-size:1rem;margin-bottom:15px;text-transform:uppercase;letter-spacing:2px}.hero h1{font-family:'Cinzel',serif;font-size:3.5rem;color:white;margin-bottom:20px;max-width:900px}.hero .meta{display:flex;gap:30px;color:var(--silver);font-size:1rem;justify-content:center;flex-wrap:wrap}.hero .meta span{display:flex;align-items:center;gap:8px}.article-content{max-width:800px;margin:80px auto;padding:0 5%;font-size:1.1rem}.article-content h2{font-family:'Cinzel',serif;font-size:2.2rem;color:var(--sky-glow);margin:50px 0 25px}.article-content h3{color:var(--sky-glow);font-size:1.6rem;margin:35px 0 20px}.article-content h4{color:var(--sky-glow);font-size:1.3rem;margin:25px 0 15px}.article-content p{color:var(--silver);margin-bottom:25px}.article-content ul{margin:20px 0 25px 40px;color:var(--silver)}.article-content li{margin-bottom:12px}.article-content strong{color:white}.back-btn{display:inline-block;margin:60px 0;padding:15px 40px;background:var(--sky-glow);color:white;text-decoration:none;border-radius:30px;font-weight:600}.back-btn:hover{background:#0088cc}.blog-list{max-width:1200px;margin:80px auto;padding:0 5%}.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px;margin:40px 0}.blog-card{background:rgba(255,255,255,0.02);border-radius:20px;overflow:hidden;border:1px solid rgba(0,166,251,0.15);transition:all 0.3s;cursor:pointer}.blog-card:hover{transform:translateY(-5px);border-color:var(--sky-glow);box-shadow:0 10px 30px rgba(0,166,251,0.3)}.blog-image{width:100%;height:220px;background-size:cover;background-position:center;position:relative}.blog-badge{position:absolute;top:15px;right:15px;background:var(--sky-glow);padding:8px 15px;border-radius:20px;font-size:0.85rem;font-weight:600}[lang="ar"] .blog-badge{right:auto;left:15px}.blog-content{padding:25px}.blog-category{color:var(--sky-glow);font-size:0.9rem;margin-bottom:10px;font-weight:600}.blog-title{font-family:'Cinzel',serif;font-size:1.4rem;margin-bottom:15px;color:white}.blog-excerpt{color:var(--silver);font-size:0.95rem;line-height:1.6;margin-bottom:20px}.blog-meta{display:flex;gap:20px;font-size:0.85rem;color:#888}.status-tag{display:inline-block;padding:10px 20px;border-radius:20px;font-weight:600;font-size:0.9rem}.status-available{background:rgba(16,185,129,0.2);color:#10b981}.status-coming{background:rgba(156,163,175,0.2);color:#9ca3af}@media(max-width:768px){.hero h1{font-size:2.5rem}.blog-grid{grid-template-columns:1fr}}</style>
 </head>
 <body>
 <nav class="main-nav">
 <a href="index.html" class="nav-logo"><i class="fas fa-plane"></i><span>SkyLynx</span></a>
+<div class="lang-toggle" onclick="toggleLang()"><i class="fas fa-globe"></i> <span id="lang-text">العربية</span></div>
 </nav>
-
-<div id="article-container"></div>
-
+<div id="content"></div>
 <script src="articles-content.js"></script>
 <script>
-const allArticles=[
-{slug:'luxury-travel-guide-ottawa-canada',title:'Luxury Guide to Ottawa 2026',status:'available'},
-{slug:'luxury-travel-dubai-2026',title:'Complete Guide to Dubai 2026',status:'available'},
-{slug:'free-flight-upgrades-secrets',title:'10 Ways to Get Free Flight Upgrades',status:'available'},
-{slug:'luxury-hotels-paris-2026',title:'Top Luxury Hotels in Paris 2026',status:'available'},
-{slug:'luxury-travel-tokyo-guide',title:'Ultimate Tokyo Luxury Guide 2026',status:'available'},
-{slug:'canadian-rockies-luxury-resorts',title:'Canadian Rockies Luxury Resorts',status:'available'},
-{slug:'maldives-luxury-resorts-2026',title:'Best Maldives Luxury Resorts 2026',status:'available'},
-{slug:'best-time-book-flights-2026',title:'Best Time to Book Flights 2026',status:'available'},
-{slug:'group-travel-planning-guide',title:'Guide to Luxury Group Travel',status:'coming'},
-{slug:'ai-travel-planning-future',title:'AI Revolutionizing Travel',status:'coming'},
-{slug:'luxury-travel-across-canada',title:'Luxury Travel Across Canada',status:'coming'},
-{slug:'toronto-vancouver-luxury-guide',title:'Toronto & Vancouver Luxury Guide',status:'coming'},
-{slug:'french-canada-montreal-quebec',title:'French Canada: Montreal & Quebec',status:'coming'},
-{slug:'barcelona-luxury-guide',title:'Luxury Barcelona Guide',status:'coming'},
-{slug:'new-york-luxury-hotels',title:'Luxury Hotels in New York City',status:'coming'}
+const t={
+en:{blogTitle:'SkyLynx Travel Blog',blogSubtitle:'Expert travel insights and luxury destination guides',allArticles:'All Articles',available:'articles available',comingSoon:'coming soon',readNow:'✅ Available',comingLater:'📝 Coming Soon',backHome:'Back to Home',notFound:'Article Not Found',notFoundMsg:'This article is coming soon!',viewAvailable:'View Available Articles'},
+ar:{blogTitle:'مدونة SkyLynx للسفر',blogSubtitle:'رؤى سفر احترافية ودلائل وجهات فاخرة',allArticles:'كل المقالات',available:'مقالات متاحة',comingSoon:'قريباً',readNow:'✅ متاح',comingLater:'📝 قريباً',backHome:'العودة للرئيسية',notFound:'المقالة غير موجودة',notFoundMsg:'هذه المقالة قريباً!',viewAvailable:'عرض المقالات المتاحة'}
+};
+const articles=[
+{slug:'luxury-travel-guide-ottawa-canada',title:'Luxury Guide to Ottawa 2026',titleAr:'دليل أوتاوا الفاخر 2026',image:'https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=800',category:'🍁 Destinations',categoryAr:'🍁 وجهات',excerpt:'Discover Ottawa luxury hotels, dining, and exclusive experiences.',excerptAr:'اكتشف فنادق أوتاوا الفاخرة والمطاعم والتجارب الحصرية.',status:'available'},
+{slug:'luxury-travel-dubai-2026',title:'Complete Guide to Dubai 2026',titleAr:'دليل دبي الكامل 2026',image:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800',category:'⭐ Destinations',categoryAr:'⭐ وجهات',excerpt:'Best luxury hotels, Michelin restaurants in Dubai.',excerptAr:'أفضل الفنادق الفاخرة ومطاعم ميشلان في دبي.',status:'available'},
+{slug:'free-flight-upgrades-secrets',title:'10 Ways to Get Free Flight Upgrades',titleAr:'10 طرق للترقية المجانية',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',category:'💰 Travel Tips',categoryAr:'💰 نصائح سفر',excerpt:'Insider secrets to score free upgrades.',excerptAr:'أسرار للحصول على ترقيات مجانية.',status:'available'},
+{slug:'luxury-hotels-paris-2026',title:'Top Luxury Hotels in Paris 2026',titleAr:'أفضل فنادق باريس 2026',image:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800',category:'🏨 Hotels',categoryAr:'🏨 فنادق',excerpt:'Top 10 finest hotels in Paris.',excerptAr:'أفضل 10 فنادق في باريس.',status:'available'},
+{slug:'luxury-travel-tokyo-guide',title:'Ultimate Tokyo Luxury Guide 2026',titleAr:'دليل طوكيو الفاخر 2026',image:'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=800',category:'🗾 Destinations',categoryAr:'🗾 وجهات',excerpt:'Tokyo tradition meets innovation.',excerptAr:'طوكيو حيث التقاليد تلتقي بالابتكار.',status:'available'},
+{slug:'canadian-rockies-luxury-resorts',title:'Canadian Rockies Luxury Resorts',titleAr:'منتجعات جبال روكي الكندية',image:'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&q=80&w=800',category:'🏔️ Hotels',categoryAr:'🏔️ فنادق',excerpt:'Mountain resorts in Banff, Jasper, Lake Louise.',excerptAr:'منتجعات جبلية في بانف وجاسبر وبحيرة لويز.',status:'available'},
+{slug:'maldives-luxury-resorts-2026',title:'Best Maldives Luxury Resorts 2026',titleAr:'أفضل منتجعات المالديف 2026',image:'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800',category:'🏝️ Hotels',categoryAr:'🏝️ فنادق',excerpt:'Overwater villas and pristine beaches.',excerptAr:'فلل على الماء وشواطئ نقية.',status:'available'},
+{slug:'best-time-book-flights-2026',title:'Best Time to Book Flights 2026',titleAr:'أفضل وقت لحجز الرحلات 2026',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',category:'📅 Booking Tips',categoryAr:'📅 نصائح حجز',excerpt:'Maximize savings with perfect timing.',excerptAr:'وفر أكثر بالتوقيت المثالي.',status:'available'}
 ];
-
-function loadArticle(){
+let lang=localStorage.getItem('siteLang')||'en';
+document.getElementById('html-root').lang=lang;
+document.getElementById('lang-text').textContent=lang==='en'?'العربية':'English';
+function toggleLang(){
+lang=lang==='en'?'ar':'en';
+localStorage.setItem('siteLang',lang);
+document.getElementById('html-root').lang=lang;
+document.getElementById('lang-text').textContent=lang==='en'?'العربية':'English';
+loadContent();
+}
+function loadContent(){
 const params=new URLSearchParams(window.location.search);
 const slug=params.get('slug');
-const container=document.getElementById('article-container');
-
+const txt=t[lang];
+const container=document.getElementById('content');
 if(slug && articleContents[slug]){
 container.innerHTML=articleContents[slug];
-const articleInfo=allArticles.find(a=>a.slug===slug);
-document.getElementById('page-title').textContent=articleInfo.title+' | SkyLynx';
+const info=articles.find(a=>a.slug===slug);
+document.getElementById('page-title').textContent=(lang==='ar'?info.titleAr:info.title)+' | SkyLynx';
 }else if(!slug){
-const available=allArticles.filter(a=>a.status==='available').length;
-const total=allArticles.length;
+const avail=articles.filter(a=>a.status==='available').length;
 container.innerHTML=`
 <div class="hero" style="--hero-bg:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200')">
-<h1>SkyLynx Travel Blog</h1>
-<p style="color:var(--silver);font-size:1.2rem;margin-top:20px">${available} articles available | ${total-available} coming soon</p>
+<h1>${txt.blogTitle}</h1>
+<p style="color:var(--silver);font-size:1.2rem;margin-top:20px">${avail} ${txt.available} | ${articles.length-avail} ${txt.comingSoon}</p>
 </div>
-<div class="article-list">
-<h2 style="font-family:'Cinzel',serif;color:var(--sky-glow);margin-bottom:40px;text-align:center">All Articles (${total})</h2>
-${allArticles.map(a=>`
-<div class="article-card" ${a.status==='available'?`onclick="window.location.href='article.html?slug=${a.slug}'" style="cursor:pointer"`:`style="cursor:not-allowed;opacity:0.6"`}>
-<h3>${a.title}</h3>
-<p class="${a.status==='available'?'available':'coming'}">
-${a.status==='available'?'✅ Read Now':'📝 Coming Soon'}
-</p>
+<div class="blog-list">
+<h2 style="font-family:'Cinzel',serif;color:var(--sky-glow);margin-bottom:40px;text-align:center">${txt.allArticles} (${articles.length})</h2>
+<div class="blog-grid">
+${articles.map(a=>`
+<article class="blog-card" ${a.status==='available'?`onclick="window.location.href='article.html?slug=${a.slug}'"`:`style="opacity:0.6;cursor:not-allowed"`}>
+<div class="blog-image" style="background-image:url('${a.image}')">
+${a.status==='available'?`<span class="blog-badge">${txt.readNow}</span>`:`<span class="blog-badge">${txt.comingLater}</span>`}
 </div>
+<div class="blog-content">
+<div class="blog-category">${lang==='ar'?a.categoryAr:a.category}</div>
+<h3 class="blog-title">${lang==='ar'?a.titleAr:a.title}</h3>
+<p class="blog-excerpt">${lang==='ar'?a.excerptAr:a.excerpt}</p>
+</div>
+</article>
 `).join('')}
+</div>
 <div style="text-align:center;margin-top:60px">
-<a href="index.html#blog" class="back-btn"><i class="fas fa-home"></i> Back to Home</a>
+<a href="index.html#blog" class="back-btn"><i class="fas fa-home"></i> ${txt.backHome}</a>
 </div>
 </div>
 `;
 }else{
-container.innerHTML=`<div class="article-content" style="text-align:center;padding:100px 20px"><h1 style="font-family:'Cinzel',serif;color:var(--sky-glow);margin-bottom:20px">Article Coming Soon</h1><p style="color:var(--silver);margin-bottom:40px">We're working on this article!</p><a href="article.html" class="back-btn">View All Articles</a></div>`;
+container.innerHTML=`<div class="article-content" style="text-align:center;padding:100px 20px"><h1 style="font-family:'Cinzel',serif;color:var(--sky-glow)">${txt.notFound}</h1><p style="color:var(--silver);margin:40px 0">${txt.notFoundMsg}</p><a href="article.html" class="back-btn">${txt.viewAvailable}</a></div>`;
 }
 }
-loadArticle();
+loadContent();
 </script>
 </body>
 </html>
