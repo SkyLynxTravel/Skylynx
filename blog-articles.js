@@ -1,24 +1,35 @@
-const blogArticles=[{id:1,lang:'en',slug:'luxury-travel-guide-ottawa-canada',title:'Luxury Travel Guide to Ottawa 2026',category:'Destinations',categoryIcon:'🍁',excerpt:'Discover Ottawa\'s luxury hotels, dining, and exclusive experiences from our home base.',image:'https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=800',author:'SkyLynx - Ottawa Team',date:'2026-01-12',readTime:'15 min',featured:true,localExpertise:true},{id:2,lang:'en',slug:'luxury-travel-dubai-2026',title:'Complete Guide to Luxury Travel in Dubai 2026',category:'Destinations',categoryIcon:'⭐',excerpt:'Best luxury hotels, Michelin restaurants, and unique experiences in Dubai.',image:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-01',readTime:'12 min',featured:false},{id:3,lang:'en',slug:'luxury-hotels-paris-2026',title:'Top 10 Luxury Hotels in Paris 2026',category:'Hotels',categoryIcon:'🏨',excerpt:'Detailed review of the finest hotels in Paris.',image:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-02',readTime:'10 min',featured:false},{id:4,lang:'en',slug:'free-flight-upgrades-secrets',title:'10 Ways to Get Free Flight Upgrades',category:'Travel Tips',categoryIcon:'💰',excerpt:'Insider secrets to score free upgrades.',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-03',readTime:'8 min',featured:true},{id:5,lang:'en',slug:'luxury-travel-tokyo-guide',title:'Ultimate Luxury Travel Guide to Tokyo 2026',category:'Destinations',categoryIcon:'🗾',excerpt:'Tokyo\'s perfect blend of tradition and innovation.',image:'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-04',readTime:'14 min',featured:false},{id:6,lang:'en',slug:'canadian-rockies-luxury-resorts',title:'Luxury Resorts in Canadian Rockies 2026',category:'Hotels',categoryIcon:'🏔️',excerpt:'Exclusive mountain resorts in Banff, Jasper, Lake Louise.',image:'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-14',readTime:'13 min',featured:false},{id:7,lang:'en',slug:'group-travel-planning-guide',title:'Guide to Planning Luxury Group Travel',category:'Group Travel',categoryIcon:'👥',excerpt:'Everything about organizing group trips.',image:'https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-05',readTime:'11 min',featured:false},{id:8,lang:'en',slug:'maldives-luxury-resorts-2026',title:'Best Luxury Resorts in Maldives 2026',category:'Hotels',categoryIcon:'🏝️',excerpt:'Overwater villas and pristine beaches.',image:'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-06',readTime:'12 min',featured:false},{id:9,lang:'en',slug:'ai-travel-planning-future',title:'How AI is Revolutionizing Travel Planning',category:'Technology',categoryIcon:'🤖',excerpt:'The future of AI-powered travel.',image:'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-07',readTime:'9 min',featured:false},{id:10,lang:'en',slug:'best-time-book-flights-2026',title:'Best Time to Book Flights in 2026',category:'Booking Tips',categoryIcon:'📅',excerpt:'Maximize savings with perfect timing.',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-08',readTime:'7 min',featured:false},{id:11,lang:'en',slug:'luxury-travel-across-canada',title:'Luxury Travel Across Canada: Coast to Coast',category:'Destinations',categoryIcon:'🍁',excerpt:'BC, Alberta, Ontario, Quebec, Atlantic Canada.',image:'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-13',readTime:'18 min',featured:false},{id:12,lang:'en',slug:'toronto-vancouver-luxury-guide',title:'Toronto & Vancouver Luxury City Guide',category:'Destinations',categoryIcon:'🏙️',excerpt:'Urban sophistication vs Pacific coastal elegance.',image:'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-15',readTime:'16 min',featured:false},{id:13,lang:'en',slug:'french-canada-montreal-quebec',title:'French Canada: Montreal & Quebec City',category:'Destinations',categoryIcon:'🇨🇦',excerpt:'European charm, cobblestone streets, French cuisine.',image:'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-16',readTime:'14 min',featured:false},{id:14,lang:'en',slug:'barcelona-luxury-guide',title:'Luxury Travel Guide to Barcelona',category:'Destinations',categoryIcon:'🇪🇸',excerpt:'Gaudí, beaches, and Catalan cuisine.',image:'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-09',readTime:'13 min',featured:false},{id:15,lang:'en',slug:'new-york-luxury-hotels',title:'Luxury Hotels in New York City',category:'Hotels',categoryIcon:'🗽',excerpt:'From Plaza to St. Regis.',image:'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&q=80&w=800',author:'SkyLynx Travel',date:'2026-01-10',readTime:'11 min',featured:false}];
+const blogArticles=[
+{id:1,slug:'luxury-travel-guide-ottawa-canada',title:'Luxury Travel Guide to Ottawa 2026',category:'Destinations',categoryIcon:'🍁',excerpt:'Discover Ottawa luxury hotels, dining, and exclusive experiences.',image:'https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=800',date:'2026-01-12',readTime:'15 min',featured:true},
+{id:2,slug:'luxury-travel-dubai-2026',title:'Complete Guide to Luxury Travel in Dubai 2026',category:'Destinations',categoryIcon:'⭐',excerpt:'Best luxury hotels, Michelin restaurants in Dubai.',image:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800',date:'2026-01-01',readTime:'12 min',featured:false},
+{id:3,slug:'free-flight-upgrades-secrets',title:'10 Ways to Get Free Flight Upgrades',category:'Travel Tips',categoryIcon:'💰',excerpt:'Insider secrets to score free upgrades.',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',date:'2026-01-03',readTime:'8 min',featured:true},
+{id:4,slug:'luxury-hotels-paris-2026',title:'Top Luxury Hotels in Paris 2026',category:'Hotels',categoryIcon:'🏨',excerpt:'Top 10 finest hotels in Paris.',image:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800',date:'2026-01-02',readTime:'10 min',featured:false},
+{id:5,slug:'luxury-travel-tokyo-guide',title:'Ultimate Luxury Travel Guide to Tokyo 2026',category:'Destinations',categoryIcon:'🗾',excerpt:'Tokyo tradition meets innovation.',image:'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=800',date:'2026-01-04',readTime:'14 min',featured:false},
+{id:6,slug:'canadian-rockies-luxury-resorts',title:'Luxury Resorts in Canadian Rockies',category:'Hotels',categoryIcon:'🏔️',excerpt:'Mountain resorts in Banff, Jasper, Lake Louise.',image:'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&q=80&w=800',date:'2026-01-14',readTime:'13 min',featured:false}
+];
 
-function displayBlogArticles(){const container=document.getElementById('blog-grid');if(!container)return;const currentLang=document.documentElement.lang||'en';const filtered=blogArticles.filter(a=>a.lang===currentLang).slice(0,6);container.innerHTML=filtered.map(article=>`
-<article class="blog-card" onclick="window.location.href='article.html?slug=${article.slug}'">
-<div class="blog-image" style="background-image:url('${article.image}')">
-${article.featured?'<span class="blog-badge featured">⭐ Featured</span>':''}
-${article.localExpertise?'<span class="blog-badge local">🍁 Local Expertise</span>':''}
+function displayBlogArticles(){
+const container=document.getElementById('blog-grid');
+if(!container)return;
+container.innerHTML=blogArticles.slice(0,6).map(a=>`
+<article class="blog-card" onclick="window.location.href='article.html?slug=${a.slug}'">
+<div class="blog-image" style="background-image:url('${a.image}')">
+${a.featured?'<span class="blog-badge featured">⭐ Featured</span>':''}
 </div>
 <div class="blog-content">
-<div class="blog-category">${article.categoryIcon} ${article.category}</div>
-<h3 class="blog-title">${article.title}</h3>
-<p class="blog-excerpt">${article.excerpt}</p>
+<div class="blog-category">${a.categoryIcon} ${a.category}</div>
+<h3 class="blog-title">${a.title}</h3>
+<p class="blog-excerpt">${a.excerpt}</p>
 <div class="blog-meta">
-<span><i class="far fa-calendar"></i> ${formatDate(article.date)}</span>
-<span><i class="far fa-clock"></i> ${article.readTime}</span>
+<span><i class="far fa-calendar"></i> ${new Date(a.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</span>
+<span><i class="far fa-clock"></i> ${a.readTime}</span>
 </div>
 </div>
 </article>
 `).join('');
 }
 
-function formatDate(dateStr){const d=new Date(dateStr);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
-
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',displayBlogArticles);}else{displayBlogArticles();}
+if(document.readyState==='loading'){
+document.addEventListener('DOMContentLoaded',displayBlogArticles);
+}else{
+displayBlogArticles();
+}
