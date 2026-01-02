@@ -119,6 +119,9 @@
         }
         
         .nav-right {
+    .hamburger {
+        display: none;
+    }
             display: flex;
             align-items: center;
             gap: 15px;
@@ -1600,8 +1603,56 @@
         
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-    .main-nav {
-        flex-wrap: wrap;
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 17, 28, 0.98);
+        flex-direction: column;
+        padding: 30px 20px;
+        transition: left 0.3s;
+        border-right: 1px solid rgba(0, 166, 251, 0.3);
+        overflow-y: auto;
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .nav-menu li {
+        margin: 20px 0;
+        width: 100%;
+    }
+    .nav-menu a {
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        display: block;
+        border-radius: 10px;
+    }
+    .nav-menu a:hover {
+        background: rgba(0, 166, 251, 0.1);
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--sky-glow);
+        border-radius: 3px;
+        transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
     }
     .nav-menu {
         display: none;
@@ -1838,6 +1889,11 @@
         </ul>
     </div>
     
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     <div class="nav-right">
         <div class="config">
             <select id="curr-sel">
