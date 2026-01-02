@@ -2638,8 +2638,8 @@
             <ul>
                 <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span data-key="privacyPolicy">Privacy Policy</span></a></li>
                 <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span data-key="termsConditions">Terms & Conditions</span></a></li>
-                <li><a href="privacy.html#cookies"><i class="fas fa-cookie-bite"></i> <span data-key="cookiePolicy">Cookie Policy</span></a></li>
-                <li><a href="terms.html#ethics"><i class="fas fa-brain"></i> <span data-key="aiEthics">AI Ethics Policy</span></a></li>
+                <li><a href="privacy.html"><i class="fas fa-cookie-bite"></i> <span data-key="cookiePolicy">Cookie Policy</span></a></li>
+                <li><a href="terms.html"><i class="fas fa-brain"></i> <span data-key="aiEthics">AI Ethics Policy</span></a></li>
             </ul>
         </div>
     </div>
@@ -2657,7 +2657,7 @@
 
 <script>
     // ========== المتغيرات الأساسية ==========
-    let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+    let currentLang = localStorage.getItem('siteLang') || 'en';
     let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
     let aiModalOpen = false;
     
@@ -3489,11 +3489,11 @@
     // ========== المستمعون للأحداث ==========
     function initializeEventListeners() {
         // تغيير اللغة
-        document.getElementById('lang-sel').addEventListener('change', function() {
-            currentLang = this.value;
-            localStorage.setItem('skylynx_lang', currentLang);
-            updateLanguage(currentLang);
-        });
+document.getElementById('lang-sel').addEventListener('change', function() {
+    const lang = this.value;
+    localStorage.setItem('siteLang', lang);
+    updateLanguage(lang);
+});
         
         // تغيير العملة
         document.getElementById('curr-sel').addEventListener('change', function() {
