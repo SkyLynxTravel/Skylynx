@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Articles | SkyLynx Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>:root{--deep-ocean:#00111c;--sky-glow:#00a6fb;--silver:#e0e1dd}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--deep-ocean);color:white;font-family:'Montserrat',sans-serif;line-height:1.8}.main-nav{position:fixed;top:0;width:100%;background:rgba(0,17,28,0.98);z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)}.nav-logo{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-size:1.5rem;font-weight:700}.nav-logo i{color:var(--sky-glow)}.hero{min-height:60vh;background:linear-gradient(rgba(0,17,28,0.85),rgba(0,17,28,0.92)),var(--hero-bg) center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 20px 50px;text-align:center}.hero .category{color:var(--sky-glow);font-size:1rem;margin-bottom:15px;text-transform:uppercase;letter-spacing:2px}.hero h1{font-family:'Cinzel',serif;font-size:3.5rem;color:white;margin-bottom:20px;max-width:900px}.hero .meta{display:flex;gap:30px;color:var(--silver);font-size:1rem;justify-content:center;flex-wrap:wrap}.hero .meta span{display:flex;align-items:center;gap:8px}.article-content{max-width:800px;margin:80px auto;padding:0 5%;font-size:1.1rem}.article-content h2{font-family:'Cinzel',serif;font-size:2.2rem;color:var(--sky-glow);margin:50px 0 25px}.article-content h3{color:var(--sky-glow);font-size:1.6rem;margin:35px 0 20px}.article-content h4{color:var(--sky-glow);font-size:1.3rem;margin:25px 0 15px}.article-content p{color:var(--silver);margin-bottom:25px}.article-content ul{margin:20px 0 25px 40px;color:var(--silver)}.article-content li{margin-bottom:12px}.article-content strong{color:white}.back-btn{display:inline-block;margin:60px 0;padding:15px 40px;background:var(--sky-glow);color:white;text-decoration:none;border-radius:30px;font-weight:600}.back-btn:hover{background:#0088cc}.article-list{max-width:900px;margin:80px auto;padding:0 5%}.article-card{background:rgba(255,255,255,0.03);padding:30px;margin-bottom:25px;border-radius:15px;border:1px solid rgba(0,166,251,0.2);cursor:pointer;transition:all 0.3s}.article-card:hover{border-color:var(--sky-glow);transform:translateY(-3px)}.article-card h3{color:var(--sky-glow);margin-bottom:15px;font-size:1.5rem}.article-card p{color:var(--silver);margin-bottom:15px}.article-card .meta{display:flex;gap:20px;font-size:0.9rem;color:#888}.available{color:#10b981;font-weight:600}.coming{color:#888;font-style:italic}@media(max-width:768px){.hero h1{font-size:2.5rem}}</style>
+</head>
+<body>
+<nav class="main-nav">
+<a href="index.html" class="nav-logo"><i class="fas fa-plane"></i><span>SkyLynx</span></a>
+</nav>
+
+<div id="article-container"></div>
+
+<script src="articles-content.js"></script>
+<script>
+const allArticles=[
+{slug:'luxury-travel-guide-ottawa-canada',title:'Luxury Guide to Ottawa 2026',status:'available'},
+{slug:'luxury-travel-dubai-2026',title:'Complete Guide to Dubai 2026',status:'available'},
+{slug:'free-flight-upgrades-secrets',title:'10 Ways to Get Free Flight Upgrades',status:'available'},
+{slug:'luxury-hotels-paris-2026',title:'Top Luxury Hotels in Paris 2026',status:'available'},
+{slug:'luxury-travel-tokyo-guide',title:'Ultimate Tokyo Luxury Guide 2026',status:'available'},
+{slug:'canadian-rockies-luxury-resorts',title:'Canadian Rockies Luxury Resorts',status:'available'},
+{slug:'maldives-luxury-resorts-2026',title:'Best Maldives Luxury Resorts 2026',status:'available'},
+{slug:'best-time-book-flights-2026',title:'Best Time to Book Flights 2026',status:'available'},
+{slug:'group-travel-planning-guide',title:'Guide to Luxury Group Travel',status:'coming'},
+{slug:'ai-travel-planning-future',title:'AI Revolutionizing Travel',status:'coming'},
+{slug:'luxury-travel-across-canada',title:'Luxury Travel Across Canada',status:'coming'},
+{slug:'toronto-vancouver-luxury-guide',title:'Toronto & Vancouver Luxury Guide',status:'coming'},
+{slug:'french-canada-montreal-quebec',title:'French Canada: Montreal & Quebec',status:'coming'},
+{slug:'barcelona-luxury-guide',title:'Luxury Barcelona Guide',status:'coming'},
+{slug:'new-york-luxury-hotels',title:'Luxury Hotels in New York City',status:'coming'}
+];
+
+function loadArticle(){
+const params=new URLSearchParams(window.location.search);
+const slug=params.get('slug');
+const container=document.getElementById('article-container');
+
+if(slug && articleContents[slug]){
+container.innerHTML=articleContents[slug];
+const articleInfo=allArticles.find(a=>a.slug===slug);
+document.getElementById('page-title').textContent=articleInfo.title+' | SkyLynx';
+}else if(!slug){
+const available=allArticles.filter(a=>a.status==='available').length;
+const total=allArticles.length;
+container.innerHTML=`
+<div class="hero" style="--hero-bg:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200')">
+<h1>SkyLynx Travel Blog</h1>
+<p style="color:var(--silver);font-size:1.2rem;margin-top:20px">${available} articles available | ${total-available} coming soon</p>
+</div>
+<div class="article-list">
+<h2 style="font-family:'Cinzel',serif;color:var(--sky-glow);margin-bottom:40px;text-align:center">All Articles (${total})</h2>
+${allArticles.map(a=>`
+<div class="article-card" ${a.status==='available'?`onclick="window.location.href='article.html?slug=${a.slug}'" style="cursor:pointer"`:`style="cursor:not-allowed;opacity:0.6"`}>
+<h3>${a.title}</h3>
+<p class="${a.status==='available'?'available':'coming'}">
+${a.status==='available'?'✅ Read Now':'📝 Coming Soon'}
+</p>
+</div>
+`).join('')}
+<div style="text-align:center;margin-top:60px">
+<a href="index.html#blog" class="back-btn"><i class="fas fa-home"></i> Back to Home</a>
+</div>
+</div>
+`;
+}else{
+container.innerHTML=`<div class="article-content" style="text-align:center;padding:100px 20px"><h1 style="font-family:'Cinzel',serif;color:var(--sky-glow);margin-bottom:20px">Article Coming Soon</h1><p style="color:var(--silver);margin-bottom:40px">We're working on this article!</p><a href="article.html" class="back-btn">View All Articles</a></div>`;
+}
+}
+loadArticle();
+</script>
+</body>
+</html>
