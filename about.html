@@ -1,44 +1,850 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us | SkyLynx Travel</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>:root{--deep-ocean:#00111c;--sky-glow:#00a6fb;--silver:#e0e1dd}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--deep-ocean);color:white;font-family:'Montserrat',sans-serif}[lang="ar"]{direction:rtl;font-family:'Cairo',sans-serif}.main-nav{position:fixed;top:0;width:100%;background:rgba(0,17,28,0.98);z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)}.nav-logo{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-size:1.5rem;font-weight:700}.nav-logo i{color:var(--sky-glow)}.lang-toggle{background:rgba(0,166,251,0.2);padding:8px 20px;border-radius:20px;cursor:pointer}.lang-toggle:hover{background:var(--sky-glow)}.hero{height:50vh;background:linear-gradient(rgba(0,17,28,0.8),rgba(0,17,28,0.9)),url('https://images.unsplash.com/photo-1578831812483-ecf3f0489c38?auto=format&fit=crop&q=80&w=1200') center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 20px 50px;text-align:center}.hero h1{font-family:'Cinzel',serif;font-size:3rem;color:var(--sky-glow);margin-bottom:20px}.hero p{font-size:1.2rem;color:var(--silver)}.content{max-width:1200px;margin:80px auto;padding:0 5%}.section{margin-bottom:60px}.section h2{font-family:'Cinzel',serif;font-size:2rem;color:var(--sky-glow);margin-bottom:25px}.section p{color:var(--silver);font-size:1.1rem;line-height:1.8;margin-bottom:20px}.highlight{background:rgba(0,166,251,0.1);border-left:4px solid var(--sky-glow);padding:25px;margin:30px 0;border-radius:10px}[lang="ar"] .highlight{border-left:none;border-right:4px solid var(--sky-glow)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin:30px 0}.card{background:rgba(255,255,255,0.03);padding:30px;border-radius:15px;border:1px solid rgba(0,166,251,0.2);text-align:center;transition:all 0.3s}.card:hover{transform:translateY(-3px);border-color:var(--sky-glow)}.card i{font-size:2.5rem;color:var(--sky-glow);margin-bottom:15px}.card h3{font-size:1.2rem;margin-bottom:10px}.contact-box{background:rgba(0,166,251,0.05);padding:35px;margin:50px 0;border-radius:15px;border:2px solid rgba(0,166,251,0.3)}.contact-info{display:grid;gap:20px;margin-top:20px}.contact-item{display:flex;align-items:center;gap:15px}.contact-item i{color:var(--sky-glow);font-size:1.5rem;width:40px}a{color:var(--sky-glow);text-decoration:none}.back-home{display:inline-block;margin:50px 0;padding:15px 40px;background:var(--sky-glow);color:white;border-radius:30px;font-weight:600}.back-home:hover{background:#0088cc}.hidden{display:none}@media(max-width:768px){.hero h1{font-size:2rem}.grid{grid-template-columns:1fr}}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SkyLynx Travel - AI-Powered Luxury Travel Platform</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover SkyLynx Travel - World's first AI-powered luxury travel platform founded by aviation and travel professionals with 20+ years of international experience.">
+    <meta name="keywords" content="SkyLynx Travel, about us, aviation professionals, travel experts, AI travel, luxury travel">
+    <meta name="author" content="SkyLynx Travel">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --deep-ocean: #00111c; 
+            --sky-glow: #00a6fb; 
+            --silver: #e0e1dd; 
+            --gold: #d4af37;
+            --ai-purple: #9d4edd;
+            --ai-teal: #2ec4b6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--deep-ocean);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 17, 28, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-logo i {
+            color: var(--sky-glow);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            padding: 8px 0;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--sky-glow);
+            border-bottom: 2px solid var(--sky-glow);
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--ai-purple); }
+            to { box-shadow: 0 0 20px var(--ai-teal); }
+        }
+        
+        .config {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .config select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            z-index: 999;
+            background: rgba(0, 166, 251, 0.2);
+            border: 1px solid var(--sky-glow);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .back-home-btn:hover {
+            background: rgba(0, 166, 251, 0.4);
+            transform: translateX(-5px);
+        }
+        
+        /* Main Container */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+        
+        /* Header */
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(0, 166, 251, 0.1), rgba(157, 78, 221, 0.1));
+            border-radius: 20px;
+            border: 1px solid rgba(0, 166, 251, 0.2);
+        }
+        
+        .about-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--silver);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .ai-badge-large {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 20px;
+            animation: glow 2s infinite alternate;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 4px solid var(--sky-glow);
+        }
+        
+        .mission-title {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Team Section */
+        .team-section {
+            margin-bottom: 60px;
+        }
+        
+        .team-title {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: var(--sky-glow);
+        }
+        
+        .member-icon {
+            font-size: 3rem;
+            color: var(--sky-glow);
+            margin-bottom: 20px;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .member-role {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .member-experience {
+            color: var(--silver);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            margin-bottom: 60px;
+        }
+        
+        .services-title {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--ai-purple);
+            margin-bottom: 20px;
+        }
+        
+        .service-name {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        /* Values Section */
+        .values-section {
+            background: linear-gradient(135deg, rgba(0, 166, 251, 0.05), rgba(157, 78, 221, 0.05));
+            padding: 50px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .values-title {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .values-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .values-list li {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+            color: var(--silver);
+        }
+        
+        .values-list li:before {
+            content: '✓';
+            color: var(--sky-glow);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 166, 251, 0.1);
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+        
+        .cta-title {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-glow);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--silver);
+        }
+        
+        .contact-item i {
+            color: var(--sky-glow);
+        }
+        
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
+        /* Footer */
+        .about-footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-left {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .ai-badge {
+                margin-top: 10px;
+            }
+            
+            .back-home-btn {
+                top: 140px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .about-container {
+                padding: 160px 15px 40px;
+            }
+            
+            .about-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mission-title, .team-title, .services-title, .values-title, .cta-title {
+                font-size: 1.8rem;
+            }
+            
+            .mission-section, .values-section {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav class="main-nav">
-<a href="index.html" class="nav-logo"><i class="fas fa-plane"></i><span>SkyLynx</span></a>
-<div class="lang-toggle" onclick="toggleLanguage()"><i class="fas fa-globe"></i> <span id="lang-text">العربية</span></div>
-</nav>
-<div id="content-en">
-<div class="hero"><h1>About SkyLynx Travel</h1><p>AI-Powered Luxury Travel | Ottawa, Canada</p></div>
-<div class="content">
-<section class="section"><h2>Our Story</h2><p>SkyLynx Travel was founded by seasoned aviation and hospitality professionals with over 20 years of combined experience.</p><p>Based in <strong>Ottawa, Canada's capital</strong>, we leverage AI to revolutionize luxury travel.</p><div class="highlight"><strong>Our Mission:</strong> To make luxury travel accessible and unforgettable.</div></section>
-<section class="section"><h2>Our Expertise</h2><div class="grid"><div class="card"><i class="fas fa-plane-departure"></i><h3>International Airlines</h3><p>Flight operations, revenue management</p></div><div class="card"><i class="fas fa-hotel"></i><h3>Luxury Hospitality</h3><p>5-star hotels and resorts</p></div><div class="card"><i class="fas fa-concierge-bell"></i><h3>Concierge Services</h3><p>VIP travel coordination</p></div><div class="card"><i class="fas fa-robot"></i><h3>Travel Technology</h3><p>AI development</p></div></div></section>
-<section class="section"><h2>Why Ottawa?</h2><p>Our headquarters in <strong>Rideau St., Ottawa, ON, K1N 9J7</strong> positions us perfectly.</p></section>
-<section class="section"><h2>Our Values</h2><div class="grid"><div class="card"><h4><i class="fas fa-star"></i> Excellence</h4><p>Highest standards</p></div><div class="card"><h4><i class="fas fa-shield-alt"></i> Trust</h4><p>Privacy paramount</p></div><div class="card"><h4><i class="fas fa-lightbulb"></i> Innovation</h4><p>Evolving AI</p></div><div class="card"><h4><i class="fas fa-hand-holding-heart"></i> Personalization</h4><p>Tailored experiences</p></div></div></section>
-<section class="contact-box"><h3><i class="fas fa-map-marker-alt"></i> Contact Us</h3><div class="contact-info"><div class="contact-item"><i class="fas fa-building"></i><div><strong>Address:</strong><br>Rideau St., Ottawa, ON, K1N 9J7, Canada</div></div><div class="contact-item"><i class="fas fa-envelope"></i><div><strong>Email:</strong><br><a href="mailto:info@skylynx.co">info@skylynx.co</a></div></div></div></section>
-<div style="text-align:center"><a href="index.html" class="back-home"><i class="fas fa-home"></i> Back to Home</a></div>
-</div>
-</div>
-<div id="content-ar" class="hidden" lang="ar">
-<div class="hero"><h1>من نحن</h1><p>سفر فاخر | أوتاوا، كندا</p></div>
-<div class="content">
-<section class="section"><h2>قصتنا</h2><p>تأسست SkyLynx على يد محترفين بخبرة 20+ عاماً.</p><p>مقرنا في <strong>أوتاوا، عاصمة كندا</strong>.</p><div class="highlight"><strong>مهمتنا:</strong> جعل السفر الفاخر ذكياً ولا يُنسى.</div></section>
-<section class="section"><h2>خبرتنا</h2><div class="grid"><div class="card"><i class="fas fa-plane-departure"></i><h3>شركات طيران</h3><p>عمليات وإدارة</p></div><div class="card"><i class="fas fa-hotel"></i><h3>ضيافة فاخرة</h3><p>فنادق 5 نجوم</p></div><div class="card"><i class="fas fa-concierge-bell"></i><h3>كونسيرج</h3><p>تنسيق VIP</p></div><div class="card"><i class="fas fa-robot"></i><h3>تكنولوجيا</h3><p>ذكاء اصطناعي</p></div></div></section>
-<section class="section"><h2>لماذا أوتاوا؟</h2><p>مقرنا في <strong>Rideau St., Ottawa, ON, K1N 9J7</strong> موقع مثالي.</p></section>
-<section class="contact-box"><h3><i class="fas fa-map-marker-alt"></i> اتصل بنا</h3><div class="contact-info"><div class="contact-item"><i class="fas fa-building"></i><div><strong>العنوان:</strong><br>Rideau St., Ottawa, ON, K1N 9J7, Canada</div></div><div class="contact-item"><i class="fas fa-envelope"></i><div><strong>البريد:</strong><br><a href="mailto:info@skylynx.co">info@skylynx.co</a></div></div></div></section>
-<div style="text-align:center"><a href="index.html" class="back-home"><i class="fas fa-home"></i> الرئيسية</a></div>
-</div>
-</div>
-<script>
-let lang=localStorage.getItem('siteLang')||'en';
-const en=document.getElementById('content-en'),ar=document.getElementById('content-ar'),txt=document.getElementById('lang-text'),html=document.getElementById('html-root');
-if(lang==='ar'){en.classList.add('hidden');ar.classList.remove('hidden');txt.textContent='English';html.lang='ar';}else{txt.textContent='العربية';}
-function toggleLanguage(){lang=lang==='en'?'ar':'en';localStorage.setItem('siteLang',lang);if(lang==='ar'){en.classList.add('hidden');ar.classList.remove('hidden');txt.textContent='English';html.lang='ar';}else{en.classList.remove('hidden');ar.classList.add('hidden');txt.textContent='العربية';html.lang='en';}}
-</script>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyLynx</span>
+            </a>
+            
+            <div class="ai-badge">
+                <i class="fas fa-brain"></i>
+                <span id="ai-badge-text">AI-Powered</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="blog.html" id="nav-blog"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
+                <li><a href="about.html" id="nav-about"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
+                <li><a href="contact.html" id="nav-contact"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-right">
+            <div class="config">
+                <select id="curr-sel">
+                    <option value="CAD">🇨🇦 CAD</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="SAR">🇸🇦 SAR</option>
+                </select>
+                <select id="lang-sel">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-home-btn" id="back-home-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span id="back-home-text">Back to Home</span>
+    </a>
+
+    <div class="about-container">
+        <!-- English Content -->
+        <div id="content-en" class="lang-content active">
+            <!-- Header -->
+            <div class="about-header">
+                <h1>About SkyLynx Travel</h1>
+                <p class="tagline">World's First AI-Powered Luxury Travel Platform - Where Aviation Expertise Meets Artificial Intelligence</p>
+                <div class="ai-badge-large">
+                    <i class="fas fa-robot"></i> AI-Powered Travel Intelligence
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="mission-section">
+                <h2 class="mission-title"><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p>SkyLynx Travel revolutionizes luxury travel by combining decades of aviation and hospitality expertise with cutting-edge artificial intelligence. We deliver intelligent, personalized travel experiences that anticipate your needs before you even express them.</p>
+                <p>Founded and managed by global airline and tourism industry veterans with over 20 years of experience, we bridge the gap between human expertise and machine intelligence to create the future of travel.</p>
+            </div>
+
+            <!-- Team -->
+            <div class="team-section">
+                <h2 class="team-title">The Experts Behind SkyLynx</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-plane"></i></div>
+                        <h3 class="member-name">Aviation Specialists</h3>
+                        <p class="member-role">Former Airline Executives</p>
+                        <p class="member-experience">15-25 years in airline operations, route planning, and aviation management</p>
+                        <p>Deep understanding of global aviation networks and flight optimization</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-concierge-bell"></i></div>
+                        <h3 class="member-name">Hospitality Experts</h3>
+                        <p class="member-role">Luxury Hotel Veterans</p>
+                        <p class="member-experience">20+ years in 5-star hotel management and guest services</p>
+                        <p>Extensive network with luxury properties worldwide</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-robot"></i></div>
+                        <h3 class="member-name">AI & Tech Team</h3>
+                        <p class="member-role">AI Engineers & Data Scientists</p>
+                        <p class="member-experience">Specialized in travel AI, predictive analytics, and machine learning</p>
+                        <p>Developing proprietary algorithms for personalized travel recommendations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="services-section">
+                <h2 class="services-title">Our AI-Powered Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                        <h3 class="service-name">Smart Flight Search</h3>
+                        <p>AI-powered flight recommendations with price predictions</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-hotel"></i></div>
+                        <h3 class="service-name">Luxury Hotel Curation</h3>
+                        <p>Personalized hotel matching based on your preferences</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-jet-fighter"></i></div>
+                        <h3 class="service-name">Private Aviation</h3>
+                        <p>Exclusive access to private jet charters and services</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-route"></i></div>
+                        <h3 class="service-name">Curated Experiences</h3>
+                        <p>AI-designed travel itineraries and unique experiences</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <div class="values-section">
+                <h2 class="values-title">Our Core Values</h2>
+                <ul class="values-list">
+                    <li><strong>Expertise-Driven:</strong> Every recommendation backed by 20+ years of industry experience</li>
+                    <li><strong>AI-Enhanced:</strong> Combining human insight with machine intelligence for superior results</li>
+                    <li><strong>Client-First:</strong> Your satisfaction and privacy are our top priorities</li>
+                    <li><strong>Innovation:</strong> Continuously evolving our AI algorithms and services</li>
+                    <li><strong>Transparency:</strong> Clear pricing, honest recommendations, and full disclosure</li>
+                    <li><strong>Global Perspective:</strong> International experience across all major travel markets</li>
+                </ul>
+            </div>
+
+            <!-- Affiliate Disclosure -->
+            <div class="mission-section" style="border-left-color: var(--ai-purple);">
+                <h2 class="mission-title"><i class="fas fa-handshake"></i> Affiliate Partnerships</h2>
+                <p>SkyLynx Travel partners with leading travel providers through affiliate networks like Travelpayouts and Awin. These partnerships allow us to offer competitive pricing while maintaining our independent, expert-driven recommendations.</p>
+                <p><strong>Transparency Promise:</strong> We clearly disclose affiliate relationships and always prioritize your best interests in our recommendations.</p>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h2 class="cta-title">Ready to Experience AI-Powered Luxury Travel?</h2>
+                <p>Join thousands of travelers who trust SkyLynx for intelligent, personalized travel planning.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@skylynx.co</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (613) 555-0123</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Rideau St., Ottawa, ON K1N 9J7, Canada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arabic Content -->
+        <div id="content-ar" class="lang-content">
+            <!-- Header -->
+            <div class="about-header">
+                <h1>عن سكاي لينكس للسفر</h1>
+                <p class="tagline">أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم - حيث تلتقي خبرة الطيران بالذكاء الاصطناعي</p>
+                <div class="ai-badge-large">
+                    <i class="fas fa-robot"></i> ذكاء السفر المدعوم بالذكاء الاصطناعي
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="mission-section">
+                <h2 class="mission-title"><i class="fas fa-bullseye"></i> مهمتنا</h2>
+                <p>تحدث سكاي لينكس للسفر ثورة في مجال السفر الفاخر من خلال الجمع بين عقود من الخبرة في الطيران والضيافة مع أحدث تقنيات الذكاء الاصطناعي. نحن نقدم تجارب سفر ذكية ومخصصة تتوقع احتياجاتك قبل أن تعبر عنها.</p>
+                <p>تأسست ويديرها قدامى صناعة الطيران والسياحة العالمية بأكثر من 20 عامًا من الخبرة، نحن نربط الفجوة بين الخبرة البشرية والذكاء الآلي لخلق مستقبل السفر.</p>
+            </div>
+
+            <!-- Team -->
+            <div class="team-section">
+                <h2 class="team-title">الخبراء وراء سكاي لينكس</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-plane"></i></div>
+                        <h3 class="member-name">متخصصو الطيران</h3>
+                        <p class="member-role">مديرون سابقون في شركات الطيران</p>
+                        <p class="member-experience">15-25 سنة في عمليات الطيران، تخطيط المسارات، وإدارة الطيران</p>
+                        <p>فهم عميق لشبكات الطيران العالمية وتحسين الرحلات</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-concierge-bell"></i></div>
+                        <h3 class="member-name">خبراء الضيافة</h3>
+                        <p class="member-role">قدامى الفنادق الفاخرة</p>
+                        <p class="member-experience">20+ سنة في إدارة الفنادق الخمس نجوم وخدمات الضيوف</p>
+                        <p>شبكة واسعة مع المنشآت الفاخرة في جميع أنحاء العالم</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-icon"><i class="fas fa-robot"></i></div>
+                        <h3 class="member-name">فريق الذكاء الاصطناعي والتقنية</h3>
+                        <p class="member-role">مهندسو الذكاء الاصطناعي وعلماء البيانات</p>
+                        <p class="member-experience">متخصصون في ذكاء السفر، التحليلات التنبؤية، والتعلم الآلي</p>
+                        <p>تطوير خوارزميات حصرية لتوصيات السفر المخصصة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="services-section">
+                <h2 class="services-title">خدماتنا المدعومة بالذكاء الاصطناعي</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                        <h3 class="service-name">بحث ذكي عن الرحلات</h3>
+                        <p>توصيات الرحلات المدعومة بالذكاء الاصطناعي مع تنبؤات الأسعار</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-hotel"></i></div>
+                        <h3 class="service-name">اختيار الفنادق الفاخرة</h3>
+                        <p>مطابقة الفنادق المخصصة بناءً على تفضيلاتك</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-jet-fighter"></i></div>
+                        <h3 class="service-name">الطيران الخاص</h3>
+                        <p>وصول حصري لتأجير الطائرات الخاصة والخدمات</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-route"></i></div>
+                        <h3 class="service-name">تجارب مختارة</h3>
+                        <p>خطط سفر مصممة بالذكاء الاصطناعي وتجارب فريدة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <div class="values-section">
+                <h2 class="values-title">قيمنا الأساسية</h2>
+                <ul class="values-list">
+                    <li><strong>مدفوع بالخبرة:</strong> كل توصية مدعومة بأكثر من 20 عامًا من الخبرة في الصناعة</li>
+                    <li><strong>معزز بالذكاء الاصطناعي:</strong> الجمع بين البصيرة البشرية والذكاء الآلي لنتائج متفوقة</li>
+                    <li><strong>العميل أولاً:</strong> رضاك وخصوصيتك هما أولويتنا القصوى</li>
+                    <li><strong>الابتكار:</strong> التطور المستمر لخوارزميات الذكاء الاصطناعي وخدماتنا</li>
+                    <li><strong>الشفافية:</strong> تسعير واضح، توصيات صادقة، وإفصاح كامل</li>
+                    <li><strong>وجهة نظر عالمية:</strong> خبرة دولية عبر جميع أسواق السفر الرئيسية</li>
+                </ul>
+            </div>
+
+            <!-- Affiliate Disclosure -->
+            <div class="mission-section" style="border-left-color: var(--ai-purple);">
+                <h2 class="mission-title"><i class="fas fa-handshake"></i> شراكات الشركاء التابعين</h2>
+                <p>تتعاون سكاي لينكس للسفر مع مقدمي خدمات السفر الرائدين من خلال شبكات الشركاء التابعين مثل Travelpouts وAwin. تسمح لنا هذه الشراكات بتقديم أسعار تنافسية مع الحفاظ على توصياتنا المستقلة المدعومة بالخبراء.</p>
+                <p><strong>وعد الشفافية:</strong> نحن نكشف بوضوح عن علاقات الشركاء التابعين ونعطي دائمًا الأولوية لمصالحك في توصياتنا.</p>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h2 class="cta-title">مستعد لتجربة السفر الفاخر المدعوم بالذكاء الاصطناعي؟</h2>
+                <p>انضم إلى آلاف المسافرين الذين يثقون بسكاي لينكس للتخطيط الذكي والمخصص للسفر.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@skylynx.co</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (613) 555-0123</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>شارع ريدو، أوتاوا، أونتاريو K1N 9J7، كندا</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="about-footer">
+            <p>© 2025 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+            <p>Built by aviation and travel professionals with 20+ years of international experience.</p>
+            <p style="margin-top: 15px;">
+                <a href="privacy.html" style="color: var(--sky-glow); margin-right: 15px;">Privacy Policy</a> | 
+                <a href="terms.html" style="color: var(--sky-glow); margin: 0 15px;">Terms & Conditions</a> | 
+                <a href="contact.html" style="color: var(--sky-glow); margin-left: 15px;">Contact Us</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Language Management
+        let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+        
+        // Translations
+        const translations = {
+            en: {
+                aiBadge: 'AI-Powered',
+                backHome: 'Back to Home',
+                navHome: 'Home',
+                navBlog: 'Blog',
+                navAbout: 'About',
+                navContact: 'Contact'
+            },
+            ar: {
+                aiBadge: 'مدعوم بالذكاء الاصطناعي',
+                backHome: 'العودة إلى الرئيسية',
+                navHome: 'الرئيسية',
+                navBlog: 'المدونة',
+                navAbout: 'من نحن',
+                navContact: 'اتصل بنا'
+            }
+        };
+        
+        // Function to update language
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('skylynx_lang', lang);
+            
+            // Update HTML attributes
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update navigation
+            if (translations[lang]) {
+                document.getElementById('ai-badge-text').textContent = translations[lang].aiBadge;
+                document.getElementById('back-home-text').textContent = translations[lang].backHome;
+                document.getElementById('nav-home').querySelector('.nav-text').textContent = translations[lang].navHome;
+                document.getElementById('nav-blog').querySelector('.nav-text').textContent = translations[lang].navBlog;
+                document.getElementById('nav-about').querySelector('.nav-text').textContent = translations[lang].navAbout;
+                document.getElementById('nav-contact').querySelector('.nav-text').textContent = translations[lang].navContact;
+            }
+            
+            // Update content visibility
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('content-' + lang).classList.add('active');
+            
+            // Update language selector
+            document.getElementById('lang-sel').value = lang;
+        }
+        
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage(currentLang);
+            
+            // Language selector change
+            document.getElementById('lang-sel').addEventListener('change', function() {
+                updateLanguage(this.value);
+            });
+            
+            // Currency selector change
+            document.getElementById('curr-sel').addEventListener('change', function() {
+                localStorage.setItem('skylynx_currency', this.value);
+            });
+            
+            // Set currency from localStorage
+            const savedCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
+            document.getElementById('curr-sel').value = savedCurrency;
+            
+            // Update navigation active state
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

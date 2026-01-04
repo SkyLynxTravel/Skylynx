@@ -488,25 +488,20 @@
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-left">
-            <a href="/" class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <i class="fas fa-plane"></i>
                 <span>SkyLynx</span>
             </a>
             
             <div class="ai-badge">
                 <i class="fas fa-brain"></i>
-                <span>AI-Powered</span>
+                <span id="aiBadgeText">AI-Powered</span>
             </div>
             
             <ul class="nav-menu">
-    <li><a href="/"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
-    <li><a href="blog.html" class="active"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
-    <!-- احذف أو علّق الأسطر التالية حتى تنشئ هذه الصفحات -->
-    <!-- <li><a href="/booking.html"><i class="fas fa-calendar-alt"></i> <span class="nav-text">Bookings</span></a></li> -->
-    <!-- <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li> -->
-    <!-- <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span class="nav-text">Contact</span></a></li> -->
-    <!-- <li><a href="/destinations.html"><i class="fas fa-map-marker-alt"></i> <span class="nav-text">Destinations</span></a></li> -->
-</ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="article.html"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
+            </ul>
         </div>
         
         <div class="nav-right">
@@ -529,8 +524,8 @@
     <!-- Hero Section -->
     <section class="disclosure-hero">
         <div class="disclosure-hero-content">
-            <h1>Affiliate Disclosure</h1>
-            <p>Transparency is at the core of everything we do at SkyLynx Travel. Learn about our affiliate relationships and how we maintain the highest standards of integrity.</p>
+            <h1 id="pageTitle">Affiliate Disclosure</h1>
+            <p id="pageDescription">Transparency is at the core of everything we do at SkyLynx Travel. Learn about our affiliate relationships and how we maintain the highest standards of integrity.</p>
             
             <div class="ai-tagline">
                 <i class="fas fa-robot"></i>
@@ -545,18 +540,18 @@
             <div class="info-box">
                 <div class="info-box-title">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>Important Disclosure</span>
+                    <span id="importantTitle">Important Disclosure</span>
                 </div>
-                <p><strong>SkyLynx Travel participates in various affiliate marketing programs.</strong> This means we may earn commissions on qualifying purchases made through our links, at no additional cost to you.</p>
+                <p id="importantText"><strong>SkyLynx Travel participates in various affiliate marketing programs.</strong> This means we may earn commissions on qualifying purchases made through our links, at no additional cost to you.</p>
             </div>
             
-            <h2>How Our Affiliate Program Works</h2>
+            <h2 id="howTitle">How Our Affiliate Program Works</h2>
             
-            <p>SkyLynx Travel is committed to providing honest, unbiased travel recommendations. To support our operations and continue delivering high-quality content, we participate in affiliate programs with trusted travel partners.</p>
+            <p id="howText">SkyLynx Travel is committed to providing honest, unbiased travel recommendations. To support our operations and continue delivering high-quality content, we participate in affiliate programs with trusted travel partners.</p>
             
-            <h3>What Are Affiliate Links?</h3>
-            <p>Affiliate links are special tracking links that allow us to earn a small commission when you make a purchase through our recommendations. These links:</p>
-            <ul>
+            <h3 id="whatTitle">What Are Affiliate Links?</h3>
+            <p id="whatText">Affiliate links are special tracking links that allow us to earn a small commission when you make a purchase through our recommendations. These links:</p>
+            <ul id="linksList">
                 <li><strong>Do not increase the price</strong> you pay for any product or service</li>
                 <li><strong>Do not affect</strong> the availability or terms of the offer</li>
                 <li><strong>Help support</strong> our research, content creation, and platform maintenance</li>
@@ -566,14 +561,14 @@
             <div class="info-box success">
                 <div class="info-box-title">
                     <i class="fas fa-shield-alt"></i>
-                    <span>Your Privacy Matters</span>
+                    <span id="privacyTitle">Your Privacy Matters</span>
                 </div>
-                <p>When you click on affiliate links, tracking cookies may be placed on your device to attribute the sale to our referral. These cookies typically expire within 30-90 days. For more details, please review our <a href="/privacy.html" style="color: var(--sky-glow);">Privacy Policy</a> and <a href="/cookie-policy.html" style="color: var(--sky-glow);">Cookie Policy</a>.</p>
+                <p id="privacyText">When you click on affiliate links, tracking cookies may be placed on your device to attribute the sale to our referral. These cookies typically expire within 30-90 days. For more details, please review our <a href="privacy.html" style="color: var(--sky-glow);">Privacy Policy</a> and <a href="cookie-policy.html" style="color: var(--sky-glow);">Cookie Policy</a>.</p>
             </div>
             
-            <h2>Our Affiliate Partners</h2>
+            <h2 id="partnersTitle">Our Affiliate Partners</h2>
             
-            <p>We carefully select our affiliate partners based on their reputation, customer service quality, and the value they provide to our users. Our current partners include:</p>
+            <p id="partnersText">We carefully select our affiliate partners based on their reputation, customer service quality, and the value they provide to our users. Our current partners include:</p>
             
             <div class="partners-grid">
                 <div class="partner-card">
@@ -581,7 +576,7 @@
                         <i class="fas fa-plane"></i>
                     </div>
                     <h4>Awin Network</h4>
-                    <p>Global affiliate network connecting us with premium travel brands</p>
+                    <p id="awinDesc">Global affiliate network connecting us with premium travel brands</p>
                 </div>
                 
                 <div class="partner-card">
@@ -589,7 +584,7 @@
                         <i class="fas fa-globe"></i>
                     </div>
                     <h4>Travelpayouts</h4>
-                    <p>Specialized travel affiliate platform with exclusive airline and hotel partners</p>
+                    <p id="travelpayoutsDesc">Specialized travel affiliate platform with exclusive airline and hotel partners</p>
                 </div>
                 
                 <div class="partner-card">
@@ -597,7 +592,7 @@
                         <i class="fas fa-hotel"></i>
                     </div>
                     <h4>Booking.com</h4>
-                    <p>World's leading hotel and accommodation booking platform</p>
+                    <p id="bookingDesc">World's leading hotel and accommodation booking platform</p>
                 </div>
                 
                 <div class="partner-card">
@@ -605,46 +600,46 @@
                         <i class="fas fa-crown"></i>
                     </div>
                     <h4>Expedia</h4>
-                    <p>Comprehensive travel booking platform for flights, hotels, and packages</p>
+                    <p id="expediaDesc">Comprehensive travel booking platform for flights, hotels, and packages</p>
                 </div>
             </div>
             
-            <h2>Our Commitment to You</h2>
+            <h2 id="commitmentTitle">Our Commitment to You</h2>
             
-            <h3>1. Honest Recommendations</h3>
-            <p>We only recommend products and services that we genuinely believe will benefit our users. Our AI-powered recommendations are based on extensive research, data analysis, and when possible, personal experience.</p>
+            <h3 id="honestTitle">1. Honest Recommendations</h3>
+            <p id="honestText">We only recommend products and services that we genuinely believe will benefit our users. Our AI-powered recommendations are based on extensive research, data analysis, and when possible, personal experience.</p>
             
-            <h3>2. Transparency</h3>
-            <p>We clearly disclose our affiliate relationships throughout our platform. This page serves as our primary disclosure, and we also include brief disclosures on pages containing affiliate links.</p>
+            <h3 id="transparencyTitle">2. Transparency</h3>
+            <p id="transparencyText">We clearly disclose our affiliate relationships throughout our platform. This page serves as our primary disclosure, and we also include brief disclosures on pages containing affiliate links.</p>
             
-            <h3>3. Editorial Independence</h3>
-            <p>Our affiliate partnerships do not influence our editorial content. We maintain complete editorial independence, and our recommendations are based solely on what we believe offers the best value and experience for our users.</p>
+            <h3 id="editorialTitle">3. Editorial Independence</h3>
+            <p id="editorialText">Our affiliate partnerships do not influence our editorial content. We maintain complete editorial independence, and our recommendations are based solely on what we believe offers the best value and experience for our users.</p>
             
-            <h3>4. Quality Over Commission</h3>
-            <p>We prioritize recommending high-quality services over higher commission rates. In fact, many of our recommendations may earn us lower commissions but provide better value for our users.</p>
+            <h3 id="qualityTitle">4. Quality Over Commission</h3>
+            <p id="qualityText">We prioritize recommending high-quality services over higher commission rates. In fact, many of our recommendations may earn us lower commissions but provide better value for our users.</p>
             
             <div class="info-box warning">
                 <div class="info-box-title">
                     <i class="fas fa-balance-scale"></i>
-                    <span>Legal Compliance</span>
+                    <span id="legalTitle">Legal Compliance</span>
                 </div>
-                <p>This disclosure complies with Federal Trade Commission (FTC) guidelines in the United States and similar regulations worldwide. We are committed to full transparency and legal compliance in all our affiliate marketing activities.</p>
+                <p id="legalText">This disclosure complies with Federal Trade Commission (FTC) guidelines in the United States and similar regulations worldwide. We are committed to full transparency and legal compliance in all our affiliate marketing activities.</p>
             </div>
             
-            <h2>Understanding Commissions</h2>
+            <h2 id="commissionsTitle">Understanding Commissions</h2>
             
-            <p>Commission rates vary by partner and product type. Typical commission structures include:</p>
+            <p id="commissionsText">Commission rates vary by partner and product type. Typical commission structures include:</p>
             
-            <ul>
+            <ul id="commissionsList">
                 <li><strong>Hotel bookings:</strong> 2-8% of booking value</li>
                 <li><strong>Flight bookings:</strong> 1-4% of ticket price</li>
                 <li><strong>Car rentals:</strong> 2-6% of rental cost</li>
                 <li><strong>Travel packages:</strong> 3-10% of package price</li>
             </ul>
             
-            <p>These commissions help support our operations, including:</p>
+            <p id="supportText">These commissions help support our operations, including:</p>
             
-            <ul>
+            <ul id="supportList">
                 <li>AI technology development and maintenance</li>
                 <li>Content creation and research</li>
                 <li>Website hosting and security</li>
@@ -652,39 +647,39 @@
                 <li>Continuous platform improvements</li>
             </ul>
             
-            <h2>User Rights & Choices</h2>
+            <h2 id="rightsTitle">User Rights & Choices</h2>
             
-            <h3>Your Right to Choose</h3>
-            <p>You are under no obligation to use our affiliate links. All recommended services are available directly from the providers if you prefer not to use our links.</p>
+            <h3 id="chooseTitle">Your Right to Choose</h3>
+            <p id="chooseText">You are under no obligation to use our affiliate links. All recommended services are available directly from the providers if you prefer not to use our links.</p>
             
-            <h3>Opting Out of Tracking</h3>
-            <p>You can control cookie tracking through your browser settings. Please refer to our <a href="/cookie-policy.html" style="color: var(--sky-glow);">Cookie Policy</a> for detailed instructions on managing cookies.</p>
+            <h3 id="trackingTitle">Opting Out of Tracking</h3>
+            <p id="trackingText">You can control cookie tracking through your browser settings. Please refer to our <a href="cookie-policy.html" style="color: var(--sky-glow);">Cookie Policy</a> for detailed instructions on managing cookies.</p>
             
-            <h3>Questions & Concerns</h3>
-            <p>If you have any questions about our affiliate relationships or how commissions work, please don't hesitate to <a href="/contact.html" style="color: var(--sky-glow);">contact us</a>. We're committed to complete transparency and are happy to answer any questions you may have.</p>
+            <h3 id="questionsTitle">Questions & Concerns</h3>
+            <p id="questionsText">If you have any questions about our affiliate relationships or how commissions work, please don't hesitate to <a href="contact.html" style="color: var(--sky-glow);">contact us</a>. We're committed to complete transparency and are happy to answer any questions you may have.</p>
             
             <div class="info-box">
                 <div class="info-box-title">
                     <i class="fas fa-handshake"></i>
-                    <span>Partnership Inquiries</span>
+                    <span id="partnershipTitle">Partnership Inquiries</span>
                 </div>
-                <p>Are you a travel service provider interested in partnering with SkyLynx Travel? We're always open to exploring new partnerships that align with our values and benefit our users. Please visit our <a href="/contact.html?type=partnership" style="color: var(--sky-glow);">Partnership Inquiry</a> page to get in touch.</p>
+                <p id="partnershipText">Are you a travel service provider interested in partnering with SkyLynx Travel? We're always open to exploring new partnerships that align with our values and benefit our users. Please visit our <a href="contact.html?type=partnership" style="color: var(--sky-glow);">Partnership Inquiry</a> page to get in touch.</p>
             </div>
             
-            <h2>Contact Information</h2>
+            <h2 id="contactTitle">Contact Information</h2>
             
-            <p>For questions regarding this Affiliate Disclosure or our affiliate practices, please contact:</p>
+            <p id="contactText">For questions regarding this Affiliate Disclosure or our affiliate practices, please contact:</p>
             
-            <p><strong>SkyLynx Travel Affiliate Department</strong><br>
-            Email: affiliates@skylynx.travel<br>
-            Address: 123 Luxury Lane, Suite 100, Ottawa, ON K1P 5G9, Canada</p>
+            <p><strong id="deptTitle">SkyLynx Travel Affiliate Department</strong><br>
+            <span id="emailText">Email: affiliates@skylynx.travel</span><br>
+            <span id="addressText">Address: 123 Luxury Lane, Suite 100, Ottawa, ON K1P 5G9, Canada</span></p>
             
-            <p><strong>Last Updated:</strong> March 15, 2024</p>
+            <p><strong id="updatedTitle">Last Updated:</strong> March 15, 2024</p>
             
             <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 10px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.05);">
                 <p style="font-size: 0.9rem; color: rgba(224, 225, 221, 0.7); margin: 0;">
                     <i class="fas fa-info-circle" style="color: var(--sky-glow); margin-right: 8px;"></i>
-                    This Affiliate Disclosure is part of and incorporated into our <a href="/terms.html" style="color: var(--sky-glow);">Terms of Service</a>. By using our website, you acknowledge that you have read and understood this disclosure.
+                    <span id="disclosureNote">This Affiliate Disclosure is part of and incorporated into our <a href="terms.html" style="color: var(--sky-glow);">Terms of Service</a>. By using our website, you acknowledge that you have read and understood this disclosure.</span>
                 </p>
             </div>
         </article>
@@ -695,39 +690,39 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>SkyLynx Travel</h3>
-                <p style="color: var(--silver); line-height: 1.6;">
+                <p id="footerDesc" style="color: var(--silver); line-height: 1.6;">
                     World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.
                 </p>
             </div>
             
             <div class="footer-column">
-                <h3>Legal Documents</h3>
+                <h3 id="legalDocsTitle">Legal Documents</h3>
                 <ul>
-    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span>Privacy Policy</span></a></li>
-    <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span>Terms & Conditions</span></a></li>
-    <li><a href="affiliate-disclosure.html" class="active"><i class="fas fa-handshake"></i> <span>Affiliate Disclosure</span></a></li>
-    <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span>Cookie Policy</span></a></li>
-</ul>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span id="privacyLink">Privacy Policy</span></a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span id="termsLink">Terms & Conditions</span></a></li>
+                    <li><a href="affiliate-disclosure.html" class="active"><i class="fas fa-handshake"></i> <span id="affiliateLink">Affiliate Disclosure</span></a></li>
+                    <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span id="cookieLink">Cookie Policy</span></a></li>
+                </ul>
             </div>
             
             <div class="footer-column">
-                <h3>Connect With Us</h3>
+                <h3 id="connectTitle">Connect With Us</h3>
                 <ul>
-                    <li><a href="/contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></a></li>
-                    <li><a href="/about.html"><i class="fas fa-info-circle"></i> <span>About SkyLynx</span></a></li>
-                    <li><a href="/blog.html"><i class="fas fa-newspaper"></i> <span>Travel Blog</span></a></li>
-                    <li><a href="/careers.html"><i class="fas fa-briefcase"></i> <span>Careers</span></a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> <span id="contactLink">Contact Us</span></a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> <span id="aboutLink">About SkyLynx</span></a></li>
+                    <li><a href="article.html"><i class="fas fa-newspaper"></i> <span id="blogLink">Travel Blog</span></a></li>
+                    <li><a href="careers.html"><i class="fas fa-briefcase"></i> <span id="careersLink">Careers</span></a></li>
                 </ul>
             </div>
         </div>
         
         <div class="copyright">
-            <p>© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
-            <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);">
+            <p id="copyrightText">© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+            <p id="affiliateFooter" style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);">
                 This website contains affiliate links. We may earn a commission through these links at no additional cost to you.
             </p>
             <p style="font-size: 0.8rem; margin-top: 5px; color: var(--ai-teal);">
-                <i class="fas fa-robot"></i> <span>Powered by SkyLynx AI 3.0 • Patent Pending</span>
+                <i class="fas fa-robot"></i> <span id="poweredBy">Powered by SkyLynx AI 3.0 • Patent Pending</span>
             </p>
         </div>
     </footer>
@@ -738,12 +733,240 @@
     </button>
 
     <script>
+        // ========== ترجمة النصوص ==========
+        const translations = {
+            en: {
+                // Navigation
+                home: "Home",
+                blog: "Blog",
+                aiPowered: "AI-Powered",
+                
+                // Hero Section
+                pageTitle: "Affiliate Disclosure",
+                pageDescription: "Transparency is at the core of everything we do at SkyLynx Travel. Learn about our affiliate relationships and how we maintain the highest standards of integrity.",
+                aiTagline: "AI-Powered Transparency & Integrity",
+                
+                // Content
+                importantTitle: "Important Disclosure",
+                importantText: "SkyLynx Travel participates in various affiliate marketing programs. This means we may earn commissions on qualifying purchases made through our links, at no additional cost to you.",
+                
+                howTitle: "How Our Affiliate Program Works",
+                howText: "SkyLynx Travel is committed to providing honest, unbiased travel recommendations. To support our operations and continue delivering high-quality content, we participate in affiliate programs with trusted travel partners.",
+                
+                whatTitle: "What Are Affiliate Links?",
+                whatText: "Affiliate links are special tracking links that allow us to earn a small commission when you make a purchase through our recommendations. These links:",
+                
+                linksList: [
+                    "Do not increase the price you pay for any product or service",
+                    "Do not affect the availability or terms of the offer",
+                    "Help support our research, content creation, and platform maintenance",
+                    "Are clearly marked throughout our website"
+                ],
+                
+                privacyTitle: "Your Privacy Matters",
+                privacyText: "When you click on affiliate links, tracking cookies may be placed on your device to attribute the sale to our referral. These cookies typically expire within 30-90 days. For more details, please review our Privacy Policy and Cookie Policy.",
+                
+                partnersTitle: "Our Affiliate Partners",
+                partnersText: "We carefully select our affiliate partners based on their reputation, customer service quality, and the value they provide to our users. Our current partners include:",
+                
+                awinDesc: "Global affiliate network connecting us with premium travel brands",
+                travelpayoutsDesc: "Specialized travel affiliate platform with exclusive airline and hotel partners",
+                bookingDesc: "World's leading hotel and accommodation booking platform",
+                expediaDesc: "Comprehensive travel booking platform for flights, hotels, and packages",
+                
+                commitmentTitle: "Our Commitment to You",
+                honestTitle: "1. Honest Recommendations",
+                honestText: "We only recommend products and services that we genuinely believe will benefit our users. Our AI-powered recommendations are based on extensive research, data analysis, and when possible, personal experience.",
+                
+                transparencyTitle: "2. Transparency",
+                transparencyText: "We clearly disclose our affiliate relationships throughout our platform. This page serves as our primary disclosure, and we also include brief disclosures on pages containing affiliate links.",
+                
+                editorialTitle: "3. Editorial Independence",
+                editorialText: "Our affiliate partnerships do not influence our editorial content. We maintain complete editorial independence, and our recommendations are based solely on what we believe offers the best value and experience for our users.",
+                
+                qualityTitle: "4. Quality Over Commission",
+                qualityText: "We prioritize recommending high-quality services over higher commission rates. In fact, many of our recommendations may earn us lower commissions but provide better value for our users.",
+                
+                legalTitle: "Legal Compliance",
+                legalText: "This disclosure complies with Federal Trade Commission (FTC) guidelines in the United States and similar regulations worldwide. We are committed to full transparency and legal compliance in all our affiliate marketing activities.",
+                
+                commissionsTitle: "Understanding Commissions",
+                commissionsText: "Commission rates vary by partner and product type. Typical commission structures include:",
+                
+                commissionsList: [
+                    "Hotel bookings: 2-8% of booking value",
+                    "Flight bookings: 1-4% of ticket price",
+                    "Car rentals: 2-6% of rental cost",
+                    "Travel packages: 3-10% of package price"
+                ],
+                
+                supportText: "These commissions help support our operations, including:",
+                supportList: [
+                    "AI technology development and maintenance",
+                    "Content creation and research",
+                    "Website hosting and security",
+                    "Customer support services",
+                    "Continuous platform improvements"
+                ],
+                
+                rightsTitle: "User Rights & Choices",
+                chooseTitle: "Your Right to Choose",
+                chooseText: "You are under no obligation to use our affiliate links. All recommended services are available directly from the providers if you prefer not to use our links.",
+                
+                trackingTitle: "Opting Out of Tracking",
+                trackingText: "You can control cookie tracking through your browser settings. Please refer to our Cookie Policy for detailed instructions on managing cookies.",
+                
+                questionsTitle: "Questions & Concerns",
+                questionsText: "If you have any questions about our affiliate relationships or how commissions work, please don't hesitate to contact us. We're committed to complete transparency and are happy to answer any questions you may have.",
+                
+                partnershipTitle: "Partnership Inquiries",
+                partnershipText: "Are you a travel service provider interested in partnering with SkyLynx Travel? We're always open to exploring new partnerships that align with our values and benefit our users. Please visit our Partnership Inquiry page to get in touch.",
+                
+                contactTitle: "Contact Information",
+                contactText: "For questions regarding this Affiliate Disclosure or our affiliate practices, please contact:",
+                deptTitle: "SkyLynx Travel Affiliate Department",
+                emailText: "Email: affiliates@skylynx.travel",
+                addressText: "Address: 123 Luxury Lane, Suite 100, Ottawa, ON K1P 5G9, Canada",
+                updatedTitle: "Last Updated:",
+                
+                disclosureNote: "This Affiliate Disclosure is part of and incorporated into our Terms of Service. By using our website, you acknowledge that you have read and understood this disclosure.",
+                
+                // Footer
+                footerDesc: "World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.",
+                legalDocsTitle: "Legal Documents",
+                privacyLink: "Privacy Policy",
+                termsLink: "Terms & Conditions",
+                affiliateLink: "Affiliate Disclosure",
+                cookieLink: "Cookie Policy",
+                connectTitle: "Connect With Us",
+                contactLink: "Contact Us",
+                aboutLink: "About SkyLynx",
+                blogLink: "Travel Blog",
+                careersLink: "Careers",
+                copyrightText: "© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.",
+                affiliateFooter: "This website contains affiliate links. We may earn a commission through these links at no additional cost to you.",
+                poweredBy: "Powered by SkyLynx AI 3.0 • Patent Pending"
+            },
+            ar: {
+                // Navigation
+                home: "الرئيسية",
+                blog: "المدونة",
+                aiPowered: "مدعوم بالذكاء الاصطناعي",
+                
+                // Hero Section
+                pageTitle: "الإفصاح التابع",
+                pageDescription: "الشفافية هي أساس كل ما نفعله في سكاي لينكس للسفر. تعرف على علاقاتنا التابعة وكيف نحافظ على أعلى معايير النزاهة.",
+                aiTagline: "شفافية مدعومة بالذكاء الاصطناعي والنزاهة",
+                
+                // Content
+                importantTitle: "إفصاح مهم",
+                importantText: "تشارك سكاي لينكس ترافيل في برامج تسويق تابعة مختلفة. هذا يعني أننا قد نربح عمولات على المشتريات المؤهلة التي تتم من خلال روابطنا، دون أي تكلفة إضافية عليك.",
+                
+                howTitle: "كيف يعمل برنامجنا التابع",
+                howText: "تلتزم سكاي لينكس ترافيل بتقديم توصيات سفر صادقة وغير متحيزة. لدعم عملياتنا والاستمرار في تقديم محتوى عالي الجودة، نشارك في برامج تابعة مع شركاء سفر موثوقين.",
+                
+                whatTitle: "ما هي الروابط التابعة؟",
+                whatText: "الروابط التابعة هي روابط تتبع خاصة تسمح لنا بكسب عمولة صغيرة عند قيامك بعملية شراء من خلال توصياتنا. هذه الروابط:",
+                
+                linksList: [
+                    "لا تزيد السعر الذي تدفعه لأي منتج أو خدمة",
+                    "لا تؤثر على توفر العرض أو شروطه",
+                    "تساعد في دعم أبحاثنا وإنشاء المحتوى وصيانة المنصة",
+                    "يتم وضع علامة عليها بوضوح في جميع أنحاء موقعنا"
+                ],
+                
+                privacyTitle: "خصوصيتك تهمنا",
+                privacyText: "عند النقر على الروابط التابعة، قد يتم وضع ملفات تعريف الارتباط للتتبع على جهازك لتعزيز عملية البيع. تنتهي صلاحية ملفات تعريف الارتباط هذه عادةً خلال 30-90 يومًا. لمزيد من التفاصيل، يرجى مراجعة سياسة الخصوصية وسياسة ملفات تعريف الارتباط الخاصة بنا.",
+                
+                partnersTitle: "شركاؤنا التابعون",
+                partnersText: "نختار بعناية شركائنا التابعين بناءً على سمعتهم وجودة خدمة العملاء والقيمة التي يقدمونها لمستخدمينا. يشمل شركاؤنا الحاليون:",
+                
+                awinDesc: "شبكة تابعة عالمية تربطنا بعلامات السفر الفاخرة",
+                travelpayoutsDesc: "منصة تابعة للسفر متخصصة مع شركاء حصريين للخطوط الجوية والفنادق",
+                bookingDesc: "أفضل منصة في العالم لحجز الفنادق والإقامة",
+                expediaDesc: "منصة حجوزات سفر شاملة للرحلات الجوية والفنادق والباقات",
+                
+                commitmentTitle: "التزامنا تجاهك",
+                honestTitle: "1. توصيات صادقة",
+                honestText: "نحن نوصي فقط بالمنتجات والخدمات التي نعتقد حقًا أنها ستستفيد مستخدمينا. تستند توصياتنا المدعومة بالذكاء الاصطناعي إلى بحث مكثف وتحليل للبيانات، وعند الإمكان، الخبرة الشخصية.",
+                
+                transparencyTitle: "2. الشفافية",
+                transparencyText: "نكشف بوضوح عن علاقاتنا التابعة في جميع أنحاء منصتنا. تعمل هذه الصفحة كإفصاحنا الأساسي، كما ندرج أيضًا إفصاحات موجزة في الصفحات التي تحتوي على روابط تابعة.",
+                
+                editorialTitle: "3. الاستقلالية التحريرية",
+                editorialText: "لا تؤثر شراكاتنا التابعة على محتوانا التحريري. نحافظ على استقلالية تحريرية كاملة، وتستند توصياتنا فقط إلى ما نعتقد أنه يقدم أفضل قيمة وتجربة لمستخدمينا.",
+                
+                qualityTitle: "4. الجودة فوق العمولة",
+                qualityText: "نحن نعطي الأولية للتوصية بالخدمات عالية الجودة على معدلات العمولة الأعلى. في الواقع، قد تحقق العديد من توصياتنا عمولات أقل ولكنها توفر قيمة أفضل لمستخدمينا.",
+                
+                legalTitle: "الامتثال القانوني",
+                legalText: "يتوافق هذا الإفصاح مع إرشادات لجنة التجارة الفيدرالية (FTC) في الولايات المتحدة واللوائح المماثلة في جميع أنحاء العالم. نحن ملتزمون بالشفافية الكاملة والامتثال القانوني في جميع أنشطتنا التسويقية التابعة.",
+                
+                commissionsTitle: "فهم العمولات",
+                commissionsText: "تختلف معدلات العمولة حسب الشريك ونوع المنتج. تشمل هياكل العمولة النموذجية:",
+                
+                commissionsList: [
+                    "حجوزات الفنادق: 2-8٪ من قيمة الحجز",
+                    "حجوزات الطيران: 1-4٪ من سعر التذكرة",
+                    "تأجير السيارات: 2-6٪ من تكلفة الإيجار",
+                    "باقات السفر: 3-10٪ من سعر الباقة"
+                ],
+                
+                supportText: "تساعد هذه العمولات في دعم عملياتنا، بما في ذلك:",
+                supportList: [
+                    "تطوير وصيانة تكنولوجيا الذكاء الاصطناعي",
+                    "إنشاء المحتوى والبحث",
+                    "استضافة الموقع والأمان",
+                    "خدمات دعم العملاء",
+                    "تحسينات المنصة المستمرة"
+                ],
+                
+                rightsTitle: "حقوق المستخدم والخيارات",
+                chooseTitle: "حقك في الاختيار",
+                chooseText: "أنت لست ملزمًا باستخدام روابطنا التابعة. جميع الخدمات الموصى بها متاحة مباشرة من المزودين إذا كنت تفضل عدم استخدام روابطنا.",
+                
+                trackingTitle: "الانسحاب من التتبع",
+                trackingText: "يمكنك التحكم في تتبع ملفات تعريف الارتباط من خلال إعدادات المتصفح الخاص بك. يرجى الرجوع إلى سياسة ملفات تعريف الارتباط الخاصة بنا للحصول على تعليمات مفصلة حول إدارة ملفات تعريف الارتباط.",
+                
+                questionsTitle: "الأسئلة والمخاوف",
+                questionsText: "إذا كان لديك أي أسئلة حول علاقاتنا التابعة أو كيفية عمل العمولات، فلا تتردد في الاتصال بنا. نحن ملتزمون بالشفافية الكاملة وسعداء بالإجابة على أي أسئلة قد تكون لديك.",
+                
+                partnershipTitle: "استفسارات الشراكة",
+                partnershipText: "هل أنت مزود خدمة سفر مهتم بالشراكة مع سكاي لينكس ترافيل؟ نحن دائمًا منفتحون على استكشاف شراكات جديدة تتماشى مع قيمنا وتفيد مستخدمينا. يرجى زيارة صفحة استفسار الشراكة الخاصة بنا للتواصل معنا.",
+                
+                contactTitle: "معلومات الاتصال",
+                contactText: "للأسئلة المتعلقة بهذا الإفصاح التابع أو ممارساتنا التابعة، يرجى الاتصال بـ:",
+                deptTitle: "قسم التابعين في سكاي لينكس ترافيل",
+                emailText: "البريد الإلكتروني: affiliates@skylynx.travel",
+                addressText: "العنوان: 123 لوكس لين، جناح 100، أوتاوا، أونتاريو K1P 5G9، كندا",
+                updatedTitle: "آخر تحديث:",
+                
+                disclosureNote: "يعد هذا الإفصاح التابع جزءًا من شروط الخدمة الخاصة بنا ومدمجًا فيها. باستخدام موقعنا الإلكتروني، فإنك تقر بأنك قد قرأت وفهمت هذا الإفصاح.",
+                
+                // Footer
+                footerDesc: "أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم تقدم تجارب سفر ذكية ومخصصة.",
+                legalDocsTitle: "الوثائق القانونية",
+                privacyLink: "سياسة الخصوصية",
+                termsLink: "الشروط والأحكام",
+                affiliateLink: "الإفصاح التابع",
+                cookieLink: "سياسة الكوكيز",
+                connectTitle: "تواصل معنا",
+                contactLink: "اتصل بنا",
+                aboutLink: "عن سكاي لينكس",
+                blogLink: "مدونة السفر",
+                careersLink: "الوظائف",
+                copyrightText: "© 2024 سكاي لينكس ترافيل إنترناشيونال إنك. - أوتاوا، كندا. جميع الحقوق محفوظة.",
+                affiliateFooter: "يحتوي هذا الموقع على روابط تابعة. قد نربح عمولة من خلال هذه الروابط دون أي تكلفة إضافية عليك.",
+                poweredBy: "مدعوم بـ SkyLynx AI 3.0 • براءة اختراع قيد الانتظار"
+            }
+        };
+
         // ========== تهيئة الصفحة ==========
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Affiliate Disclosure page loaded');
             
-            // تعيين اللغة والعملة من localStorage
-            let currentLang = localStorage.getItem('skylynx_lang') || 'en';
+            // تعيين اللغة والعملة من localStorage - استخدم نفس المفتاح مثل index.html
+            let currentLang = localStorage.getItem('siteLang') || 'en';
             let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
             
             document.getElementById('lang-sel').value = currentLang;
@@ -752,7 +975,7 @@
             // تغيير اللغة
             document.getElementById('lang-sel').addEventListener('change', function() {
                 const lang = this.value;
-                localStorage.setItem('skylynx_lang', lang);
+                localStorage.setItem('siteLang', lang); // استخدم siteLang مثل index.html
                 updateLanguage(lang);
             });
             
@@ -780,27 +1003,121 @@
             document.getElementById('main-html').setAttribute('lang', lang);
             document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             
+            // الحصول على الترجمة
+            const translation = translations[lang];
+            if (!translation) return;
+            
             // تحديث النصوص حسب اللغة
-            if (lang === 'ar') {
-                document.querySelector('.ai-badge span').textContent = 'مدعوم بالذكاء الاصطناعي';
-                document.getElementById('aiTaglineText').textContent = 'شفافية مدعومة بالذكاء الاصطناعي والنزاهة';
-                document.querySelector('.disclosure-hero h1').textContent = 'الإفصاح التابع';
-                document.querySelector('.disclosure-hero p').textContent = 'الشفافية هي أساس كل ما نفعله في سكاي لينكس للسفر. تعرف على علاقاتنا التابعة وكيف نحافظ على أعلى معايير النزاهة.';
-                
-                document.querySelectorAll('.nav-text').forEach(el => {
-                    const text = el.textContent;
-                    const translations = {
-                        'Home': 'الرئيسية',
-                        'Bookings': 'الحجوزات',
-                        'Blog': 'المدونة',
-                        'About': 'من نحن',
-                        'Contact': 'اتصل بنا'
-                    };
-                    if (translations[text]) {
-                        el.textContent = translations[text];
-                    }
-                });
-            }
+            document.getElementById('aiBadgeText').textContent = translation.aiPowered;
+            document.getElementById('aiTaglineText').textContent = translation.aiTagline;
+            document.getElementById('pageTitle').textContent = translation.pageTitle;
+            document.getElementById('pageDescription').textContent = translation.pageDescription;
+            
+            // تحديث القائمة
+            document.querySelectorAll('.nav-text').forEach(el => {
+                const text = el.textContent;
+                if (text === 'Home' || text === 'الرئيسية') el.textContent = translation.home;
+                if (text === 'Blog' || text === 'المدونة') el.textContent = translation.blog;
+            });
+            
+            // تحديث المحتوى الرئيسي
+            document.getElementById('importantTitle').textContent = translation.importantTitle;
+            document.getElementById('importantText').innerHTML = translation.importantText;
+            document.getElementById('howTitle').textContent = translation.howTitle;
+            document.getElementById('howText').textContent = translation.howText;
+            document.getElementById('whatTitle').textContent = translation.whatTitle;
+            document.getElementById('whatText').textContent = translation.whatText;
+            
+            // تحديث القوائم
+            const linksList = document.getElementById('linksList');
+            linksList.innerHTML = '';
+            translation.linksList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.split(':')[0]}:</strong> ${item.split(':')[1] || ''}`;
+                linksList.appendChild(li);
+            });
+            
+            document.getElementById('privacyTitle').textContent = translation.privacyTitle;
+            document.getElementById('privacyText').innerHTML = translation.privacyText;
+            document.getElementById('partnersTitle').textContent = translation.partnersTitle;
+            document.getElementById('partnersText').textContent = translation.partnersText;
+            
+            // تحديث أوصاف الشركاء
+            document.getElementById('awinDesc').textContent = translation.awinDesc;
+            document.getElementById('travelpayoutsDesc').textContent = translation.travelpayoutsDesc;
+            document.getElementById('bookingDesc').textContent = translation.bookingDesc;
+            document.getElementById('expediaDesc').textContent = translation.expediaDesc;
+            
+            // استمرار تحديث النصوص
+            document.getElementById('commitmentTitle').textContent = translation.commitmentTitle;
+            document.getElementById('honestTitle').textContent = translation.honestTitle;
+            document.getElementById('honestText').textContent = translation.honestText;
+            document.getElementById('transparencyTitle').textContent = translation.transparencyTitle;
+            document.getElementById('transparencyText').textContent = translation.transparencyText;
+            document.getElementById('editorialTitle').textContent = translation.editorialTitle;
+            document.getElementById('editorialText').textContent = translation.editorialText;
+            document.getElementById('qualityTitle').textContent = translation.qualityTitle;
+            document.getElementById('qualityText').textContent = translation.qualityText;
+            document.getElementById('legalTitle').textContent = translation.legalTitle;
+            document.getElementById('legalText').textContent = translation.legalText;
+            document.getElementById('commissionsTitle').textContent = translation.commissionsTitle;
+            document.getElementById('commissionsText').textContent = translation.commissionsText;
+            
+            // تحديث قائمة العمولات
+            const commissionsList = document.getElementById('commissionsList');
+            commissionsList.innerHTML = '';
+            translation.commissionsList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.split(':')[0]}:</strong> ${item.split(':')[1] || ''}`;
+                commissionsList.appendChild(li);
+            });
+            
+            document.getElementById('supportText').textContent = translation.supportText;
+            
+            // تحديث قائمة الدعم
+            const supportList = document.getElementById('supportList');
+            supportList.innerHTML = '';
+            translation.supportList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                supportList.appendChild(li);
+            });
+            
+            // تحديث باقي النصوص
+            document.getElementById('rightsTitle').textContent = translation.rightsTitle;
+            document.getElementById('chooseTitle').textContent = translation.chooseTitle;
+            document.getElementById('chooseText').textContent = translation.chooseText;
+            document.getElementById('trackingTitle').textContent = translation.trackingTitle;
+            document.getElementById('trackingText').innerHTML = translation.trackingText;
+            document.getElementById('questionsTitle').textContent = translation.questionsTitle;
+            document.getElementById('questionsText').innerHTML = translation.questionsText;
+            document.getElementById('partnershipTitle').textContent = translation.partnershipTitle;
+            document.getElementById('partnershipText').innerHTML = translation.partnershipText;
+            document.getElementById('contactTitle').textContent = translation.contactTitle;
+            document.getElementById('contactText').textContent = translation.contactText;
+            document.getElementById('deptTitle').textContent = translation.deptTitle;
+            document.getElementById('emailText').textContent = translation.emailText;
+            document.getElementById('addressText').textContent = translation.addressText;
+            document.getElementById('updatedTitle').textContent = translation.updatedTitle;
+            document.getElementById('disclosureNote').innerHTML = translation.disclosureNote;
+            
+            // تحديث التذييل
+            document.getElementById('footerDesc').textContent = translation.footerDesc;
+            document.getElementById('legalDocsTitle').textContent = translation.legalDocsTitle;
+            document.getElementById('privacyLink').textContent = translation.privacyLink;
+            document.getElementById('termsLink').textContent = translation.termsLink;
+            document.getElementById('affiliateLink').textContent = translation.affiliateLink;
+            document.getElementById('cookieLink').textContent = translation.cookieLink;
+            document.getElementById('connectTitle').textContent = translation.connectTitle;
+            document.getElementById('contactLink').textContent = translation.contactLink;
+            document.getElementById('aboutLink').textContent = translation.aboutLink;
+            document.getElementById('blogLink').textContent = translation.blogLink;
+            document.getElementById('careersLink').textContent = translation.careersLink;
+            document.getElementById('copyrightText').textContent = translation.copyrightText;
+            document.getElementById('affiliateFooter').textContent = translation.affiliateFooter;
+            document.getElementById('poweredBy').textContent = translation.poweredBy;
+            
+            console.log('Language updated to:', lang);
         }
     </script>
 </body>
