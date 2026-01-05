@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="main-html">
+<html lang="en" id="main-html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | SkyLynx Travel - AI-Powered Luxury Travel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact SkyLynx Travel | AI-Powered Luxury Travel Platform</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Contact SkyLynx Travel - Get in touch with our luxury travel experts. Send us your inquiries, partnership requests, or feedback.">
-    <meta name="keywords" content="contact SkyLynx, travel inquiry, luxury travel support, partnership inquiry, customer service">
+    <meta name="description" content="Contact SkyLynx Travel - AI-Enhanced Luxury Travel Platform Built by Industry Experts. Get in touch for bookings, inquiries, and personalized travel planning.">
+    <meta name="keywords" content="contact SkyLynx, travel inquiries, luxury travel support, AI travel assistance, Ottawa travel company">
     <meta name="author" content="SkyLynx Travel">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact SkyLynx Travel | AI-Powered Luxury Travel Platform">
+    <meta property="og:description" content="Get in touch with our AI-enhanced luxury travel experts for personalized service">
+    <meta property="og:type" content="website">
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -53,10 +58,12 @@
             overflow-x: hidden; 
             scroll-behavior: smooth;
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.8;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            padding-top: 70px; /* إضافة padding لأعلى الجسم */
         }
         
-        /* ========== NAVIGATION ========== */
+        /* ========== NAVIGATION - تحسينات للجوال ========== */
         .main-nav {
             position: fixed;
             top: 0;
@@ -64,27 +71,31 @@
             background: rgba(0, 17, 28, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 15px 5%;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 70px;
+            height: 70px;
         }
         
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 20px;
+            flex: 1;
         }
         
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: white;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
+            flex-shrink: 0;
         }
         
         .nav-logo i {
@@ -93,8 +104,10 @@
         
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             list-style: none;
+            flex: 1;
+            justify-content: center;
         }
         
         .nav-menu a {
@@ -103,9 +116,11 @@
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: color 0.3s;
-            padding: 8px 0;
+            padding: 6px 0;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
         
         .nav-menu a:hover,
@@ -117,20 +132,22 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex-shrink: 0;
         }
         
         .ai-badge {
             background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
             color: white;
-            padding: 6px 15px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 5px;
             animation: glow 2s infinite alternate;
+            white-space: nowrap;
         }
         
         @keyframes glow {
@@ -141,28 +158,176 @@
         /* ========== CONFIG BAR ========== */
         .config { 
             display: flex; 
-            gap: 15px; 
+            gap: 10px; 
         }
         
         .config select { 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.2); 
             color: white; 
-            padding: 8px 15px; 
-            border-radius: 8px; 
+            padding: 6px 10px; 
+            border-radius: 6px; 
             cursor: pointer; 
             backdrop-filter: blur(10px); 
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            height: 35px;
+            min-width: 90px;
         }
         
-        /* ========== HERO SECTION ========== */
+        /* ========== MOBILE MENU TOGGLE ========== */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--sky-glow);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+        
+        /* ========== تحسينات خاصة للجوال ========== */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px !important;
+            }
+            
+            .main-nav {
+                padding: 8px 15px !important;
+                height: 60px !important;
+                min-height: 60px !important;
+            }
+            
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-logo i {
+                font-size: 1.1rem;
+            }
+            
+            .ai-badge {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+                display: none; /* إخفاء في الجوال */
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                order: 3; /* جعله يظهر في النهاية */
+                margin-left: auto;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 17, 28, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                animation: slideDown 0.3s ease;
+            }
+            
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                padding: 15px 25px !important;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+                justify-content: flex-start;
+                font-size: 1rem !important;
+                border-bottom: none !important;
+                width: 100%;
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background: rgba(0, 166, 251, 0.15) !important;
+                border-bottom: none !important;
+            }
+            
+            .nav-right {
+                display: none;
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                background: rgba(0, 17, 28, 0.98);
+            }
+            
+            .nav-right.active {
+                display: flex;
+            }
+            
+            .config {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .config select {
+                min-width: 120px;
+            }
+            
+            /* تعديل الـ hero section للتعويض عن القائمة الثابتة */
+            .contact-hero {
+                margin-top: 0 !important;
+                padding-top: 40px !important;
+                padding-bottom: 60px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding-top: 55px !important;
+            }
+            
+            .main-nav {
+                padding: 5px 10px !important;
+                height: 55px !important;
+                min-height: 55px !important;
+            }
+            
+            .nav-menu {
+                top: 55px;
+            }
+            
+            .contact-hero {
+                padding-top: 30px !important;
+                padding-bottom: 50px !important;
+            }
+        }
+        
+        /* ========== CONTACT HERO ========== */
         .contact-hero {
-            background: linear-gradient(rgba(0, 8, 16, 0.85), rgba(0, 17, 28, 0.95));
-            padding: 180px 5% 100px;
-            text-align: center;
             margin-top: 70px;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, rgba(0, 17, 28, 0.9), rgba(0, 166, 251, 0.1));
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         
         .contact-hero::before {
@@ -175,94 +340,107 @@
             background: 
                 radial-gradient(circle at 20% 30%, rgba(0, 166, 251, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.15) 0%, transparent 50%);
-            animation: pulseBackground 8s ease-in-out infinite alternate;
-        }
-        
-        @keyframes pulseBackground {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.6; }
+            opacity: 0.3;
         }
         
         .contact-hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        .contact-hero h1 {
+        .contact-title {
             font-family: 'Cinzel';
             font-size: 3.5rem;
             color: var(--sky-glow);
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
-        .contact-hero p {
-            font-size: 1.2rem;
+        .contact-subtitle {
+            font-size: 1.3rem;
             color: var(--silver);
-            max-width: 700px;
-            margin: 0 auto;
+            margin-bottom: 30px;
             line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .ai-tagline {
+            display: inline-block;
+            background: rgba(157, 78, 221, 0.2);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(157, 78, 221, 0.4);
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            margin-top: 20px;
         }
         
         /* ========== CONTACT CONTENT ========== */
-        .contact-container {
+        .contact-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 5% 80px;
+            padding: 80px 5%;
+        }
+        
+        .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: start;
         }
         
-        @media (max-width: 768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px 35px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         
-        /* ========== CONTACT FORM ========== */
-        .contact-form-section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 25px;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .contact-form-section h2 {
+        .form-title {
             font-family: 'Cinzel';
+            font-size: 2rem;
             color: var(--sky-glow);
             margin-bottom: 30px;
-            font-size: 2rem;
-            border-bottom: 2px solid rgba(0, 166, 251, 0.2);
-            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            position: relative;
         }
         
         .form-group label {
             display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--sky-glow);
             margin-bottom: 8px;
+            color: var(--silver);
+            font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 20px;
             background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
             color: white;
-            font-size: 1rem;
             font-family: inherit;
+            font-size: 1rem;
             transition: all 0.3s;
         }
         
@@ -276,178 +454,230 @@
         }
         
         .form-group textarea {
-            resize: vertical;
             min-height: 150px;
+            resize: vertical;
         }
         
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .form-requirements {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
         }
         
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .required {
-            color: var(--danger);
-        }
-        
-        /* ========== FORM STATUS MESSAGES ========== */
-        .form-status {
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .form-status.success {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        
-        .form-status.error {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        
-        .form-status i {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .form-status.success i {
-            color: var(--success);
-        }
-        
-        .form-status.error i {
-            color: var(--danger);
-        }
-        
-        .form-status p {
-            margin: 0;
-            line-height: 1.5;
-        }
-        
-        /* ========== SUBMIT BUTTON ========== */
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(90deg, #003554, var(--sky-glow));
-            border: none;
-            border-radius: 15px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
+        .requirements-title {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 10px;
-            font-family: inherit;
-            margin-top: 10px;
+            color: var(--ai-purple);
+            margin-bottom: 10px;
+            font-weight: 600;
         }
         
-        .submit-btn:hover {
-            box-shadow: 0 0 30px rgba(0, 166, 251, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        /* ========== CONTACT INFO SECTION ========== */
-        .contact-info-section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 25px;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .contact-info-section h2 {
-            font-family: 'Cinzel';
-            color: var(--sky-glow);
-            margin-bottom: 30px;
-            font-size: 2rem;
-            border-bottom: 2px solid rgba(0, 166, 251, 0.2);
-            padding-bottom: 10px;
-        }
-        
-        .contact-method {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .contact-method:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(0, 166, 251, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .contact-icon i {
-            font-size: 1.5rem;
-            color: var(--sky-glow);
-        }
-        
-        .contact-details h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: white;
-        }
-        
-        .contact-details p {
+        .requirements-list {
             color: var(--silver);
+            font-size: 0.9rem;
             line-height: 1.6;
         }
         
-        .contact-details a {
-            color: var(--sky-glow);
-            text-decoration: none;
-            transition: color 0.3s;
+        .requirements-list li {
+            margin-bottom: 8px;
+            margin-left: 20px;
         }
         
-        .contact-details a:hover {
+        /* Contact Info */
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .info-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sky-glow);
+            box-shadow: 0 15px 30px rgba(0, 166, 251, 0.1);
+        }
+        
+        .info-card.ai-card {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(46, 196, 182, 0.1));
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+        
+        .info-card.ai-card:hover {
+            border-color: var(--ai-purple);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--sky-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
             color: white;
-            text-decoration: underline;
+        }
+        
+        .ai-card .card-icon {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+        }
+        
+        .card-title {
+            font-family: 'Cinzel';
+            font-size: 1.4rem;
+            color: white;
+        }
+        
+        .info-details {
+            color: var(--silver);
+            line-height: 1.8;
+        }
+        
+        .info-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-details i {
+            color: var(--sky-glow);
+            width: 20px;
+        }
+        
+        .ai-card .info-details i {
+            color: var(--ai-purple);
+        }
+        
+        .response-time {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: var(--silver);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .response-time i {
+            color: var(--success);
+        }
+        
+        /* ========== FAQ SECTION ========== */
+        .faq-section {
+            padding: 80px 5%;
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .faq-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            color: var(--sky-glow);
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            color: var(--silver);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item.active {
+            border-color: var(--sky-glow);
+            box-shadow: 0 5px 15px rgba(0, 166, 251, 0.1);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .faq-question h3 {
+            font-family: 'Cinzel';
+            font-size: 1.2rem;
+            color: white;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .faq-icon {
+            color: var(--sky-glow);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            color: var(--silver);
+            line-height: 1.8;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 25px 25px;
+            max-height: 500px;
         }
         
         /* ========== AI ASSISTANT BUTTON ========== */
         .ai-assistant-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
             border-radius: 50%;
             display: flex;
@@ -455,7 +685,7 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4);
             transition: all 0.3s;
             animation: float 3s ease-in-out infinite;
             border: none;
@@ -464,30 +694,30 @@
         
         .ai-assistant-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.6);
+            box-shadow: 0 12px 30px rgba(157, 78, 221, 0.6);
         }
         
         .ai-assistant-btn i {
-            font-size: 28px;
+            font-size: 24px;
             color: white;
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
         
         /* ========== FOOTER ========== */
         footer {
-            padding: 80px 5%;
+            padding: 60px 5%;
             background: #000810;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -495,8 +725,8 @@
         .footer-column h3 {
             font-family: 'Cinzel';
             color: var(--sky-glow);
-            margin-bottom: 25px;
-            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
         
         .footer-column ul {
@@ -504,7 +734,7 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .footer-column ul li a {
@@ -513,7 +743,8 @@
             transition: color 0.3s;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 0.9rem;
         }
         
         .footer-column ul li a:hover {
@@ -522,665 +753,946 @@
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
+            padding-top: 30px;
+            margin-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.05);
             color: var(--silver);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
         
-        /* ========== RESPONSIVE ========== */
+        /* ========== UTILITY CLASSES ========== */
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sky-glow), #0066cc);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 166, 251, 0.3);
+        }
+        
+        .btn-ai {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+            color: white;
+        }
+        
+        .btn-ai:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-4 {
+            margin-top: 30px;
+        }
+        
+        .mb-4 {
+            margin-bottom: 30px;
+        }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 768px) {
-            .main-nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .nav-left {
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-            }
-            
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .ai-badge {
-                margin-top: 10px;
-            }
-            
-            .contact-hero {
-                padding: 150px 5% 80px;
-                margin-top: 140px;
-            }
-            
-            .contact-hero h1 {
+            .contact-title {
                 font-size: 2.5rem;
             }
             
-            .contact-form-section,
-            .contact-info-section {
+            .contact-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-form-container {
                 padding: 30px 25px;
             }
             
-            .contact-hero p {
-                font-size: 1rem;
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .faq-question h3 {
+                font-size: 1.1rem;
             }
             
             .ai-assistant-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 60px;
-                height: 60px;
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
             }
         }
         
         @media (max-width: 480px) {
-            .contact-hero h1 {
+            .contact-title {
                 font-size: 2rem;
             }
             
-            .contact-form-section,
-            .contact-info-section {
+            .contact-form-container {
                 padding: 25px 20px;
+            }
+            
+            .info-card {
+                padding: 25px 20px;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+            
+            .faq-question {
+                padding: 15px 20px;
+            }
+            
+            .faq-question h3 {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-left">
-            <a href="index.html" class="nav-logo">
-                <i class="fas fa-plane"></i>
-                <span>SkyLynx</span>
-            </a>
-            
-            <div class="ai-badge">
-                <i class="fas fa-brain"></i>
-                <span id="aiBadgeText">AI-Powered</span>
-            </div>
-            
-            <ul class="nav-menu">
-                <li><a href="index.html"><i class="fas fa-home"></i> <span class="nav-text" data-key="home">Home</span></a></li>
-                <li><a href="index.html#booking"><i class="fas fa-calendar-alt"></i> <span class="nav-text" data-key="bookings">Bookings</span></a></li>
-                <li><a href="article.html"><i class="fas fa-newspaper"></i> <span class="nav-text" data-key="blog">Blog</span></a></li>
-                <li><a href="index.html#destinations"><i class="fas fa-map-marker-alt"></i> <span class="nav-text" data-key="destinations">Destinations</span></a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span class="nav-text" data-key="about">About</span></a></li>
-                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> <span class="nav-text" data-key="contact">Contact</span></a></li>
-            </ul>
+
+<!-- Navigation -->
+<nav class="main-nav">
+    <div class="nav-left">
+        <a href="index.html" class="nav-logo" id="home-link">
+            <i class="fas fa-plane"></i>
+            <span>SkyLynx</span>
+        </a>
+        
+        <div class="ai-badge">
+            <i class="fas fa-brain"></i>
+            <span id="aiBadgeText">AI-Powered</span>
         </div>
         
-        <div class="nav-right">
-            <div class="config">
-                <select id="curr-sel">
-                    <option value="CAD">🇨🇦 CAD</option>
-                    <option value="USD">🇺🇸 USD</option>
-                    <option value="EUR">🇪🇺 EUR</option>
-                    <option value="GBP">🇬🇧 GBP</option>
-                    <option value="SAR">🇸🇦 SAR</option>
-                </select>
-                <select id="lang-sel">
-                    <option value="en">English</option>
-                    <option value="ar">العربية</option>
-                </select>
-            </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html"><i class="fas fa-home"></i> <span class="nav-text" data-key="home">Home</span></a></li>
+            <li><a href="index.html#booking"><i class="fas fa-calendar-alt"></i> <span class="nav-text" data-key="bookings">Bookings</span></a></li>
+            <li><a href="article.html"><i class="fas fa-newspaper"></i> <span data-key="blog">Blog</span></a></li>
+            <li><a href="index.html#destinations"><i class="fas fa-map-marker-alt"></i> <span class="nav-text" data-key="destinations">Destinations</span></a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-key="about">About</span></a></li>
+            <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> <span data-key="contact">Contact</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="nav-right" id="navRight">
+        <div class="config">
+            <select id="curr-sel">
+                <option value="CAD">🇨🇦 CAD</option>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="GBP">🇬🇧 GBP</option>
+                <option value="SAR">🇸🇦 SAR</option>
+            </select>
+            <select id="lang-sel">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="contact-hero">
-        <div class="contact-hero-content">
-            <h1 id="pageTitle">Contact SkyLynx Travel</h1>
-            <p id="pageDescription">Get in touch with our luxury travel experts. We're here to help you plan your perfect journey and answer any questions you may have.</p>
+<!-- Contact Hero -->
+<section class="contact-hero">
+    <div class="contact-hero-content">
+        <h1 class="contact-title" data-key="contactTitle">Contact SkyLynx Travel</h1>
+        <p class="contact-subtitle" data-key="contactSubtitle">Get in touch with our AI-enhanced luxury travel experts. Whether you're planning your next journey or have questions about our services, we're here to help 24/7.</p>
+        <div class="ai-tagline">
+            <i class="fas fa-robot"></i>
+            <span data-key="aiTagline">AI Assistant Available 24/7 for Instant Support</span>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Content -->
-    <div class="contact-container">
+<!-- Contact Content -->
+<section class="contact-content">
+    <div class="contact-grid">
         <!-- Contact Form -->
-        <div class="contact-form-section">
-            <h2 id="formTitle">Send Us a Message</h2>
+        <div class="contact-form-container">
+            <h2 class="form-title" data-key="formTitle">Send Us a Message</h2>
             
-            <!-- Form Status Messages -->
-            <div class="form-status success" id="successMessage">
-                <i class="fas fa-check-circle"></i>
-                <p id="successText"></p>
-            </div>
-            
-            <div class="form-status error" id="errorMessage">
-                <i class="fas fa-exclamation-circle"></i>
-                <p id="errorText"></p>
-            </div>
-            
-            <form id="contactForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name" id="nameLabel">Full Name <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required data-key="namePlaceholder" placeholder="Enter your full name">
-                        <div class="form-error" id="nameError"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email" id="emailLabel">Email Address <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required data-key="emailPlaceholder" placeholder="Enter your email address">
-                        <div class="form-error" id="emailError"></div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone" id="phoneLabel">Phone Number (Optional)</label>
-                        <input type="tel" id="phone" name="phone" data-key="phonePlaceholder" placeholder="Enter your phone number">
-                        <div class="form-error" id="phoneError"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject" id="subjectLabel">Subject <span class="required">*</span></label>
-                        <select id="subject" name="subject" required>
-                            <option value="" data-key="selectSubject">Select a subject</option>
-                            <option value="general" data-key="generalInquiry">General Inquiry</option>
-                            <option value="booking" data-key="bookingHelp">Booking Assistance</option>
-                            <option value="group" data-key="groupTravel">Group Travel Inquiry</option>
-                            <option value="private" data-key="privateJet">Private Jet Service</option>
-                            <option value="partnership" data-key="partnership">Partnership Opportunity</option>
-                            <option value="support" data-key="customerSupport">Customer Support</option>
-                            <option value="other" data-key="other">Other</option>
-                        </select>
-                        <div class="form-error" id="subjectError"></div>
-                    </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-key="formName">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="message" id="messageLabel">Your Message <span class="required">*</span></label>
-                    <textarea id="message" name="message" required data-key="messagePlaceholder" placeholder="Please provide details about your inquiry..."></textarea>
-                    <div class="form-error" id="messageError"></div>
+                    <label for="email" data-key="formEmail">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                 </div>
                 
-                <button type="submit" class="submit-btn" id="submitBtn">
+                <div class="form-group">
+                    <label for="phone" data-key="formPhone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+                
+                <div class="form-group">
+                    <label for="inquiry-type" data-key="formInquiryType">Type of Inquiry *</label>
+                    <select id="inquiry-type" name="inquiry-type" required>
+                        <option value="" data-key="formSelectOption">Select an option</option>
+                        <option value="booking" data-key="formOptionBooking">Flight/Hotel Booking</option>
+                        <option value="group" data-key="formOptionGroup">Group Travel Request</option>
+                        <option value="private-jet" data-key="formOptionPrivate">Private Jet Charter</option>
+                        <option value="custom" data-key="formOptionCustom">Custom Itinerary Planning</option>
+                        <option value="support" data-key="formOptionSupport">Technical Support</option>
+                        <option value="partnership" data-key="formOptionPartnership">Business Partnership</option>
+                        <option value="other" data-key="formOptionOther">Other Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" data-key="formMessage">Your Message *</label>
+                    <textarea id="message" name="message" required placeholder="Please provide details about your inquiry, including preferred destinations, travel dates, budget range, and any special requirements..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-contact" data-key="formContactPref">Preferred Contact Method</label>
+                    <select id="preferred-contact" name="preferred-contact">
+                        <option value="email" data-key="formPrefEmail">Email</option>
+                        <option value="phone" data-key="formPrefPhone">Phone Call</option>
+                        <option value="whatsapp" data-key="formPrefWhatsApp">WhatsApp</option>
+                        <option value="ai-chat" data-key="formPrefAI">AI Chat Assistant</option>
+                    </select>
+                </div>
+                
+                <div class="form-requirements">
+                    <div class="requirements-title">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-key="requirementsTitle">For Faster Service:</span>
+                    </div>
+                    <ul class="requirements-list">
+                        <li data-key="requirement1">Include travel dates and number of travelers</li>
+                        <li data-key="requirement2">Specify budget range per person</li>
+                        <li data-key="requirement3">Mention any special requirements (dietary, accessibility, etc.)</li>
+                        <li data-key="requirement4">For group bookings, indicate group size and purpose</li>
+                    </ul>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
                     <i class="fas fa-paper-plane"></i>
-                    <span id="submitText">Send Message</span>
+                    <span data-key="formSubmit">Send Message</span>
                 </button>
             </form>
         </div>
         
         <!-- Contact Information -->
-        <div class="contact-info-section">
-            <h2 id="infoTitle">Contact Information</h2>
-            
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
+        <div class="contact-info-container">
+            <!-- Main Contact Card -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="card-title" data-key="infoTitle1">Global Headquarters</h3>
                 </div>
-                <div class="contact-details">
-                    <h3 id="addressTitle">Our Headquarters</h3>
-                    <p id="addressText">Rideau St., Ottawa, ON K1N 9J7, Canada</p>
-                </div>
-            </div>
-            
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-details">
-                    <h3 id="emailTitle">Email Address</h3>
-                    <p><a href="mailto:info@skylynx.co" id="emailLink">info@skylynx.co</a></p>
-                    <p><a href="mailto:support@skylynx.co" id="supportLink">support@skylynx.co</a> (Customer Support)</p>
-                </div>
-            </div>
-            
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="contact-details">
-                    <h3 id="phoneInfoTitle">Phone Numbers</h3>
-                    <p id="primaryPhone">+1 (613) 555-0187 (Primary)</p>
-                    <p id="supportPhone">+1 (613) 555-0190 (24/7 Support)</p>
-                </div>
-            </div>
-            
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="contact-details">
-                    <h3 id="hoursTitle">Business Hours</h3>
-                    <p id="hoursText">Monday - Friday: 9:00 AM - 8:00 PM EST<br>
-                    Saturday: 10:00 AM - 6:00 PM EST<br>
-                    Sunday: 12:00 PM - 5:00 PM EST</p>
+                <div class="info-details">
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-key="infoAddress">Rideau St., Ottawa, ON K1N 9J7, Canada</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (613) 555-0187</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <span>info@skylynx.co</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-clock"></i>
+                        <span data-key="infoHours">Monday-Friday: 9:00 AM - 8:00 PM EST</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-globe"></i>
+                        <span>Saturday-Sunday: 10:00 AM - 6:00 PM EST</span>
+                    </p>
+                    <div class="response-time">
+                        <i class="fas fa-bolt"></i>
+                        <span data-key="responseTime">Average response time: 2-4 hours</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="contact-method">
-                <div class="contact-icon">
-                    <i class="fas fa-headset"></i>
+            <!-- AI Support Card -->
+            <div class="info-card ai-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="card-title" data-key="infoTitle2">AI Assistant Support</h3>
                 </div>
-                <div class="contact-details">
-                    <h3 id="assistanceTitle">AI Travel Assistant</h3>
-                    <p id="assistanceText">Our AI assistant is available 24/7 to answer your questions and help with travel planning. Click the AI button in the bottom right corner to start a conversation.</p>
+                <div class="info-details">
+                    <p>
+                        <i class="fas fa-comment-alt"></i>
+                        <span data-key="aiFeature1">Instant answers to common questions</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-language"></i>
+                        <span data-key="aiFeature2">Available in English & Arabic 24/7</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-bolt"></i>
+                        <span data-key="aiFeature3">Real-time flight & hotel availability</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-brain"></i>
+                        <span data-key="aiFeature4">Personalized itinerary suggestions</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-chart-line"></i>
+                        <span data-key="aiFeature5">Price prediction and alerts</span>
+                    </p>
+                    <div class="response-time">
+                        <i class="fas fa-bolt"></i>
+                        <span data-key="aiResponseTime">Instant response • No waiting</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Emergency Contact Card -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: var(--danger);">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h3 class="card-title" data-key="infoTitle3">Emergency Support</h3>
+                </div>
+                <div class="info-details">
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (613) 555-EMER (3637)</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span data-key="emergencyInfo1">For urgent travel assistance while traveling</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-passport"></i>
+                        <span data-key="emergencyInfo2">Lost documents & emergency evacuation</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-key="emergencyInfo3">Medical emergencies & travel insurance claims</span>
+                    </p>
+                    <div class="response-time">
+                        <i class="fas fa-bolt"></i>
+                        <span data-key="emergencyResponse">24/7 emergency line • Immediate assistance</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>SkyLynx Travel</h3>
-                <p id="footerDesc" style="color: var(--silver); line-height: 1.6;">
-                    World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.
-                </p>
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="faq-content">
+        <h2 class="section-title" data-key="faqTitle">Frequently Asked Questions</h2>
+        <p class="section-subtitle" data-key="faqSubtitle">Quick answers to common questions about our services and support</p>
+        
+        <div class="faq-grid">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion1">How quickly will I receive a response to my inquiry?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer1">Our AI assistant provides instant responses to common queries. For detailed inquiries requiring human expertise, our travel specialists typically respond within 2-4 hours during business hours, and within 12 hours for inquiries received outside of business hours. Emergency inquiries receive immediate attention 24/7.</p>
+                </div>
             </div>
             
-            <div class="footer-column">
-                <h3 id="legalDocsTitle">Legal Documents</h3>
-                <ul>
-                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span id="privacyLink">Privacy Policy</span></a></li>
-                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span id="termsLink">Terms & Conditions</span></a></li>
-                    <li><a href="affiliate-disclosure.html"><i class="fas fa-handshake"></i> <span id="affiliateLink">Affiliate Disclosure</span></a></li>
-                    <li><a href="cookie-policy.html"><i class="fas fa-cookie-bite"></i> <span id="cookieLink">Cookie Policy</span></a></li>
-                </ul>
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion2">Do you charge fees for travel planning services?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer2">Our AI travel planning services are completely free. We earn commission from travel providers when you book through our platform. For highly complex, custom itineraries requiring extensive human planning (50+ hours), we may charge a planning fee starting at $500, which is fully refundable against your final booking.</p>
+                </div>
             </div>
             
-            <div class="footer-column">
-                <h3 id="connectTitle">Connect With Us</h3>
-                <ul>
-                    <li><a href="contact.html"><i class="fas fa-envelope"></i> <span id="contactLink">Contact Us</span></a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> <span id="aboutLink">About SkyLynx</span></a></li>
-                    <li><a href="article.html"><i class="fas fa-newspaper"></i> <span id="blogLink">Travel Blog</span></a></li>
-                    <li><a href="careers.html"><i class="fas fa-briefcase"></i> <span id="careersLink">Careers</span></a></li>
-                </ul>
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion3">What makes SkyLynx AI different from other travel agencies?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer3">Our proprietary SkyLynx AI 3.0 analyzes millions of data points in real-time to provide predictive pricing, personalized recommendations, and optimized routing. Unlike traditional agencies, our AI learns from each interaction and continuously improves. We combine this with human expertise for complex planning, offering the best of both worlds.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion4">Can you handle complex group bookings and special requirements?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer4">Absolutely! We specialize in complex group travel arrangements for 9+ passengers. Our AI can manage multiple preferences, dietary restrictions, accessibility needs, and complex logistics. For groups of 20+, we assign a dedicated group travel specialist who works alongside our AI to ensure every detail is perfectly coordinated.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion5">How do you ensure the security of my personal information?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer5">We use military-grade 256-bit SSL encryption for all data transmission. Our AI is trained on anonymized data only, and we never share personal information without explicit consent. We are GDPR and CCPA compliant, and you can request data deletion at any time. All payment processing is handled through PCI-DSS compliant partners.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 data-key="faqQuestion6">What happens if there are travel disruptions or emergencies?</h3>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-key="faqAnswer6">Our AI monitors global travel conditions in real-time and automatically suggests alternatives for disruptions. For emergencies, our 24/7 support team can assist with rebooking, document replacement, medical evacuations, and insurance claims. All SkyLynx bookings include access to our emergency support line and AI-powered disruption management.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Assistant Button -->
+<button class="ai-assistant-btn" id="aiAssistantBtn" aria-label="Open AI Assistant">
+    <i class="fas fa-robot"></i>
+</button>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>SkyLynx Travel</h3>
+            <p data-key="footerDesc">AI-Enhanced Luxury Travel Platform Built by Industry Experts based in Ottawa, Canada. Intelligent booking, personalized recommendations, and premium service.</p>
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
         
-        <div class="copyright">
-            <p id="copyrightText">© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
-            <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);" id="affiliateFooter">
-                This website contains affiliate links. We may earn a commission through these links at no additional cost to you.
-            </p>
-            <p style="font-size: 0.8rem; margin-top: 5px; color: var(--ai-teal);">
-                <i class="fas fa-robot"></i> <span id="poweredBy">Powered by SkyLynx AI 3.0 • Patent Pending</span>
-            </p>
+        <div class="footer-column">
+            <h3 data-key="servicesFooter">Services</h3>
+            <ul>
+                <li><a href="index.html#booking"><i class="fas fa-plane"></i> <span data-key="flightBooking">Flight Booking</span></a></li>
+                <li><a href="index.html#booking"><i class="fas fa-hotel"></i> <span data-key="hotelReservations">Hotel Reservations</span></a></li>
+                <li><a href="index.html#booking"><i class="fas fa-car"></i> <span data-key="carRentalFooter">Car Rental</span></a></li>
+                <li><a href="index.html#booking"><i class="fas fa-crown"></i> <span data-key="privateJetsFooter">Private Jets</span></a></li>
+                <li><a href="index.html#ai-assistant"><i class="fas fa-robot"></i> <span data-key="aiTravelServices">AI Travel Services</span></a></li>
+            </ul>
         </div>
-    </footer>
+        
+        <div class="footer-column">
+            <h3 data-key="companyFooter">Company</h3>
+            <ul>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-key="aboutUs">About Us</span></a></li>
+                <li><a href="article.html"><i class="fas fa-newspaper"></i> <span data-key="travelBlog">Travel Blog</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-key="contactUs">Contact Us</span></a></li>
+                <li><a href="index.html#ai-assistant"><i class="fas fa-briefcase"></i> <span data-key="careers">Careers</span></a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 data-key="legalFooter">Legal</h3>
+            <ul>
+                <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> <span data-key="privacyPolicy">Privacy Policy</span></a></li>
+                <li><a href="terms.html"><i class="fas fa-file-contract"></i> <span data-key="termsConditions">Terms & Conditions</span></a></li>
+                <li><a href="affiliate-disclosure.html"><i class="fas fa-handshake"></i> <span data-key="affiliateDisclosure">Affiliate Disclosure</span></a></li>
+                <li><a href="privacy.html#cookies"><i class="fas fa-cookie-bite"></i> <span data-key="cookiePolicy">Cookie Policy</span></a></li>
+                <li><a href="terms.html#ethics"><i class="fas fa-brain"></i> <span data-key="aiEthics">AI Ethics Policy</span></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p data-key="copyright">© 2025 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);" data-key="affiliate">
+            This website contains affiliate links. We may earn a commission through these links at no additional cost to you.
+        </p>
+        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--ai-teal);">
+            <i class="fas fa-robot"></i> <span data-key="poweredBy">Powered by SkyLynx AI 3.0 • Patent Pending</span>
+        </p>
+    </div>
+</footer>
 
-    <!-- AI Assistant Button -->
-    <button class="ai-assistant-btn" id="aiAssistantBtn" aria-label="Open AI Assistant">
-        <i class="fas fa-robot"></i>
-    </button>
+<!-- Travelpayouts Affiliate Disclosure -->
+<div style="margin:40px auto 20px auto;text-align:center;font-size:12px;opacity:0.7;max-width:1100px;">
+  Disclosure: SkyLynx Travel uses affiliate links. We may earn a commission if you make a booking through our links, at no additional cost to you.
+</div>
 
-    <script>
-        // ========== نظام الترجمة الكامل ==========
-        const translations = {
-            en: {
-                // Navigation
-                home: "Home",
-                bookings: "Bookings",
-                blog: "Blog",
-                destinations: "Destinations",
-                about: "About",
-                contact: "Contact",
-                aiPowered: "AI-Powered",
-                
-                // Hero Section
-                pageTitle: "Contact SkyLynx Travel",
-                pageDescription: "Get in touch with our luxury travel experts. We're here to help you plan your perfect journey and answer any questions you may have.",
-                
-                // Form Section
-                formTitle: "Send Us a Message",
-                successText: "Your message has been sent successfully! We'll get back to you within 24 hours.",
-                errorText: "There was an error sending your message. Please try again or contact us directly.",
-                nameLabel: "Full Name",
-                namePlaceholder: "Enter your full name",
-                emailLabel: "Email Address",
-                emailPlaceholder: "Enter your email address",
-                phoneLabel: "Phone Number (Optional)",
-                phonePlaceholder: "Enter your phone number",
-                subjectLabel: "Subject",
-                selectSubject: "Select a subject",
-                generalInquiry: "General Inquiry",
-                bookingHelp: "Booking Assistance",
-                groupTravel: "Group Travel Inquiry",
-                privateJet: "Private Jet Service",
-                partnership: "Partnership Opportunity",
-                customerSupport: "Customer Support",
-                other: "Other",
-                messageLabel: "Your Message",
-                messagePlaceholder: "Please provide details about your inquiry...",
-                submitText: "Send Message",
-                
-                // Contact Information
-                infoTitle: "Contact Information",
-                addressTitle: "Our Headquarters",
-                addressText: "Rideau St., Ottawa, ON K1N 9J7, Canada",
-                emailTitle: "Email Address",
-                emailLink: "info@skylynx.co",
-                supportLink: "support@skylynx.co (Customer Support)",
-                phoneInfoTitle: "Phone Numbers",
-                primaryPhone: "+1 (613) 555-0187 (Primary)",
-                supportPhone: "+1 (613) 555-0190 (24/7 Support)",
-                hoursTitle: "Business Hours",
-                hoursText: "Monday - Friday: 9:00 AM - 8:00 PM EST\nSaturday: 10:00 AM - 6:00 PM EST\nSunday: 12:00 PM - 5:00 PM EST",
-                assistanceTitle: "AI Travel Assistant",
-                assistanceText: "Our AI assistant is available 24/7 to answer your questions and help with travel planning. Click the AI button in the bottom right corner to start a conversation.",
-                
-                // Footer
-                footerDesc: "World's first AI-powered luxury travel platform delivering intelligent, personalized travel experiences.",
-                legalDocsTitle: "Legal Documents",
-                privacyLink: "Privacy Policy",
-                termsLink: "Terms & Conditions",
-                affiliateLink: "Affiliate Disclosure",
-                cookieLink: "Cookie Policy",
-                connectTitle: "Connect With Us",
-                contactLink: "Contact Us",
-                aboutLink: "About SkyLynx",
-                blogLink: "Travel Blog",
-                careersLink: "Careers",
-                copyrightText: "© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.",
-                affiliateFooter: "This website contains affiliate links. We may earn a commission through these links at no additional cost to you.",
-                poweredBy: "Powered by SkyLynx AI 3.0 • Patent Pending"
-            },
-            ar: {
-                // Navigation
-                home: "الرئيسية",
-                bookings: "الحجوزات",
-                blog: "المدونة",
-                destinations: "الوجهات",
-                about: "عنّا",
-                contact: "اتصل بنا",
-                aiPowered: "مدعوم بالذكاء الاصطناعي",
-                
-                // Hero Section
-                pageTitle: "اتصل بسكاي لينكس للسفر",
-                pageDescription: "تواصل مع خبراء السفر الفاخر لدينا. نحن هنا لمساعدتك في تخطيط رحلتك المثالية والإجابة على أي أسئلة قد تكون لديك.",
-                
-                // Form Section
-                formTitle: "أرسل لنا رسالة",
-                successText: "تم إرسال رسالتك بنجاح! سوف نعود إليك خلال 24 ساعة.",
-                errorText: "حدث خطأ في إرسال رسالتك. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.",
-                nameLabel: "الاسم الكامل",
-                namePlaceholder: "أدخل اسمك الكامل",
-                emailLabel: "عنوان البريد الإلكتروني",
-                emailPlaceholder: "أدخل عنوان بريدك الإلكتروني",
-                phoneLabel: "رقم الهاتف (اختياري)",
-                phonePlaceholder: "أدخل رقم هاتفك",
-                subjectLabel: "الموضوع",
-                selectSubject: "اختر موضوعاً",
-                generalInquiry: "استفسار عام",
-                bookingHelp: "مساعدة في الحجز",
-                groupTravel: "استفسار سفر جماعي",
-                privateJet: "خدمة طائرة خاصة",
-                partnership: "فرصة شراكة",
-                customerSupport: "دعم العملاء",
-                other: "أخرى",
-                messageLabel: "رسالتك",
-                messagePlaceholder: "يرجى تقديم تفاصيل عن استفسارك...",
-                submitText: "إرسال الرسالة",
-                
-                // Contact Information
-                infoTitle: "معلومات الاتصال",
-                addressTitle: "مقرنا الرئيسي",
-                addressText: "شارع ريدو، أوتاوا، أونتاريو K1N 9J7، كندا",
-                emailTitle: "عنوان البريد الإلكتروني",
-                emailLink: "info@skylynx.co",
-                supportLink: "support@skylynx.co (دعم العملاء)",
-                phoneInfoTitle: "أرقام الهاتف",
-                primaryPhone: "+1 (613) 555-0187 (الرئيسي)",
-                supportPhone: "+1 (613) 555-0190 (الدعم على مدار الساعة)",
-                hoursTitle: "ساعات العمل",
-                hoursText: "الإثنين - الجمعة: 9:00 صباحًا - 8:00 مساءً بتوقيت شرق الولايات المتحدة\nالسبت: 10:00 صباحًا - 6:00 مساءً بتوقيت شرق الولايات المتحدة\nالأحد: 12:00 ظهرًا - 5:00 مساءً بتوقيت شرق الولايات المتحدة",
-                assistanceTitle: "مساعد السفر بالذكاء الاصطناعي",
-                assistanceText: "مساعد الذكاء الاصطناعي لدينا متاح على مدار الساعة طوال أيام الأسبوللإجابة على أسئلتك والمساعدة في تخطيط السفر. انقر فوق زر الذكاء الاصطناعي في الزاوية اليمنى السفلية لبدء محادثة.",
-                
-                // Footer
-                footerDesc: "أول منصة سفر فاخرة مدعومة بالذكاء الاصطناعي في العالم تقدم تجارب سفر ذكية ومخصصة.",
-                legalDocsTitle: "الوثائق القانونية",
-                privacyLink: "سياسة الخصوصية",
-                termsLink: "الشروط والأحكام",
-                affiliateLink: "الإفصاح التابع",
-                cookieLink: "سياسة الكوكيز",
-                connectTitle: "تواصل معنا",
-                contactLink: "اتصل بنا",
-                aboutLink: "عن سكاي لينكس",
-                blogLink: "مدونة السفر",
-                careersLink: "الوظائف",
-                copyrightText: "© 2025 سكاي لينكس ترافيل إنترناشيونال إنك. - أوتاوا، كندا. جميع الحقوق محفوظة.",
-                affiliateFooter: "يحتوي هذا الموقع على روابط تابعة. قد نربح عمولة من خلال هذه الروابط دون أي تكلفة إضافية عليك.",
-                poweredBy: "مدعوم بـ SkyLynx AI 3.0 • براءة اختراع قيد الانتظار"
-            }
-        };
-
-        // ========== تهيئة الصفحة ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Contact page loaded');
-            
-            // تعيين اللغة والعملة من localStorage
-            let currentLang = localStorage.getItem('siteLang') || 'en';
-            let currentCurrency = localStorage.getItem('skylynx_currency') || 'CAD';
-            
-            document.getElementById('lang-sel').value = currentLang;
-            document.getElementById('curr-sel').value = currentCurrency;
-            
-            // تحديث اللغة فوراً
+<script>
+    // ========== نظام اللغة المحسن ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Initializing SkyLynx Contact Page...');
+        
+        // استرجاع اللغة من localStorage
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        console.log('Current language from storage:', currentLang);
+        
+        // تحديث اختيار اللغة في القائمة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.value = currentLang;
+            console.log('Set language select to:', currentLang);
+        }
+        
+        // تحديث اللغة فوراً
+        setTimeout(() => {
             updateLanguage(currentLang);
+        }, 100);
+        
+        // تهيئة جميع الأنظمة
+        initializeSystems();
+        
+        console.log('Contact page initialized successfully');
+    });
+
+    // ========== نظام الترجمة الكامل ==========
+    const translations = {
+        en: {
+            // Navigation
+            home: "Home",
+            bookings: "Bookings",
+            blog: "Blog",
+            destinations: "Destinations",
+            about: "About",
+            contact: "Contact",
+            aiPowered: "AI-Powered",
             
-            // ========== إخفاء رسائل الحالة افتراضيًا ==========
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
+            // Hero Section
+            contactTitle: "Contact SkyLynx Travel",
+            contactSubtitle: "Get in touch with our AI-enhanced luxury travel experts. Whether you're planning your next journey or have questions about our services, we're here to help 24/7.",
+            aiTagline: "AI Assistant Available 24/7 for Instant Support",
             
-            // ========== معالجة النموذج ==========
-            const contactForm = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
+            // Contact Form
+            formTitle: "Send Us a Message",
+            formName: "Full Name *",
+            formEmail: "Email Address *",
+            formPhone: "Phone Number",
+            formInquiryType: "Type of Inquiry *",
+            formSelectOption: "Select an option",
+            formOptionBooking: "Flight/Hotel Booking",
+            formOptionGroup: "Group Travel Request",
+            formOptionPrivate: "Private Jet Charter",
+            formOptionCustom: "Custom Itinerary Planning",
+            formOptionSupport: "Technical Support",
+            formOptionPartnership: "Business Partnership",
+            formOptionOther: "Other Inquiry",
+            formMessage: "Your Message *",
+            formContactPref: "Preferred Contact Method",
+            formPrefEmail: "Email",
+            formPrefPhone: "Phone Call",
+            formPrefWhatsApp: "WhatsApp",
+            formPrefAI: "AI Chat Assistant",
+            requirementsTitle: "For Faster Service:",
+            requirement1: "Include travel dates and number of travelers",
+            requirement2: "Specify budget range per person",
+            requirement3: "Mention any special requirements (dietary, accessibility, etc.)",
+            requirement4: "For group bookings, indicate group size and purpose",
+            formSubmit: "Send Message",
             
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // إخفاء جميع رسائل الحالة
-                    successMessage.style.display = 'none';
-                    errorMessage.style.display = 'none';
-                    
-                    // التحقق من صحة البيانات الأساسية
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const subject = document.getElementById('subject').value;
-                    const message = document.getElementById('message').value.trim();
-                    
-                    let isValid = true;
-                    
-                    // إعادة تعيين رسائل الخطأ
-                    document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
-                    
-                    // التحقق من الاسم
-                    if (!name) {
-                        document.getElementById('nameError').textContent = currentLang === 'ar' ? 'الاسم مطلوب' : 'Name is required';
-                        isValid = false;
-                    }
-                    
-                    // التحقق من البريد الإلكتروني
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!email) {
-                        document.getElementById('emailError').textContent = currentLang === 'ar' ? 'البريد الإلكتروني مطلوب' : 'Email is required';
-                        isValid = false;
-                    } else if (!emailRegex.test(email)) {
-                        document.getElementById('emailError').textContent = currentLang === 'ar' ? 'البريد الإلكتروني غير صالح' : 'Invalid email format';
-                        isValid = false;
-                    }
-                    
-                    // التحقق من الموضوع
-                    if (!subject) {
-                        document.getElementById('subjectError').textContent = currentLang === 'ar' ? 'الموضوع مطلوب' : 'Subject is required';
-                        isValid = false;
-                    }
-                    
-                    // التحقق من الرسالة
-                    if (!message) {
-                        document.getElementById('messageError').textContent = currentLang === 'ar' ? 'الرسالة مطلوبة' : 'Message is required';
-                        isValid = false;
-                    } else if (message.length < 10) {
-                        document.getElementById('messageError').textContent = currentLang === 'ar' ? 'الرسالة قصيرة جداً' : 'Message is too short';
-                        isValid = false;
-                    }
-                    
-                    if (!isValid) {
-                        // عرض رسالة الخطأ
-                        errorMessage.style.display = 'flex';
-                        return;
-                    }
-                    
-                    // إرسال النموذج (محاكاة)
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = currentLang === 'ar' ? 
-                        '<i class="fas fa-spinner fa-spin"></i> <span>جاري الإرسال...</span>' : 
-                        '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
-                    
-                    // محاكاة إرسال البيانات إلى الخادم
-                    setTimeout(() => {
-                        // هنا سيتم إرسال البيانات الحقيقية إلى الخادم
-                        // مثال: fetch('/api/contact', { method: 'POST', body: new FormData(contactForm) })
-                        
-                        // عرض رسالة النجاح
-                        successMessage.style.display = 'flex';
-                        
-                        // إعادة تعيين النموذج
-                        contactForm.reset();
-                        
-                        // إعادة تعيين الزر
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = currentLang === 'ar' ? 
-                            '<i class="fas fa-paper-plane"></i> <span>إرسال الرسالة</span>' : 
-                            '<i class="fas fa-paper-plane"></i> <span>Send Message</span>';
-                        
-                        console.log('Form submitted:', { name, email, subject, message });
-                        
-                    }, 1500);
-                });
-            }
+            // Contact Information
+            infoTitle1: "Global Headquarters",
+            infoAddress: "Rideau St., Ottawa, ON K1N 9J7, Canada",
+            infoHours: "Monday-Friday: 9:00 AM - 8:00 PM EST",
+            responseTime: "Average response time: 2-4 hours",
             
-            // ========== تغيير اللغة ==========
-            document.getElementById('lang-sel').addEventListener('change', function() {
-                const lang = this.value;
-                localStorage.setItem('siteLang', lang);
-                updateLanguage(lang);
-            });
+            infoTitle2: "AI Assistant Support",
+            aiFeature1: "Instant answers to common questions",
+            aiFeature2: "Available in English & Arabic 24/7",
+            aiFeature3: "Real-time flight & hotel availability",
+            aiFeature4: "Personalized itinerary suggestions",
+            aiFeature5: "Price prediction and alerts",
+            aiResponseTime: "Instant response • No waiting",
             
-            // ========== تغيير العملة ==========
-            document.getElementById('curr-sel').addEventListener('change', function() {
-                const currency = this.value;
-                localStorage.setItem('skylynx_currency', currency);
-            });
+            infoTitle3: "Emergency Support",
+            emergencyInfo1: "For urgent travel assistance while traveling",
+            emergencyInfo2: "Lost documents & emergency evacuation",
+            emergencyInfo3: "Medical emergencies & travel insurance claims",
+            emergencyResponse: "24/7 emergency line • Immediate assistance",
             
-            // ========== AI Assistant ==========
-            const aiBtn = document.getElementById('aiAssistantBtn');
-            if (aiBtn) {
-                aiBtn.addEventListener('click', function() {
-                    const currentLang = localStorage.getItem('siteLang') || 'en';
-                    if (currentLang === 'ar') {
-                        alert('مساعد الذكاء الاصطناعي: كيف يمكنني مساعدتك في تخطيط رحلتك أو الإجابة على أسئلتك؟');
-                    } else {
-                        alert('AI Assistant: How can I help you with your travel planning or answer your questions?');
-                    }
-                });
+            // FAQ Section
+            faqTitle: "Frequently Asked Questions",
+            faqSubtitle: "Quick answers to common questions about our services and support",
+            faqQuestion1: "How quickly will I receive a response to my inquiry?",
+            faqAnswer1: "Our AI assistant provides instant responses to common queries. For detailed inquiries requiring human expertise, our travel specialists typically respond within 2-4 hours during business hours, and within 12 hours for inquiries received outside of business hours. Emergency inquiries receive immediate attention 24/7.",
+            faqQuestion2: "Do you charge fees for travel planning services?",
+            faqAnswer2: "Our AI travel planning services are completely free. We earn commission from travel providers when you book through our platform. For highly complex, custom itineraries requiring extensive human planning (50+ hours), we may charge a planning fee starting at $500, which is fully refundable against your final booking.",
+            faqQuestion3: "What makes SkyLynx AI different from other travel agencies?",
+            faqAnswer3: "Our proprietary SkyLynx AI 3.0 analyzes millions of data points in real-time to provide predictive pricing, personalized recommendations, and optimized routing. Unlike traditional agencies, our AI learns from each interaction and continuously improves. We combine this with human expertise for complex planning, offering the best of both worlds.",
+            faqQuestion4: "Can you handle complex group bookings and special requirements?",
+            faqAnswer4: "Absolutely! We specialize in complex group travel arrangements for 9+ passengers. Our AI can manage multiple preferences, dietary restrictions, accessibility needs, and complex logistics. For groups of 20+, we assign a dedicated group travel specialist who works alongside our AI to ensure every detail is perfectly coordinated.",
+            faqQuestion5: "How do you ensure the security of my personal information?",
+            faqAnswer5: "We use military-grade 256-bit SSL encryption for all data transmission. Our AI is trained on anonymized data only, and we never share personal information without explicit consent. We are GDPR and CCPA compliant, and you can request data deletion at any time. All payment processing is handled through PCI-DSS compliant partners.",
+            faqQuestion6: "What happens if there are travel disruptions or emergencies?",
+            faqAnswer6: "Our AI monitors global travel conditions in real-time and automatically suggests alternatives for disruptions. For emergencies, our 24/7 support team can assist with rebooking, document replacement, medical evacuations, and insurance claims. All SkyLynx bookings include access to our emergency support line and AI-powered disruption management.",
+            
+            // Footer
+            footerDesc: "AI-Enhanced Luxury Travel Platform Built by Industry Experts based in Ottawa, Canada. Intelligent booking, personalized recommendations, and premium service.",
+            servicesFooter: "Services",
+            flightBooking: "Flight Booking",
+            hotelReservations: "Hotel Reservations",
+            carRentalFooter: "Car Rental",
+            privateJetsFooter: "Private Jets",
+            aiTravelServices: "AI Travel Services",
+            companyFooter: "Company",
+            aboutUs: "About Us",
+            travelBlog: "Travel Blog",
+            contactUs: "Contact Us",
+            careers: "Careers",
+            legalFooter: "Legal",
+            privacyPolicy: "Privacy Policy",
+            termsConditions: "Terms & Conditions",
+            affiliateDisclosure: "Affiliate Disclosure",
+            cookiePolicy: "Cookie Policy",
+            aiEthics: "AI Ethics Policy",
+            copyright: "© 2025 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.",
+            affiliate: "This website contains affiliate links. We may earn a commission through these links at no additional cost to you.",
+            poweredBy: "Powered by SkyLynx AI 3.0 • Patent Pending"
+        },
+        ar: {
+            // Navigation
+            home: "الرئيسية",
+            bookings: "الحجوزات",
+            blog: "المدونة",
+            destinations: "الوجهات",
+            about: "عنّا",
+            contact: "اتصل بنا",
+            aiPowered: "مدعوم بالذكاء الاصطناعي",
+            
+            // Hero Section
+            contactTitle: "اتصل بـ SkyLynx Travel",
+            contactSubtitle: "تواصل مع خبراء السفر الفاخر المعزز بالذكاء الاصطناعي لدينا. سواء كنت تخطط لرحلتك القادمة أو لديك أسئلة حول خدماتنا، نحن هنا لمساعدتك على مدار الساعة.",
+            aiTagline: "مساعد الذكاء الاصطناعي متاح 24/7 للدعم الفوري",
+            
+            // Contact Form
+            formTitle: "أرسل لنا رسالة",
+            formName: "الاسم الكامل *",
+            formEmail: "عنوان البريد الإلكتروني *",
+            formPhone: "رقم الهاتف",
+            formInquiryType: "نوع الاستفسار *",
+            formSelectOption: "اختر خيارًا",
+            formOptionBooking: "حجز طيران/فندق",
+            formOptionGroup: "طلب سفر جماعي",
+            formOptionPrivate: "تأجير طائرة خاصة",
+            formOptionCustom: "تخطيط برنامج سفر مخصص",
+            formOptionSupport: "دعم فني",
+            formOptionPartnership: "شراكة تجارية",
+            formOptionOther: "استفسار آخر",
+            formMessage: "رسالتك *",
+            formContactPref: "طريقة التواصل المفضلة",
+            formPrefEmail: "البريد الإلكتروني",
+            formPrefPhone: "مكالمة هاتفية",
+            formPrefWhatsApp: "واتساب",
+            formPrefAI: "مساعد الدردشة بالذكاء الاصطناعي",
+            requirementsTitle: "لخدمة أسرع:",
+            requirement1: "أضف تواريخ السفر وعدد المسافرين",
+            requirement2: "حدد نطاق الميزانية للشخص الواحد",
+            requirement3: "اذكر أي متطلبات خاصة (نظام غذائي، إمكانية الوصول، إلخ)",
+            requirement4: "للحجوزات الجماعية، حدد حجم المجموعة والغرض",
+            formSubmit: "إرسال الرسالة",
+            
+            // Contact Information
+            infoTitle1: "المقر العالمي",
+            infoAddress: "شارع ريدو، أوتاوا، أونتاريو K1N 9J7، كندا",
+            infoHours: "الاثنين-الجمعة: 9:00 صباحًا - 8:00 مساءً بتوقيت شرق أمريكا الشمالية",
+            responseTime: "متوسط وقت الاستجابة: 2-4 ساعات",
+            
+            infoTitle2: "دعم مساعد الذكاء الاصطناعي",
+            aiFeature1: "إجابات فورية للأسئلة الشائعة",
+            aiFeature2: "متاح باللغتين الإنجليزية والعربية على مدار الساعة",
+            aiFeature3: "توفر الرحلات الجوية والفنادق في الوقت الفعلي",
+            aiFeature4: "اقتراحات برامج سفر مخصصة",
+            aiFeature5: "التنبؤ بالسعر والتنبيهات",
+            aiResponseTime: "استجابة فورية • لا انتظار",
+            
+            infoTitle3: "الدعم في حالات الطوارئ",
+            emergencyInfo1: "للمساعدة العاجلة أثناء السفر",
+            emergencyInfo2: "المستندات المفقودة والإخلاء في حالات الطوارئ",
+            emergencyInfo3: "حالات الطوارئ الطبية ومطالبات تأمين السفر",
+            emergencyResponse: "خط الطوارئ 24/7 • مساعدة فورية",
+            
+            // FAQ Section
+            faqTitle: "الأسئلة الشائعة",
+            faqSubtitle: "إجابات سريعة للأسئلة الشائعة حول خدماتنا ودعمنا",
+            faqQuestion1: "ما مدى سرعة تلقي رد على استفساري؟",
+            faqAnswer1: "يوفر مساعد الذكاء الاصطناعي لدينا ردودًا فورية على الاستفسارات الشائعة. بالنسبة للاستفسارات التفصيلية التي تتطلب خبرة بشرية، يستجيب متخصصو السفر لدينا عادةً خلال 2-4 ساعات خلال ساعات العمل، وخلال 12 ساعة للاستفسارات الواردة خارج ساعات العمل. تتلقى استفسارات الطوارئ اهتمامًا فوريًا على مدار الساعة.",
+            faqQuestion2: "هل تفرضون رسومًا على خدمات تخطيط السفر؟",
+            faqAnswer2: "خدمات تخطيط السفر بالذكاء الاصطناعي لدينا مجانية تمامًا. نحصل على عمولة من مزودي السفر عند الحجز من خلال منصتنا. بالنسبة لبرامج السفر المخصصة المعقدة للغاية التي تتطلب تخطيطًا بشريًا مكثفًا (50+ ساعة)، قد نفرض رسوم تخطيط تبدأ من 500 دولار، وهي قابلة للاسترداد بالكامل مقابل حجزك النهائي.",
+            faqQuestion3: "ما الذي يجعل SkyLynx AI مختلفًا عن وكالات السفر الأخرى؟",
+            faqAnswer3: "يحلل SkyLynx AI 3.0 المملوك لنا ملايين نقاط البيانات في الوقت الفعلي لتوفير تسعير تنبئي وتوصيات مخصصة وتوجيه محسن. على عكس الوكالات التقليدية، يتعلم ذكائنا الاصطناعي من كل تفاعل ويتحسن باستمرار. نجمع هذا مع الخبرة البشرية للتخطيط المعقد، مما يقدم أفضل ما في العالمين.",
+            faqQuestion4: "هل يمكنكم التعامل مع الحجوزات الجماعية المعقدة والمتطلبات الخاصة؟",
+            faqAnswer4: "بالتأكيد! نحن متخصصون في ترتيبات السفر الجماعي المعقدة لـ 9+ مسافرين. يمكن لذكائنا الاصطناعي إدارة تفضيلات متعددة، قيود غذائية، احتياجات إمكانية الوصول، والخدمات اللوجستية المعقدة. بالنسبة للمجموعات التي تضم 20+، نخصص متخصص سفر جماعي مخصص يعمل جنبًا إلى جنب مع ذكائنا الاصطناعي لضمان تنسيق كل التفاصيل بشكل مثالي.",
+            faqQuestion5: "كيف تضمنون أمان معلوماتي الشخصية؟",
+            faqAnswer5: "نستخدم تشفير SSL 256-bit عسكري المستوى لجميع نقل البيانات. يتم تدريب ذكائنا الاصطناعي على بيانات مجهولة الهوية فقط، ولا نشارك المعلومات الشخصية أبدًا بدون موافقة صريحة. نحن متوافقون مع GDPR وCCPA، ويمكنك طلب حذف البيانات في أي وقت. تتم جميع معالجة الدفع من خلال شركاء متوافقين مع PCI-DSS.",
+            faqQuestion6: "ماذا يحدث إذا كانت هناك اضطرابات سفر أو حالات طوارئ؟",
+            faqAnswer6: "يراقب ذكائنا الاصطناعي ظروف السفر العالمية في الوقت الفعلي ويقترح تلقائيًا بدائل للاضطرابات. في حالات الطوارئ، يمكن لفريق الدعم لدينا على مدار الساعة المساعدة في إعادة الحجز واستبدال المستندات والإخلاء الطبي ومطالبات التأمين. تتضمن جميع حجوزات SkyLynx الوصول إلى خط دعم الطوارئ لدينا وإدارة الاضطرابات المدعومة بالذكاء الاصطناعي.",
+            
+            // Footer
+            footerDesc: "منصة السفر الفاخرة المعززة بالذكاء الاصطناعي بناها خبراء الصناعة ومقرها أوتاوا، كندا. حجز ذكي، توصيات مخصصة، وخدمة مميزة.",
+            servicesFooter: "الخدمات",
+            flightBooking: "حجز الطيران",
+            hotelReservations: "حجر الفنادق",
+            carRentalFooter: "تأجير سيارات",
+            privateJetsFooter: "طائرات خاصة",
+            aiTravelServices: "خدمات السفر بالذكاء الاصطناعي",
+            companyFooter: "الشركة",
+            aboutUs: "عنّا",
+            travelBlog: "مدونة السفر",
+            contactUs: "اتصل بنا",
+            careers: "وظائف",
+            legalFooter: "قانوني",
+            privacyPolicy: "سياسة الخصوصية",
+            termsConditions: "الشروط والأحكام",
+            affiliateDisclosure: "الإفصاح التابع",
+            cookiePolicy: "سياسة الكوكيز",
+            aiEthics: "سياسة أخلاقيات الذكاء الاصطناعي",
+            copyright: "© 2025 SkyLynx Travel International Inc. - أوتاوا، كندا. جميع الحقوق محفوظة.",
+            affiliate: "يحتوي هذا الموقع على روابط تابعة. قد نربح عمولة من خلال هذه الروابط دون أي تكلفة إضافية عليك.",
+            poweredBy: "مدعوم بـ SkyLynx AI 3.0 • براءة اختراع قيد الانتظار"
+        }
+    };
+
+    // ========== دالة تحديث اللغة ==========
+    function updateLanguage(lang) {
+        console.log('Updating language to:', lang);
+        
+        // حفظ اللغة في localStorage
+        localStorage.setItem('siteLang', lang);
+        
+        // تحديث سمة HTML
+        document.getElementById('main-html').lang = lang;
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.style.fontFamily = lang === 'ar' ? "'Cairo', sans-serif" : "'Montserrat', sans-serif";
+        
+        // تحديث اختيار اللغة في القائمة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.value = lang;
+        }
+        
+        // الحصول على الترجمة
+        const translation = translations[lang];
+        if (!translation) {
+            console.error('Translation not found for language:', lang);
+            return;
+        }
+        
+        // تحديث جميع العناصر ذات data-key
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const key = element.getAttribute('data-key');
+            if (translation[key]) {
+                element.textContent = translation[key];
             }
         });
         
-        // ========== دالة تحديث اللغة ==========
-        function updateLanguage(lang) {
-            document.getElementById('main-html').setAttribute('lang', lang);
-            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            
-            // الحصول على الترجمة
-            const translation = translations[lang];
-            if (!translation) return;
-            
-            // تحديث جميع العناصر ذات data-key
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const key = element.getAttribute('data-key');
-                if (translation[key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translation[key];
-                    } else {
-                        element.textContent = translation[key];
-                    }
+        // تحديث أماكن العناصر النائبة
+        updatePlaceholders(lang);
+        
+        console.log('Language updated successfully');
+    }
+
+    // ========== تحديث أماكن العناصر النائبة ==========
+    function updatePlaceholders(lang) {
+        const placeholders = {
+            'name': lang === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your full name',
+            'email': lang === 'ar' ? 'بريدك.الإلكتروني@مثال.com' : 'your.email@example.com',
+            'phone': lang === 'ar' ? '+1 (555) 123-4567' : '+1 (555) 123-4567',
+            'message': lang === 'ar' ? 'يرجى تقديم تفاصيل عن استفسارك، بما في ذلك الوجهات المفضلة وتواريخ السفر ونطاق الميزانية وأي متطلبات خاصة...' : 'Please provide details about your inquiry, including preferred destinations, travel dates, budget range, and any special requirements...'
+        };
+        
+        Object.keys(placeholders).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.placeholder = placeholders[id];
+            }
+        });
+    }
+
+    // ========== تهيئة جميع الأنظمة ==========
+    function initializeSystems() {
+        console.log('Initializing systems...');
+        
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navRight = document.getElementById('navRight');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                navRight.classList.toggle('active');
+                mobileMenuToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!navMenu.contains(event.target) && 
+                    !mobileMenuToggle.contains(event.target) &&
+                    !navRight.contains(event.target)) {
+                    navMenu.classList.remove('active');
+                    navRight.classList.remove('active');
+                    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    navRight.classList.remove('active');
+                    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             });
-            
-            // تحديث العناصر الأخرى
-            const elements = {
-                'aiBadgeText': translation.aiPowered,
-                'pageTitle': translation.pageTitle,
-                'pageDescription': translation.pageDescription,
-                'formTitle': translation.formTitle,
-                'successText': translation.successText,
-                'errorText': translation.errorText,
-                'nameLabel': translation.nameLabel,
-                'emailLabel': translation.emailLabel,
-                'phoneLabel': translation.phoneLabel,
-                'subjectLabel': translation.subjectLabel,
-                'messageLabel': translation.messageLabel,
-                'submitText': translation.submitText,
-                'infoTitle': translation.infoTitle,
-                'addressTitle': translation.addressTitle,
-                'addressText': translation.addressText,
-                'emailTitle': translation.emailTitle,
-                'phoneInfoTitle': translation.phoneInfoTitle,
-                'primaryPhone': translation.primaryPhone,
-                'supportPhone': translation.supportPhone,
-                'hoursTitle': translation.hoursTitle,
-                'assistanceTitle': translation.assistanceTitle,
-                'assistanceText': translation.assistanceText,
-                'footerDesc': translation.footerDesc,
-                'legalDocsTitle': translation.legalDocsTitle,
-                'privacyLink': translation.privacyLink,
-                'termsLink': translation.termsLink,
-                'affiliateLink': translation.affiliateLink,
-                'cookieLink': translation.cookieLink,
-                'connectTitle': translation.connectTitle,
-                'contactLink': translation.contactLink,
-                'aboutLink': translation.aboutLink,
-                'blogLink': translation.blogLink,
-                'careersLink': translation.careersLink,
-                'copyrightText': translation.copyrightText,
-                'affiliateFooter': translation.affiliateFooter,
-                'poweredBy': translation.poweredBy
-            };
-            
-            Object.keys(elements).forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.textContent = elements[id];
-                }
+        });
+        
+        // إضافة مستمع الأحداث لتغيير اللغة
+        const langSelect = document.getElementById('lang-sel');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const newLang = this.value;
+                console.log('Language changed via select:', newLang);
+                updateLanguage(newLang);
             });
+        }
+        
+        // تهيئة نموذج الاتصال
+        initializeContactForm();
+        
+        // تهيئة الأسئلة الشائعة
+        initializeFAQ();
+        
+        // مساعد الذكاء الاصطناعي
+        initializeAIAssistant();
+        
+        console.log('All systems initialized');
+    }
+
+    // ========== تهيئة نموذج الاتصال ==========
+    function initializeContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        
+        if (!contactForm) return;
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // تحديث الروابط
-            const emailLink = document.getElementById('emailLink');
-            if (emailLink) emailLink.textContent = translation.emailLink;
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            const formData = new FormData(contactForm);
+            const inquiryData = Object.fromEntries(formData);
             
-            const supportLink = document.getElementById('supportLink');
-            if (supportLink) supportLink.textContent = translation.supportLink;
-            
-            // تحديث ساعات العمل (مع الحفاظ على فواصل الأسطر)
-            const hoursElement = document.getElementById('hoursText');
-            if (hoursElement) {
-                hoursElement.innerHTML = translation.hoursText.replace(/\n/g, '<br>');
+            // عرض رسالة نجاح
+            if (currentLang === 'ar') {
+                alert("✅ تم إرسال رسالتك بنجاح! سيتواصل معك أحد خبراء السفر لدينا خلال 2-4 ساعات. يمكنك أيضًا استخدام مساعد الذكاء الاصطناعي للحصول على إجابات فورية.");
+            } else {
+                alert("✅ Your message has been sent successfully! One of our travel experts will contact you within 2-4 hours. You can also use our AI assistant for instant answers.");
             }
             
-            // تحديث النصوص في رسائل الحالة
-            const successText = document.getElementById('successText');
-            const errorText = document.getElementById('errorText');
-            if (successText) successText.textContent = translation.successText;
-            if (errorText) errorText.textContent = translation.errorText;
+            // إعادة تعيين النموذج
+            contactForm.reset();
             
-            console.log('Language updated to:', lang);
-        }
-    </script>
+            // محاكاة إرسال البيانات إلى الخادم
+            console.log('Contact form submitted:', inquiryData);
+            
+            // يمكن إضافة AJAX request هنا في التطبيق الحقيقي
+            // fetch('/api/contact', { method: 'POST', body: JSON.stringify(inquiryData) })
+        });
+    }
+
+    // ========== تهيئة الأسئلة الشائعة ==========
+    function initializeFAQ() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', function() {
+                // إغلاق جميع العناصر الأخرى
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // تبديل العنصر الحالي
+                item.classList.toggle('active');
+            });
+        });
+    }
+
+    // ========== مساعد الذكاء الاصطناعي ==========
+    function initializeAIAssistant() {
+        const aiBtn = document.getElementById('aiAssistantBtn');
+        
+        if (!aiBtn) return;
+        
+        // فتح مساعد الذكاء الاصطناعي
+        aiBtn.addEventListener('click', function() {
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            
+            if (currentLang === 'ar') {
+                const message = "🤖 مساعد SkyLynx الذكي: مرحبًا! أنا هنا للإجابة على أسئلتك حول:\n\n" +
+                              "• خدمات الحجز والخطط المخصصة\n" +
+                              "• توافر الرحلات والفنادق\n" +
+                              "• الأسئلة الفنية والدعم\n" +
+                              "• معلومات الطوارئ\n\n" +
+                              "ما الذي يمكنني مساعدتك به اليوم؟";
+                alert(message);
+            } else {
+                const message = "🤖 SkyLynx AI Assistant: Hello! I'm here to answer your questions about:\n\n" +
+                              "• Booking services and custom itineraries\n" +
+                              "• Flight and hotel availability\n" +
+                              "• Technical questions and support\n" +
+                              "• Emergency information\n\n" +
+                              "What can I help you with today?";
+                alert(message);
+            }
+        });
+    }
+</script>
 </body>
 </html>

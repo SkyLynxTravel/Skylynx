@@ -21,9 +21,11 @@
             --deep-ocean: #00111c; 
             --sky-glow: #00a6fb; 
             --silver: #e0e1dd; 
-            --gold: #d4af37;
+            --platinum: #a8b0c4; /* استبدال الذهبي بالبلاتينيوم */
             --ai-purple: #9d4edd;
             --ai-teal: #2ec4b6;
+            --crystal-blue: #4cc9f0; /* لون بديل للذهبي */
+            --luxury-cyan: #00e5ff; /* لون سيان فاخر */
         }
         
         * {
@@ -38,9 +40,10 @@
             font-family: 'Montserrat', sans-serif;
             line-height: 1.8;
             min-height: 100vh;
+            padding-top: 70px; /* إضافة padding لأعلى */
         }
         
-        /* Navigation */
+        /* Navigation - تحسينات للجوال */
         .main-nav {
             position: fixed;
             top: 0;
@@ -48,17 +51,20 @@
             background: rgba(0, 17, 28, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 15px 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 70px;
+            height: 70px;
         }
         
         .nav-left {
             display: flex;
             align-items: center;
             gap: 40px;
+            flex: 1;
         }
         
         .nav-logo {
@@ -79,6 +85,8 @@
             display: flex;
             gap: 30px;
             list-style: none;
+            flex: 1;
+            justify-content: center;
         }
         
         .nav-menu a {
@@ -102,6 +110,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-shrink: 0;
         }
         
         .ai-badge {
@@ -138,6 +147,18 @@
             font-size: 0.9rem;
         }
         
+        /* زر القائمة للجوال */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--sky-glow);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+        
         /* Back to Home Button */
         .back-home-btn {
             position: fixed;
@@ -167,7 +188,7 @@
         .about-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 120px 20px 60px;
+            padding: 100px 20px 60px;
         }
         
         /* Hero Section */
@@ -246,12 +267,12 @@
             padding: 50px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
-            border-left: 5px solid var(--gold);
+            border-left: 5px solid var(--crystal-blue); /* تغيير الذهبي إلى الأزرق الكريستالي */
         }
         
         .mission-title {
             font-family: 'Cinzel', serif;
-            color: var(--gold);
+            color: var(--crystal-blue); /* تغيير الذهبي إلى الأزرق الكريستالي */
             font-size: 2.5rem;
             margin-bottom: 30px;
             text-align: center;
@@ -312,7 +333,7 @@
         }
         
         .expertise-role {
-            color: var(--gold);
+            color: var(--luxury-cyan); /* تغيير الذهبي إلى السيان الفاخر */
             font-weight: 600;
             margin-bottom: 20px;
             font-size: 1.1rem;
@@ -414,7 +435,7 @@
         
         .trust-icon {
             font-size: 3rem;
-            color: var(--gold);
+            color: var(--luxury-cyan); /* تغيير الذهبي إلى السيان الفاخر */
             margin-bottom: 20px;
         }
         
@@ -579,39 +600,105 @@
             display: block;
         }
         
-        /* Responsive */
+        /* ========== تحسينات خاصة للجوال ========== */
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px !important;
+            }
+            
             .main-nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
+                flex-direction: row;
+                padding: 8px 15px !important;
+                height: 60px !important;
+                min-height: 60px !important;
             }
             
             .nav-left {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 15px;
                 width: 100%;
             }
             
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-logo i {
+                font-size: 1.1rem;
             }
             
             .ai-badge {
-                margin-top: 10px;
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                margin-left: auto;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 17, 28, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                padding: 15px 25px !important;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+                justify-content: flex-start;
+                font-size: 1rem;
+                border-bottom: none !important;
+                width: 100%;
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background: rgba(0, 166, 251, 0.15) !important;
+                border-bottom: none !important;
+            }
+            
+            .nav-right {
+                display: none;
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                background: rgba(0, 17, 28, 0.98);
+            }
+            
+            .nav-right.active {
+                display: flex;
             }
             
             .back-home-btn {
-                top: 140px;
+                top: 70px;
                 left: 10px;
                 padding: 8px 15px;
                 font-size: 0.9rem;
+                display: none; /* إخفاء في الجوال */
             }
             
             .about-container {
-                padding: 160px 15px 40px;
+                padding: 80px 15px 40px;
             }
             
             .hero-title {
@@ -644,6 +731,20 @@
         }
         
         @media (max-width: 480px) {
+            body {
+                padding-top: 55px !important;
+            }
+            
+            .main-nav {
+                padding: 5px 10px !important;
+                height: 55px !important;
+                min-height: 55px !important;
+            }
+            
+            .nav-menu {
+                top: 55px;
+            }
+            
             .hero-title {
                 font-size: 2rem;
             }
@@ -651,10 +752,6 @@
             .hero-badge {
                 font-size: 0.9rem;
                 padding: 10px 20px;
-            }
-            
-            .nav-menu {
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -673,7 +770,11 @@
                 <span id="ai-badge-text">AI-Powered</span>
             </div>
             
-            <ul class="nav-menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" id="nav-home"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
                 <li><a href="blog.html" id="nav-blog"><i class="fas fa-newspaper"></i> <span class="nav-text">Blog</span></a></li>
                 <li><a href="about.html" id="nav-about"><i class="fas fa-info-circle"></i> <span class="nav-text">About</span></a></li>
@@ -681,7 +782,7 @@
             </ul>
         </div>
         
-        <div class="nav-right">
+        <div class="nav-right" id="navRight">
             <div class="config">
                 <select id="curr-sel">
                     <option value="CAD">🇨🇦 CAD</option>
@@ -1206,11 +1307,54 @@
                     localStorage.setItem('skylynx_currency', e.target.value);
                 });
                 
+                // Initialize mobile menu
+                this.initializeMobileMenu();
+                
                 // Update navigation links to include language parameter
                 this.updateNavigationLinks();
                 
                 // Set active navigation link
                 this.setActiveNavLink();
+            }
+            
+            initializeMobileMenu() {
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const navMenu = document.getElementById('navMenu');
+                const navRight = document.getElementById('navRight');
+                
+                if (mobileMenuToggle && navMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        navMenu.classList.toggle('active');
+                        navRight.classList.toggle('active');
+                        mobileMenuToggle.innerHTML = navMenu.classList.contains('active') 
+                            ? '<i class="fas fa-times"></i>' 
+                            : '<i class="fas fa-bars"></i>';
+                    });
+                }
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        if (!navMenu.contains(event.target) && 
+                            !mobileMenuToggle.contains(event.target) &&
+                            !navRight.contains(event.target)) {
+                            navMenu.classList.remove('active');
+                            navRight.classList.remove('active');
+                            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+                
+                // Close mobile menu when clicking a link
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            navMenu.classList.remove('active');
+                            navRight.classList.remove('active');
+                            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    });
+                });
             }
             
             applyLanguage(lang) {
