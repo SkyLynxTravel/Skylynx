@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="redirect-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLynx Search - Redirecting to Partners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        :root { 
+            --deep-ocean: #00111c; 
+            --sky-glow: #00a6fb; 
+            --ai-purple: #9d4edd; 
+            --ai-teal: #2ec4b6;
+        }
+        
+        [lang="ar"] { 
+            direction: rtl; 
+            font-family: 'Cairo', sans-serif !important;
+            text-align: right;
+        }
+        
+        [lang="en"] { 
+            direction: ltr; 
+            font-family: 'Montserrat', sans-serif !important;
+            text-align: left;
+        }
+        
+        body { 
+            background: var(--deep-ocean); 
+            color: white; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .container { 
+            max-width: 800px; 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px); 
+            border-radius: 30px; 
+            padding: 40px; 
+            border: 1px solid rgba(0, 166, 251, 0.2); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin-bottom: 20px; 
+            color: var(--sky-glow); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px;
+        }
+        
+        .logo i { 
+            color: var(--ai-purple); 
+            animation: spin 2s linear infinite; 
+        }
+        
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+        
+        .loading-container { 
+            margin: 40px 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px;
+        }
+        
+        .loading-spinner { 
+            width: 60px; 
+            height: 60px; 
+            border: 4px solid rgba(255,255,255,0.1); 
+            border-radius: 50%; 
+            border-top-color: var(--sky-glow); 
+            animation: spin 1s linear infinite; 
+        }
+        
+        .progress-bar { 
+            width: 100%; 
+            height: 6px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 3px; 
+            overflow: hidden; 
+            margin-top: 10px;
+        }
+        
+        .progress-fill { 
+            height: 100%; 
+            width: 0%; 
+            background: linear-gradient(90deg, var(--sky-glow), var(--ai-purple)); 
+            animation: progress 3s ease-out forwards; 
+            border-radius: 3px;
+        }
+        
+        @keyframes progress { 
+            0% { width: 0%; } 
+            70% { width: 80%; } 
+            100% { width: 100%; } 
+        }
+        
+        .search-details { 
+            background: rgba(255,255,255,0.05); 
+            border-radius: 15px; 
+            padding: 25px; 
+            margin: 30px 0; 
+            text-align: left; 
+            border: 1px solid rgba(0,166,251,0.1);
+        }
+        
+        .detail-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            padding-bottom: 10px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
+        
+        .detail-row:last-child { 
+            margin-bottom: 0; 
+            padding-bottom: 0; 
+            border-bottom: none; 
+        }
+        
+        .detail-label { 
+            color: var(--sky-glow); 
+            font-weight: 600; 
+        }
+        
+        .detail-value { 
+            color: white; 
+            font-weight: 700; 
+        }
+        
+        .status-message { 
+            font-size: 1.1rem; 
+            margin: 20px 0; 
+            color: var(--ai-teal); 
+            font-weight: 600;
+        }
+        
+        .ai-note { 
+            background: rgba(157, 78, 221, 0.1); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin-top: 30px; 
+            border: 1px solid rgba(157, 78, 221, 0.2); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+        
+        .ai-note i { 
+            color: var(--ai-purple); 
+            font-size: 1.2rem;
+        }
+        
+        .btn { 
+            padding: 12px 30px; 
+            border-radius: 10px; 
+            border: none; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            font-size: 0.9rem; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+            font-family: inherit;
+        }
+        
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--sky-glow), var(--ai-purple)); 
+            color: white; 
+        }
+        
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(0,166,251,0.3);
+        }
+        
+        .error-message { 
+            color: #ff6b6b; 
+            background: rgba(255,107,107,0.1); 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(255,107,107,0.2); 
+            margin: 20px 0;
+        }
+        
+        /* اللغة العربية */
+        [lang="ar"] .search-details {
+            text-align: right;
+        }
+        
+        [lang="ar"] .detail-row {
+            flex-direction: row-reverse;
+        }
+        
+        [lang="ar"] .ai-note {
+            flex-direction: row-reverse;
+        }
+        
+        [lang="ar"] .ai-note div {
+            text-align: right;
+        }
+        
+        @media (max-width: 768px) {
+            .container { 
+                padding: 25px; 
+                border-radius: 20px; 
+            }
+            
+            .logo { 
+                font-size: 2.2rem; 
+            }
+            
+            .search-details { 
+                padding: 20px; 
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            [lang="ar"] .detail-row {
+                align-items: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-plane"></i>
+            <span id="logoText">SkyLynx</span>
+        </div>
+        
+        <h1 id="pageTitle" style="margin-bottom: 10px;">Finding Your Luxury Travel Options</h1>
+        <p id="pageSubtitle" style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">
+            Our AI is searching across thousands of providers for the best deals...
+        </p>
+        
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="status-message" id="statusMessage">
+                Initializing search parameters...
+            </div>
+        </div>
+        
+        <div class="search-details" id="searchDetails">
+            <!-- سيتم تعبئتها بواسطة JavaScript -->
+        </div>
+        
+        <div class="ai-note">
+            <i class="fas fa-robot"></i>
+            <div id="aiNoteText">
+                <strong>AI Tip:</strong> Prices can vary significantly based on booking time. 
+                Our AI recommends booking at least 3 weeks in advance for the best deals.
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
+            <button class="btn btn-primary" onclick="goBack()" id="backBtn">
+                <i class="fas fa-arrow-left"></i>
+                <span id="backBtnText">Modify Search</span>
+            </button>
+            <button class="btn btn-primary" onclick="goHome()" id="homeBtn">
+                <i class="fas fa-home"></i>
+                <span id="homeBtnText">Home Page</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========== نظام الترجمة للصفحة ==========
+        const translations = {
+            en: {
+                pageTitle: "Finding Your Luxury Travel Options",
+                pageSubtitle: "Our AI is searching across thousands of providers for the best deals...",
+                aiNoteText: "<strong>AI Tip:</strong> Prices can vary significantly based on booking time. Our AI recommends booking at least 3 weeks in advance for the best deals.",
+                backBtnText: "Modify Search",
+                homeBtnText: "Home Page",
+                detailService: "Service:",
+                detailFrom: "From:",
+                detailTo: "To:",
+                detailDeparture: "Departure:",
+                detailReturn: "Return:",
+                detailPassengers: "Passengers:",
+                detailClass: "Class:",
+                statusMessages: [
+                    "Initializing search parameters...",
+                    "Analyzing travel options...",
+                    "Checking availability across providers...",
+                    "Comparing prices from 150+ travel companies...",
+                    "Applying AI optimization filters...",
+                    "Finalizing best deals for you...",
+                    "✓ Search complete! Ready to show results from our partners."
+                ],
+                serviceNames: {
+                    'flights': '✈️ Flights',
+                    'hotels': '🏨 Hotels',
+                    'cars': '🚗 Car Rental',
+                    'private': '💎 Private Jet',
+                    'group': '👥 Group Travel'
+                },
+                classNames: {
+                    'ECONOMY': 'Economy',
+                    'PREMIUM_ECONOMY': 'Premium Economy',
+                    'BUSINESS': 'Business Class',
+                    'FIRST': 'First Class'
+                }
+            },
+            ar: {
+                pageTitle: "جاري البحث عن خيارات السفر الفاخرة",
+                pageSubtitle: "الذكاء الاصطناعي لدينا يبحث عبر آلاف المزودين للحصول على أفضل العروض...",
+                aiNoteText: "<strong>نصيحة الذكاء الاصطناعي:</strong> يمكن أن تختلف الأسعار بشكل كبير حسب وقت الحجز. يوصي الذكاء الاصطناعي لدينا بالحجز قبل 3 أسابيع على الأقل للحصول على أفضل الصفقات.",
+                backBtnText: "تعديل البحث",
+                homeBtnText: "الصفحة الرئيسية",
+                detailService: "الخدمة:",
+                detailFrom: "من:",
+                detailTo: "إلى:",
+                detailDeparture: "تاريخ الذهاب:",
+                detailReturn: "تاريخ العودة:",
+                detailPassengers: "المسافرون:",
+                detailClass: "الفئة:",
+                statusMessages: [
+                    "جاري تهيئة معايير البحث...",
+                    "جاري تحليل خيارات السفر...",
+                    "جاري التحقق من التوفر عبر المزودين...",
+                    "جاري مقارنة الأسعار من 150+ شركة سفر...",
+                    "جاري تطبيق مرشحات التحسين بالذكاء الاصطناعي...",
+                    "جاري إعداد أفضل العروض لك...",
+                    "✓ اكتمل البحث! جاهز لعرض النتائج من شركائنا."
+                ],
+                serviceNames: {
+                    'flights': '✈️ رحلات الطيران',
+                    'hotels': '🏨 الفنادق',
+                    'cars': '🚗 تأجير سيارات',
+                    'private': '💎 طائرة خاصة',
+                    'group': '👥 سفر جماعي'
+                },
+                classNames: {
+                    'ECONOMY': 'الاقتصادية',
+                    'PREMIUM_ECONOMY': 'الاقتصادية المميزة',
+                    'BUSINESS': 'درجة رجال الأعمال',
+                    'FIRST': 'الدرجة الأولى'
+                }
+            }
+        };
+
+        // ========== دالة تحديث اللغة ==========
+        function updatePageLanguage(lang) {
+            console.log('Setting page language to:', lang);
+            
+            // تحديث سمة HTML
+            document.getElementById('redirect-html').lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.style.fontFamily = lang === 'ar' ? "'Cairo', sans-serif" : "'Montserrat', sans-serif";
+            
+            // الحصول على الترجمة
+            const translation = translations[lang];
+            if (!translation) {
+                console.error('Translation not found for language:', lang);
+                return;
+            }
+            
+            // تحديث النصوص
+            document.getElementById('pageTitle').textContent = translation.pageTitle;
+            document.getElementById('pageSubtitle').textContent = translation.pageSubtitle;
+            document.getElementById('aiNoteText').innerHTML = translation.aiNoteText;
+            document.getElementById('backBtnText').textContent = translation.backBtnText;
+            document.getElementById('homeBtnText').textContent = translation.homeBtnText;
+            
+            // حفظ اللغة في localStorage
+            localStorage.setItem('siteLang', lang);
+        }
+
+        // ========== معالجة بيانات البحث ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // استرجاع اللغة من localStorage أو من معلمات URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const savedLang = localStorage.getItem('siteLang');
+            
+            // تحديد اللغة (الأولوية: معلمة URL > localStorage > الإنجليزية)
+            const currentLang = langParam || savedLang || 'en';
+            
+            // تحديث لغة الصفحة
+            updatePageLanguage(currentLang);
+            
+            // استخراج جميع معلمات البحث
+            const searchData = {
+                service: urlParams.get('service') || 'flights',
+                origin: decodeURIComponent(urlParams.get('origin') || ''),
+                destination: decodeURIComponent(urlParams.get('destination') || ''),
+                depart_date: urlParams.get('depart_date') || '',
+                return_date: urlParams.get('return_date') || '',
+                passengers: urlParams.get('passengers') || '1',
+                travel_class: urlParams.get('travel_class') || 'ECONOMY',
+                // معلمات إضافية للفنادق والسيارات
+                checkin: urlParams.get('checkin') || '',
+                checkout: urlParams.get('checkout') || '',
+                rooms: urlParams.get('rooms') || '1',
+                guests: urlParams.get('guests') || '2',
+                car_type: urlParams.get('car_type') || 'ECONOMY',
+                pickup_date: urlParams.get('pickup_date') || '',
+                return_date_car: urlParams.get('return_date_car') || '',
+                lang: currentLang // إضافة اللغة للبيانات
+            };
+            
+            // عرض تفاصيل البحث باللغة الصحيحة
+            displaySearchDetails(searchData, currentLang);
+            
+            // بدء عملية التحويل بعد تأخير قصير
+            setTimeout(() => {
+                redirectToTravelPartner(searchData);
+            }, 3500);
+        });
+
+        // ========== عرض تفاصيل البحث ==========
+        function displaySearchDetails(data, lang) {
+            const detailsContainer = document.getElementById('searchDetails');
+            const translation = translations[lang];
+            
+            let html = `
+                <div class="detail-row">
+                    <span class="detail-label">${translation.detailService}</span>
+                    <span class="detail-value">${getServiceName(data.service, lang)}</span>
+                </div>
+            `;
+            
+            if (data.origin) {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailFrom}</span>
+                        <span class="detail-value">${data.origin}</span>
+                    </div>
+                `;
+            }
+            
+            if (data.destination) {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailTo}</span>
+                        <span class="detail-value">${data.destination}</span>
+                    </div>
+                `;
+            }
+            
+            if (data.depart_date) {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailDeparture}</span>
+                        <span class="detail-value">${formatDate(data.depart_date, lang)}</span>
+                    </div>
+                `;
+            }
+            
+            if (data.return_date && data.return_date !== 'null') {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailReturn}</span>
+                        <span class="detail-value">${formatDate(data.return_date, lang)}</span>
+                    </div>
+                `;
+            }
+            
+            if (data.passengers) {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailPassengers}</span>
+                        <span class="detail-value">${data.passengers}</span>
+                    </div>
+                `;
+            }
+            
+            if (data.travel_class && data.service === 'flights') {
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">${translation.detailClass}</span>
+                        <span class="detail-value">${getClassDisplay(data.travel_class, lang)}</span>
+                    </div>
+                `;
+            }
+            
+            detailsContainer.innerHTML = html;
+            
+            // تحديث رسالة الحالة
+            const statusMessages = translation.statusMessages;
+            let currentMessage = 0;
+            const statusElement = document.getElementById('statusMessage');
+            
+            const messageInterval = setInterval(() => {
+                if (currentMessage < statusMessages.length) {
+                    statusElement.textContent = statusMessages[currentMessage];
+                    currentMessage++;
+                } else {
+                    clearInterval(messageInterval);
+                }
+            }, 500);
+        }
+
+        // ========== التحويل إلى الشريك ==========
+        function redirectToTravelPartner(data) {
+            // الحصول على اللغة الحالية
+            const currentLang = data.lang || 'en';
+            const translation = translations[currentLang];
+            
+            // توليد رابط Travelpayouts
+            const partnerURL = generateTravelpayoutsURL(data);
+            
+            // بعد 3.5 ثانية من التحميل، قم بالتحويل
+            setTimeout(() => {
+                console.log('Redirecting to:', partnerURL);
+                
+                // تحديث رسالة الحالة النهائية
+                document.querySelector('.status-message').textContent = 
+                    translation.statusMessages[translation.statusMessages.length - 1];
+                
+                // زر لعرض نتائج الاختبار
+                const redirectBtn = document.createElement('button');
+                redirectBtn.className = 'btn btn-primary';
+                redirectBtn.innerHTML = currentLang === 'ar' 
+                    ? '<i class="fas fa-external-link-alt"></i> عرض نتائج الاختبار'
+                    : '<i class="fas fa-external-link-alt"></i> View Test Results';
+                redirectBtn.style.marginTop = '20px';
+                redirectBtn.onclick = function() {
+                    // هذا رابط اختبار لـ Travelpayouts
+                    const testURL = partnerURL || `https://www.travelpayouts.com/avia/?origin=${encodeURIComponent(data.origin)}&destination=${encodeURIComponent(data.destination)}`;
+                    window.open(testURL, '_blank');
+                };
+                
+                document.querySelector('.loading-container').appendChild(redirectBtn);
+                
+            }, 3500);
+        }
+
+        // ========== توليد رابط Travelpayouts ==========
+        function generateTravelpayoutsURL(data) {
+            // ⚠️ ⚠️ ⚠️ مهم: ستحتاج إلى تحديث هذا الجزء بمعلوماتك الفعلية
+            const YOUR_MARKER = 'YOUR_TRAVELPAYOUTS_MARKER_HERE'; // سيأتي من حسابك
+            
+            let baseURL = '';
+            
+            switch(data.service) {
+                case 'flights':
+                    baseURL = `https://www.travelpayouts.com/avia/?marker=${YOUR_MARKER}&origin=${encodeURIComponent(data.origin)}&destination=${encodeURIComponent(data.destination)}`;
+                    if (data.depart_date) {
+                        baseURL += `&depart_date=${data.depart_date}`;
+                    }
+                    if (data.return_date && data.return_date !== 'null') {
+                        baseURL += `&return_date=${data.return_date}`;
+                    }
+                    if (data.travel_class) {
+                        baseURL += `&class=${data.travel_class.toLowerCase()}`;
+                    }
+                    baseURL += `&adults=${data.passengers}&children=0&infants=0`;
+                    break;
+                    
+                case 'hotels':
+                    baseURL = `https://www.travelpayouts.com/hotels/?marker=${YOUR_MARKER}&destination=${encodeURIComponent(data.destination)}`;
+                    if (data.checkin) {
+                        baseURL += `&checkin=${data.checkin}`;
+                    }
+                    if (data.checkout) {
+                        baseURL += `&checkout=${data.checkout}`;
+                    }
+                    if (data.guests) {
+                        baseURL += `&guests=${data.guests}`;
+                    }
+                    break;
+                    
+                case 'cars':
+                    baseURL = `https://www.travelpayouts.com/cars/?marker=${YOUR_MARKER}&pickup_location=${encodeURIComponent(data.origin)}`;
+                    if (data.destination) {
+                        baseURL += `&dropoff_location=${encodeURIComponent(data.destination)}`;
+                    }
+                    if (data.pickup_date) {
+                        baseURL += `&pickup_date=${data.pickup_date}`;
+                    }
+                    break;
+                    
+                default:
+                    baseURL = `https://www.travelpayouts.com/?marker=${YOUR_MARKER}`;
+            }
+            
+            return baseURL;
+        }
+
+        // ========== دوال مساعدة ==========
+        function getServiceName(serviceCode, lang) {
+            const translation = translations[lang];
+            return translation.serviceNames[serviceCode] || serviceCode;
+        }
+
+        function formatDate(dateString, lang) {
+            if (!dateString) return lang === 'ar' ? 'غير محدد' : 'Not specified';
+            const date = new Date(dateString);
+            
+            if (lang === 'ar') {
+                // تنسيق التاريخ للعربية
+                const options = { 
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                };
+                return date.toLocaleDateString('ar-SA', options);
+            } else {
+                const options = { 
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                };
+                return date.toLocaleDateString('en-US', options);
+            }
+        }
+
+        function getClassDisplay(classCode, lang) {
+            const translation = translations[lang];
+            return translation.classNames[classCode] || classCode;
+        }
+
+        // ========== دوال التنقل ==========
+        function goBack() {
+            // العودة إلى الصفحة السابقة مع الحفاظ على اللغة
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            window.history.back();
+        }
+
+        function goHome() {
+            // الذهاب إلى الصفحة الرئيسية مع الحفاظ على اللغة
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

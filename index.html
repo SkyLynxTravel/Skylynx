@@ -172,7 +172,6 @@
             margin-top: 0;
         }
         
-        /* خلفية متحركة جميلة بدلاً من الفيديو المحذوف */
         .hero-background {
             position: absolute;
             top: 0;
@@ -1571,7 +1570,8 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 17, 28, 0.95);
-            display: flex;
+            backdrop-filter: blur(10px);
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 9999;
@@ -1579,7 +1579,7 @@
             gap: 20px;
         }
         
-        .loading-spinner {
+        .loading-overlay .loading-spinner {
             width: 60px;
             height: 60px;
             border: 4px solid rgba(255,255,255,0.3);
@@ -1588,16 +1588,20 @@
             animation: spin 1s linear infinite;
         }
         
-        .loading-text {
+        .loading-overlay .loading-text {
             color: white;
             font-size: 1.1rem;
             text-align: center;
             max-width: 300px;
         }
         
-        .ai-note {
+        .loading-overlay .ai-note {
             color: var(--ai-teal);
             font-size: 0.9rem;
+            background: rgba(46, 196, 182, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(46, 196, 182, 0.2);
         }
         
         /* ========== RESPONSIVE ========== */
@@ -1652,13 +1656,12 @@
                 grid-template-columns: 1fr;
             }
             
-            /* جعل جميع حقول التواريخ متساوية في الجوال */
             .field input[type="date"],
             .field input[type="time"],
             .field input[type="text"],
             .field select,
             .field textarea {
-                font-size: 16px; /* منع التكبير في iOS */
+                font-size: 16px;
                 padding: 16px;
                 height: 52px;
             }
@@ -1751,7 +1754,6 @@
             }
         }
         
-        /* تحسينات للأجهزة الصغيرة جداً */
         @media (max-width: 360px) {
             .logo-text {
                 font-size: 2.2rem;
@@ -1772,8 +1774,7 @@
                 border-radius: 15px;
             }
         }
-    
-        /* ========== BLOG ENHANCEMENTS ========== */
+        
         .blog-card {
             position: relative;
         }
@@ -1809,7 +1810,7 @@
             color: var(--sky-glow);
             margin-right: 5px;
         }
-</style>
+    </style>
 </head>
 <body>
 
@@ -2649,7 +2650,7 @@
     </div>
     
     <div class="copyright">
-        <p data-key="copyright">© 2024 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
+        <p data-key="copyright">© 2025 SkyLynx Travel International Inc. - Ottawa, Canada. All rights reserved.</p>
         <p style="font-size: 0.8rem; margin-top: 10px; color: rgba(255,255,255,0.5);" data-key="affiliate">
             This website contains affiliate links. We may earn a commission through these links at no additional cost to you.
         </p>
@@ -2658,6 +2659,18 @@
         </p>
     </div>
 </footer>
+
+<!-- Travelpayouts Affiliate Disclosure -->
+<div style="margin:40px auto 20px auto;text-align:center;font-size:12px;opacity:0.7;max-width:1100px;">
+  Disclosure: SkyLynx Travel uses affiliate links. We may earn a commission if you make a booking through our links, at no additional cost to you.
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Processing your request...</div>
+    <div class="ai-note">🤖 SkyLynx AI is finding the best options for you...</div>
+</div>
 
 <script>
     // ========== نظام اللغة المحسن ==========
@@ -2673,12 +2686,6 @@
         if (langSelect) {
             langSelect.value = currentLang;
             console.log('Set language select to:', currentLang);
-        }
-        
-        // تحديث اسم زر تغيير اللغة
-        const langText = document.getElementById('lang-text');
-        if (langText) {
-            langText.textContent = currentLang === 'en' ? 'العربية' : 'English';
         }
         
         // تحديث اللغة فوراً
@@ -3171,12 +3178,6 @@
         document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
         document.body.style.fontFamily = lang === 'ar' ? "'Cairo', sans-serif" : "'Montserrat', sans-serif";
         
-        // تحديث اسم زر تغيير اللغة
-        const langText = document.getElementById('lang-text');
-        if (langText) {
-            langText.textContent = lang === 'en' ? 'العربية' : 'English';
-        }
-        
         // تحديث اختيار اللغة في القائمة
         const langSelect = document.getElementById('lang-sel');
         if (langSelect) {
@@ -3290,7 +3291,7 @@
         // تهيئة حجز المجموعات
         initializeGroupBooking();
         
-        // إضافة روابط للنقرات
+        // إضافة مستمعي النقر للنماذج
         addClickListeners();
         
         console.log('All systems initialized');
@@ -3574,27 +3575,36 @@
         });
     }
 
-    // ========== إضافة مستمعي النقر ==========
+    // ========== نظام البحث الأساسي ==========
     function addClickListeners() {
-        // منع الإرسال التلقائي للنماذج
+        // 1. رحلة الطيران
         document.getElementById('flights-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن الرحلات...' : 'Searching flights...');
+            handleSearch('flights');
         });
         
+        // 2. الطائرة الخاصة
         document.getElementById('private-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ طلب عرض السعر...' : 'Requesting quote...');
+            handleSearch('private');
         });
         
+        // 3. الفنادق
         document.getElementById('hotels-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن الفنادق...' : 'Searching hotels...');
+            handleSearch('hotels');
         });
         
+        // 4. السيارات
         document.getElementById('cars-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert(localStorage.getItem('siteLang') === 'ar' ? 'جارٍ البحث عن السيارات...' : 'Searching cars...');
+            handleSearch('cars');
+        });
+        
+        // 5. زر حجز المجموعات
+        document.getElementById('requestGroupQuote')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleGroupSearch();
         });
         
         // نفس الموقع للسيارة
@@ -3637,11 +3647,202 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         });
     }
-</script>
-<!-- Travelpayouts Affiliate Disclosure -->
-<div style="margin:40px auto 20px auto;text-align:center;font-size:12px;opacity:0.7;max-width:1100px;">
-  Disclosure: SkyLynx Travel uses affiliate links. We may earn a commission if you make a booking through our links, at no additional cost to you.
-</div>
 
+    // ========== معالجة البحث الرئيسي ==========
+    function handleSearch(serviceType) {
+        // عرض رسالة تحميل
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const loadingMessage = currentLang === 'ar' 
+            ? '💫 جارٍ تحليل بحثك بواسطة الذكاء الاصطناعي...' 
+            : '💫 Analyzing your search with AI...';
+        
+        showLoadingOverlay(loadingMessage);
+        
+        // جمع بيانات البحث
+        const searchData = collectSearchData(serviceType);
+        
+        // التحقق من صحة البيانات
+        if (!validateSearchData(searchData, serviceType)) {
+            hideLoadingOverlay();
+            return;
+        }
+        
+        // بعد تأخير قصير للواقعية، التوجيه إلى صفحة التحويل
+        setTimeout(() => {
+            const queryString = createQueryString(searchData);
+            window.location.href = `redirect-page.html${queryString}`;
+        }, 1200);
+    }
+
+    // ========== جمع بيانات البحث ==========
+    function collectSearchData(serviceType) {
+        const data = {
+            service: serviceType,
+            timestamp: new Date().toISOString(),
+            source: 'SkyLynx Travel'
+        };
+        
+        switch(serviceType) {
+            case 'flights':
+                data.origin = document.getElementById('flight-from')?.value || '';
+                data.destination = document.getElementById('flight-to')?.value || '';
+                data.depart_date = document.getElementById('flight-departure')?.value || '';
+                data.return_date = document.getElementById('flight-return')?.value || '';
+                
+                // جمع بيانات المسافرين من القائمة المنسدلة
+                const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
+                const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
+                const infantsCount = parseInt(document.getElementById('infants-count')?.textContent || '0');
+                data.passengers = adultCount + childrenCount + infantsCount;
+                data.adults = adultCount;
+                data.children = childrenCount;
+                data.infants = infantsCount;
+                
+                data.travel_class = document.getElementById('travel-class')?.value || 'ECONOMY';
+                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
+                break;
+                
+            case 'private':
+                data.origin = document.getElementById('private-origin')?.value || '';
+                data.destination = document.getElementById('private-destination')?.value || '';
+                data.depart_date = document.getElementById('private-departure')?.value || '';
+                data.return_date = document.getElementById('private-return')?.value || '';
+                data.passengers = document.getElementById('private-passengers')?.value || '4';
+                data.jet_type = document.getElementById('jet-type')?.value || 'MID';
+                break;
+                
+            case 'hotels':
+                data.destination = document.getElementById('hotel-destination')?.value || '';
+                data.checkin = document.getElementById('hotel-checkin')?.value || '';
+                data.checkout = document.getElementById('hotel-checkout')?.value || '';
+                data.rooms = document.getElementById('hotel-rooms')?.value || '1';
+                data.guests = document.getElementById('hotel-guests')?.value || '2';
+                data.stars = document.getElementById('hotel-stars')?.value || '5';
+                break;
+                
+            case 'cars':
+                data.origin = document.getElementById('car-pickup')?.value || '';
+                data.destination = document.getElementById('car-dropoff')?.value || data.origin;
+                data.pickup_date = document.getElementById('car-pickup-date')?.value || '';
+                data.pickup_time = document.getElementById('car-pickup-time')?.value || '10:00';
+                data.return_date = document.getElementById('car-return-date')?.value || '';
+                data.return_time = document.getElementById('car-return-time')?.value || '18:00';
+                data.car_type = document.getElementById('car-type')?.value || 'ECONOMY';
+                data.with_driver = document.getElementById('with-driver')?.checked || false;
+                break;
+        }
+        
+        return data;
+    }
+
+    // ========== التحقق من صحة البيانات ==========
+    function validateSearchData(data, serviceType) {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        
+        if (serviceType === 'flights') {
+            if (!data.origin || !data.destination) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد مكان المغادرة والوجهة' 
+                    : '⚠️ Please specify origin and destination');
+                return false;
+            }
+            
+            if (!data.depart_date) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد تاريخ المغادرة' 
+                    : '⚠️ Please select departure date');
+                return false;
+            }
+            
+            if (data.trip_type === 'roundtrip' && !data.return_date) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد تاريخ العودة للرحلة ذهاب وعودة' 
+                    : '⚠️ Please select return date for round trip');
+                return false;
+            }
+        }
+        
+        if (serviceType === 'hotels' && !data.destination) {
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى تحديد الوجهة' 
+                : '⚠️ Please specify destination');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // ========== إنشاء نص الاستعلام ==========
+    function createQueryString(data) {
+        const params = new URLSearchParams();
+        
+        // إضافة جميع المعلمات
+        Object.keys(data).forEach(key => {
+            if (data[key] !== undefined && data[key] !== null && data[key] !== '') {
+                params.append(key, data[key]);
+            }
+        });
+        
+        return `?${params.toString()}`;
+    }
+
+    // ========== معالجة البحث الجماعي ==========
+    function handleGroupSearch() {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const loadingMessage = currentLang === 'ar' 
+            ? '👥 جارٍ معالجة طلب المجموعة...' 
+            : '👥 Processing group request...';
+        
+        showLoadingOverlay(loadingMessage);
+        
+        // جمع بيانات المجموعة
+        const groupData = {
+            service: 'group',
+            group_type: document.getElementById('group-type-select')?.value || 'corporate',
+            origin: document.getElementById('group-from')?.value || '',
+            destination: document.getElementById('group-to')?.value || '',
+            depart_date: document.getElementById('group-departure-date')?.value || '',
+            return_date: document.getElementById('group-return-date')?.value || '',
+            passengers: document.getElementById('group-passengers')?.value || '20',
+            budget: document.getElementById('group-budget')?.value || 'premium',
+            requirements: document.getElementById('group-requirements')?.value || '',
+            timestamp: new Date().toISOString()
+        };
+        
+        // التحقق من صحة بيانات المجموعة
+        if (!groupData.origin || !groupData.destination || !groupData.depart_date) {
+            hideLoadingOverlay();
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى ملء جميع الحقول المطلوبة' 
+                : '⚠️ Please fill all required fields');
+            return;
+        }
+        
+        // إغلاق نافذة المجموعات
+        document.getElementById('groupModal')?.classList.remove('show');
+        
+        // بعد تأخير قصير، التوجيه إلى صفحة التحويل
+        setTimeout(() => {
+            const queryString = createQueryString(groupData);
+            window.location.href = `redirect-page.html${queryString}`;
+        }, 1500);
+    }
+
+    // ========== عرض/إخفاء نافذة التحميل ==========
+    function showLoadingOverlay(message = 'Processing your request...') {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.querySelector('.loading-text').textContent = message;
+            overlay.style.display = 'flex';
+        }
+    }
+
+    function hideLoadingOverlay() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+    }
+</script>
 </body>
 </html>
