@@ -25,7 +25,8 @@
             --dark-navy: #00283c;
             --sky-glow: #00a6fb; 
             --silver: #e0e1dd; 
-            --gold: #d4af37;
+            --platinum-blue: #b0e0e6; /* Changed from gold to platinum-blue */
+            --cyan-light: #40e0d0; /* New cyan color for accents */
             --success: #10b981;
             --danger: #ef4444;
             --platinum: #e5e4e2;
@@ -1418,13 +1419,13 @@
         
         .service-card:hover {
             transform: translateY(-8px);
-            border-color: var(--sky-glow);
-            box-shadow: 0 15px 30px rgba(0, 166, 251, 0.1);
+            border-color: var(--cyan-light);
+            box-shadow: 0 15px 30px rgba(64, 224, 208, 0.1);
         }
         
         .service-card i {
             font-size: 2.2rem;
-            color: var(--gold);
+            color: var(--cyan-light);
             margin-bottom: 15px;
         }
         
@@ -1432,7 +1433,7 @@
             font-family: 'Cinzel';
             font-size: 1.3rem;
             margin-bottom: 12px;
-            color: var(--sky-glow);
+            color: var(--platinum-blue);
         }
         
         .service-card p {
@@ -1687,7 +1688,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: var(--gold);
+            background: var(--platinum-blue);
             color: var(--deep-ocean);
             padding: 5px 12px;
             border-radius: 15px;
@@ -1698,8 +1699,8 @@
         
         .local-badge {
             top: 45px;
-            background: var(--success);
-            color: white;
+            background: var(--cyan-light);
+            color: var(--deep-ocean);
         }
         
         .blog-meta {
