@@ -2270,16 +2270,16 @@
     </div>
 
     <!-- Flights Form -->
-    <form id="flights-form" class="form-content active">
+    <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/flights" method="GET" target="_blank">
         <div class="input-grid">
             <div class="field">
                 <label class="form-label" data-key="from">From</label>
-                <input type="text" id="flight-from" placeholder="Ottawa (YOW)" value="Ottawa (YOW)" required>
+                <input type="text" id="flight-from" name="origin" placeholder="Ottawa" required>
             </div>
             
             <div class="field">
                 <label class="form-label" data-key="to">To</label>
-                <input type="text" id="flight-to" placeholder="Vancouver (YVR)" value="Vancouver (YVR)" required>
+                <input type="text" id="flight-to" name="destination" placeholder="Vancouver" required>
             </div>
             
             <div class="field">
@@ -2298,7 +2298,7 @@
             
             <div class="field">
                 <label class="form-label" data-key="departure">Departure</label>
-                <input type="date" id="flight-departure" required>
+                <input type="date" id="flight-departure" name="depart_date" required>
             </div>
             
             <div class="field" id="return-date-field">
