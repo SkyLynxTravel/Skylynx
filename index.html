@@ -9,6 +9,8 @@
       document.head.appendChild(script);
   })();
 </script>
+<link rel="preconnect" href="https://travel.skylynxtravel.com">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SkyLynx Travel | AI-Powered Luxury Travel Platform</title>
@@ -1725,6 +1727,93 @@
             margin-right: 4px;
         }
         
+        /* ========== STYLES FOR AIRPORT AUTOCOMPLETE ========== */
+        .airport-autocomplete {
+            position: relative;
+        }
+        
+        .airport-input-wrapper {
+            position: relative;
+        }
+        
+        .airport-input-wrapper i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sky-glow);
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .airport-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid rgba(0, 166, 251, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 300;
+            margin-top: 5px;
+        }
+        
+        .airport-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .airport-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(0, 17, 28, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            color: #00111c;
+        }
+        
+        .airport-item:hover {
+            background: rgba(0, 166, 251, 0.1);
+        }
+        
+        .airport-item.active {
+            background: rgba(0, 166, 251, 0.15);
+        }
+        
+        .airport-item i {
+            color: var(--sky-glow);
+            font-size: 0.9rem;
+        }
+        
+        .airport-code {
+            font-weight: 700;
+            color: var(--sky-glow);
+            min-width: 40px;
+        }
+        
+        .airport-name {
+            flex: 1;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .airport-city {
+            color: rgba(0, 17, 28, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        .airport-country {
+            font-size: 0.75rem;
+            color: rgba(0, 17, 28, 0.5);
+            margin-left: auto;
+        }
+        
         /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 1024px) {
             .nav-menu {
@@ -2273,14 +2362,22 @@
     <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/search" method="GET" target="_blank">
 
         <div class="input-grid">
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label class="form-label" data-key="from">From</label>
-                <input type="text" id="flight-from" name="origin" placeholder="Ottawa" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="flight-from" name="origin" placeholder="Search city or airport..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="from-dropdown"></div>
             </div>
             
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label class="form-label" data-key="to">To</label>
-                <input type="text" id="flight-to" name="destination" placeholder="Vancouver" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="flight-to" name="destination" placeholder="Search city or airport..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="to-dropdown"></div>
             </div>
             
             <div class="field">
@@ -2395,14 +2492,22 @@
     <!-- Private Jet Form -->
     <form id="private-form" class="form-content">
         <div class="input-grid">
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label class="form-label" data-key="origin">Origin</label>
-                <input type="text" id="private-origin" placeholder="Airport or City" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="private-origin" placeholder="Search airport or city..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="private-origin-dropdown"></div>
             </div>
             
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label class="form-label" data-key="destination">Destination</label>
-                <input type="text" id="private-destination" placeholder="Any Destination" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="private-destination" placeholder="Search airport or city..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="private-destination-dropdown"></div>
             </div>
             
             <div class="field">
@@ -2592,14 +2697,22 @@
         </div>
         
         <div class="input-grid">
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label data-key="groupFrom">Departure From</label>
-                <input type="text" id="group-from" placeholder="City or Airport" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="group-from" placeholder="Search city or airport..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="group-from-dropdown"></div>
             </div>
             
-            <div class="field">
+            <div class="field airport-autocomplete">
                 <label data-key="groupTo">Destination</label>
-                <input type="text" id="group-to" placeholder="City or Airport" required>
+                <div class="airport-input-wrapper">
+                    <input type="text" id="group-to" placeholder="Search city or airport..." required autocomplete="off">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="airport-dropdown" id="group-to-dropdown"></div>
             </div>
             
             <div class="field">
@@ -3011,6 +3124,399 @@
 </div>
 
 <script>
+    // ========== قاعدة بيانات المطارات العالمية مع دعم اللغة العربية ==========
+    const airports = [
+        // أمريكا الشمالية
+        { 
+            code: "YOW", 
+            name: "Ottawa/Macdonald-Cartier International Airport", 
+            nameAr: "مطار أوتاوا/ماكدونالد-كارتييه الدولي",
+            city: "Ottawa", 
+            cityAr: "أوتاوا",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "YYZ", 
+            name: "Toronto Pearson International Airport", 
+            nameAr: "مطار تورونتو بيرسون الدولي",
+            city: "Toronto", 
+            cityAr: "تورنتو",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "YVR", 
+            name: "Vancouver International Airport", 
+            nameAr: "مطار فانكوفر الدولي",
+            city: "Vancouver", 
+            cityAr: "فانكوفر",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "YUL", 
+            name: "Montreal-Pierre Elliott Trudeau International Airport", 
+            nameAr: "مطار مونتريال-بيير إليوت ترودو الدولي",
+            city: "Montreal", 
+            cityAr: "مونتريال",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "YYC", 
+            name: "Calgary International Airport", 
+            nameAr: "مطار كالجاري الدولي",
+            city: "Calgary", 
+            cityAr: "كالجاري",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "YEG", 
+            name: "Edmonton International Airport", 
+            nameAr: "مطار إدمونتون الدولي",
+            city: "Edmonton", 
+            cityAr: "إدمونتون",
+            country: "Canada", 
+            countryAr: "كندا" 
+        },
+        { 
+            code: "JFK", 
+            name: "John F. Kennedy International Airport", 
+            nameAr: "مطار جون إف كينيدي الدولي",
+            city: "New York", 
+            cityAr: "نيويورك",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "LAX", 
+            name: "Los Angeles International Airport", 
+            nameAr: "مطار لوس أنجلوس الدولي",
+            city: "Los Angeles", 
+            cityAr: "لوس أنجلوس",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "ORD", 
+            name: "O'Hare International Airport", 
+            nameAr: "مطار أوهير الدولي",
+            city: "Chicago", 
+            cityAr: "شيكاغو",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "DFW", 
+            name: "Dallas/Fort Worth International Airport", 
+            nameAr: "مطار دالاس/فورت وورث الدولي",
+            city: "Dallas", 
+            cityAr: "دالاس",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "MIA", 
+            name: "Miami International Airport", 
+            nameAr: "مطار ميامي الدولي",
+            city: "Miami", 
+            cityAr: "ميامي",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "ATL", 
+            name: "Hartsfield-Jackson Atlanta International Airport", 
+            nameAr: "مطار هارتسفيلد-جاكسون أتلانتا الدولي",
+            city: "Atlanta", 
+            cityAr: "أتلانتا",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "SFO", 
+            name: "San Francisco International Airport", 
+            nameAr: "مطار سان فرانسيسكو الدولي",
+            city: "San Francisco", 
+            cityAr: "سان فرانسيسكو",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "SEA", 
+            name: "Seattle-Tacoma International Airport", 
+            nameAr: "مطار سياتل-تاكوما الدولي",
+            city: "Seattle", 
+            cityAr: "سياتل",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+        { 
+            code: "LAS", 
+            name: "Harry Reid International Airport", 
+            nameAr: "مطار هاري ريد الدولي",
+            city: "Las Vegas", 
+            cityAr: "لاس فيغاس",
+            country: "USA", 
+            countryAr: "الولايات المتحدة" 
+        },
+
+        // أوروبا
+        { 
+            code: "LHR", 
+            name: "London Heathrow Airport", 
+            nameAr: "مطار لندن هيثرو",
+            city: "London", 
+            cityAr: "لندن",
+            country: "UK", 
+            countryAr: "المملكة المتحدة" 
+        },
+        { 
+            code: "CDG", 
+            name: "Charles de Gaulle Airport", 
+            nameAr: "مطار شارل ديغول",
+            city: "Paris", 
+            cityAr: "باريس",
+            country: "France", 
+            countryAr: "فرنسا" 
+        },
+        { 
+            code: "FRA", 
+            name: "Frankfurt Airport", 
+            nameAr: "مطار فرانكفورت",
+            city: "Frankfurt", 
+            cityAr: "فرانكفورت",
+            country: "Germany", 
+            countryAr: "ألمانيا" 
+        },
+        { 
+            code: "AMS", 
+            name: "Amsterdam Airport Schiphol", 
+            nameAr: "مطار أمستردام سخيبول",
+            city: "Amsterdam", 
+            cityAr: "أمستردام",
+            country: "Netherlands", 
+            countryAr: "هولندا" 
+        },
+        { 
+            code: "MAD", 
+            name: "Adolfo Suárez Madrid–Barajas Airport", 
+            nameAr: "مطار أدولفو سواريث مدريد–باراخاس",
+            city: "Madrid", 
+            cityAr: "مدريد",
+            country: "Spain", 
+            countryAr: "إسبانيا" 
+        },
+        { 
+            code: "BCN", 
+            name: "Barcelona-El Prat Airport", 
+            nameAr: "مطار برشلونة-البرات",
+            city: "Barcelona", 
+            cityAr: "برشلونة",
+            country: "Spain", 
+            countryAr: "إسبانيا" 
+        },
+        { 
+            code: "FCO", 
+            name: "Leonardo da Vinci-Fiumicino Airport", 
+            nameAr: "مطار ليوناردو دا فينشي-فيوميتشينو",
+            city: "Rome", 
+            cityAr: "روما",
+            country: "Italy", 
+            countryAr: "إيطاليا" 
+        },
+        { 
+            code: "IST", 
+            name: "Istanbul Airport", 
+            nameAr: "مطار إسطنبول",
+            city: "Istanbul", 
+            cityAr: "إسطنبول",
+            country: "Turkey", 
+            countryAr: "تركيا" 
+        },
+        { 
+            code: "ZRH", 
+            name: "Zurich Airport", 
+            nameAr: "مطار زيورخ",
+            city: "Zurich", 
+            cityAr: "زيورخ",
+            country: "Switzerland", 
+            countryAr: "سويسرا" 
+        },
+
+        // آسيا والشرق الأوسط
+        { 
+            code: "DXB", 
+            name: "Dubai International Airport", 
+            nameAr: "مطار دبي الدولي",
+            city: "Dubai", 
+            cityAr: "دبي",
+            country: "UAE", 
+            countryAr: "الإمارات" 
+        },
+        { 
+            code: "AUH", 
+            name: "Abu Dhabi International Airport", 
+            nameAr: "مطار أبو ظبي الدولي",
+            city: "Abu Dhabi", 
+            cityAr: "أبو ظبي",
+            country: "UAE", 
+            countryAr: "الإمارات" 
+        },
+        { 
+            code: "DOH", 
+            name: "Hamad International Airport", 
+            nameAr: "مطار حمد الدولي",
+            city: "Doha", 
+            cityAr: "الدوحة",
+            country: "Qatar", 
+            countryAr: "قطر" 
+        },
+        { 
+            code: "RUH", 
+            name: "King Khalid International Airport", 
+            nameAr: "مطار الملك خالد الدولي",
+            city: "Riyadh", 
+            cityAr: "الرياض",
+            country: "Saudi Arabia", 
+            countryAr: "السعودية" 
+        },
+        { 
+            code: "JED", 
+            name: "King Abdulaziz International Airport", 
+            nameAr: "مطار الملك عبد العزيز الدولي",
+            city: "Jeddah", 
+            cityAr: "جدة",
+            country: "Saudi Arabia", 
+            countryAr: "السعودية" 
+        },
+        { 
+            code: "MED", 
+            name: "Prince Mohammad Bin Abdulaziz International Airport", 
+            nameAr: "مطار الأمير محمد بن عبد العزيز الدولي",
+            city: "Medina", 
+            cityAr: "المدينة المنورة",
+            country: "Saudi Arabia", 
+            countryAr: "السعودية" 
+        },
+        { 
+            code: "HKG", 
+            name: "Hong Kong International Airport", 
+            nameAr: "مطار هونغ كونغ الدولي",
+            city: "Hong Kong", 
+            cityAr: "هونغ كونغ",
+            country: "China", 
+            countryAr: "الصين" 
+        },
+        { 
+            code: "SIN", 
+            name: "Singapore Changi Airport", 
+            nameAr: "مطار سنغافورة شانغي",
+            city: "Singapore", 
+            cityAr: "سنغافورة",
+            country: "Singapore", 
+            countryAr: "سنغافورة" 
+        },
+        { 
+            code: "BKK", 
+            name: "Suvarnabhumi Airport", 
+            nameAr: "مطار سوفارنابومي",
+            city: "Bangkok", 
+            cityAr: "بانكوك",
+            country: "Thailand", 
+            countryAr: "تايلاند" 
+        },
+        { 
+            code: "NRT", 
+            name: "Narita International Airport", 
+            nameAr: "مطار ناريتا الدولي",
+            city: "Tokyo", 
+            cityAr: "طوكيو",
+            country: "Japan", 
+            countryAr: "اليابان" 
+        },
+        { 
+            code: "ICN", 
+            name: "Incheon International Airport", 
+            nameAr: "مطار إنتشون الدولي",
+            city: "Seoul", 
+            cityAr: "سيول",
+            country: "South Korea", 
+            countryAr: "كوريا الجنوبية" 
+        },
+
+        // أستراليا
+        { 
+            code: "SYD", 
+            name: "Sydney Kingsford Smith Airport", 
+            nameAr: "مطار سيدني كينغسفورد سميث",
+            city: "Sydney", 
+            cityAr: "سيدني",
+            country: "Australia", 
+            countryAr: "أستراليا" 
+        },
+        { 
+            code: "MEL", 
+            name: "Melbourne Airport", 
+            nameAr: "مطار ملبورن",
+            city: "Melbourne", 
+            cityAr: "ملبورن",
+            country: "Australia", 
+            countryAr: "أستراليا" 
+        },
+
+        // أمريكا الجنوبية
+        { 
+            code: "GRU", 
+            name: "São Paulo-Guarulhos International Airport", 
+            nameAr: "مطار ساو باولو-غواروليوس الدولي",
+            city: "São Paulo", 
+            cityAr: "ساو باولو",
+            country: "Brazil", 
+            countryAr: "البرازيل" 
+        },
+        { 
+            code: "EZE", 
+            name: "Ministro Pistarini International Airport", 
+            nameAr: "مطار مينيسترو بيستاريني الدولي",
+            city: "Buenos Aires", 
+            cityAr: "بوينس آيرس",
+            country: "Argentina", 
+            countryAr: "الأرجنتين" 
+        },
+
+        // أفريقيا
+        { 
+            code: "JNB", 
+            name: "O. R. Tambo International Airport", 
+            nameAr: "مطار أور تامبو الدولي",
+            city: "Johannesburg", 
+            cityAr: "جوهانسبرغ",
+            country: "South Africa", 
+            countryAr: "جنوب أفريقيا" 
+        },
+        { 
+            code: "CAI", 
+            name: "Cairo International Airport", 
+            nameAr: "مطار القاهرة الدولي",
+            city: "Cairo", 
+            cityAr: "القاهرة",
+            country: "Egypt", 
+            countryAr: "مصر" 
+        },
+        { 
+            code: "CMN", 
+            name: "Mohammed V International Airport", 
+            nameAr: "مطار محمد الخامس الدولي",
+            city: "Casablanca", 
+            cityAr: "الدار البيضاء",
+            country: "Morocco", 
+            countryAr: "المغرب" 
+        }
+    ];
+
     // ========== نظام اللغة المحسن ==========
     document.addEventListener('DOMContentLoaded', function() {
         console.log('Initializing SkyLynx Travel...');
@@ -3584,15 +4090,15 @@
     // ========== تحديث أماكن العناصر النائبة ==========
     function updatePlaceholders(lang) {
         const placeholders = {
-            'flight-from': lang === 'ar' ? 'أوتاوا (YOW)' : 'Ottawa (YOW)',
-            'flight-to': lang === 'ar' ? 'فانكوفر (YVR)' : 'Vancouver (YVR)',
-            'private-origin': lang === 'ar' ? 'مطار أو مدينة' : 'Airport or City',
-            'private-destination': lang === 'ar' ? 'أي وجهة' : 'Any Destination',
+            'flight-from': lang === 'ar' ? 'ابحث عن مدينة أو مطار...' : 'Search city or airport...',
+            'flight-to': lang === 'ar' ? 'ابحث عن مدينة أو مطار...' : 'Search city or airport...',
+            'private-origin': lang === 'ar' ? 'ابحث عن مطار أو مدينة...' : 'Search airport or city...',
+            'private-destination': lang === 'ar' ? 'ابحث عن مطار أو مدينة...' : 'Search airport or city...',
             'hotel-destination': lang === 'ar' ? 'مدينة أو اسم فندق' : 'City or Hotel Name',
             'car-pickup': lang === 'ar' ? 'مطار أو عنوان' : 'Airport or Address',
             'car-dropoff': lang === 'ar' ? 'نفس مكان الاستلام' : 'Same as Pick-up',
-            'group-from': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport',
-            'group-to': lang === 'ar' ? 'مدينة أو مطار' : 'City or Airport'
+            'group-from': lang === 'ar' ? 'ابحث عن مدينة أو مطار...' : 'Search city or airport...',
+            'group-to': lang === 'ar' ? 'ابحث عن مدينة أو مطار...' : 'Search city or airport...'
         };
         
         Object.keys(placeholders).forEach(id => {
@@ -3664,6 +4170,9 @@
         
         // تهيئة حاوية المسافرين
         initializePassengerDropdown();
+        
+        // تهيئة البحث المتقدم بالمطارات
+        initializeAirportSearch();
         
         // تهيئة حجز المجموعات
         initializeGroupBooking();
@@ -3790,6 +4299,243 @@
                 "🤖 أفهم أنك تسأل عن السفر. يمكنني المساعدة في الرحلات الجوية والفنادق والسيارات والحجوزات الجماعية. ما الذي تريد معرفته بالتحديد؟" :
                 "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
         }
+    }
+
+    // ========== البحث المتقدم بالمطارات - مُحسّن لدعم العربية ==========
+    function initializeAirportSearch() {
+        // جميع حقول البحث بالمطارات
+        const airportFields = [
+            { inputId: 'flight-from', dropdownId: 'from-dropdown' },
+            { inputId: 'flight-to', dropdownId: 'to-dropdown' },
+            { inputId: 'private-origin', dropdownId: 'private-origin-dropdown' },
+            { inputId: 'private-destination', dropdownId: 'private-destination-dropdown' },
+            { inputId: 'group-from', dropdownId: 'group-from-dropdown' },
+            { inputId: 'group-to', dropdownId: 'group-to-dropdown' }
+        ];
+        
+        airportFields.forEach(field => {
+            const input = document.getElementById(field.inputId);
+            const dropdown = document.getElementById(field.dropdownId);
+            
+            if (!input || !dropdown) return;
+            
+            let currentFocus = -1;
+            let filteredAirports = [];
+            
+            // إخفاء القائمة المنسدلة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                    currentFocus = -1;
+                }
+            });
+            
+            // إظهار القائمة عند التركيز
+            input.addEventListener('focus', function() {
+                if (this.value.length >= 1) {
+                    filterAirports(this.value, dropdown, this);
+                }
+            });
+            
+            // البحث أثناء الكتابة
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                
+                if (searchTerm.length === 0) {
+                    dropdown.classList.remove('show');
+                    currentFocus = -1;
+                    return;
+                }
+                
+                filterAirports(searchTerm, dropdown, this);
+                currentFocus = -1;
+            });
+            
+            // التنقل بالسهمين للأعلى والأسفل
+            input.addEventListener('keydown', function(e) {
+                if (!dropdown.classList.contains('show')) return;
+                
+                const items = dropdown.querySelectorAll('.airport-item');
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    currentFocus = Math.min(currentFocus + 1, items.length - 1);
+                    updateActiveItem(items, currentFocus);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    currentFocus = Math.max(currentFocus - 1, -1);
+                    updateActiveItem(items, currentFocus);
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (currentFocus > -1 && items[currentFocus]) {
+                        items[currentFocus].click();
+                    }
+                } else if (e.key === 'Escape') {
+                    dropdown.classList.remove('show');
+                    currentFocus = -1;
+                }
+            });
+            
+            // إغلاق القائمة باستخدام Escape
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdown.classList.remove('show');
+                    currentFocus = -1;
+                }
+            });
+        });
+    }
+    
+    // ========== فلترة المطارات حسب البحث - مُحسّنة لدعم العربية ==========
+    function filterAirports(searchTerm, dropdown, inputElement) {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const term = searchTerm.toLowerCase();
+        
+        // فلترة المطارات بناءً على البحث مع دعم كلا اللغتين
+        filteredAirports = airports.filter(airport => {
+            // البحث باللغة الإنجليزية
+            const englishSearch = 
+                airport.code.toLowerCase().includes(term) ||
+                airport.name.toLowerCase().includes(term) ||
+                airport.city.toLowerCase().includes(term) ||
+                airport.country.toLowerCase().includes(term);
+            
+            // البحث باللغة العربية
+            const arabicSearch = currentLang === 'ar' && (
+                airport.cityAr?.toLowerCase().includes(term) ||
+                airport.countryAr?.toLowerCase().includes(term) ||
+                airport.nameAr?.toLowerCase().includes(term)
+            );
+            
+            return englishSearch || arabicSearch;
+        });
+        
+        // ترتيب النتائج بناءً على اللغة الحالية
+        filteredAirports.sort((a, b) => {
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            
+            // تحديد الحقول بناءً على اللغة
+            const aCity = currentLang === 'ar' ? (a.cityAr || a.city) : a.city;
+            const bCity = currentLang === 'ar' ? (b.cityAr || b.city) : b.city;
+            const aCode = a.code;
+            const bCode = b.code;
+            
+            const termLower = searchTerm.toLowerCase();
+            const aCityLower = aCity.toLowerCase();
+            const bCityLower = bCity.toLowerCase();
+            const aCodeLower = aCode.toLowerCase();
+            const bCodeLower = bCode.toLowerCase();
+            
+            // المطارات التي تبدأ بالبحث أولاً
+            const aCodeMatch = aCodeLower.startsWith(termLower);
+            const bCodeMatch = bCodeLower.startsWith(termLower);
+            const aCityMatch = aCityLower.startsWith(termLower);
+            const bCityMatch = bCityLower.startsWith(termLower);
+            
+            if (aCodeMatch && !bCodeMatch) return -1;
+            if (!aCodeMatch && bCodeMatch) return 1;
+            if (aCityMatch && !bCityMatch) return -1;
+            if (!aCityMatch && bCityMatch) return 1;
+            
+            // ثم المطارات التي تحتوي على البحث
+            const aContains = aCityLower.includes(termLower) || aCodeLower.includes(termLower);
+            const bContains = bCityLower.includes(termLower) || bCodeLower.includes(termLower);
+            
+            if (aContains && !bContains) return -1;
+            if (!aContains && bContains) return 1;
+            
+            return 0;
+        });
+        
+        // عرض النتائج
+        displayFilteredAirports(filteredAirports, dropdown, inputElement);
+    }
+    
+    // ========== عرض المطارات المفلترة - مُحسّن لدعم العربية ==========
+    function displayFilteredAirports(airports, dropdown, inputElement) {
+        dropdown.innerHTML = '';
+        
+        if (airports.length === 0) {
+            const currentLang = localStorage.getItem('siteLang') || 'en';
+            const noResults = currentLang === 'ar' ? 
+                '<div class="airport-item">لم يتم العثور على مطارات</div>' :
+                '<div class="airport-item">No airports found</div>';
+            dropdown.innerHTML = noResults;
+            dropdown.classList.add('show');
+            return;
+        }
+        
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        
+        airports.forEach((airport, index) => {
+            const item = document.createElement('div');
+            item.className = 'airport-item';
+            item.tabIndex = 0;
+            item.setAttribute('role', 'option');
+            item.setAttribute('aria-selected', 'false');
+            
+            // تحديد البيانات بناءً على اللغة
+            const displayCity = currentLang === 'ar' ? (airport.cityAr || airport.city) : airport.city;
+            const displayCountry = currentLang === 'ar' ? (airport.countryAr || airport.country) : airport.country;
+            const displayName = currentLang === 'ar' ? (airport.nameAr || airport.name) : airport.name;
+            
+            item.innerHTML = `
+                <i class="fas fa-plane"></i>
+                <div class="airport-code">${airport.code}</div>
+                <div class="airport-info">
+                    <div class="airport-name">${displayName}</div>
+                    <div class="airport-city">${displayCity}</div>
+                </div>
+                <div class="airport-country">${displayCountry}</div>
+            `;
+            
+            item.addEventListener('click', function() {
+                const currentLang = localStorage.getItem('siteLang') || 'en';
+                
+                // تحديد التنسيق بناءً على اللغة
+                const displayText = currentLang === 'ar' 
+                    ? `${displayCity} (${airport.code}) - ${displayName}`
+                    : `${displayCity} (${airport.code}) - ${displayName}`;
+                
+                inputElement.value = displayText;
+                dropdown.classList.remove('show');
+                inputElement.focus();
+                
+                // إضافة البيانات للمطار المختار
+                inputElement.dataset.airportCode = airport.code;
+                inputElement.dataset.airportName = displayName;
+                inputElement.dataset.airportCity = displayCity;
+                inputElement.dataset.airportCountry = displayCountry;
+                
+                // تفعيل العنصر المختار
+                this.setAttribute('aria-selected', 'true');
+            });
+            
+            item.addEventListener('mouseenter', function() {
+                this.setAttribute('aria-selected', 'true');
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.setAttribute('aria-selected', 'false');
+            });
+            
+            dropdown.appendChild(item);
+        });
+        
+        dropdown.classList.add('show');
+    }
+    
+    // ========== تحديث العنصر النشط في القائمة ==========
+    function updateActiveItem(items, currentFocus) {
+        items.forEach((item, index) => {
+            item.classList.remove('active');
+            item.setAttribute('aria-selected', 'false');
+            if (index === currentFocus) {
+                item.classList.add('active');
+                item.setAttribute('aria-selected', 'true');
+                item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        });
     }
 
     // ========== حاوية المسافرين ==========
@@ -4044,11 +4790,54 @@
             return;
         }
         
-        // بعد تأخير قصير للواقعية، التوجيه إلى صفحة التحويل
+        // استخراج كود المطار من بيانات الإدخال
+        extractAirportCode(searchData, serviceType);
+        
+        // بعد تأخير قصير للواقعية، التوجيه إلى صفحة النتائج
         setTimeout(() => {
             const queryString = createQueryString(searchData);
-            window.location.href = `redirect-page.html${queryString}`;
+            // التوجيه إلى صفحة النتائج داخل موقعك
+            window.location.href = `search-results.html${queryString}`;
         }, 1200);
+    }
+
+    // ========== استخراج كود المطار من بيانات الإدخال ==========
+    function extractAirportCode(searchData, serviceType) {
+        if (serviceType === 'flights' || serviceType === 'private' || serviceType === 'group') {
+            // استخراج كود المطار من حقل المغادرة
+            const originInput = document.getElementById(
+                serviceType === 'flights' ? 'flight-from' : 
+                serviceType === 'private' ? 'private-origin' : 
+                'group-from'
+            );
+            
+            if (originInput && originInput.dataset.airportCode) {
+                searchData.originCode = originInput.dataset.airportCode;
+            } else if (originInput && originInput.value) {
+                // محاولة استخراج الكود من النص المدخل (مثال: "دبي (DXB)")
+                const match = originInput.value.match(/\(([A-Z]{3})\)/);
+                if (match) {
+                    searchData.originCode = match[1];
+                }
+            }
+            
+            // استخراج كود المطار من حقل الوجهة
+            const destinationInput = document.getElementById(
+                serviceType === 'flights' ? 'flight-to' : 
+                serviceType === 'private' ? 'private-destination' : 
+                'group-to'
+            );
+            
+            if (destinationInput && destinationInput.dataset.airportCode) {
+                searchData.destinationCode = destinationInput.dataset.airportCode;
+            } else if (destinationInput && destinationInput.value) {
+                // محاولة استخراج الكود من النص المدخل
+                const match = destinationInput.value.match(/\(([A-Z]{3})\)/);
+                if (match) {
+                    searchData.destinationCode = match[1];
+                }
+            }
+        }
     }
 
     // ========== جمع بيانات البحث ==========
@@ -4116,11 +4905,22 @@
     function validateSearchData(data, serviceType) {
         const currentLang = localStorage.getItem('siteLang') || 'en';
         
-        if (serviceType === 'flights') {
+        if (serviceType === 'flights' || serviceType === 'private') {
             if (!data.origin || !data.destination) {
                 alert(currentLang === 'ar' 
                     ? '⚠️ يرجى تحديد مكان المغادرة والوجهة' 
                     : '⚠️ Please specify origin and destination');
+                return false;
+            }
+            
+            // التحقق من أن بيانات المطار تم اختيارها بشكل صحيح
+            const originHasCode = data.origin.includes('(') && data.origin.includes(')');
+            const destinationHasCode = data.destination.includes('(') && data.destination.includes(')');
+            
+            if (!originHasCode || !destinationHasCode) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                    : '⚠️ Please select a valid airport from the list');
                 return false;
             }
             
@@ -4186,6 +4986,9 @@
             timestamp: new Date().toISOString()
         };
         
+        // استخراج أكواد المطارات للمجموعات
+        extractAirportCode(groupData, 'group');
+        
         // التحقق من صحة بيانات المجموعة
         if (!groupData.origin || !groupData.destination || !groupData.depart_date) {
             hideLoadingOverlay();
@@ -4195,13 +4998,24 @@
             return;
         }
         
+        // التحقق من أن بيانات المطار تم اختيارها بشكل صحيح
+        const originHasCode = groupData.origin.includes('(') && groupData.origin.includes(')');
+        const destinationHasCode = groupData.destination.includes('(') && groupData.destination.includes(')');
+        
+        if (!originHasCode || !destinationHasCode) {
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                : '⚠️ Please select a valid airport from the list');
+            return;
+        }
+        
         // إغلاق نافذة المجموعات
         document.getElementById('groupModal')?.classList.remove('show');
         
-        // بعد تأخير قصير، التوجيه إلى صفحة التحويل
+        // بعد تأخير قصير، التوجيه إلى صفحة النتائج
         setTimeout(() => {
             const queryString = createQueryString(groupData);
-            window.location.href = `redirect-page.html${queryString}`;
+            window.location.href = `search-results.html${queryString}`;
         }, 1500);
     }
 
@@ -4221,5 +5035,326 @@
         }
     }
 </script>
+<!-- في نهاية ملف index.html قبل </body> -->
+<script>
+// إضافة autocomplete لحقول البحث
+document.addEventListener('DOMContentLoaded', function() {
+    // الحصول على حقول البحث
+    const originInput = document.querySelector('input[name="origin"]');
+    const destinationInput = document.querySelector('input[name="destination"]');
+    
+    // إضافة autocomplete لكل حقل
+    setupAutocomplete(originInput);
+    setupAutocomplete(destinationInput);
+});
+
+// دالة لإعداد autocomplete
+function setupAutocomplete(inputElement) {
+    let timeout;
+    
+    inputElement.addEventListener('input', function() {
+        clearTimeout(timeout);
+        const query = this.value.trim();
+        
+        if (query.length < 2) return;
+        
+        timeout = setTimeout(() => {
+            searchAirports(query).then(airports => {
+                showSuggestions(this, airports);
+            });
+        }, 300);
+    });
+}
+
+// دالة للبحث في TravelPayouts API
+async function searchAirports(query) {
+    try {
+        const response = await fetch(
+            `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(query)}&locale=en&types[]=airport`
+        );
+        
+        const data = await response.json();
+        
+        // ترتيب النتائج
+        return data
+            .filter(item => item.type === 'airport')
+            .map(item => ({
+                code: item.code,
+                name: item.name,
+                city: item.city_name,
+                country: item.country_name,
+                display: `${item.city_name} (${item.code}) - ${item.country_name}`
+            }))
+            .slice(0, 8);
+            
+    } catch (error) {
+        console.error('Error searching airports:', error);
+        return [];
+    }
+}
+
+// دالة لعرض الاقتراحات
+function showSuggestions(inputElement, airports) {
+    // إزالة القائمة القديمة
+    const oldList = inputElement.nextElementSibling;
+    if (oldList && oldList.classList.contains('suggestions-list')) {
+        oldList.remove();
+    }
+    
+    if (airports.length === 0) return;
+    
+    // إنشاء قائمة جديدة
+    const suggestionsList = document.createElement('div');
+    suggestionsList.className = 'suggestions-list';
+    suggestionsList.style.cssText = `
+        position: absolute;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 1000;
+        width: ${inputElement.offsetWidth}px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    `;
+    
+    // إضافة النتائج
+    airports.forEach(airport => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.style.cssText = `
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        `;
+        suggestionItem.innerHTML = `
+            <strong>${airport.city} (${airport.code})</strong><br>
+            <small style="color:#666">${airport.name} - ${airport.country}</small>
+        `;
+        
+        suggestionItem.addEventListener('click', () => {
+            inputElement.value = `${airport.city} (${airport.code})`;
+            suggestionsList.remove();
+        });
+        
+        suggestionItem.addEventListener('mouseover', () => {
+            suggestionItem.style.background = '#f5f5f5';
+        });
+        
+        suggestionItem.addEventListener('mouseout', () => {
+            suggestionItem.style.background = 'white';
+        });
+        
+        suggestionsList.appendChild(suggestionItem);
+    });
+    
+    // إضافة القائمة تحت حقل الإدخال
+    inputElement.parentNode.style.position = 'relative';
+    inputElement.parentNode.appendChild(suggestionsList);
+    
+    // إخفاء القائمة عند النقر خارج
+    document.addEventListener('click', function hideSuggestions(e) {
+        if (!suggestionsList.contains(e.target) && e.target !== inputElement) {
+            suggestionsList.remove();
+            document.removeEventListener('click', hideSuggestions);
+        }
+    });
+}
+</script>
+
+<style>
+/* أضف هذا CSS في <head> */
+.suggestions-list {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.suggestions-list div:hover {
+    background-color: #f5f5f5;
+}
+</style>
+<!-- ========== كود autocomplete للمطارات ========== -->
+<script>
+// هذا كود جديد تماماً - أضفه فقط ولا تحذف شيئاً
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Setting up airport autocomplete...');
+    
+    // ابحث عن حقول البحث للمطارات
+    const allInputs = document.querySelectorAll('input[type="text"]');
+    
+    allInputs.forEach(input => {
+        const name = input.name?.toLowerCase() || '';
+        const placeholder = input.placeholder?.toLowerCase() || '';
+        
+        // إذا كان الحقل للمدينة أو المطار
+        if (name.includes('origin') || name.includes('from') || 
+            name.includes('city') || name.includes('airport') ||
+            placeholder.includes('from') || placeholder.includes('to') ||
+            placeholder.includes('city') || placeholder.includes('airport')) {
+            
+            console.log('Adding autocomplete to:', input.name);
+            setupAirportAutocomplete(input);
+        }
+    });
+});
+
+function setupAirportAutocomplete(input) {
+    let timeout;
+    
+    input.addEventListener('input', function(e) {
+        clearTimeout(timeout);
+        const query = this.value.trim();
+        
+        if (query.length < 2) {
+            hideSuggestions(this);
+            return;
+        }
+        
+        timeout = setTimeout(async () => {
+            const airports = await searchAirports(query);
+            if (airports.length > 0) {
+                showAirportSuggestions(this, airports);
+            }
+        }, 300);
+    });
+    
+    // عند فقدان التركيز، انتظر قليلاً قبل إخفاء الاقتراحات
+    input.addEventListener('blur', function() {
+        setTimeout(() => {
+            hideSuggestions(this);
+        }, 200);
+    });
+}
+
+async function searchAirports(query) {
+    try {
+        const response = await fetch(
+            `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(query)}&locale=en&types[]=airport`
+        );
+        
+        const data = await response.json();
+        
+        return data
+            .filter(item => item.type === 'airport')
+            .map(item => ({
+                code: item.code,
+                city: item.city_name,
+                country: item.country_name,
+                name: item.name,
+                displayText: `${item.city_name} (${item.code})`
+            }))
+            .slice(0, 6);
+            
+    } catch (error) {
+        console.log('Airport search error:', error);
+        return [];
+    }
+}
+
+function showAirportSuggestions(input, airports) {
+    // إزالة الاقتراحات القديمة
+    hideSuggestions(input);
+    
+    // إنشاء قائمة الاقتراحات
+    const suggestions = document.createElement('div');
+    suggestions.className = 'airport-suggestions';
+    suggestions.id = 'suggestions-' + input.name;
+    
+    suggestions.style.cssText = `
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: ${input.offsetWidth}px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        z-index: 9999;
+        max-height: 250px;
+        overflow-y: auto;
+        margin-top: 5px;
+    `;
+    
+    airports.forEach(airport => {
+        const item = document.createElement('div');
+        item.style.cssText = `
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+            color: #333;
+        `;
+        
+        item.innerHTML = `
+            <div style="font-weight: 600; margin-bottom: 4px;">
+                <span style="color: #007bff; margin-right: 8px;">${airport.code}</span>
+                ${airport.city}
+            </div>
+            <div style="font-size: 12px; color: #666;">
+                ${airport.name}
+                <span style="margin-left: 8px;">•</span>
+                ${airport.country}
+            </div>
+        `;
+        
+        item.addEventListener('click', () => {
+            input.value = airport.displayText;
+            hideSuggestions(input);
+        });
+        
+        item.addEventListener('mouseenter', () => {
+            item.style.background = '#f8f9fa';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.background = 'white';
+        });
+        
+        suggestions.appendChild(item);
+    });
+    
+    // إضافة القائمة
+    input.parentNode.style.position = 'relative';
+    input.parentNode.appendChild(suggestions);
+}
+
+function hideSuggestions(input) {
+    const existing = input.parentNode.querySelector('.airport-suggestions');
+    if (existing) {
+        existing.remove();
+    }
+}
+
+// إخفاء الاقتراحات عند النقر خارج
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.airport-suggestions') && 
+        !e.target.matches('input[type="text"]')) {
+        document.querySelectorAll('.airport-suggestions').forEach(el => el.remove());
+    }
+});
+</script>
+
+<style>
+/* تنسيقات الاقتراحات */
+.airport-suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    z-index: 9999;
+}
+
+.airport-suggestions div:hover {
+    background-color: #f8f9fa !important;
+}
+</style>
+<!-- ========== نهاية كود autocomplete ========== -->
 </body>
 </html>
