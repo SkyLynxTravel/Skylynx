@@ -2594,7 +2594,7 @@
         var isArabic = document.getElementById('search-hotels-btn').innerText.includes('بحث');
         
         // إذا كانت اللغة عربية، نستخدم رابط الشرق الأوسط لضمان قبول النص العربي والعملة
-        var baseUrl = isArabic ? 'https://www.expedia.com.eg/ar/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
+        var baseUrl = isArabic ? 'https://www.expedia.sa/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
         var langParams = isArabic ? '?langid=1025' : '?';
         
         var url = baseUrl + langParams + '&partnerid=11001417459&destination=' + encodeURIComponent(destInput);
