@@ -1,0 +1,758 @@
+/* ============================================
+   SkyLynx Travel - Mobile Responsive Fixes
+   تحسينات شاملة للجوال
+   ============================================ */
+
+/* ===== إعدادات عامة للجوال ===== */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+}
+
+/* منع التمرير الأفقي */
+html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
+/* ===== تحسينات الصور والفيديو ===== */
+img, video, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* ===== إصلاح القائمة الرئيسية للجوال ===== */
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 10px 15px !important;
+        min-height: 60px !important;
+    }
+    
+    .nav-logo {
+        font-size: 1.2rem !important;
+        z-index: 1002;
+    }
+    
+    .nav-logo img {
+        max-height: 35px !important;
+        width: auto !important;
+    }
+    
+    /* زر القائمة */
+    .mobile-menu-toggle {
+        z-index: 1002 !important;
+        position: relative;
+    }
+    
+    /* القائمة المنسدلة */
+    .nav-menu {
+        max-height: calc(100vh - 60px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-menu.active {
+        animation: slideDown 0.3s ease forwards;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* إعدادات اللغة والعملة */
+    .config {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .config select {
+        min-width: 110px !important;
+        max-width: 140px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* ===== تحسينات Hero Section للجوال ===== */
+@media (max-width: 768px) {
+    header {
+        min-height: 550px !important;
+        height: auto !important;
+        padding: 80px 15px 40px !important;
+    }
+    
+    .logo-container {
+        padding: 0 15px !important;
+        margin-top: -30px !important;
+    }
+    
+    .logo-text {
+        font-size: 2.5rem !important;
+        letter-spacing: -1px !important;
+        word-break: keep-all !important;
+    }
+    
+    .logo-subtext {
+        font-size: 1rem !important;
+        letter-spacing: 4px !important;
+        word-break: keep-all !important;
+    }
+    
+    .logo-line {
+        width: 40px !important;
+    }
+    
+    .logo-triangle {
+        font-size: 18px !important;
+    }
+}
+
+/* ===== تحسينات Search Container للجوال ===== */
+@media (max-width: 768px) {
+    .search-container {
+        width: calc(100% - 30px) !important;
+        margin: -50px 15px 30px !important;
+        padding: 15px !important;
+        border-radius: 15px !important;
+    }
+    
+    /* Tabs */
+    .tabs {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding-bottom: 5px;
+    }
+    
+    .tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .tab {
+        flex-shrink: 0 !important;
+        padding: 10px 15px !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
+        min-width: auto !important;
+    }
+    
+    /* Input Grid */
+    .input-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Fields */
+    .field {
+        width: 100% !important;
+    }
+    
+    .field input,
+    .field select,
+    .field textarea,
+    .passengers-select {
+        width: 100% !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        padding: 12px 15px !important;
+        border-radius: 10px !important;
+    }
+    
+    .field textarea {
+        min-height: 100px !important;
+        height: auto !important;
+    }
+    
+    /* Trip Type Buttons */
+    .trip-type-buttons {
+        height: auto !important;
+        padding: 5px !important;
+    }
+    
+    .trip-type-buttons button {
+        padding: 10px 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Search Button */
+    .search-btn {
+        width: 100% !important;
+        padding: 15px !important;
+        font-size: 1rem !important;
+        min-height: 50px !important;
+        border-radius: 10px !important;
+        margin-top: 5px !important;
+    }
+}
+
+/* ===== إصلاح Passengers Dropdown للجوال ===== */
+@media (max-width: 768px) {
+    .passengers-dropdown {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        max-width: 350px !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        z-index: 2001 !important;
+        border-radius: 15px !important;
+    }
+    
+    .passenger-row {
+        padding: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .passenger-controls {
+        gap: 15px !important;
+    }
+    
+    .passenger-controls button {
+        min-width: 40px !important;
+        height: 40px !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .passenger-count {
+        min-width: 50px !important;
+        font-size: 1.1rem !important;
+    }
+}
+
+/* ===== تحسينات الأقسام (Sections) للجوال ===== */
+@media (max-width: 768px) {
+    section {
+        padding: 40px 15px !important;
+    }
+    
+    .section-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+    }
+    
+    .section-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 25px !important;
+        text-align: center !important;
+    }
+    
+    /* About Section */
+    .about-section {
+        padding: 30px 20px !important;
+        margin: 20px 15px !important;
+        border-radius: 15px !important;
+    }
+    
+    .about-content {
+        padding: 0 !important;
+    }
+    
+    .about-content h2 {
+        font-size: 1.6rem !important;
+    }
+    
+    .about-content p,
+    .about-content li {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+}
+
+/* ===== تحسينات Grid Layouts للجوال ===== */
+@media (max-width: 768px) {
+    .blog-grid,
+    .services-grid,
+    .destinations-grid,
+    .ai-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 0 !important;
+    }
+    
+    /* Cards */
+    .blog-card,
+    .service-card,
+    .ai-feature-card {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+    
+    .destination-card {
+        height: 280px !important;
+        margin: 0 !important;
+    }
+    
+    .destination-card h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .destination-card p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ===== تحسينات AI Assistant للجوال ===== */
+@media (max-width: 768px) {
+    .ai-assistant-btn {
+        width: 55px !important;
+        height: 55px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        box-shadow: 0 4px 15px rgba(0, 166, 251, 0.4) !important;
+    }
+    
+    .ai-assistant-btn i {
+        font-size: 24px !important;
+    }
+    
+    .ai-assistant-modal {
+        width: 90% !important;
+        max-width: 400px !important;
+        right: 5% !important;
+        bottom: 85px !important;
+        max-height: 60vh !important;
+        border-radius: 15px !important;
+    }
+    
+    .ai-chat-container {
+        max-height: 300px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .ai-input-container {
+        padding: 15px !important;
+    }
+    
+    .ai-input-container input {
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+    
+    .ai-send-btn {
+        min-width: 50px !important;
+        height: 44px !important;
+    }
+}
+
+/* ===== تحسينات Modal للجوال ===== */
+@media (max-width: 768px) {
+    .modal-content,
+    .group-modal-content {
+        width: 95% !important;
+        max-width: 500px !important;
+        padding: 20px !important;
+        border-radius: 15px !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+    }
+    
+    .group-options-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .group-option {
+        padding: 15px !important;
+    }
+    
+    .group-booking-note {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 10px !important;
+        padding: 15px !important;
+    }
+    
+    .group-booking-note i.note-arrow {
+        display: none !important;
+    }
+}
+
+/* ===== تحسينات Footer للجوال ===== */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 15px 20px !important;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    
+    .footer-column {
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .footer-column h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .footer-column ul {
+        padding: 0 !important;
+    }
+    
+    .footer-column li {
+        margin-bottom: 10px !important;
+    }
+    
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 15px !important;
+        text-align: center !important;
+        padding-top: 20px !important;
+    }
+    
+    .footer-social {
+        justify-content: center !important;
+    }
+}
+
+/* ===== تحسينات الأزرار للجوال ===== */
+@media (max-width: 768px) {
+    .btn {
+        padding: 12px 24px !important;
+        font-size: 0.95rem !important;
+        border-radius: 8px !important;
+        min-height: 44px !important;
+    }
+    
+    .btn i {
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== إصلاح النصوص الطويلة ===== */
+@media (max-width: 768px) {
+    h1, h2, h3, h4, h5, h6 {
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
+    }
+    
+    p, span, div {
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    .ai-tagline {
+        font-size: 0.9rem !important;
+        padding: 10px 15px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    
+    .ai-tagline span {
+        word-break: keep-all !important;
+    }
+}
+
+/* ===== تحسينات للشاشات الصغيرة جداً (< 480px) ===== */
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 2.2rem !important;
+    }
+    
+    .logo-subtext {
+        font-size: 0.9rem !important;
+        letter-spacing: 3px !important;
+    }
+    
+    .search-container {
+        padding: 12px !important;
+        border-radius: 12px !important;
+    }
+    
+    .tab {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .field input,
+    .field select,
+    .field textarea,
+    .passengers-select {
+        height: 44px !important;
+        font-size: 15px !important;
+        padding: 10px 12px !important;
+    }
+    
+    .search-btn {
+        padding: 14px !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    .destination-card {
+        height: 250px !important;
+    }
+    
+    .ai-assistant-btn {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .ai-assistant-btn i {
+        font-size: 22px !important;
+    }
+    
+    .passengers-dropdown {
+        width: 95% !important;
+    }
+}
+
+/* ===== تحسينات للشاشات الصغيرة جداً (< 360px) ===== */
+@media (max-width: 360px) {
+    .logo-text {
+        font-size: 2rem !important;
+    }
+    
+    .logo-subtext {
+        font-size: 0.85rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .tab {
+        padding: 7px 10px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .config select {
+        min-width: 100px !important;
+        font-size: 13px !important;
+    }
+    
+    .ai-badge {
+        padding: 3px 8px !important;
+        font-size: 0.65rem !important;
+    }
+}
+
+/* ===== تحسينات iOS خاصة ===== */
+@supports (-webkit-touch-callout: none) {
+    /* منع التكبير التلقائي في iOS */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+    
+    /* تحسين التمرير */
+    .nav-menu,
+    .ai-chat-container,
+    .passengers-dropdown,
+    .modal-content {
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* ===== تحسين التمرير السلس ===== */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth !important;
+    }
+    
+    /* تحسين التمرير في الحاويات */
+    .nav-menu,
+    .tabs,
+    .ai-chat-container,
+    .passengers-dropdown {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 166, 251, 0.3) transparent;
+    }
+    
+    .nav-menu::-webkit-scrollbar,
+    .tabs::-webkit-scrollbar,
+    .ai-chat-container::-webkit-scrollbar,
+    .passengers-dropdown::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .nav-menu::-webkit-scrollbar-track,
+    .tabs::-webkit-scrollbar-track,
+    .ai-chat-container::-webkit-scrollbar-track,
+    .passengers-dropdown::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .nav-menu::-webkit-scrollbar-thumb,
+    .tabs::-webkit-scrollbar-thumb,
+    .ai-chat-container::-webkit-scrollbar-thumb,
+    .passengers-dropdown::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 166, 251, 0.3);
+        border-radius: 10px;
+    }
+}
+
+/* ===== إصلاح مشاكل اللمس ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* تحسين حجم الأهداف للمس */
+    .nav-menu a,
+    .tab,
+    .btn,
+    .ai-assistant-btn,
+    .passenger-controls button {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    /* إلغاء تأثيرات الـ hover على الأجهزة اللمسية */
+    .nav-menu a:hover,
+    .tab:hover,
+    .btn:hover,
+    .card:hover,
+    .destination-card:hover {
+        transform: none !important;
+    }
+    
+    /* تحسين النقر */
+    button, a, input, select, textarea {
+        -webkit-tap-highlight-color: rgba(0, 166, 251, 0.2);
+    }
+}
+
+/* ===== تحسينات الأداء للجوال ===== */
+@media (max-width: 768px) {
+    /* تقليل التأثيرات المتحركة */
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.3s !important;
+    }
+    
+    /* تحسين العرض */
+    img, video {
+        will-change: auto;
+    }
+    
+    /* تحسين الـ rendering */
+    .main-nav,
+    .search-container,
+    .ai-assistant-modal {
+        will-change: transform;
+    }
+}
+
+/* ===== إصلاح Select Fields على Android و iOS ===== */
+@media (max-width: 768px) {
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: left 12px center !important;
+        background-size: 14px !important;
+        padding-left: 35px !important;
+    }
+    
+    [lang="en"] select {
+        background-position: right 12px center !important;
+        padding-right: 35px !important;
+        padding-left: 12px !important;
+    }
+}
+
+/* ===== تحسينات النماذج للجوال ===== */
+@media (max-width: 768px) {
+    form {
+        width: 100% !important;
+    }
+    
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    label {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"] {
+        width: 100% !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        padding: 12px 15px !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+}
+
+/* ===== إصلاح العناصر التي تخرج عن الشاشة ===== */
+@media (max-width: 768px) {
+    .container,
+    .content-wrapper,
+    section,
+    div {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    table {
+        width: 100% !important;
+        display: block !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ===== تحسين القراءة على الجوال ===== */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    
+    p {
+        margin-bottom: 15px !important;
+        line-height: 1.7 !important;
+    }
+    
+    ul, ol {
+        padding-left: 25px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    li {
+        margin-bottom: 8px !important;
+        line-height: 1.6 !important;
+    }
+}
+
+/* ===== النهاية ===== */

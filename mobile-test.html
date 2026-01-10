@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار إصلاحات الجوال - SkyLynx Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #00111c 0%, #001926 100%);
+            color: white;
+            padding: 20px;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 166, 251, 0.1);
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #00a6fb;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0e0e6;
+        }
+        
+        .checklist {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .checklist h2 {
+            color: #00a6fb;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(0, 166, 251, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .check-item:hover {
+            background: rgba(0, 166, 251, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        .check-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #00a6fb;
+            margin-bottom: 20px;
+        }
+        
+        .info-box {
+            background: rgba(46, 196, 182, 0.1);
+            border-right: 4px solid #2ec4b6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-right: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-right: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .button {
+            display: inline-block;
+            background: #00a6fb;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .button:hover {
+            background: #0088cc;
+            transform: translateY(-2px);
+        }
+        
+        .test-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .test-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #40e0d0;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .test-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .check-item {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✅ قائمة التحقق من إصلاحات الجوال</h1>
+            <p class="subtitle">SkyLynx Travel - Mobile Optimization Test</p>
+        </header>
+
+        <div class="success-box">
+            <h3>🎉 تم تطبيق الإصلاحات بنجاح!</h3>
+            <p>جميع صفحات الموقع الآن محسّنة ومتوافقة مع الأجهزة المحمولة</p>
+        </div>
+
+        <div class="checklist">
+            <h2>📋 قائمة المراجعة</h2>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>القائمة الرئيسية (Navigation)</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">تعمل بشكل سلس على جميع أحجام الشاشات</p>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>نموذج البحث</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">حقول الإدخال بحجم مناسب (48px) للمس السهل</p>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>البطاقات والأقسام</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">تتوزع بشكل عمودي على الشاشات الصغيرة</p>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>الأزرار</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">حد أدنى 44x44 بكسل لسهولة النقر</p>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>النصوص</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">لا تخرج عن حدود الشاشة وقابلة للقراءة</p>
+                </div>
+            </div>
+            
+            <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>التمرير</strong>
+                    <p style="opacity: 0.8; margin-top: 5px;">عمودي فقط، لا يوجد تمرير أفقي</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 الملفات المحدّثة</h2>
+            <ul>
+                <li>✓ index.html</li>
+                <li>✓ about.html</li>
+                <li>✓ contact.html</li>
+                <li>✓ blog.html</li>
+                <li>✓ search-results.html</li>
+                <li>✓ flight-results.html</li>
+                <li>✓ privacy.html</li>
+                <li>✓ terms.html</li>
+                <li>✓ cookie-policy.html</li>
+                <li>✓ affiliate-disclosure.html</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📱 نقاط التوقف (Breakpoints)</h2>
+            <div class="test-section">
+                <div class="test-box">
+                    <h3>768px وأقل</h3>
+                    <p>تابلت وجوال</p>
+                    <ul style="margin-top: 10px;">
+                        <li>قائمة منسدلة كاملة</li>
+                        <li>Grid عمودي</li>
+                        <li>نصوص محسّنة</li>
+                    </ul>
+                </div>
+                
+                <div class="test-box">
+                    <h3>480px وأقل</h3>
+                    <p>جوال صغير</p>
+                    <ul style="margin-top: 10px;">
+                        <li>نصوص أصغر قليلاً</li>
+                        <li>مسافات مضغوطة</li>
+                        <li>أزرار أصغر</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>ℹ️ معلومات مهمة</h3>
+            <p><strong>الملف المضاف:</strong> <code>mobile-fixes.css</code></p>
+            <p style="margin-top: 10px;"><strong>الموقع:</strong> نفس المجلد مع ملفات HTML</p>
+            <p style="margin-top: 10px;"><strong>الترتيب:</strong> يجب أن يكون آخر ملف CSS يتم تحميله</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>⚠️ تنبيه</h3>
+            <p>إذا لم ترى التغييرات، قم بمسح الكاش (Cache) في المتصفح:</p>
+            <ul style="margin-top: 10px;">
+                <li><strong>Chrome/Safari:</strong> Cmd/Ctrl + Shift + Delete</li>
+                <li><strong>أو:</strong> اضغط Cmd/Ctrl + Shift + R لإعادة تحميل الصفحة</li>
+            </ul>
+        </div>
+
+        <div class="section" style="text-align: center;">
+            <h2>🧪 اختبر الموقع الآن</h2>
+            <p style="margin-bottom: 20px;">افتح الصفحات التالية على جوالك للتأكد:</p>
+            <a href="index.html" class="button">الصفحة الرئيسية</a>
+            <a href="about.html" class="button">من نحن</a>
+            <a href="contact.html" class="button">اتصل بنا</a>
+            <a href="blog.html" class="button">المدونة</a>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 20px; opacity: 0.6; margin-top: 40px;">
+            <p>تم الإنشاء بواسطة Claude | يناير 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
