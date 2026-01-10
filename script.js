@@ -611,3 +611,30 @@ window.addEventListener('load', function() {
     ensureResultsContainer();
     console.log('🚀 نظام SkyLynx للرحلات جاهز للعمل!');
 });
+
+// ========== نظام توجيه بحث السيارات إلى Expedia ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const carsForm = document.getElementById('cars-form');
+    
+    if (carsForm) {
+        carsForm.addEventListener('submit', function(e) {
+            // منع الصفحة البيضاء الافتراضية
+            e.preventDefault();
+            
+            console.log('🚗 توجيه بحث السيارات إلى إكسبيديا عبر SkyLynx...');
+            
+            // جلب القيم التي أدخلها العميل
+            const location = document.getElementById('car-pickup').value;
+            const startDate = document.getElementById('car-pickup-date').value;
+            const endDate = document.getElementById('car-return-date').value;
+            
+            // بناء رابط التوجيه الخاص بك مع المعايير
+            // نستخدم النطاق الفرعي الذي أنشأته في Namecheap
+            const baseUrl = "https://cars.skylynxtravel.com";
+            const finalUrl = `${baseUrl}?location=${encodeURIComponent(location)}&startDate=${startDate}&endDate=${endDate}`;
+            
+            // فتح الرابط في نافذة جديدة ليبقى موقعك مفتوحاً
+            window.open(finalUrl, '_blank');
+        });
+    }
+});
