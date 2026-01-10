@@ -2663,10 +2663,10 @@
             </label>
         </div>
         
-        <button type="submit" class="search-btn" id="search-cars-btn">
-            <i class="fas fa-car"></i>
-            <span class="btn-text" data-key="searchCars">Search Luxury Cars</span>
-        </button>
+  <button type="button" class="search-btn" id="search-cars-btn" onclick="const loc = document.getElementById('car-pickup').value; const sDate = document.getElementById('car-pickup-date').value; const eDate = document.getElementById('car-return-date').value; window.open('https://cars.skylynxtravel.com?location=' + encodeURIComponent(loc) + '&startDate=' + sDate + '&endDate=' + eDate, '_blank');">
+    <i class="fas fa-car"></i>
+    <span class="btn-text" data-key="searchCars">Search Luxury Cars</span>
+</button>
     </div>
 </form>
 </div>
