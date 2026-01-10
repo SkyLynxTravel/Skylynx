@@ -2590,12 +2590,14 @@
             
             <button type="submit" class="search-btn" id="search-hotels-btn" 
     onclick="
+        var destInput = document.getElementById('hotel-destination').value;
         var isArabic = document.getElementById('search-hotels-btn').innerText.includes('بحث');
-        var dest = document.getElementById('hotel-destination').value;
         
-        // استخدام الرابط العالمي مع إضافة كود اللغة العربية (ar_SA) لإجبار الواجهة والعملة
-        var langPath = isArabic ? '/?siteid=1&langid=1025' : '';
-        var url = 'https://www.expedia.com' + langPath + '/Hotel-Search?partnerid=11001417459&destination=' + encodeURIComponent(dest);
+        // إذا كانت اللغة عربية، نستخدم رابط الشرق الأوسط لضمان قبول النص العربي والعملة
+        var baseUrl = isArabic ? 'https://www.expedia.com.eg/ar/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
+        var langParams = isArabic ? '?langid=1025' : '?';
+        
+        var url = baseUrl + langParams + '&partnerid=11001417459&destination=' + encodeURIComponent(destInput);
         
         window.open(url, '_blank'); 
         return false;
