@@ -2609,67 +2609,66 @@
         </div>
     </form>
 
-    <!-- Cars Form -->
-    <form id="cars-form" class="form-content">
-        <div class="input-grid">
-            <div class="field">
-                <label class="form-label" data-key="pickupLocation">Pick-up Location</label>
-                <input type="text" id="car-pickup" placeholder="Airport or Address" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="dropoffLocation">Drop-off Location</label>
-                <input type="text" id="car-dropoff" placeholder="Same as Pick-up" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="pickupDate">Pick-up Date</label>
-                <input type="date" id="car-pickup-date" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="pickupTime">Pick-up Time</label>
-                <input type="time" id="car-pickup-time" value="10:00" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="returnDate">Return Date</label>
-                <input type="date" id="car-return-date" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="returnTime">Return Time</label>
-                <input type="time" id="car-return-time" value="18:00" required>
-            </div>
-            
-            <div class="field">
-                <label class="form-label" data-key="carType">Car Type</label>
-                <select id="car-type">
-                    <option value="ECONOMY" data-key="economy">Economy</option>
-                    <option value="COMPACT" data-key="compact">Compact</option>
-                    <option value="SUV" data-key="suv">SUV</option>
-                    <option value="LUXURY" data-key="luxury">Luxury</option>
-                    <option value="VAN" data-key="van">Van</option>
-                </select>
-            </div>
-            
-            <div class="car-options-row">
-                <label>
-                    <input type="checkbox" id="same-location" checked>
-                    <span data-key="sameLocation">Return to same location</span>
-                </label>
-                <label>
-                    <input type="checkbox" id="with-driver">
-                    <span data-key="withDriver">With Chauffeur</span>
-                </label>
-            </div>
-            
-            <button type="submit" class="search-btn" id="search-cars-btn">
-                <i class="fas fa-car"></i>
-                <span class="btn-text" data-key="searchCars">Search Luxury Cars</span>
-            </button>
+    <form id="cars-form" class="form-content" action="https://cars.skylynxtravel.com" method="GET" target="_blank">
+    <div class="input-grid">
+        <div class="field">
+            <label class="form-label" data-key="pickupLocation">Pick-up Location</label>
+            <input type="text" id="car-pickup" name="location" placeholder="Airport or Address" required>
         </div>
-    </form>
+        
+        <div class="field">
+            <label class="form-label" data-key="dropoffLocation">Drop-off Location</label>
+            <input type="text" id="car-dropoff" placeholder="Same as Pick-up">
+        </div>
+        
+        <div class="field">
+            <label class="form-label" data-key="pickupDate">Pick-up Date</label>
+            <input type="date" id="car-pickup-date" name="startDate" required>
+        </div>
+        
+        <div class="field">
+            <label class="form-label" data-key="pickupTime">Pick-up Time</label>
+            <input type="time" id="car-pickup-time" value="10:00" required>
+        </div>
+        
+        <div class="field">
+            <label class="form-label" data-key="returnDate">Return Date</label>
+            <input type="date" id="car-return-date" name="endDate" required>
+        </div>
+        
+        <div class="field">
+            <label class="form-label" data-key="returnTime">Return Time</label>
+            <input type="time" id="car-return-time" value="18:00" required>
+        </div>
+        
+        <div class="field">
+            <label class="form-label" data-key="carType">Car Type</label>
+            <select id="car-type" name="category">
+                <option value="ECONOMY" data-key="economy">Economy</option>
+                <option value="COMPACT" data-key="compact">Compact</option>
+                <option value="SUV" data-key="suv">SUV</option>
+                <option value="LUXURY" data-key="luxury">Luxury</option>
+                <option value="VAN" data-key="van">Van</option>
+            </select>
+        </div>
+        
+        <div class="car-options-row">
+            <label>
+                <input type="checkbox" id="same-location" checked>
+                <span data-key="sameLocation">Return to same location</span>
+            </label>
+            <label>
+                <input type="checkbox" id="with-driver">
+                <span data-key="withDriver">With Chauffeur</span>
+            </label>
+        </div>
+        
+        <button type="submit" class="search-btn" id="search-cars-btn">
+            <i class="fas fa-car"></i>
+            <span class="btn-text" data-key="searchCars">Search Luxury Cars</span>
+        </button>
+    </div>
+</form>
 </div>
 
 <!-- نافذة حجز المجموعات -->
