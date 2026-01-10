@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل التنصيب - SkyLynx Airports Autocomplete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #00a6fb 0%, #0088cc 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #00111c;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #00a6fb;
+            margin-bottom: 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .success-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .success-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 3px solid #3b82f6;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-card p {
+            color: #1e3a8a;
+            font-size: 0.95rem;
+        }
+        
+        .step-container {
+            background: #f7fafc;
+            border: 3px solid #cbd5e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #00a6fb 0%, #0088cc 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 166, 251, 0.4);
+        }
+        
+        .step h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            padding-top: 10px;
+        }
+        
+        .code-box {
+            background: #1a202c;
+            color: #68d391;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            direction: ltr;
+            text-align: left;
+            overflow-x: auto;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .warning-box h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .info-box h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin-right: 30px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-banner">
+            <h2>🎉 تم!</h2>
+            <p>نظام Autocomplete للمطارات جاهز</p>
+        </div>
+        
+        <h1>🛫 SkyLynx Airports Autocomplete</h1>
+        <p class="subtitle">قاعدة بيانات شاملة من TravelPayouts API</p>
+        
+        <!-- المميزات -->
+        <h2 style="text-align: center; color: #00111c; margin: 40px 0 30px;">✨ المميزات الجديدة</h2>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>قاعدة بيانات عالمية</h3>
+                <p>10,000+ مطار ومدينة من جميع أنحاء العالم</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>بحث فوري</h3>
+                <p>نتائج في أقل من ثانية مع cache ذكي</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>تصميم متناسق</h3>
+                <p>نفس ألوان وخطوط موقعك الأصلي</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>دعم اللغات</h3>
+                <p>العربية والإنجليزية بشكل تلقائي</p>
+            </div>
+        </div>
+        
+        <!-- خطوات التنصيب -->
+        <h2 style="text-align: center; color: #00111c; margin: 40px 0 30px;">🚀 خطوات التنصيب</h2>
+        
+        <div class="step-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>حمّل الملفات</h3>
+                <p>ستجد في الحزمة:</p>
+                <div class="code-box">
+📦 skylynx-airports.zip
+├── 📄 index.html
+├── 📄 airport-autocomplete.js
+├── 📄 README.md
+└── 📄 INSTALLATION.html
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>ارفع الملفات للموقع</h3>
+                <p>ارفع الملفين إلى جذر موقعك:</p>
+                <ul>
+                    <li><strong>index.html</strong> → استبدل الملف القديم</li>
+                    <li><strong>airport-autocomplete.js</strong> → ملف جديد</li>
+                </ul>
+                <div class="code-box">
+skylynxtravel.com/
+├── index.html              ← محدث
+├── airport-autocomplete.js ← جديد
+└── ... (باقي الملفات)
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>اختبر الوظيفة</h3>
+                <p>افتح موقعك واختبر:</p>
+                <ul>
+                    <li>اذهب إلى قسم البحث عن رحلات</li>
+                    <li>ابدأ الكتابة في حقل "From" أو "To"</li>
+                    <li>ستظهر قائمة بالاقتراحات تلقائياً ✨</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- كيف يعمل -->
+        <div class="info-box">
+            <h3>💡 كيف يعمل؟</h3>
+            <p>عند الكتابة في حقل البحث:</p>
+            <ol style="margin-right: 30px; margin-top: 15px;">
+                <li>ينتظر 300ms (debounce) لتقليل الطلبات</li>
+                <li>يرسل طلب لـ TravelPayouts API</li>
+                <li>يحصل على أفضل 10 نتائج</li>
+                <li>يعرضها في قائمة منسدلة جميلة</li>
+                <li>عند الاختيار: يحفظ اسم المدينة + كود IATA</li>
+            </ol>
+        </div>
+        
+        <!-- مثال على النتائج -->
+        <div class="step-container">
+            <h3 style="color: #00111c; text-align: center; margin-bottom: 20px;">📋 مثال على النتائج</h3>
+            <div style="background: white; padding: 20px; border-radius: 10px;">
+                <p><strong>عند الكتابة: "lon"</strong></p>
+                <div style="margin-top: 15px; padding: 15px; background: #f7fafc; border-radius: 8px; border: 1px solid #cbd5e0;">
+                    <div style="padding: 10px; border-bottom: 1px solid #e2e8f0;">
+                        ✈️ <span style="color: #00a6fb; font-weight: 600;">London Heathrow (LHR)</span><br>
+                        <span style="font-size: 0.85rem; color: #718096;">London, United Kingdom</span>
+                    </div>
+                    <div style="padding: 10px; border-bottom: 1px solid #e2e8f0;">
+                        🏙️ <span style="color: #00a6fb; font-weight: 600;">London (LON)</span><br>
+                        <span style="font-size: 0.85rem; color: #718096;">United Kingdom</span>
+                    </div>
+                    <div style="padding: 10px; border-bottom: 1px solid #e2e8f0;">
+                        ✈️ <span style="color: #00a6fb; font-weight: 600;">London Gatwick (LGW)</span><br>
+                        <span style="font-size: 0.85rem; color: #718096;">London, United Kingdom</span>
+                    </div>
+                    <div style="padding: 10px;">
+                        ✈️ <span style="color: #00a6fb; font-weight: 600;">London City (LCY)</span><br>
+                        <span style="font-size: 0.85rem; color: #718096;">London, United Kingdom</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- تحذير مهم -->
+        <div class="warning-box">
+            <h3>⚠️ مهم جداً!</h3>
+            <ul>
+                <li>✅ <strong>لا تنسى رفع airport-autocomplete.js</strong></li>
+                <li>✅ <strong>تأكد من اسم الملف بدون أخطاء</strong></li>
+                <li>✅ <strong>الملفان يجب أن يكونا في نفس المجلد</strong></li>
+                <li>✅ <strong>امسح الـ cache بعد الرفع</strong> (Ctrl+Shift+R)</li>
+            </ul>
+        </div>
+        
+        <!-- التحقق من التنصيب -->
+        <div class="info-box">
+            <h3>🔍 التحقق من التنصيب</h3>
+            <p>لفحص ما إذا كان كل شيء يعمل:</p>
+            <ol style="margin-right: 30px; margin-top: 15px;">
+                <li>افتح موقعك</li>
+                <li>اضغط F12 (فتح Console)</li>
+                <li>اكتب: <code style="background: #e2e8f0; padding: 3px 8px; border-radius: 5px;">console.log(window.SkyLynxAutocomplete)</code></li>
+                <li>يجب أن ترى: <code style="background: #e2e8f0; padding: 3px 8px; border-radius: 5px;">{search: ƒ, init: ƒ}</code></li>
+            </ol>
+            <p style="margin-top: 15px;">إذا رأيت هذا = التنصيب نجح! ✅</p>
+        </div>
+        
+        <!-- الخلاصة -->
+        <div style="background: linear-gradient(135deg, #00a6fb 0%, #0088cc 100%); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-top: 40px;">
+            <h2 style="margin-bottom: 20px; font-size: 2rem;">✅ جاهز للاستخدام!</h2>
+            <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+                الآن موقعك يحتوي على:<br><br>
+                🌍 10,000+ مطار ومدينة<br>
+                ⚡ بحث فوري وسريع<br>
+                🎨 تصميم متناسق<br>
+                🌐 دعم كامل للعربية والإنجليزية
+            </p>
+            <p style="font-size: 1.5rem; font-weight: bold; margin-top: 30px;">
+                🚀 ابدأ التجربة الآن!
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 2px solid #e2e8f0; color: #718096;">
+            <p>مطوّر بواسطة: <strong>Claude AI</strong></p>
+            <p>التاريخ: 2026-01-09</p>
+            <p>الإصدار: 1.0.0</p>
+        </div>
+    </div>
+</body>
+</html>
