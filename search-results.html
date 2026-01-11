@@ -1,887 +1,923 @@
 <!DOCTYPE html>
+
 <html lang="en" id="main-html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Search Results | SkyLynx Travel | AI-Powered Luxury Travel Platform</title>
+
+```
+<!-- SEO Meta Tags -->
+<meta name="description" content="Search Results - Find the best flights, hotels, and cars with SkyLynx AI">
+<meta name="keywords" content="flight search, hotel booking, car rental, travel results">
+
+<!-- كود التتبع -->
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+    (function () {
+        var script = document.createElement("script");
+        script.async = 1;
+        script.src = 'https://tp-em.com/NDg2ODAw.js?t=486800';
+        document.head.appendChild(script);
+    })();
+</script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* ========== VARIABLES ========== */
+    :root { 
+        --deep-ocean: #00111c; 
+        --dark-navy: #00283c;
+        --sky-glow: #00a6fb; 
+        --silver: #e0e1dd; 
+        --gold: #d4af37;
+        --ai-purple: #9d4edd;
+        --ai-teal: #2ec4b6;
+        --platinum: #e5e4e2;
+        --gradient-blue: linear-gradient(135deg, #000d15 0%, #001926 50%, #000810 100%);
+        --gradient-sidebar: linear-gradient(180deg, #00111c 0%, #00283c 100%);
+    }
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Search Results - Find the best flights, hotels, and cars with SkyLynx AI">
-    <meta name="keywords" content="flight search, hotel booking, car rental, travel results">
+    /* ========== RESET ========== */
+    * { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+    }
     
-    <!-- كود التتبع -->
-    <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-        (function () {
-            var script = document.createElement("script");
-            script.async = 1;
-            script.src = 'https://tp-em.com/NDg2ODAw.js?t=486800';
-            document.head.appendChild(script);
-        })();
-    </script>
+    [lang="ar"] { 
+        direction: rtl; 
+        font-family: 'Cairo', sans-serif !important;
+        text-align: right;
+    }
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    [lang="en"] { 
+        direction: ltr; 
+        font-family: 'Montserrat', sans-serif !important;
+        text-align: left;
+    }
     
-    <style>
-        /* ========== VARIABLES ========== */
-        :root { 
-            --deep-ocean: #00111c; 
-            --dark-navy: #00283c;
-            --sky-glow: #00a6fb; 
-            --silver: #e0e1dd; 
-            --gold: #d4af37;
-            --ai-purple: #9d4edd;
-            --ai-teal: #2ec4b6;
-            --platinum: #e5e4e2;
-            --gradient-blue: linear-gradient(135deg, #000d15 0%, #001926 50%, #000810 100%);
-            --gradient-sidebar: linear-gradient(180deg, #00111c 0%, #00283c 100%);
-        }
-        
-        /* ========== RESET ========== */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
-        [lang="ar"] { 
-            direction: rtl; 
-            font-family: 'Cairo', sans-serif !important;
-            text-align: right;
-        }
-        
-        [lang="en"] { 
-            direction: ltr; 
-            font-family: 'Montserrat', sans-serif !important;
-            text-align: left;
-        }
-        
-        body { 
-            background-color: var(--deep-ocean); 
-            color: white; 
-            font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        /* ========== HEADER ========== */
+    body { 
+        background-color: var(--deep-ocean); 
+        color: white; 
+        font-family: 'Montserrat', sans-serif;
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* ========== HEADER ========== */
+    .main-header {
+        background: rgba(0, 17, 28, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 12px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 166, 251, 0.3);
+        height: auto;
+        min-height: 60px;
+        position: relative;
+        z-index: 1000;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: 'Cinzel', serif;
+        white-space: nowrap;
+    }
+    
+    .logo i {
+        color: var(--sky-glow);
+        font-size: 1.1rem;
+    }
+    
+    .ai-badge {
+        background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        animation: glow 2s infinite alternate;
+        white-space: nowrap;
+    }
+    
+    @keyframes glow {
+        from { box-shadow: 0 0 10px var(--ai-purple); }
+        to { box-shadow: 0 0 20px var(--ai-teal); }
+    }
+    
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .config select {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        font-size: 0.85rem;
+        font-family: inherit;
+    }
+    
+    /* ========== زر العودة للصفحة الرئيسية ========== */
+    .back-to-home {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        white-space: nowrap;
+    }
+    
+    .back-to-home:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--sky-glow);
+    }
+    
+    .back-to-home i {
+        font-size: 0.9rem;
+    }
+    
+    /* ========== MAIN LAYOUT ========== */
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 60px);
+    }
+    
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+        width: 100%;
+        background: var(--gradient-sidebar);
+        border-bottom: 1px solid rgba(0, 166, 251, 0.2);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        max-height: 40vh;
+        transition: max-height 0.3s ease;
+    }
+    
+    .sidebar.collapsed {
+        max-height: 50px;
+    }
+    
+    .sidebar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(0, 166, 251, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+    }
+    
+    .sidebar-header {
+        padding: 12px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 166, 251, 0.2);
+        position: relative;
+        z-index: 2;
+        background: rgba(0, 17, 28, 0.8);
+    }
+    
+    .sidebar-toggle {
+        background: rgba(0, 166, 251, 0.2);
+        border: 1px solid rgba(0, 166, 251, 0.3);
+        color: var(--sky-glow);
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s;
+    }
+    
+    .sidebar-toggle:hover {
+        background: rgba(0, 166, 251, 0.3);
+    }
+    
+    .sidebar-content {
+        padding: 15px;
+        flex: 1;
+        position: relative;
+        z-index: 1;
+        overflow-y: auto;
+    }
+    
+    .sidebar-title {
+        font-family: 'Cinzel', serif;
+        font-size: 1.1rem;
+        color: var(--sky-glow);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 166, 251, 0.2);
+    }
+    
+    .sidebar-title i {
+        font-size: 1rem;
+    }
+    
+    /* ========== SEARCH SUMMARY ========== */
+    .search-summary {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 166, 251, 0.15);
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+    }
+    
+    .search-summary:hover {
+        border-color: var(--sky-glow);
+        box-shadow: 0 15px 40px rgba(0, 166, 251, 0.15);
+    }
+    
+    .search-summary h3 {
+        color: var(--ai-teal);
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .route-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 15px 0;
+        padding: 12px;
+        background: rgba(0, 166, 251, 0.05);
+        border-radius: 10px;
+        border: 1px solid rgba(0, 166, 251, 0.1);
+    }
+    
+    .route-from, .route-to {
+        text-align: center;
+        flex: 1;
+        overflow: hidden;
+    }
+    
+    .city {
+        font-family: 'Cinzel', serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .code {
+        font-size: 0.8rem;
+        color: var(--silver);
+        opacity: 0.8;
+    }
+    
+    .route-arrow {
+        color: var(--sky-glow);
+        font-size: 1.2rem;
+        margin: 0 10px;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); }
+    }
+    
+    .search-details {
+        margin-top: 15px;
+    }
+    
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.85rem;
+    }
+    
+    .detail-label {
+        color: var(--silver);
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .detail-value {
+        color: white;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+    
+    /* ========== CURRENCY WARNING ========== */
+    .currency-warning {
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .currency-warning i {
+        color: #f59e0b;
+        font-size: 1rem;
+        margin-top: 2px;
+    }
+    
+    .currency-warning-text {
+        flex: 1;
+    }
+    
+    .currency-warning h4 {
+        color: #f59e0b;
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    
+    .currency-warning p {
+        color: var(--silver);
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .current-currency {
+        display: inline-block;
+        background: rgba(245, 158, 11, 0.2);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+    
+    /* ========== CONTROLS ========== */
+    .controls-section {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .control-btn {
+        width: 100%;
+        background: linear-gradient(135deg, rgba(0, 166, 251, 0.2), rgba(157, 78, 221, 0.2));
+        color: white;
+        border: 1px solid rgba(0, 166, 251, 0.3);
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+    }
+    
+    .control-btn:hover {
+        background: linear-gradient(135deg, rgba(0, 166, 251, 0.3), rgba(157, 78, 221, 0.3));
+        border-color: var(--sky-glow);
+    }
+    
+    .control-btn i {
+        font-size: 0.9rem;
+    }
+    
+    /* ========== RESULTS AREA ========== */
+    .results-area {
+        flex: 1;
+        position: relative;
+        background: white;
+        overflow: hidden;
+    }
+    
+    #resultsFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    /* ========== LOADER ========== */
+    .loader-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-blue);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        z-index: 1000;
+        padding: 20px;
+    }
+    
+    .loader-spinner {
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(255,255,255,0.1);
+        border-radius: 50%;
+        border-top-color: var(--ai-purple);
+        border-right-color: var(--ai-teal);
+        animation: spin 1.5s linear infinite;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    
+    .loader-text {
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: 500;
+        padding: 0 15px;
+    }
+    
+    .ai-processing {
+        background: rgba(157, 78, 221, 0.15);
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        color: var(--ai-teal);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(10px);
+        text-align: center;
+    }
+    
+    /* ========== MODAL ========== */
+    .purchase-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 17, 28, 0.98);
+        backdrop-filter: blur(10px);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        padding: 20px;
+    }
+    
+    .purchase-modal-content {
+        background: var(--dark-navy);
+        border-radius: 15px;
+        padding: 25px;
+        width: 100%;
+        max-width: 500px;
+        border: 1px solid rgba(0, 166, 251, 0.3);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .purchase-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .purchase-modal-title {
+        font-family: 'Cinzel', serif;
+        font-size: 1.2rem;
+        color: var(--sky-glow);
+    }
+    
+    .modal-close {
+        background: none;
+        border: none;
+        color: var(--silver);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.3s;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-close:hover {
+        color: var(--sky-glow);
+    }
+    
+    .purchase-modal-body {
+        margin-bottom: 20px;
+    }
+    
+    .purchase-modal-body p {
+        color: var(--silver);
+        margin-bottom: 15px;
+        line-height: 1.6;
+        font-size: 0.9rem;
+    }
+    
+    .currency-check {
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 10px;
+        padding: 12px;
+        margin: 15px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .currency-check i {
+        color: #f59e0b;
+        font-size: 1.3rem;
+        margin-top: 2px;
+    }
+    
+    .modal-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+    
+    .modal-btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .modal-btn-primary {
+        background: linear-gradient(135deg, var(--sky-glow), var(--ai-purple));
+        color: white;
+    }
+    
+    .modal-btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* ========== RESPONSIVE ADJUSTMENTS ========== */
+    @media (max-width: 768px) {
         .main-header {
-            background: rgba(0, 17, 28, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 166, 251, 0.3);
-            height: 70px;
-            position: relative;
-            z-index: 1000;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 30px;
+            padding: 10px;
         }
         
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-family: 'Cinzel', serif;
+            font-size: 1rem;
         }
         
         .logo i {
-            color: var(--sky-glow);
-            font-size: 1.4rem;
+            font-size: 0.95rem;
         }
         
         .ai-badge {
-            background: linear-gradient(135deg, var(--ai-purple), var(--ai-teal));
-            color: white;
-            padding: 6px 18px;
-            border-radius: 25px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: glow 2s infinite alternate;
+            font-size: 0.65rem;
+            padding: 3px 10px;
         }
         
-        @keyframes glow {
-            from { box-shadow: 0 0 10px var(--ai-purple); }
-            to { box-shadow: 0 0 20px var(--ai-teal); }
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        .back-to-home {
+            font-size: 0.75rem;
+            padding: 5px 10px;
         }
         
         .config select {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-size: 0.9rem;
-            font-family: inherit;
+            font-size: 0.8rem;
+            padding: 5px 10px;
         }
         
-        /* ========== زر العودة للصفحة الرئيسية ========== */
-        .back-to-home {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .back-to-home:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--sky-glow);
-            transform: translateY(-2px);
-        }
-        
-        /* ========== MAIN LAYOUT ========== */
-        .main-container {
-            display: flex;
-            height: calc(100vh - 70px);
-        }
-        
-        /* ========== SIDEBAR ========== */
         .sidebar {
-            width: 350px;
-            background: var(--gradient-sidebar);
-            border-right: 1px solid rgba(0, 166, 251, 0.2);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 166, 251, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
-        }
-        
-        .sidebar-content {
-            padding: 30px;
-            flex: 1;
-            position: relative;
-            z-index: 1;
-            overflow-y: auto;
-        }
-        
-        .sidebar-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--sky-glow);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 166, 251, 0.2);
-        }
-        
-        .sidebar-title i {
-            font-size: 1.3rem;
-        }
-        
-        /* ========== SEARCH SUMMARY ========== */
-        .search-summary {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 166, 251, 0.15);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-        }
-        
-        .search-summary:hover {
-            border-color: var(--sky-glow);
-            box-shadow: 0 15px 40px rgba(0, 166, 251, 0.15);
-        }
-        
-        .search-summary h3 {
-            color: var(--ai-teal);
-            font-size: 1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .route-display {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(0, 166, 251, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 166, 251, 0.1);
-        }
-        
-        .route-from, .route-to {
-            text-align: center;
-            flex: 1;
-            overflow: hidden;
+            max-height: 45vh;
         }
         
         .city {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        /* تعديل خاص لأسماء المدن الطويلة في اللغة الإنجليزية */
-        [lang="en"] .city {
-            font-size: 1.1rem; /* أصغر قليلاً */
-            line-height: 1.2;
-        }
-        
-        .code {
-            font-size: 0.9rem;
-            color: var(--silver);
-            opacity: 0.8;
+            font-size: 0.85rem;
         }
         
         .route-arrow {
-            color: var(--sky-glow);
-            font-size: 1.5rem;
-            margin: 0 20px;
-            animation: pulse 2s infinite;
+            font-size: 1rem;
+            margin: 0 8px;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-        
-        .search-details {
-            margin-top: 20px;
-        }
-        
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .detail-label {
-            color: var(--silver);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .detail-value {
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        /* ========== CURRENCY WARNING ========== */
-        .currency-warning {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .currency-warning i {
-            color: #f59e0b;
-            font-size: 1.2rem;
-        }
-        
-        .currency-warning-text {
-            flex: 1;
-        }
-        
-        .currency-warning h4 {
-            color: #f59e0b;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        .currency-warning p {
-            color: var(--silver);
-            font-size: 0.8rem;
-            line-height: 1.4;
-        }
-        
-        .current-currency {
-            display: inline-block;
-            background: rgba(245, 158, 11, 0.2);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        /* ========== CONTROLS ========== */
         .controls-section {
-            margin-top: 30px;
-        }
-        
-        .control-btn {
-            width: 100%;
-            background: linear-gradient(135deg, rgba(0, 166, 251, 0.2), rgba(157, 78, 221, 0.2));
-            color: white;
-            border: 1px solid rgba(0, 166, 251, 0.3);
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-        
-        .control-btn:hover {
-            background: linear-gradient(135deg, rgba(0, 166, 251, 0.3), rgba(157, 78, 221, 0.3));
-            border-color: var(--sky-glow);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 166, 251, 0.2);
-        }
-        
-        .control-btn i {
-            font-size: 1.1rem;
-        }
-        
-        /* ========== RESULTS AREA ========== */
-        .results-area {
-            flex: 1;
-            position: relative;
-            background: white;
-            overflow: hidden;
-        }
-        
-        #resultsFrame {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* ========== LOADER ========== */
-        .loader-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-blue);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            z-index: 1000;
-        }
-        
-        .loader-spinner {
-            width: 70px;
-            height: 70px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            border-top-color: var(--ai-purple);
-            border-right-color: var(--ai-teal);
-            animation: spin 1.5s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .loader-text {
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-            font-weight: 500;
-        }
-        
-        .ai-processing {
-            background: rgba(157, 78, 221, 0.15);
-            border: 1px solid rgba(157, 78, 221, 0.3);
-            color: var(--ai-teal);
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* ========== MODAL ========== */
-        .purchase-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 17, 28, 0.98);
-            backdrop-filter: blur(10px);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        
-        .purchase-modal-content {
-            background: var(--dark-navy);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            border: 1px solid rgba(0, 166, 251, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-        
-        .purchase-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .purchase-modal-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--sky-glow);
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--silver);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .modal-close:hover {
-            color: var(--sky-glow);
-        }
-        
-        .purchase-modal-body {
-            margin-bottom: 30px;
-        }
-        
-        .purchase-modal-body p {
-            color: var(--silver);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .currency-check {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .currency-check i {
-            color: #f59e0b;
-            font-size: 1.5rem;
+            grid-template-columns: 1fr;
         }
         
         .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
+            flex-direction: column-reverse;
         }
         
         .modal-btn {
-            padding: 12px 30px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95rem;
+            width: 100%;
         }
-        
-        .modal-btn-primary {
-            background: linear-gradient(135deg, var(--sky-glow), var(--ai-purple));
-            color: white;
-        }
-        
-        .modal-btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .modal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 166, 251, 0.3);
-        }
-        
-        /* ========== FOOTER ========== */
-        .main-footer {
-            background: rgba(0, 8, 16, 0.95);
-            padding: 15px 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--silver);
-        }
-        
-        .footer-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .ai-powered {
-            display: flex;
-            align-items: center;
+    }
+    
+    @media (max-width: 480px) {
+        .header-left {
             gap: 8px;
-            color: var(--ai-teal);
         }
         
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1200px) {
-            .sidebar {
-                width: 320px;
-            }
-            
-            [lang="en"] .city {
-                font-size: 1rem;
-            }
+        .ai-badge {
+            display: none;
         }
         
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 300px;
-            }
-            
-            .sidebar-content {
-                padding: 20px;
-            }
-            
-            [lang="en"] .city {
-                font-size: 0.95rem;
-            }
+        .back-to-home span {
+            display: none;
         }
         
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                max-height: 350px;
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 166, 251, 0.2);
-            }
-            
-            .sidebar-content {
-                padding: 20px;
-            }
-            
-            .main-header {
-                padding: 15px 20px;
-            }
-            
-            .header-left {
-                gap: 15px;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .city {
-                font-size: 1rem;
-            }
-            
-            .header-right {
-                gap: 15px;
-            }
+        .back-to-home {
+            padding: 6px 10px;
         }
         
-        @media (max-width: 480px) {
-            .sidebar {
-                max-height: 400px;
-            }
-            
-            .route-display {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .route-arrow {
-                transform: rotate(90deg);
-                margin: 10px 0;
-            }
-            
-            .main-header {
-                flex-direction: column;
-                gap: 15px;
-                height: auto;
-                padding: 15px;
-            }
-            
-            .header-left, .header-right {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .city {
-                font-size: 0.9rem;
-            }
-            
-            [lang="en"] .city {
-                font-size: 0.85rem;
-            }
+        .route-display {
+            flex-direction: column;
+            gap: 10px;
         }
-    </style>
+        
+        .route-arrow {
+            transform: rotate(90deg);
+            margin: 5px 0;
+        }
+        
+        .city {
+            font-size: 0.8rem;
+        }
+        
+        .detail-row {
+            font-size: 0.8rem;
+        }
+        
+        .detail-label {
+            font-size: 0.75rem;
+        }
+        
+        .detail-value {
+            font-size: 0.8rem;
+        }
+        
+        .control-btn {
+            font-size: 0.75rem;
+            padding: 8px 10px;
+        }
+        
+        .loader-text {
+            font-size: 0.9rem;
+        }
+        
+        .ai-processing {
+            font-size: 0.75rem;
+            padding: 8px 15px;
+        }
+    }
+    
+    /* ========== LANDSCAPE MODE ========== */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .sidebar {
+            max-height: 60vh;
+        }
+        
+        .main-container {
+            flex-direction: row;
+        }
+        
+        .sidebar {
+            width: 40%;
+            max-height: none;
+            border-right: 1px solid rgba(0, 166, 251, 0.2);
+            border-bottom: none;
+        }
+        
+        .results-area {
+            width: 60%;
+        }
+    }
+</style>
+```
+
 </head>
 <body>
 
 <!-- Header -->
+
 <header class="main-header">
     <div class="header-left">
         <a href="index.html" class="logo">
             <i class="fas fa-plane"></i>
             <span>SkyLynx</span>
         </a>
-        
-        <div class="ai-badge">
-            <i class="fas fa-brain"></i>
-            <span id="aiBadgeText">AI-Powered</span>
-        </div>
-        
-        <!-- زر العودة للصفحة الرئيسية -->
-        <a href="index.html" class="back-to-home" id="backToHomeBtn">
-            <i class="fas fa-arrow-left"></i>
-            <span id="backToHomeText">Back to Search</span>
-        </a>
+
+```
+    <div class="ai-badge">
+        <i class="fas fa-brain"></i>
+        <span id="aiBadgeText">AI-Powered</span>
     </div>
     
-    <div class="header-right">
-        <div class="config">
-            <select id="lang-sel">
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
-        </div>
+    <a href="index.html" class="back-to-home" id="backToHomeBtn">
+        <i class="fas fa-arrow-left"></i>
+        <span id="backToHomeText">Back to Search</span>
+    </a>
+</div>
+
+<div class="header-right">
+    <div class="config">
+        <select id="lang-sel">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
     </div>
+</div>
+```
+
 </header>
 
 <!-- Main Container -->
+
 <div class="main-container">
     <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-content">
-            <h2 class="sidebar-title">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title" style="margin: 0; padding: 0; border: none; font-size: 1rem;">
                 <i class="fas fa-search-location"></i>
                 <span id="sidebarTitle">Search Details</span>
             </h2>
-            
-            <!-- تحذير العملة -->
-            <div class="currency-warning" id="currencyWarning">
-                <i class="fas fa-exclamation-triangle"></i>
-                <div class="currency-warning-text">
-                    <h4 id="currencyWarningTitle">Currency Alert</h4>
-                    <p id="currencyWarningText">
-                        Your current currency is set to <span class="current-currency" id="currentCurrencyDisplay">CAD</span>. 
-                        Please ensure this matches the currency you want to see prices in.
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Search Summary -->
-            <div class="search-summary" id="searchSummary">
-                <!-- Will be filled by JavaScript -->
-            </div>
-            
-            <!-- Controls -->
-            <div class="controls-section">
-                <button class="control-btn" onclick="moveSearchToSidebar()" id="btnMoveSearch">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span id="btnMoveSearchText">Move Search to Sidebar</span>
-                </button>
-                
-                <button class="control-btn" onclick="showOnlyResults()" id="btnShowResults">
-                    <i class="fas fa-eye"></i>
-                    <span id="btnShowResultsText">Show Only Results</span>
-                </button>
-                
-                <button class="control-btn" onclick="optimizeDisplay()" id="btnOptimize">
-                    <i class="fas fa-robot"></i>
-                    <span id="btnOptimizeText">AI Optimize Display</span>
-                </button>
-                
-                <!-- زر جديد لتطبيق اللغة والعملة -->
-                <button class="control-btn" onclick="applySiteSettings()" id="btnApplySettings" style="background: linear-gradient(135deg, rgba(46, 196, 182, 0.2), rgba(157, 78, 221, 0.2));">
-                    <i class="fas fa-cog"></i>
-                    <span id="btnApplySettingsText">Apply Language & Currency</span>
-                </button>
-            </div>
-            
-            <!-- AI Tips -->
-            <div class="search-summary" style="margin-top: 20px; background: rgba(157, 78, 221, 0.05);">
-                <h3 style="color: var(--ai-purple);">
-                    <i class="fas fa-lightbulb"></i>
-                    <span id="aiTipsTitle">AI Travel Tips</span>
-                </h3>
-                <p style="color: var(--silver); font-size: 0.9rem; line-height: 1.5;" id="aiTipsText">
-                    Our AI suggests booking flights on Tuesdays for better prices. Consider flexible dates for up to 20% savings.
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-up" id="toggleIcon"></i>
+                <span id="toggleText">Hide</span>
+            </button>
+        </div>
+
+```
+    <div class="sidebar-content">
+        <!-- تحذير العملة -->
+        <div class="currency-warning" id="currencyWarning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="currency-warning-text">
+                <h4 id="currencyWarningTitle">Currency Alert</h4>
+                <p id="currencyWarningText">
+                    Your current currency is set to <span class="current-currency" id="currentCurrencyDisplay">CAD</span>. 
+                    Please ensure this matches the currency you want to see prices in.
                 </p>
             </div>
         </div>
-    </aside>
-    
-    <!-- Results Area -->
-    <main class="results-area">
-        <div class="loader-overlay" id="loaderOverlay">
-            <div class="loader-spinner"></div>
-            <div class="loader-text" id="loaderText">Preparing luxury travel options for you...</div>
-            <div class="ai-processing">
-                <i class="fas fa-robot"></i>
-                <span id="aiProcessingText">SkyLynx AI is analyzing millions of options...</span>
-            </div>
+        
+        <!-- Search Summary -->
+        <div class="search-summary" id="searchSummary">
+            <!-- Will be filled by JavaScript -->
         </div>
         
-        <iframe id="resultsFrame" src="about:blank"></iframe>
-    </main>
+        <!-- Controls -->
+        <div class="controls-section">
+            <button class="control-btn" onclick="optimizeDisplay()" id="btnOptimize">
+                <i class="fas fa-robot"></i>
+                <span id="btnOptimizeText">AI Optimize</span>
+            </button>
+            
+            <button class="control-btn" onclick="applySiteSettings()" id="btnApplySettings" style="background: linear-gradient(135deg, rgba(46, 196, 182, 0.2), rgba(157, 78, 221, 0.2));">
+                <i class="fas fa-cog"></i>
+                <span id="btnApplySettingsText">Apply Settings</span>
+            </button>
+        </div>
+    </div>
+</aside>
+
+<!-- Results Area -->
+<main class="results-area">
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-text" id="loaderText">Preparing luxury travel options for you...</div>
+        <div class="ai-processing">
+            <i class="fas fa-robot"></i>
+            <span id="aiProcessingText">SkyLynx AI is analyzing millions of options...</span>
+        </div>
+    </div>
+    
+    <iframe id="resultsFrame" src="about:blank"></iframe>
+</main>
+```
+
 </div>
 
 <!-- Modal للتأكيد -->
+
 <div class="purchase-modal" id="purchaseModal">
     <div class="purchase-modal-content">
         <div class="purchase-modal-header">
             <h2 class="purchase-modal-title" id="modalTitle">Continue to Booking</h2>
             <button class="modal-close" onclick="closePurchaseModal()">&times;</button>
         </div>
+
+```
+    <div class="purchase-modal-body">
+        <p id="modalMessage">
+            You are about to leave SkyLynx and continue your booking on our partner's website. 
+            Your search parameters will be preserved.
+        </p>
         
-        <div class="purchase-modal-body">
-            <p id="modalMessage">
-                You are about to leave SkyLynx and continue your booking on our partner's website. 
-                Your search parameters will be preserved.
-            </p>
-            
-            <!-- تحذير العملة في النافذة المنبثقة -->
-            <div class="currency-check">
-                <i class="fas fa-money-bill-wave"></i>
-                <div>
-                    <p style="color: #f59e0b; font-weight: 600; margin-bottom: 5px;" id="modalCurrencyTitle">
-                        IMPORTANT: Check Your Currency
-                    </p>
-                    <p style="color: var(--silver); font-size: 0.9rem;" id="modalCurrencyText">
-                        Your current currency is set to <span style="color: white; font-weight: 600;" id="modalCurrencyDisplay">CAD</span>. 
-                        Make sure this is the currency you want to pay in. You can change it before proceeding.
-                    </p>
-                </div>
+        <!-- تحذير العملة في النافذة المنبثقة -->
+        <div class="currency-check">
+            <i class="fas fa-money-bill-wave"></i>
+            <div>
+                <p style="color: #f59e0b; font-weight: 600; margin-bottom: 5px; font-size: 0.85rem;" id="modalCurrencyTitle">
+                    IMPORTANT: Check Your Currency
+                </p>
+                <p style="color: var(--silver); font-size: 0.8rem;" id="modalCurrencyText">
+                    Your current currency is set to <span style="color: white; font-weight: 600;" id="modalCurrencyDisplay">CAD</span>. 
+                    Make sure this is the currency you want to pay in. You can change it before proceeding.
+                </p>
             </div>
         </div>
-        
-        <div class="modal-buttons">
-            <button class="modal-btn modal-btn-secondary" onclick="closePurchaseModal()" id="modalCancelBtn">
-                Cancel
-            </button>
-            <button class="modal-btn modal-btn-primary" onclick="proceedToPurchase()" id="modalProceedBtn">
-                <i class="fas fa-external-link-alt"></i> Continue to Booking
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<footer class="main-footer">
-    <div class="footer-info">
-        <span id="copyrightText">© 2025 SkyLynx Travel International Inc.</span>
-        <span>•</span>
-        <span id="resultsText">Real-time Results</span>
     </div>
     
-    <div class="ai-powered">
-        <i class="fas fa-robot"></i>
-        <span id="poweredByText">Powered by SkyLynx AI 3.0</span>
+    <div class="modal-buttons">
+        <button class="modal-btn modal-btn-secondary" onclick="closePurchaseModal()" id="modalCancelBtn">
+            Cancel
+        </button>
+        <button class="modal-btn modal-btn-primary" onclick="proceedToPurchase()" id="modalProceedBtn">
+            <i class="fas fa-external-link-alt"></i> Continue
+        </button>
     </div>
-</footer>
+</div>
+```
+
+</div>
 
 <script>
     // ========== نظام الترجمة ==========
     const translations = {
         en: {
-            // Header
             aiPowered: "AI-Powered",
             backToHomeText: "Back to Search",
-            
-            // Sidebar
             sidebarTitle: "Search Details",
-            aiTipsTitle: "AI Travel Tips",
-            aiTipsText: "Our AI suggests booking flights on Tuesdays for better prices. Consider flexible dates for up to 20% savings.",
-            
-            // Currency Warning
             currencyWarningTitle: "Currency Alert",
             currencyWarningText: "Your current currency is set to <span class='current-currency' id='currentCurrencyDisplay'>CAD</span>. Please ensure this matches the currency you want to see prices in.",
-            
-            // Buttons
-            btnMoveSearchText: "Move Search to Sidebar",
-            btnShowResultsText: "Show Only Results",
-            btnOptimizeText: "AI Optimize Display",
-            btnApplySettingsText: "Apply Language & Currency",
-            
-            // Flight Summary
+            btnOptimizeText: "AI Optimize",
+            btnApplySettingsText: "Apply Settings",
             flightSearch: "Flight Search",
             from: "From",
             to: "To",
@@ -892,45 +928,25 @@
             children: "Children",
             infants: "Infants",
             travelClass: "Travel Class",
-            
-            // Loader
             loaderText: "Preparing luxury travel options for you...",
             aiProcessingText: "SkyLynx AI is analyzing millions of options...",
-            
-            // Footer
-            copyrightText: "© 2025 SkyLynx Travel International Inc.",
-            resultsText: "Real-time Results",
-            poweredByText: "Powered by SkyLynx AI 3.0",
-            
-            // Modal
             modalTitle: "Continue to Booking",
             modalMessage: "You are about to leave SkyLynx and continue your booking on our partner's website. Your search parameters will be preserved.",
             modalCurrencyTitle: "IMPORTANT: Check Your Currency",
             modalCurrencyText: "Your current currency is set to <span style='color: white; font-weight: 600;' id='modalCurrencyDisplay'>CAD</span>. Make sure this is the currency you want to pay in. You can change it before proceeding.",
             modalCancelBtn: "Cancel",
-            modalProceedBtn: "Continue to Booking"
+            modalProceedBtn: "Continue",
+            toggleHide: "Hide",
+            toggleShow: "Show"
         },
         ar: {
-            // Header
             aiPowered: "مدعوم بالذكاء الاصطناعي",
             backToHomeText: "العودة للبحث",
-            
-            // Sidebar
             sidebarTitle: "تفاصيل البحث",
-            aiTipsTitle: "نصائح السفر بالذكاء الاصطناعي",
-            aiTipsText: "يقترح الذكاء الاصطناعي لدينا حجز الرحلات يوم الثلاثاء للحصول على أسعار أفضل. فكر في تواريخ مرنة لتوفير حتى 20٪.",
-            
-            // Currency Warning
             currencyWarningTitle: "تنبيه العملة",
             currencyWarningText: "العملة الحالية لديك هي <span class='current-currency' id='currentCurrencyDisplay'>CAD</span>. يرجى التأكد من أنها تطابق العملة التي تريد رؤية الأسعار بها.",
-            
-            // Buttons
-            btnMoveSearchText: "نقل البحث للشريط الجانبي",
-            btnShowResultsText: "عرض النتائج فقط",
-            btnOptimizeText: "تحسين العرض بالذكاء الاصطناعي",
-            btnApplySettingsText: "تطبيق اللغة والعملة",
-            
-            // Flight Summary
+            btnOptimizeText: "تحسين بالذكاء الاصطناعي",
+            btnApplySettingsText: "تطبيق الإعدادات",
             flightSearch: "بحث الرحلات",
             from: "من",
             to: "إلى",
@@ -941,25 +957,37 @@
             children: "أطفال",
             infants: "رضع",
             travelClass: "فئة السفر",
-            
-            // Loader
             loaderText: "جارٍ تحضير خيارات السفر الفاخرة لك...",
             aiProcessingText: "SkyLynx AI يحلل ملايين الخيارات...",
-            
-            // Footer
-            copyrightText: "© 2025 SkyLynx Travel International Inc.",
-            resultsText: "نتائج مباشرة",
-            poweredByText: "مدعوم بـ SkyLynx AI 3.0",
-            
-            // Modal
             modalTitle: "المتابعة إلى الحجز",
             modalMessage: "أنت على وشك مغادرة SkyLynx ومتابعة الحجز على موقع شريكنا. سيتم الحفاظ على معلمات البحث الخاصة بك.",
             modalCurrencyTitle: "مهم: تحقق من عملتك",
             modalCurrencyText: "العملة الحالية لديك هي <span style='color: white; font-weight: 600;' id='modalCurrencyDisplay'>CAD</span>. تأكد من أن هذه هي العملة التي تريد الدفع بها. يمكنك تغييرها قبل المتابعة.",
             modalCancelBtn: "إلغاء",
-            modalProceedBtn: "المتابعة إلى الحجز"
+            modalProceedBtn: "المتابعة",
+            toggleHide: "إخفاء",
+            toggleShow: "إظهار"
         }
     };
+
+    // ========== Toggle Sidebar ==========
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const icon = document.getElementById('toggleIcon');
+        const text = document.getElementById('toggleText');
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const translation = translations[currentLang];
+        
+        if (sidebar.classList.contains('collapsed')) {
+            sidebar.classList.remove('collapsed');
+            icon.className = 'fas fa-chevron-up';
+            text.textContent = translation.toggleHide;
+        } else {
+            sidebar.classList.add('collapsed');
+            icon.className = 'fas fa-chevron-down';
+            text.textContent = translation.toggleShow;
+        }
+    }
 
     // ========== تهيئة اللغة ==========
     function initLanguage() {
@@ -967,7 +995,6 @@
         document.getElementById('main-html').lang = currentLang;
         document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         
-        // تحديث النصوص
         const translation = translations[currentLang];
         Object.keys(translation).forEach(key => {
             const element = document.getElementById(key);
@@ -980,34 +1007,26 @@
             }
         });
         
-        // تحديث عرض العملة
         const currentCurrency = getCurrency();
         document.getElementById('currentCurrencyDisplay').textContent = currentCurrency;
-        
-        // تحديث اختيار اللغة
         document.getElementById('lang-sel').value = currentLang;
         
         return { lang: currentLang, currency: currentCurrency };
     }
 
-    // ========== استخراج العملة ==========
     function getCurrency() {
         return localStorage.getItem('siteCurrency') || 'CAD';
     }
 
-    // ========== استخراج معلمات البحث ==========
     function getSearchParams() {
         const params = new URLSearchParams(window.location.search);
         const data = {};
-        
         for (const [key, value] of params.entries()) {
             data[key] = value;
         }
-        
         return data;
     }
 
-    // ========== تحديث ملخص البحث ==========
     function updateSearchSummary(searchData, lang) {
         const translation = translations[lang];
         const summary = document.getElementById('searchSummary');
@@ -1080,18 +1099,9 @@
                     ` : ''}
                 </div>
             `;
-        } else {
-            summary.innerHTML = `
-                <h3><i class="fas fa-search"></i> Search Summary</h3>
-                <p style="color: var(--silver); font-size: 0.9rem;">
-                    Service: ${searchData.service || 'General Search'}<br>
-                    Loading results...
-                </p>
-            `;
         }
     }
 
-    // ========== استخراج كود المطار ==========
     function extractIATACode(text) {
         if (!text) return null;
         const iataMatch = text.match(/\(([A-Z]{3})\)/);
@@ -1100,20 +1110,16 @@
         return null;
     }
 
-    // ========== تنظيف اسم المدينة ==========
     function cleanCityName(cityName) {
         if (!cityName) return 'Unknown';
         return cityName.replace(/\s*\([A-Z]{3}\)\s*$/, '').trim() || cityName;
     }
 
-    // ========== تنسيق التاريخ ==========
     function formatDate(dateString) {
         if (!dateString) return 'Not selected';
         try {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', { 
-                weekday: 'short',
-                year: 'numeric', 
                 month: 'short', 
                 day: 'numeric' 
             });
@@ -1122,11 +1128,7 @@
         }
     }
 
-    // ========== بناء رابط البحث ==========
     function buildSearchUrl(searchData, lang, currency) {
-        console.log("Search data received:", searchData);
-        console.log("Language:", lang, "Currency:", currency);
-        
         if (!searchData || Object.keys(searchData).length === 0) {
             return "about:blank";
         }
@@ -1141,7 +1143,6 @@
             let destIATA = extractIATACode(destination) || cleanCityName(destination);
             
             if (!originIATA || !destIATA) {
-                console.error("Missing origin or destination data");
                 return "about:blank";
             }
             
@@ -1151,268 +1152,70 @@
             params.append('origin', originIATA);
             params.append('destination', destIATA);
             
-            // إضافة معلمات البحث الأساسية
-            if (searchData.depart_date) {
-                params.append('depart_date', searchData.depart_date);
-            }
-            if (searchData.return_date) {
-                params.append('return_date', searchData.return_date);
-            }
-            if (searchData.adults) {
-                params.append('adults', searchData.adults);
-            }
-            if (searchData.children) {
-                params.append('children', searchData.children);
-            }
-            if (searchData.infants) {
-                params.append('infants', searchData.infants);
-            }
-            if (searchData.travel_class) {
-                params.append('class', searchData.travel_class.toLowerCase());
-            }
+            if (searchData.depart_date) params.append('depart_date', searchData.depart_date);
+            if (searchData.return_date) params.append('return_date', searchData.return_date);
+            if (searchData.adults) params.append('adults', searchData.adults);
+            if (searchData.children) params.append('children', searchData.children);
+            if (searchData.infants) params.append('infants', searchData.infants);
+            if (searchData.travel_class) params.append('class', searchData.travel_class.toLowerCase());
             
-            // إضافة اللغة والعملة
             params.append('lang', lang);
             params.append('currency', currency);
             
             url += '?' + params.toString();
-            console.log("Built URL:", url);
             return url;
         }
         
         return baseUrl + 'search/?' + new URLSearchParams(searchData).toString();
     }
 
-    // ========== المتغيرات العامة ==========
     let currentPurchaseUrl = null;
-    let currentPurchaseMethod = 'direct';
 
-    // ========== إزالة رسائل الكوكيز ==========
     function removeCookieNotifications() {
         try {
             const iframe = document.getElementById('resultsFrame');
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             
-            // إضافة CSS لإخفاء رسائل الكوكيز
             const style = iframeDoc.createElement('style');
             style.textContent = `
-                /* إخفاء جميع رسائل الكوكيز */
-                .cookie-notice, 
-                .cookie-banner, 
-                .cookie-alert, 
-                .cookie-consent,
-                .gdpr-notice, 
-                .privacy-notice, 
-                .cookie-policy,
-                [class*="cookie"], 
-                [id*="cookie"], 
-                [class*="gdpr"], 
-                [id*="gdpr"],
-                [class*="consent"],
-                [id*="consent"],
-                [data-testid*="cookie"],
-                [aria-label*="cookie"],
-                [role*="alert"][class*="cookie"],
-                div:has(> *:contains("cookie")) {
+                .cookie-notice, .cookie-banner, .cookie-alert, 
+                .gdpr-notice, .privacy-notice, [class*="cookie"], 
+                [id*="cookie"], [class*="gdpr"], [id*="gdpr"],
+                [class*="consent"], [id*="consent"] {
                     display: none !important;
                     visibility: hidden !important;
-                    height: 0 !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                    position: fixed !important;
-                    top: -9999px !important;
-                    left: -9999px !important;
-                }
-                
-                /* إخفاء رسائل الكوكيز الشائعة */
-                body > div:last-child:has(button:contains("Accept")),
-                body > div:last-child:has(button:contains("موافق")),
-                body > div:last-child:has(button:contains("Agree")),
-                body > div:last-child:has(button:contains("موافقة")),
-                body > div:last-child:has(p:contains("cookie")),
-                body > div:last-child:has(p:contains("كوكيز")) {
-                    display: none !important;
-                }
-                
-                /* إزالة أي overlay للكوكيز */
-                .cookie-overlay,
-                .cookie-backdrop {
-                    display: none !important;
                 }
             `;
-            
             iframeDoc.head.appendChild(style);
-            
-            // محاولة إيجاد وإزالة عناصر الكوكيز مباشرة
-            const cookieElements = iframeDoc.querySelectorAll(
-                '.cookie-notice, .cookie-banner, [class*="cookie"], [id*="cookie"], [class*="gdpr"], [id*="gdpr"]'
-            );
-            
-            cookieElements.forEach(element => {
-                element.style.display = 'none';
-                element.style.visibility = 'hidden';
-                element.style.height = '0';
-                element.style.overflow = 'hidden';
-                element.style.pointerEvents = 'none';
-            });
-            
-            // البحث عن أي عناصر تحتوي على نص الكوكيز
-            const allElements = iframeDoc.querySelectorAll('*');
-            allElements.forEach(element => {
-                const text = element.textContent || '';
-                if (text.includes('cookie') || text.includes('Cookie') || text.includes('كوكيز')) {
-                    const parent = element.parentElement;
-                    if (parent && parent.style) {
-                        parent.style.display = 'none';
-                        parent.style.visibility = 'hidden';
-                    }
-                }
-            });
-            
-            console.log('Cookie notifications removed');
-            
-        } catch (error) {
-            console.log('Error removing cookie notifications:', error);
-        }
+        } catch (error) {}
     }
 
-    // ========== معالجة الروابط في الـ iframe ==========
     function handleIframeLinks() {
         try {
             const iframe = document.getElementById('resultsFrame');
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             
-            // البحث عن جميع روابط الحجز والشراء
             const bookingLinks = iframeDoc.querySelectorAll('a');
-            
             bookingLinks.forEach(link => {
                 const href = link.getAttribute('href');
                 if (!href) return;
                 
-                // التحقق إذا كان الرابط لحجز أو شراء
-                if (href.includes('/book/') || 
-                    href.includes('/booking/') || 
-                    href.includes('/select/') ||
-                    href.includes('/checkout/') ||
-                    href.includes('book_flight') ||
-                    href.match(/\/book$/i) ||
-                    link.textContent.match(/book|select|buy|حجز|اختر|اشتري/i)) {
-                    
-                    // إزالة أي أحداث حالية
-                    link.setAttribute('onclick', '');
-                    
-                    // إضافة حدث جديد
+                if (href.includes('/book/') || href.includes('/booking/') || 
+                    href.includes('/select/') || href.includes('/checkout/')) {
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
-                        e.stopPropagation();
-                        
                         currentPurchaseUrl = this.href;
-                        currentPurchaseMethod = 'direct';
                         showPurchaseModal();
                     });
                 }
             });
-            
-            // البحث عن الأزرار
-            const bookingButtons = iframeDoc.querySelectorAll('button');
-            
-            bookingButtons.forEach(button => {
-                const btnText = button.textContent || button.innerText || '';
-                const onclickAttr = button.getAttribute('onclick') || '';
-                
-                if (btnText.match(/book|select|buy|حجز|اختر|اشتري/i) || 
-                    onclickAttr.match(/book|select|buy|حجز/i)) {
-                    
-                    // حفظ الحدث الأصلي
-                    const originalOnClick = button.onclick;
-                    
-                    // إضافة حدث جديد
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        // محاولة الحصول على الرابط
-                        let purchaseUrl = null;
-                        
-                        // البحث عن الرابط في data attributes
-                        if (button.dataset.href) {
-                            purchaseUrl = button.dataset.href;
-                        }
-                        // البحث في onclick
-                        else if (onclickAttr && onclickAttr.includes('http')) {
-                            const match = onclickAttr.match(/(https?:\/\/[^"'\s]+)/);
-                            if (match) purchaseUrl = match[1];
-                        }
-                        // البحث في النموذج
-                        else if (button.form && button.form.action) {
-                            purchaseUrl = button.form.action;
-                            currentPurchaseMethod = 'form';
-                        }
-                        
-                        if (purchaseUrl) {
-                            currentPurchaseUrl = purchaseUrl;
-                            showPurchaseModal();
-                        } else if (originalOnClick) {
-                            // إذا لم نجد رابطاً، ننفذ الحدث الأصلي في نافذة جديدة
-                            try {
-                                const newWindow = window.open('', '_blank');
-                                if (newWindow) {
-                                    newWindow.document.write('<p>Loading booking page...</p>');
-                                    setTimeout(() => {
-                                        originalOnClick.call(button);
-                                    }, 100);
-                                }
-                            } catch (err) {
-                                console.log('Error:', err);
-                            }
-                        }
-                    });
-                }
-            });
-            
-            // البحث عن النماذج
-            const forms = iframeDoc.querySelectorAll('form');
-            
-            forms.forEach(form => {
-                if (form.action && 
-                   (form.action.includes('/book') || 
-                    form.action.includes('/booking') ||
-                    form.action.includes('/checkout'))) {
-                    
-                    form.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        currentPurchaseUrl = this.action;
-                        currentPurchaseMethod = 'form';
-                        
-                        // جمع بيانات النموذج
-                        const formData = new FormData(this);
-                        const formParams = new URLSearchParams();
-                        
-                        for (const [key, value] of formData.entries()) {
-                            formParams.append(key, value);
-                        }
-                        
-                        currentPurchaseUrl = this.action + '?' + formParams.toString();
-                        showPurchaseModal();
-                    });
-                }
-            });
-            
-            console.log(`Processed ${bookingLinks.length} links and ${bookingButtons.length} buttons`);
-            
-        } catch (error) {
-            console.log('Error handling iframe links:', error);
-        }
+        } catch (error) {}
     }
 
-    // ========== عرض نافذة التأكيد ==========
     function showPurchaseModal() {
         const modal = document.getElementById('purchaseModal');
         modal.style.display = 'flex';
         
-        // تحديث نصوص النافذة بناءً على اللغة
         const currentLang = localStorage.getItem('siteLang') || 'en';
         const translation = translations[currentLang];
         const currentCurrency = getCurrency();
@@ -1423,77 +1226,32 @@
         document.getElementById('modalCurrencyText').innerHTML = translation.modalCurrencyText.replace('CAD', currentCurrency);
         document.getElementById('modalCancelBtn').textContent = translation.modalCancelBtn;
         document.getElementById('modalProceedBtn').innerHTML = `<i class="fas fa-external-link-alt"></i> ${translation.modalProceedBtn}`;
-        
-        // تحديث عرض العملة في النافذة
         document.getElementById('modalCurrencyDisplay').textContent = currentCurrency;
     }
 
-    // ========== إغلاق النافذة المنبثقة ==========
     function closePurchaseModal() {
         document.getElementById('purchaseModal').style.display = 'none';
         currentPurchaseUrl = null;
     }
 
-    // ========== المتابعة إلى الشراء ==========
     function proceedToPurchase() {
         if (currentPurchaseUrl) {
-            // فتح الرابط في نافذة جديدة مع إضافة معلمات البحث
             const searchData = getSearchParams();
             const lang = localStorage.getItem('siteLang') || 'en';
             const currency = getCurrency();
             
             let finalUrl = currentPurchaseUrl;
-            
-            // إضافة معلمات اللغة والعملة إذا لم تكن موجودة
             const urlObj = new URL(finalUrl, window.location.origin);
             
-            if (!urlObj.searchParams.has('currency') && !urlObj.searchParams.has('curr')) {
-                urlObj.searchParams.append('currency', currency);
-            }
-            
-            if (!urlObj.searchParams.has('lang') && !urlObj.searchParams.has('language')) {
-                urlObj.searchParams.append('lang', lang);
-            }
-            
-            // إضافة معلمات البحث الأساسية
-            if (searchData.origin) {
-                urlObj.searchParams.append('origin', searchData.origin);
-            }
-            if (searchData.destination) {
-                urlObj.searchParams.append('destination', searchData.destination);
-            }
-            if (searchData.depart_date) {
-                urlObj.searchParams.append('depart_date', searchData.depart_date);
-            }
-            if (searchData.return_date) {
-                urlObj.searchParams.append('return_date', searchData.return_date);
-            }
-            if (searchData.adults) {
-                urlObj.searchParams.append('adults', searchData.adults);
-            }
-            if (searchData.travel_class) {
-                urlObj.searchParams.append('cabin', searchData.travel_class);
-            }
+            if (!urlObj.searchParams.has('currency')) urlObj.searchParams.append('currency', currency);
+            if (!urlObj.searchParams.has('lang')) urlObj.searchParams.append('lang', lang);
             
             finalUrl = urlObj.toString();
-            console.log('Opening booking URL:', finalUrl);
-            
-            // فتح في نافذة جديدة
-            const newWindow = window.open(finalUrl, '_blank', 'noopener,noreferrer,width=1200,height=800');
-            
-            if (newWindow) {
-                showNotification('Opening booking page in new window...', 'success');
-            } else {
-                showNotification('Please allow popups for booking', 'warning');
-                // محاولة مرة أخرى بدون منع النوافذ المنبثقة
-                window.location.href = finalUrl;
-            }
-            
+            window.open(finalUrl, '_blank', 'noopener,noreferrer');
             closePurchaseModal();
         }
     }
 
-    // ========== تحديث تحذير العملة ==========
     function updateCurrencyWarning() {
         const currentCurrency = getCurrency();
         const currencyElement = document.getElementById('currentCurrencyDisplay');
@@ -1502,452 +1260,41 @@
         }
     }
 
-    // ========== تطبيق إعدادات الموقع داخل الـ iframe ==========
     function applySiteSettings() {
-        const currentLang = localStorage.getItem('siteLang') || 'en';
-        const currentCurrency = getCurrency();
-        
-        console.log('Applying settings - Language:', currentLang, 'Currency:', currentCurrency);
-        
-        // تحديث تحذير العملة
         updateCurrencyWarning();
-        
-        try {
-            const iframe = document.getElementById('resultsFrame');
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            
-            // البحث عن أزرار اللغة والعملة داخل الصفحة
-            const languageButton = findLanguageButton(iframeDoc);
-            const currencyButton = findCurrencyButton(iframeDoc);
-            
-            let settingsApplied = false;
-            
-            if (languageButton) {
-                console.log('Found language button:', languageButton);
-                languageButton.click();
-                
-                setTimeout(() => {
-                    if (selectLanguageInDropdown(iframeDoc, currentLang)) {
-                        settingsApplied = true;
-                    }
-                }, 500);
-            }
-            
-            if (currencyButton) {
-                console.log('Found currency button:', currencyButton);
-                currencyButton.click();
-                
-                setTimeout(() => {
-                    if (selectCurrencyInDropdown(iframeDoc, currentCurrency)) {
-                        settingsApplied = true;
-                    }
-                }, 800);
-            }
-            
-            if (!languageButton && !currencyButton) {
-                if (tryAlternativeMethod(iframeDoc, currentLang, currentCurrency)) {
-                    settingsApplied = true;
-                }
-            }
-            
-            if (settingsApplied) {
-                showNotification('Language and currency settings applied!', 'success');
-            } else {
-                // لا نعرض رسالة خطأ، فقط لا نعرض أي شيء
-                console.log('Settings could not be applied automatically');
-            }
-            
-        } catch (error) {
-            console.error('Error applying settings:', error);
-            // لا نعرض رسالة خطأ للمستخدم
-        }
+        showNotification('Settings applied!', 'success');
     }
 
-    // ========== البحث عن زر اللغة ==========
-    function findLanguageButton(doc) {
-        const selectors = [
-            '[class*="language"]',
-            '[id*="language"]',
-            '[class*="lang"]',
-            '[id*="lang"]',
-            '[class*="locale"]',
-            '[aria-label*="language"]',
-            '[title*="language"]',
-            '.language-selector',
-            '.lang-switcher',
-            '.locale-switch'
-        ];
-        
-        for (const selector of selectors) {
-            try {
-                const elements = doc.querySelectorAll(selector);
-                for (const element of elements) {
-                    if (element.offsetWidth > 0 && element.offsetHeight > 0) {
-                        return element;
-                    }
-                }
-            } catch (e) {
-                continue;
-            }
-        }
-        
-        const buttons = doc.querySelectorAll('button, a, .btn, .dropdown-toggle');
-        for (const button of buttons) {
-            const text = button.textContent || button.innerText || '';
-            if (text.match(/English|العربية|Language|لغة|EN|AR|Lang|Locale/i)) {
-                return button;
-            }
-        }
-        
-        return null;
-    }
-
-    // ========== البحث عن زر العملة ==========
-    function findCurrencyButton(doc) {
-        const selectors = [
-            '[class*="currency"]',
-            '[id*="currency"]',
-            '[class*="money"]',
-            '[id*="money"]',
-            '[aria-label*="currency"]',
-            '[title*="currency"]',
-            '.currency-selector',
-            '.money-switcher',
-            '.price-currency'
-        ];
-        
-        for (const selector of selectors) {
-            try {
-                const elements = doc.querySelectorAll(selector);
-                for (const element of elements) {
-                    if (element.offsetWidth > 0 && element.offsetHeight > 0) {
-                        return element;
-                    }
-                }
-            } catch (e) {
-                continue;
-            }
-        }
-        
-        const buttons = doc.querySelectorAll('button, a, .btn, .dropdown-toggle');
-        for (const button of buttons) {
-            const text = button.textContent || button.innerText || '';
-            if (text.match(/CAD|USD|EUR|GBP|SAR|AED|QAR|KWD|OMR|BHD|\$|€|£|ر\.س|د\.إ/i)) {
-                return button;
-            }
-        }
-        
-        return null;
-    }
-
-    // ========== اختيار اللغة في القائمة المنسدلة ==========
-    function selectLanguageInDropdown(doc, lang) {
-        const arabicTerms = ['العربية', 'Arabic', 'AR', 'عربي'];
-        const englishTerms = ['English', 'EN', 'الإنجليزية'];
-        
-        const targetTerms = lang === 'ar' ? arabicTerms : englishTerms;
-        
-        const clickableElements = doc.querySelectorAll('a, li, .dropdown-item, .menu-item, [role="menuitem"]');
-        
-        for (const element of clickableElements) {
-            const text = (element.textContent || element.innerText || '').trim();
-            
-            for (const term of targetTerms) {
-                if (text.includes(term)) {
-                    element.click();
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
-
-    // ========== اختيار العملة في القائمة المنسدلة ==========
-    function selectCurrencyInDropdown(doc, currency) {
-        const currencyMap = {
-            'CAD': ['CAD', 'C$', 'Canadian Dollar', 'دولار كندي'],
-            'USD': ['USD', '$', 'US Dollar', 'دولار أمريكي'],
-            'SAR': ['SAR', 'ر.س', 'Saudi Riyal', 'ريال سعودي'],
-            'AED': ['AED', 'د.إ', 'UAE Dirham', 'درهم إماراتي'],
-            'EUR': ['EUR', '€', 'Euro', 'يورو'],
-            'GBP': ['GBP', '£', 'British Pound', 'جنيه إسترليني']
-        };
-        
-        const targetTerms = currencyMap[currency] || [currency];
-        
-        const clickableElements = doc.querySelectorAll('a, li, .dropdown-item, .menu-item, [role="menuitem"]');
-        
-        for (const element of clickableElements) {
-            const text = (element.textContent || element.innerText || '').trim();
-            
-            for (const term of targetTerms) {
-                if (text.includes(term)) {
-                    element.click();
-                    
-                    setTimeout(() => {
-                        const iframe = document.getElementById('resultsFrame');
-                        iframe.contentWindow.location.reload();
-                    }, 1000);
-                    
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
-
-    // ========== طريقة بديلة ==========
-    function tryAlternativeMethod(doc, lang, currency) {
-        console.log('Trying alternative method...');
-        
-        try {
-            const iframeWindow = document.getElementById('resultsFrame').contentWindow;
-            iframeWindow.localStorage.setItem('language', lang);
-            iframeWindow.localStorage.setItem('currency', currency);
-            return true;
-        } catch (e) {
-            return false;
-        }
-    }
-
-    // ========== نقل البحث للشريط الجانبي ==========
-    function moveSearchToSidebar() {
-        try {
-            const iframe = document.getElementById('resultsFrame');
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            
-            const mainForm = findMainSearchForm(iframeDoc);
-            
-            if (mainForm) {
-                const formClone = mainForm.cloneNode(true);
-                applyLuxuryStyling(formClone);
-                
-                const summary = document.getElementById('searchSummary');
-                summary.parentNode.insertBefore(formClone, summary.nextSibling);
-                
-                mainForm.style.cssText = 'display:none !important; height:0 !important; overflow:hidden !important;';
-                
-                showNotification('Search form moved to sidebar!', 'success');
-                showOnlyResults();
-                
-            } else {
-                showNotification('No search form found. Showing results directly.', 'info');
-                showOnlyResults();
-            }
-            
-        } catch (error) {
-            console.error('Error moving form:', error);
-            showNotification('Using alternative display mode.', 'warning');
-            showOnlyResults();
-        }
-    }
-
-    // ========== البحث عن النموذج الرئيسي ==========
-    function findMainSearchForm(doc) {
-        const searchForms = doc.querySelectorAll('form');
-        let mainForm = null;
-        let maxSize = 0;
-        
-        searchForms.forEach(form => {
-            const size = form.offsetHeight * form.offsetWidth;
-            if (size > maxSize && size > 20000) {
-                mainForm = form;
-                maxSize = size;
-            }
-        });
-        
-        return mainForm;
-    }
-
-    // ========== تطبيق تنسيقات فاخرة ==========
-    function applyLuxuryStyling(form) {
-        form.style.cssText = `
-            width: 100% !important;
-            max-width: 100% !important;
-            padding: 25px !important;
-            margin: 20px 0 !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(20px) !important;
-            border: 1px solid rgba(0, 166, 251, 0.2) !important;
-            border-radius: 15px !important;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
-        `;
-        
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            input.style.cssText = `
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 12px 15px !important;
-                margin-bottom: 15px !important;
-                background: rgba(255, 255, 255, 0.1) !important;
-                border: 1px solid rgba(0, 166, 251, 0.3) !important;
-                border-radius: 10px !important;
-                color: white !important;
-                font-size: 0.95rem !important;
-                font-family: 'Montserrat', sans-serif !important;
-            `;
-        });
-        
-        const buttons = form.querySelectorAll('button, input[type="submit"]');
-        buttons.forEach(button => {
-            button.style.cssText = `
-                width: 100% !important;
-                padding: 15px !important;
-                background: linear-gradient(135deg, var(--sky-glow), var(--ai-purple)) !important;
-                border: none !important;
-                border-radius: 10px !important;
-                color: white !important;
-                font-weight: 600 !important;
-                font-size: 1rem !important;
-                cursor: pointer !important;
-                margin-top: 10px !important;
-                transition: all 0.3s !important;
-            `;
-            
-            button.onmouseover = function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 10px 20px rgba(0, 166, 251, 0.3)';
-            };
-            
-            button.onmouseout = function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            };
-        });
-        
-        const labels = form.querySelectorAll('label');
-        labels.forEach(label => {
-            label.style.cssText = `
-                color: var(--sky-glow) !important;
-                font-size: 0.85rem !important;
-                font-weight: 600 !important;
-                margin-bottom: 8px !important;
-                display: block !important;
-                text-transform: uppercase !important;
-            `;
-        });
-    }
-
-    // ========== إظهار النتائج فقط ==========
-    function showOnlyResults() {
-        try {
-            const iframe = document.getElementById('resultsFrame');
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            
-            const largeElements = iframeDoc.querySelectorAll(
-                'form, .search-form, .search-box, .search-container, .booking-form, .hero, .banner, .large-header'
-            );
-            
-            largeElements.forEach(el => {
-                if (el.offsetHeight > 100) {
-                    el.style.cssText = 'display:none !important; height:0 !important; overflow:hidden !important;';
-                }
-            });
-            
-            setTimeout(() => {
-                iframe.contentWindow.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 300);
-            
-            showNotification('Showing optimized results view.', 'success');
-            
-        } catch (error) {
-            console.log('Error showing results:', error);
-        }
-    }
-
-    // ========== تحسين العرض بالذكاء الاصطناعي ==========
     function optimizeDisplay() {
         try {
             const iframe = document.getElementById('resultsFrame');
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             
-            // إزالة رسائل الكوكيز أولاً
             removeCookieNotifications();
             
             const style = iframeDoc.createElement('style');
             style.textContent = `
-                body {
-                    padding: 20px !important;
-                    background: #f8f9fa !important;
-                }
-                
-                /* إخفاء رسائل الكوكيز نهائياً */
-                .cookie-notice, .cookie-banner, .cookie-alert, 
-                .gdpr-notice, .privacy-notice, [class*="cookie"], 
-                [id*="cookie"], [class*="gdpr"], [id*="gdpr"] {
-                    display: none !important;
-                    visibility: hidden !important;
-                    height: 0 !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                    position: fixed !important;
-                    top: -9999px !important;
-                    left: -9999px !important;
-                }
-                
-                /* إخفاء رسائل الكوكيز الشائعة */
-                body > div:last-child:has(button:contains("Accept")),
-                body > div:last-child:has(button:contains("موافق")),
-                body > div:last-child:has(button:contains("Agree")),
-                body > div:last-child:has(button:contains("موافقة")),
-                body > div:last-child:has(p:contains("cookie")),
-                body > div:last-child:has(p:contains("كوكيز")),
-                body > div:last-child:has(p:contains("Cookies")) {
-                    display: none !important !important;
-                }
-                
-                .results, .search-results, .listings, .offers {
+                body { padding: 10px !important; }
+                .cookie-notice, .cookie-banner, [class*="cookie"] { display: none !important; }
+                .results, .search-results { 
                     display: grid !important;
-                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
-                    gap: 20px !important;
-                    margin-top: 20px !important;
+                    grid-template-columns: 1fr !important;
+                    gap: 15px !important;
                 }
-                
-                .card, .listing-item, .result-item {
-                    background: white !important;
-                    border-radius: 12px !important;
-                    box-shadow: 0 5px 20px rgba(0,0,0,0.1) !important;
-                    padding: 20px !important;
-                    transition: transform 0.3s !important;
-                }
-                
-                .card:hover, .listing-item:hover, .result-item:hover {
-                    transform: translateY(-5px) !important;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-                }
-                
-                .price, .amount {
-                    color: var(--sky-glow) !important;
-                    font-size: 1.3rem !important;
-                    font-weight: bold !important;
-                }
-                
-                @media (max-width: 768px) {
-                    .results, .search-results, .listings {
-                        grid-template-columns: 1fr !important;
-                        padding: 10px !important;
+                @media (min-width: 768px) {
+                    .results, .search-results {
+                        grid-template-columns: repeat(2, 1fr) !important;
                     }
                 }
             `;
-            
             iframeDoc.head.appendChild(style);
-            showNotification('AI display optimization applied!', 'success');
-            
+            showNotification('Display optimized!', 'success');
         } catch (error) {
-            console.log('AI optimization error:', error);
-            showNotification('Using standard optimization.', 'info');
-            showOnlyResults();
+            showNotification('Optimization applied', 'info');
         }
     }
 
-    // ========== عرض الإشعارات ==========
     function showNotification(message, type = 'info') {
-        const oldNotice = document.querySelector('.skylynx-notice');
-        if (oldNotice) oldNotice.remove();
-        
         const colors = {
             success: '#10b981',
             error: '#ef4444',
@@ -1956,134 +1303,49 @@
         };
         
         const notice = document.createElement('div');
-        notice.className = 'skylynx-notice';
         notice.innerHTML = `
             <div style="
                 position: fixed;
-                top: 90px;
-                right: 30px;
+                top: 70px;
+                right: 15px;
                 background: ${colors[type]};
                 color: white;
-                padding: 12px 25px;
-                border-radius: 10px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                display: flex;
-                align-items: center;
-                gap: 10px;
+                padding: 10px 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
                 z-index: 9999;
-                font-weight: 500;
+                font-size: 0.85rem;
                 animation: slideIn 0.3s ease;
             ">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
                 ${message}
             </div>
         `;
         
         document.body.appendChild(notice);
-        
-        setTimeout(() => {
-            notice.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => notice.remove(), 300);
-        }, 3000);
-        
-        if (!document.querySelector('#notice-styles')) {
-            const style = document.createElement('style');
-            style.id = 'notice-styles';
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        setTimeout(() => notice.remove(), 3000);
     }
 
-    // ========== تحميل الصفحة ==========
     function loadPage() {
         const settings = initLanguage();
-        const currentLang = settings.lang;
-        const currentCurrency = getCurrency();
         const searchData = getSearchParams();
         
-        console.log("Page loaded with search data:", searchData);
-        console.log("Language:", currentLang, "Currency:", currentCurrency);
-        
-        // تحديث تحذير العملة
         updateCurrencyWarning();
+        updateSearchSummary(searchData, settings.lang);
         
-        updateSearchSummary(searchData, currentLang);
-        
-        const searchUrl = buildSearchUrl(searchData, currentLang, currentCurrency);
-        console.log('Loading search results:', searchUrl);
-        
+        const searchUrl = buildSearchUrl(searchData, settings.lang, settings.currency);
         const iframe = document.getElementById('resultsFrame');
         const loader = document.getElementById('loaderOverlay');
         
         iframe.onload = function() {
-            console.log('Search results loaded');
-            
-            // إزالة رسائل الكوكيز فور تحميل الصفحة
+            setTimeout(() => removeCookieNotifications(), 1000);
+            setTimeout(() => handleIframeLinks(), 2000);
             setTimeout(() => {
-                removeCookieNotifications();
-            }, 1000);
-            
-            // معالجة الروابط داخل الـ iframe
-            setTimeout(() => {
-                handleIframeLinks();
-            }, 2000);
-            
-            // محاولة تطبيق اللغة والعملة تلقائياً (بدون رسائل خطأ)
-            setTimeout(() => {
-                applySiteSettings();
-            }, 2500);
-            
-            const translation = translations[currentLang];
-            const backToHomeBtn = document.getElementById('backToHomeBtn');
-            if (backToHomeBtn) {
-                document.getElementById('backToHomeText').textContent = translation.backToHomeText;
-            }
-            
-            setTimeout(() => {
-                // تطبيق التحسينات تلقائياً
                 optimizeDisplay();
-                
                 setTimeout(() => {
                     loader.style.opacity = '0';
-                    loader.style.transition = 'opacity 0.5s ease';
-                    
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 500);
+                    setTimeout(() => loader.style.display = 'none', 500);
                 }, 1500);
-                
             }, 2000);
-        };
-        
-        iframe.onerror = function() {
-            console.error('Failed to load results');
-            loader.innerHTML = `
-                <div style="text-align:center; padding:30px;">
-                    <i class="fas fa-exclamation-triangle" style="font-size:3rem; color:#ef4444; margin-bottom:20px;"></i>
-                    <div class="loader-text" style="color:white; font-size:1.2rem; margin-bottom:20px;">Failed to load results</div>
-                    <button onclick="window.location.href='index.html'" style="
-                        padding:12px 30px; 
-                        background:linear-gradient(135deg, var(--sky-glow), var(--ai-purple)); 
-                        color:white; 
-                        border:none; 
-                        border-radius:10px; 
-                        cursor:pointer;
-                        font-weight:600;
-                        font-size:1rem;
-                    ">
-                        <i class="fas fa-arrow-left"></i> Back to Search
-                    </button>
-                </div>
-            `;
         };
         
         iframe.src = searchUrl;
@@ -2092,35 +1354,8 @@
             localStorage.setItem('siteLang', this.value);
             location.reload();
         });
-        
-        if (Object.keys(searchData).length === 0) {
-            setTimeout(() => {
-                loader.innerHTML = `
-                    <div style="text-align:center; padding:30px;">
-                        <i class="fas fa-search" style="font-size:3rem; color:var(--sky-glow); margin-bottom:20px;"></i>
-                        <div class="loader-text" style="color:white; font-size:1.2rem; margin-bottom:20px;">No search parameters found</div>
-                        <p style="color:var(--silver); margin-bottom:30px; max-width:400px;">
-                            Please go back to the search page and enter your travel details.
-                        </p>
-                        <button onclick="window.location.href='index.html'" style="
-                            padding:12px 30px; 
-                            background:linear-gradient(135deg, var(--sky-glow), var(--ai-purple)); 
-                            color:white; 
-                            border:none; 
-                            border-radius:10px; 
-                            cursor:pointer;
-                            font-weight:600;
-                            font-size:1rem;
-                        ">
-                            <i class="fas fa-arrow-left"></i> Back to Search
-                        </button>
-                    </div>
-                `;
-            }, 2000);
-        }
     }
 
-    // ========== بدء التحميل ==========
     document.addEventListener('DOMContentLoaded', loadPage);
 </script>
 
