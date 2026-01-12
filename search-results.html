@@ -3,7 +3,7 @@
 <html lang="en" id="main-html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results | SkyLynx Travel | AI-Powered Luxury Travel Platform</title>
 
 ```
@@ -614,14 +614,14 @@
         
         .sidebar {
             width: 100%;
-            max-height: 40vh;
+            max-height: 50px;
             border-right: none;
             border-bottom: 1px solid rgba(0, 166, 251, 0.2);
             transition: max-height 0.3s ease;
         }
         
-        .sidebar.collapsed {
-            max-height: 50px;
+        .sidebar.expanded {
+            max-height: 80vh;
         }
         
         .sidebar-header {
@@ -629,33 +629,48 @@
             padding: 12px 15px;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 166, 251, 0.2);
             position: relative;
             z-index: 2;
-            background: rgba(0, 17, 28, 0.8);
+            background: rgba(0, 17, 28, 0.95);
+            cursor: pointer;
+        }
+        
+        .sidebar-title-mobile {
+            font-size: 1rem;
+            color: var(--sky-glow);
+            font-family: 'Cinzel', serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            border: none;
         }
         
         .sidebar-toggle {
-            background: rgba(0, 166, 251, 0.2);
-            border: 1px solid rgba(0, 166, 251, 0.3);
+            background: none;
+            border: none;
             color: var(--sky-glow);
-            padding: 6px 12px;
-            border-radius: 6px;
+            font-size: 1.2rem;
             cursor: pointer;
-            font-size: 0.85rem;
+            transition: transform 0.3s;
+            padding: 0;
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: all 0.3s;
+        }
+        
+        .sidebar.expanded .sidebar-toggle i {
+            transform: rotate(180deg);
         }
         
         .sidebar-content {
             padding: 15px;
+            max-height: calc(80vh - 50px);
+            overflow-y: auto;
         }
         
         .sidebar-title {
-            font-size: 1rem;
-            margin-bottom: 15px;
+            display: none;
         }
         
         .search-summary {
@@ -861,14 +876,13 @@
 <div class="main-container">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2 style="margin: 0; padding: 0; border: none; font-size: 1rem; color: var(--sky-glow); font-family: 'Cinzel', serif;">
+        <div class="sidebar-header" onclick="toggleSidebar()">
+            <h2 class="sidebar-title-mobile">
                 <i class="fas fa-search-location"></i>
                 <span id="sidebarTitleMobile">Search Details</span>
             </h2>
-            <button class="sidebar-toggle" onclick="toggleSidebar()">
-                <i class="fas fa-chevron-up" id="toggleIcon"></i>
-                <span id="toggleText">Hide</span>
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-down"></i>
             </button>
         </div>
 
@@ -999,9 +1013,7 @@
             modalCurrencyTitle: "IMPORTANT: Check Your Currency",
             modalCurrencyText: "Your current currency is set to <span style='color: white; font-weight: 600;' id='modalCurrencyDisplay'>CAD</span>. Make sure this is the currency you want to pay in. You can change it before proceeding.",
             modalCancelBtn: "Cancel",
-            modalProceedBtn: "Continue to Booking",
-            toggleHide: "Hide",
-            toggleShow: "Show"
+            modalProceedBtn: "Continue to Booking"
         },
         ar: {
             aiPowered: "مدعوم بالذكاء الاصطناعي",
@@ -1029,28 +1041,12 @@
             modalCurrencyTitle: "مهم: تحقق من عملتك",
             modalCurrencyText: "العملة الحالية لديك هي <span style='color: white; font-weight: 600;' id='modalCurrencyDisplay'>CAD</span>. تأكد من أن هذه هي العملة التي تريد الدفع بها. يمكنك تغييرها قبل المتابعة.",
             modalCancelBtn: "إلغاء",
-            modalProceedBtn: "المتابعة إلى الحجز",
-            toggleHide: "إخفاء",
-            toggleShow: "إظهار"
+            modalProceedBtn: "المتابعة إلى الحجز"
         }
     };
 
     function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const icon = document.getElementById('toggleIcon');
-        const text = document.getElementById('toggleText');
-        const currentLang = localStorage.getItem('siteLang') || 'en';
-        const translation = translations[currentLang];
-        
-        if (sidebar.classList.contains('collapsed')) {
-            sidebar.classList.remove('collapsed');
-            icon.className = 'fas fa-chevron-up';
-            text.textContent = translation.toggleHide;
-        } else {
-            sidebar.classList.add('collapsed');
-            icon.className = 'fas fa-chevron-down';
-            text.textContent = translation.toggleShow;
-        }
+        document.getElementById('sidebar').classList.toggle('expanded');
     }
 
     function initLanguage() {
@@ -1071,7 +1067,7 @@
         });
         
         const currentCurrency = getCurrency();
-        const displays = document.querySelectorAll('#currentCurrencyDisplay');
+        const displays = document.querySelectorAll('#currentCurrencyDisplay, #modalCurrencyDisplay');
         displays.forEach(el => el.textContent = currentCurrency);
         
         document.getElementById('lang-sel').value = currentLang;
@@ -1322,7 +1318,7 @@
 
     function updateCurrencyWarning() {
         const currentCurrency = getCurrency();
-        const displays = document.querySelectorAll('#currentCurrencyDisplay');
+        const displays = document.querySelectorAll('#currentCurrencyDisplay, #modalCurrencyDisplay');
         displays.forEach(el => el.textContent = currentCurrency);
     }
 
