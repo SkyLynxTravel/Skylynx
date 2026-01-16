@@ -559,97 +559,6 @@
             transform: translateY(-2px);
         }
         
-        /* ========== NOTIFICATION STYLES ========== */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--warning);
-            border-radius: 8px;
-            padding: 15px 20px;
-            min-width: 300px;
-            max-width: 400px;
-            z-index: 9999;
-            transform: translateX(400px);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        
-        .notification-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .notification-title {
-            color: var(--warning);
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .close-notification {
-            background: none;
-            border: none;
-            color: var(--silver);
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .close-notification:hover {
-            opacity: 1;
-            color: var(--sky-glow);
-        }
-        
-        .notification-body {
-            font-size: 0.85rem;
-            color: var(--silver);
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-        
-        .notification-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .notification-btn {
-            padding: 6px 15px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            border: none;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .notification-btn.primary {
-            background: var(--sky-glow);
-            color: white;
-        }
-        
-        .notification-btn.secondary {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--silver);
-        }
-        
         /* ========== LOADING & EMPTY STATES ========== */
         .loading-indicator {
             display: flex;
@@ -729,13 +638,6 @@
             .book-btn {
                 width: 100%;
                 justify-content: center;
-            }
-            
-            .notification {
-                left: 20px;
-                right: 20px;
-                max-width: none;
-                min-width: auto;
             }
         }
     </style>
@@ -947,9 +849,6 @@ const langData = {
         shortest: "Shortest Duration",
         bestValue: "Best Value",
         clear: "Clear",
-        currencyWarning: "Currency Notice",
-        currencyMessage: "Expedia may display prices in USD. You can change the currency on their website before payment.",
-        proceedAnyway: "Proceed Anyway",
         redirecting: "Redirecting to Expedia...",
         bookingInProgress: "Booking in progress..."
     },
@@ -998,9 +897,6 @@ const langData = {
         shortest: "أقصر مدة",
         bestValue: "أفضل قيمة",
         clear: "مسح",
-        currencyWarning: "تنبيه العملة",
-        currencyMessage: "قد تعرض إكسبيديا الأسعار بالدولار الأمريكي. يمكنك تغيير العملة على موقعهم الإلكتروني قبل الدفع.",
-        proceedAnyway: "المتابعة على أي حال",
         redirecting: "جاري التوجيه إلى إكسبيديا...",
         bookingInProgress: "جاري إتمام الحجز..."
     }
@@ -1601,14 +1497,14 @@ function loadAIRecommendations() {
     `).join('');
 }
 
-// ========== وظيفة الحجز مع رسالة تنبيه ==========
+// ========== وظائف الحجز المحسنة ==========
 function bookFlight(flightId, button) {
     const flight = allFlights.find(f => f.id === flightId);
     if (!flight) return;
     
     const lang = langData[currentLang];
     
-    // حفظ بيانات الحجز
+    // حفظ بيانات الحجز في localStorage
     const bookingData = {
         flight: flight,
         searchData: searchData,
@@ -1618,139 +1514,38 @@ function bookFlight(flightId, button) {
     
     localStorage.setItem('bookingData', JSON.stringify(bookingData));
     
-    // عرض رسالة تنبيه العملة
-    showCurrencyNotification(flight);
-    
-    // إعادة تعيين الزر بعد ثانية (للشكل فقط)
+    // عرض رسالة تأكيد
     if (button) {
-        setTimeout(() => {
-            button.disabled = false;
-        }, 1000);
-    }
-}
-
-// ========== عرض رسالة تنبيه العملة ==========
-function showCurrencyNotification(flight) {
-    const lang = langData[currentLang];
-    
-    // إزالة أي إشعارات سابقة
-    const existingNotification = document.getElementById('currencyNotification');
-    if (existingNotification) {
-        existingNotification.remove();
+        const originalText = button.innerHTML;
+        button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${lang.redirecting}`;
+        button.disabled = true;
+        
+        // إظهار مؤشر التحميل
+        showBookingLoader();
     }
     
-    // إنشاء الإشعار
-    const notification = document.createElement('div');
-    notification.id = 'currencyNotification';
-    notification.className = 'notification';
-    
-    notification.innerHTML = `
-        <div class="notification-header">
-            <div class="notification-title">
-                <i class="fas fa-exclamation-triangle"></i>
-                ${lang.currencyWarning}
-            </div>
-            <button class="close-notification" onclick="hideNotification()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="notification-body">
-            ${lang.currencyMessage}<br><br>
-            <small style="opacity: 0.7;">
-                <i class="fas fa-info-circle"></i>
-                ${currentLang === 'ar' 
-                    ? 'الأسعار الظاهرة هنا هي بالـ ' + currentCurrency 
-                    : 'Prices shown here are in ' + currentCurrency}
-            </small>
-        </div>
-        <div class="notification-footer">
-            <button class="notification-btn secondary" onclick="hideNotification()">
-                ${currentLang === 'ar' ? 'إلغاء' : 'Cancel'}
-            </button>
-            <button class="notification-btn primary" onclick="proceedToExpedia('${flight.id}')">
-                <i class="fas fa-external-link-alt"></i>
-                ${lang.proceedAnyway}
-            </button>
-        </div>
-    `;
-    
-    // إضافة الإشعار إلى الصفحة
-    document.body.appendChild(notification);
-    
-    // إظهار الإشعار بتحريك سلس
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 10);
-    
-    // إغلاق الإشعار تلقائياً بعد 10 ثوان
-    setTimeout(() => {
-        if (document.body.contains(notification)) {
-            hideNotification();
-        }
-    }, 10000);
-}
-
-// ========== إخفاء الإشعار ==========
-function hideNotification() {
-    const notification = document.getElementById('currencyNotification');
-    if (notification) {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                notification.remove();
-            }
-        }, 500);
-    }
-}
-
-// ========== المتابعة إلى Expedia ==========
-function proceedToExpedia(flightId) {
-    const flight = allFlights.find(f => f.id === flightId);
-    if (!flight) return;
-    
-    const lang = langData[currentLang];
-    
-    // إخفاء الإشعار
-    hideNotification();
-    
-    // عرض رسالة تحميل صغيرة
-    const loadingMsg = document.createElement('div');
-    loadingMsg.id = 'loadingMessage';
-    loadingMsg.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--sky-glow);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        z-index: 9999;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 5px 15px rgba(0, 166, 251, 0.3);
-    `;
-    loadingMsg.innerHTML = `
-        <i class="fas fa-spinner fa-spin"></i>
-        ${lang.redirecting}
-    `;
-    document.body.appendChild(loadingMsg);
-    
-    // إنشاء رابط Expedia
+    // إنشاء رابط Expedia مع جميع المعلمات
     const expediaUrl = generateExpediaUrl(flight);
     
     // الانتقال إلى Expedia بعد تأخير قصير
     setTimeout(() => {
         window.open(expediaUrl, '_blank', 'noopener,noreferrer');
         
-        // إزالة رسالة التحميل بعد ثانية
-        setTimeout(() => {
-            if (document.body.contains(loadingMsg)) {
-                loadingMsg.remove();
-            }
-        }, 1000);
-    }, 800);
+        // إعادة تعيين الزر
+        if (button) {
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                hideBookingLoader();
+                
+                // عرض رسالة تأكيد
+                alert(currentLang === 'ar' 
+                    ? `تم التوجيه إلى إكسبيديا!\nرقم الحجز: ${bookingData.bookingNumber}\n\nتم نقل جميع تفاصيل الرحلة تلقائياً.`
+                    : `Redirected to Expedia!\nBooking Number: ${bookingData.bookingNumber}\n\nAll flight details have been auto-filled.`
+                );
+            }, 1000);
+        }
+    }, 1500);
 }
 
 // ========== توليد رابط Expedia مع المعلمات ==========
@@ -1801,22 +1596,61 @@ function generateExpediaUrl(flight) {
         params.append('leg2', `from:${destinationAirport},to:${originAirport},departure:${returnDate}TANYT`);
     }
     
-    // إضافة وقت المغادرة المحدد
-    params.append('departureTime', flight.departureTime.replace(':', ''));
-    
-    // إضافة اللغات والعملات (اختياري)
-    if (currentLang === 'ar') {
-        params.append('langid', '1033'); // اللغة العربية
+    // إضافة معرف الشريك (إذا كان لديك)
+    const partnerId = 'skylynxtravel';
+    if (partnerId) {
+        params.append('aid', partnerId);
+        params.append('tid', new Date().getTime().toString().substr(0, 10));
     }
     
-    // إضافة معلمات التحويل لـ CAD إلى USD
-    params.append('fromCurrency', currentCurrency);
+    // إضافة وقت المغادرة المحدد
+    params.append('departureTime', flight.departureTime.replace(':', ''));
     
     // الرابط النهائي
     expediaUrl = `${expediaUrl}?${params.toString()}`;
     
     console.log('Generated Expedia URL:', expediaUrl);
     return expediaUrl;
+}
+
+// ========== مؤشر التحميل للحجز ==========
+function showBookingLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'bookingLoader';
+    loader.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(5, 25, 35, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        gap: 20px;
+    `;
+    
+    const lang = langData[currentLang];
+    loader.innerHTML = `
+        <div class="spinner" style="width: 60px; height: 60px; border-width: 4px;"></div>
+        <h3 style="color: var(--sky-glow); font-family: 'Cinzel';">${lang.redirecting}</h3>
+        <p style="color: var(--silver); max-width: 400px; text-align: center;">
+            ${currentLang === 'ar' 
+                ? 'جاري توجيهك إلى إكسبيديا...\nسيتم تعبئة جميع تفاصيل رحلتك تلقائياً.' 
+                : 'Redirecting you to Expedia...\nAll your flight details will be auto-filled.'}
+        </p>
+    `;
+    
+    document.body.appendChild(loader);
+}
+
+function hideBookingLoader() {
+    const loader = document.getElementById('bookingLoader');
+    if (loader) {
+        loader.remove();
+    }
 }
 
 // ========== توليد بيانات تجريبية ==========

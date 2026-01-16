@@ -1,329 +1,225 @@
-# 🛫 SkyLynx Travel - نظام Autocomplete للمطارات والمدن
+# 🚀 دليل نقل Backend إلى Vercel Serverless
 
-## 📦 محتويات الحزمة
+## 📦 الملفات الجديدة:
 
 ```
-skylynx-airports/
-├── index.html                  ← ملف index محدث مع السكريبت
-├── airport-autocomplete.js     ← سكريبت Autocomplete الجديد
-└── README.md                   ← هذا الملف
+vercel-backend/
+├── api/
+│   ├── health.js              ← Health check endpoint
+│   └── flights/
+│       ├── search.js          ← البحث عن رحلات
+│       └── offer.js           ← تفاصيل العرض
+├── package.json
+├── vercel.json                ← إعدادات Vercel
+└── .gitignore
 ```
 
 ---
 
-## ✨ المميزات الجديدة
+## 🎯 الخطوات:
 
-### 1. **بحث شامل من TravelPayouts**
-- ✅ قاعدة بيانات كاملة من جميع المطارات والمدن في العالم
-- ✅ بحث فوري أثناء الكتابة (autocomplete)
-- ✅ دعم كامل للغتين العربية والإنجليزية
-- ✅ عرض اسم المدينة + الكود (IATA)
-- ✅ أيقونات مميزة (✈️ مطار / 🏙️ مدينة)
+### الخطوة 1️⃣: دمج الملفات مع مشروعك الحالي
 
-### 2. **تحسينات الأداء**
-- ✅ **Cache ذكي:** حفظ النتائج لتقليل الطلبات
-- ✅ **Debounce:** منع الطلبات المتكررة
-- ✅ **سرعة فائقة:** استجابة فورية
+#### الطريقة الأولى: مجلد منفصل (موصى بها)
 
-### 3. **تجربة مستخدم ممتازة**
-- ✅ تصميم متناسق مع الموقع (نفس الألوان الداكنة)
-- ✅ قائمة منسدلة جميلة مع تأثيرات hover
-- ✅ إغلاق تلقائي عند الضغط خارج القائمة
-- ✅ دعم لوحة المفاتيح (Escape للإغلاق)
+1. افتح مجلد مشروعك الرئيسي على GitHub
+2. أنشئ مجلد `api` في الجذر
+3. ضع ملفات `api/` فيه
+4. ضع `package.json` و `vercel.json` في الجذر
+
+**البنية النهائية:**
+```
+skylynxtravel/
+├── index.html
+├── flight-results.html
+├── duffel-api.js
+├── api/                    ← جديد
+│   ├── health.js
+│   └── flights/
+│       ├── search.js
+│       └── offer.js
+├── package.json            ← جديد
+└── vercel.json             ← جديد
+```
 
 ---
 
-## 🚀 طريقة التنصيب
+### الخطوة 2️⃣: رفع على GitHub
 
-### **الخطوة 1: رفع الملفات**
+**باستخدام GitHub Desktop:**
 
-ارفع الملفين إلى جذر موقعك:
-
-```
-skylynxtravel.com/
-├── index.html              ← استبدل الملف القديم
-├── airport-autocomplete.js ← ملف جديد
-```
-
-### **الخطوة 2: التأكد من التنصيب**
-
-1. افتح موقعك: `https://skylynxtravel.com`
-2. اذهب إلى قسم البحث عن رحلات
-3. ابدأ الكتابة في حقل "From" أو "To"
-4. ستظهر قائمة بالاقتراحات تلقائياً ✨
+1. افتح مشروعك في GitHub Desktop
+2. ستظهر الملفات الجديدة في القائمة
+3. اكتب في الأسفل: `Add Vercel Serverless Backend`
+4. اضغط **Commit to main**
+5. اضغط **Push origin**
 
 ---
 
-## 🔧 كيف يعمل؟
+### الخطوة 3️⃣: إضافة Environment Variables في Vercel
 
-### **1. TravelPayouts API**
+1. اذهب إلى: **https://vercel.com/dashboard**
 
-يستخدم السكريبت API الرسمي من TravelPayouts:
+2. اختر مشروع `skylynxtravel`
 
+3. اضغط **Settings** → **Environment Variables**
+
+4. أضف المتغير:
+
+**Variable Name:**
+```
+DUFFEL_API_TOKEN
+```
+
+**Value:**
+```
+duffel_test_your_actual_token_here
+```
+
+5. اختر **Production**, **Preview**, **Development** (اختر الكل ✅)
+
+6. اضغط **Save**
+
+---
+
+### الخطوة 4️⃣: إعادة Deploy
+
+بعد إضافة Environment Variable:
+
+1. اذهب إلى **Deployments**
+
+2. اضغط على آخر deployment
+
+3. اضغط **...** (ثلاث نقاط)
+
+4. اختر **Redeploy**
+
+5. اضغط **Redeploy** مرة أخرى للتأكيد
+
+انتظر 2-3 دقائق... ⏳
+
+---
+
+### الخطوة 5️⃣: اختبار API
+
+بعد انتهاء الـ Deployment، اختبر:
+
+```
+https://skylynxtravel.com/api/health
+```
+
+**يجب أن ترى:**
+```json
+{
+  "status": "OK",
+  "message": "SkyLynx Travel API is running",
+  "timestamp": "..."
+}
+```
+
+✅ **إذا شفت هذا، Backend شغال!**
+
+---
+
+### الخطوة 6️⃣: تحديث duffel-api.js
+
+افتح `duffel-api.js` وغيّر السطر الأول:
+
+**من:**
 ```javascript
-const API_TOKEN = '70cb654f5b2bb095d3d62cd188d86360'; // التوكن الخاص بك
-const AUTOCOMPLETE_URL = 'https://autocomplete.travelpayouts.com/places2';
+const DUFFEL_API_BASE_URL = 'http://localhost:3000/api';
 ```
 
-### **2. البحث التلقائي**
-
-عند الكتابة في حقل البحث:
-
-1. ينتظر 300ms (debounce) لتقليل الطلبات
-2. يرسل طلب لـ TravelPayouts API
-3. يحصل على أفضل 10 نتائج
-4. يعرضها في قائمة منسدلة جميلة
-
-### **3. الحقول المدعومة**
-
-حالياً يعمل على:
-- ✅ `#flight-from` - حقل المغادرة
-- ✅ `#flight-to` - حقل الوصول
-
----
-
-## 🎨 التصميم
-
-### **نفس ألوان الموقع:**
-
-```css
-Background: rgba(0, 17, 28, 0.98)  ← نفس الداكن
-Border: rgba(0, 166, 251, 0.3)     ← نفس الأزرق
-Hover: rgba(0, 166, 251, 0.1)      ← نفس التأثير
-```
-
-### **قائمة الاقتراحات:**
-
-```
-┌─────────────────────────────────────┐
-│ ✈️ London Heathrow (LHR)            │
-│    London, United Kingdom           │
-├─────────────────────────────────────┤
-│ 🏙️ London (LON)                     │
-│    United Kingdom                   │
-├─────────────────────────────────────┤
-│ ✈️ London Gatwick (LGW)             │
-│    London, United Kingdom           │
-└─────────────────────────────────────┘
-```
-
----
-
-## ⚡ الأداء
-
-### **تحسينات السرعة:**
-
-1. **Cache System:**
-   - يحفظ النتائج لمدة ساعة
-   - يقلل الطلبات بنسبة 80%
-
-2. **Debounce:**
-   - ينتظر 300ms قبل البحث
-   - يمنع الطلبات المتكررة
-
-3. **Top 10 فقط:**
-   - يعرض أفضل 10 نتائج
-   - تحميل سريع جداً
-
----
-
-## 🌐 دعم اللغات
-
-### **العربية:**
-
+**إلى:**
 ```javascript
-const locale = htmlLang === 'ar' ? 'ar' : 'en';
-```
-
-- يكتشف لغة الصفحة تلقائياً
-- يعرض النتائج باللغة المناسبة
-- اتجاه RTL/LTR تلقائي
-
-### **الإنجليزية:**
-
-- نفس الوظائف
-- نفس الجودة
-- نفس السرعة
-
----
-
-## 🔍 مثال على الاستخدام
-
-### **المستخدم يكتب:**
-
-```
-"lon"
-```
-
-### **النتائج المعروضة:**
-
-```
-1. ✈️ London Heathrow (LHR) - London, United Kingdom
-2. 🏙️ London (LON) - United Kingdom  
-3. ✈️ London Gatwick (LGW) - London, United Kingdom
-4. ✈️ London City (LCY) - London, United Kingdom
-5. ✈️ London Stansted (STN) - London, United Kingdom
-```
-
-### **عند الاختيار:**
-
-```
-حقل الإدخال يصبح: "London (LON)"
-الكود المحفوظ: LON
+const DUFFEL_API_BASE_URL = 'https://skylynxtravel.com/api';
 ```
 
 ---
 
-## 🛠️ التخصيص
+### الخطوة 7️⃣: رفع التحديث
 
-### **تغيير عدد النتائج:**
+**في GitHub Desktop:**
 
-في `airport-autocomplete.js` السطر 57:
+1. سيظهر `duffel-api.js` معدّل
+2. اكتب: `Update API URL to Vercel`
+3. اضغط **Commit to main**
+4. اضغط **Push origin**
 
+Vercel سيـ deploy تلقائياً! ✅
+
+---
+
+## 🎉 تم! كل شيء على Vercel الآن!
+
+**المميزات:**
+- ✅ Frontend و Backend في مكان واحد
+- ✅ مجاني تماماً
+- ✅ سريع جداً
+- ✅ HTTPS تلقائي
+- ✅ Deploy تلقائي مع كل Push
+
+---
+
+## 🧪 الاختبار النهائي:
+
+1. اذهب إلى: **https://skylynxtravel.com**
+
+2. جرّب البحث:
+   - From: YOW
+   - To: YYZ
+   - Date: بعد 2026-01-16
+
+3. اضغط **Search**
+
+4. يجب أن تظهر النتائج! 🎉
+
+---
+
+## 📱 اختبار الجوال:
+
+1. افتح DevTools (F12)
+2. Toggle device toolbar
+3. اختر iPhone
+4. افتح القائمة (☰)
+5. تأكد من اللغة والعملة موجودة
+
+---
+
+## 🔍 Troubleshooting:
+
+### المشكلة: API لا يعمل
+
+**الحل:**
+1. تأكد من `DUFFEL_API_TOKEN` في Vercel
+2. شوف Logs في Vercel Dashboard
+3. تأكد من الـ Routes في `vercel.json`
+
+### المشكلة: CORS Error
+
+**الحل:**
+تأكد من Headers في ملفات API:
 ```javascript
-const formattedPlaces = places.slice(0, 10).map(place => ({
-//                                      ^^^ غير هذا الرقم
-```
-
-### **تغيير مدة Cache:**
-
-في `airport-autocomplete.js` السطر 14:
-
-```javascript
-const CACHE_DURATION = 3600000; // ساعة واحدة (بالملي ثانية)
-//                     ^^^^^^^ غير هذا الرقم
-```
-
-### **تغيير Debounce:**
-
-في `airport-autocomplete.js` السطر 191:
-
-```javascript
-const handleInput = debounce(async function(e) {
-    // ...
-}, 300); // 300 ملي ثانية
-// ^^^ غير هذا الرقم
+res.setHeader('Access-Control-Allow-Origin', '*');
 ```
 
 ---
 
-## ❓ الأسئلة الشائعة
+## 💡 ملاحظات:
 
-### **س: هل يعمل على الجوال؟**
-نعم! متوافق 100% مع الجوال والتابلت.
-
-### **س: هل يؤثر على سرعة الموقع؟**
-لا، الملف صغير جداً (5 KB) ويستخدم cache ذكي.
-
-### **س: هل يحتاج API key خاص؟**
-لا، الـ API مفتوح ومجاني من TravelPayouts.
-
-### **س: كم عدد المطارات المتاحة؟**
-جميع المطارات في العالم (أكثر من 10,000 مطار ومدينة).
-
-### **س: هل يدعم اللغة العربية؟**
-نعم! دعم كامل للعربية والإنجليزية.
-
-### **س: هل يمكن إضافته لحقول أخرى؟**
-نعم! أضف السطر التالي في `initAllAirportFields()`:
-
-```javascript
-const newField = document.getElementById('your-field-id');
-if (newField) initAutocomplete(newField);
-```
+1. **Serverless Functions** لها حد زمني (10 ثواني على Free Plan)
+2. إذا البحث بطيء، Vercel قد يحتاج Upgrade
+3. كل Request منفصل (لا يوجد shared state)
 
 ---
 
-## 🔐 الأمان
+## 🎯 الخطوة التالية:
 
-### **1. لا توجد بيانات حساسة:**
-- API Token عام (مخصص للاستخدام العام)
-- لا يخزن معلومات شخصية
-- آمن 100%
-
-### **2. HTTPS Only:**
-- جميع الطلبات عبر HTTPS
-- اتصال مشفر
+بعد نجاح كل شيء:
+- ✅ نظام الدفع (Stripe)
+- ✅ صفحة معلومات المسافرين
+- ✅ Email Confirmation
 
 ---
 
-## 📊 الإحصائيات
-
-### **قبل التحديث:**
-- ❌ بحث محدود
-- ❌ مطارات قليلة
-- ❌ بطء في النتائج
-
-### **بعد التحديث:**
-- ✅ 10,000+ مطار ومدينة
-- ✅ بحث فوري
-- ✅ نتائج دقيقة
-- ✅ تجربة مستخدم ممتازة
-
----
-
-## 🎯 التوافق
-
-### **المتصفحات المدعومة:**
-- ✅ Chrome/Edge (الإصدارات الحديثة)
-- ✅ Firefox (الإصدارات الحديثة)
-- ✅ Safari (iOS & macOS)
-- ✅ Opera
-- ✅ Samsung Internet
-
-### **الأجهزة المدعومة:**
-- ✅ Desktop/Laptop
-- ✅ Tablet
-- ✅ Mobile (iOS & Android)
-
----
-
-## 🆘 الدعم
-
-### **إذا واجهت مشكلة:**
-
-1. **افتح Console في المتصفح** (F12)
-2. **ابحث عن الأخطاء**
-3. **تأكد من رفع الملفين بشكل صحيح**
-
-### **التحقق من التنصيب:**
-
-افتح Console واكتب:
-
-```javascript
-console.log(window.SkyLynxAutocomplete);
-```
-
-يجب أن ترى:
-```javascript
-{search: ƒ, init: ƒ}
-```
-
----
-
-## ✅ الخلاصة
-
-### **تم إضافة:**
-- ✅ قاعدة بيانات شاملة من TravelPayouts
-- ✅ بحث تلقائي ذكي
-- ✅ تصميم متناسق مع الموقع
-- ✅ أداء سريع جداً
-- ✅ دعم كامل للعربية والإنجليزية
-
-### **بدون تغيير:**
-- ✅ التصميم الأصلي
-- ✅ الألوان والخطوط
-- ✅ باقي وظائف الموقع
-- ✅ سرعة تحميل الصفحة
-
----
-
-## 🚀 جاهز للاستخدام!
-
-**ارفع الملفين وابدأ التمتع بتجربة بحث محسّنة!** 🎉
-
----
-
-**مطوّر بواسطة: Claude AI**  
-**التاريخ: 2026-01-09**  
-**الإصدار: 1.0.0**
+**جاهز! 🚀**

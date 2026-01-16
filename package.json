@@ -1,0 +1,15 @@
+{
+  "name": "skylynx-travel-vercel",
+  "version": "1.0.0",
+  "description": "SkyLynx Travel - Vercel Serverless Backend",
+  "main": "api/health.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@duffel/api": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
