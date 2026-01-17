@@ -3,8 +3,7 @@
  * This file handles all communication with the backend API
  */
 
-const DUFFEL_API_BASE_URL = 'http://localhost:3000/api';
-
+const DUFFEL_API_BASE_URL = 'https://skylynxtravel.com/api';
 // Utility function to format dates
 function formatDate(date) {
     if (!date) return null;
