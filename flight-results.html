@@ -1653,100 +1653,11 @@ function hideBookingLoader() {
     }
 }
 
-// ========== توليد بيانات تجريبية ==========
-function generateSampleFlights() {
-    const airlines = [
-        { name: "Air Canada", code: "AC", logo: "AC" },
-        { name: "WestJet", code: "WS", logo: "WS" },
-        { name: "Air Transat", code: "TS", logo: "TS" },
-        { name: "Porter Airlines", code: "PD", logo: "PD" },
-        { name: "Emirates", code: "EK", logo: "EK" },
-        { name: "Qatar Airways", code: "QR", logo: "QR" }
-    ];
-    
-    const flights = [];
-    const times = ["08:00", "10:30", "14:15", "19:45", "06:30", "12:00", "16:45", "21:15"];
-    const durations = ["3h 15m", "3h 30m", "4h 00m", "3h 45m", "5h 00m", "4h 30m"];
-    const features = ["Meal Included", "Entertainment", "WiFi", "Extra Legroom", "Priority Boarding"];
-    
-    for (let i = 0; i < 8; i++) {
-        const airline = airlines[i % airlines.length];
-        const price = 800 + Math.floor(Math.random() * 1200);
-        const stops = Math.floor(Math.random() * 3);
-        
-        flights.push({
-            id: `FL-${i + 1}`,
-            airline: airline.name,
-            airlineCode: airline.code,
-            flightNumber: `${airline.code}${100 + i}`,
-            departureTime: times[i],
-            arrivalTime: addTime(times[i], durations[i % durations.length]),
-            departureAirport: extractAirportCode(searchData.from),
-            arrivalAirport: extractAirportCode(searchData.to),
-            duration: durations[i % durations.length],
-            stops: stops,
-            price: price,
-            currency: currentCurrency,
-            class: searchData.class || "ECONOMY",
-            provider: "Expedia",
-            refundable: Math.random() > 0.5,
-            features: features.slice(0, 2 + Math.floor(Math.random() * 3)),
-            bookingUrl: generateExpediaUrl({
-                id: `FL-${i + 1}`,
-                departureTime: times[i],
-                stops: stops,
-                price: price
-            })
-        });
-    }
-    
-    return flights;
-}
-
-// ========== وظائف مساعدة ==========
-function extractAirportCode(locationString) {
-    if (!locationString) return 'YYZ';
-    
-    const match = locationString.match(/\(([A-Z]{3})\)/);
-    return match ? match[1] : locationString.substring(0, 3).toUpperCase();
-}
-
-function addTime(time, duration) {
-    const [hours, minutes] = time.split(':').map(Number);
-    const durationMatch = duration.match(/(\d+)h\s*(\d*)m/);
-    if (!durationMatch) return time;
-    
-    const addHours = parseInt(durationMatch[1]) || 0;
-    const addMinutes = parseInt(durationMatch[2]) || 0;
-    
-    let newHours = hours + addHours;
-    let newMinutes = minutes + addMinutes;
-    
-    if (newMinutes >= 60) {
-        newHours += Math.floor(newMinutes / 60);
-        newMinutes %= 60;
-    }
-    
-    if (newHours >= 24) {
-        newHours %= 24;
-    }
-    
-    return `${newHours.toString().padStart(2, '0')}:${newMinutes.toString().padStart(2, '0')}`;
-}
-
-// تعريفات احتياطية
-if (typeof getSkyLynxFlights === 'undefined') {
-    window.getSkyLynxFlights = async function() {
-        return generateSampleFlights();
-    };
-}
-
-if (typeof trackExpediaClick === 'undefined') {
-    window.trackExpediaClick = function(flightId, price, currency) {
-        console.log('📝 Tracked click:', flightId, price, currency);
-        return true;
-    };
 }
 </script>
+
+<!-- Duffel API Integration -->
+<script src="duffel-api.js"></script>
+<script src="flight-results-handler.js"></script>
 </body>
 </html>
