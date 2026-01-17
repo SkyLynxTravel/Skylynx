@@ -5,15 +5,5 @@
       "src": "api/**/*.js",
       "use": "@vercel/node"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    }
-  ],
-  "env": {
-    "DUFFEL_API_TOKEN": "@duffel_api_token",
-    "FRONTEND_URL": "https://skylynxtravel.com"
-  }
+  ]
 }
