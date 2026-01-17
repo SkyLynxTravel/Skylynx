@@ -4,6 +4,7 @@
  */
 
 const DUFFEL_API_BASE_URL = 'https://skylynxtravel.com/api';
+
 // Utility function to format dates
 function formatDate(date) {
     if (!date) return null;
