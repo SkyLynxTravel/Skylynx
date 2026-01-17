@@ -135,10 +135,23 @@ window.handleSearchOriginal = function(type) {
 // Helper function
 function extractIATACode(input) {
     if (!input) return '';
-    const match = input.match(/^([A-Z]{3})/);
-    if (match) return match[1];
-    if (/^[A-Z]{3}$/.test(input.toUpperCase())) {
+    
+    // استخراج الكود من داخل الأقواس مثل "Ottawa (YOW)" أو "Toronto [YYZ]"
+    const matchParentheses = input.match(/\(([A-Z]{3})\)|\[([A-Z]{3})\]/);
+    if (matchParentheses) {
+        return matchParentheses[1] || matchParentheses[2];
+    }
+    
+    // إذا الإدخال مجرد 3 أحرف كبيرة
+    if (/^[A-Z]{3}$/i.test(input)) {
         return input.toUpperCase();
     }
-    return input.toUpperCase().substring(0, 3);
+    
+    // محاولة أخيرة: استخراج أي 3 أحرف كبيرة متتالية
+    const matchThreeLetters = input.match(/[A-Z]{3}/);
+    if (matchThreeLetters) {
+        return matchThreeLetters[0];
+    }
+    
+    return '';
 }
