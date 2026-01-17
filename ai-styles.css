@@ -1,0 +1,463 @@
+/* ========== AI ASSISTANT ENHANCEMENTS ========== */
+/* SkyLynx Travel - AI Assistant Styles v3.0 */
+
+/* مؤشر الكتابة */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--ai-purple);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { 
+        transform: scale(0.8); 
+        opacity: 0.4; 
+    }
+    40% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+/* زر مسح المحادثة */
+.ai-clear-btn {
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    background: none;
+    border: none;
+    color: var(--silver);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+    z-index: 10;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.ai-clear-btn:hover {
+    color: var(--ai-purple);
+    background: rgba(157, 78, 221, 0.1);
+}
+
+/* زر اقتراحات سريعة */
+.ai-toggle-btn {
+    position: absolute;
+    top: 15px;
+    right: 75px;
+    background: none;
+    border: none;
+    color: var(--silver);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+    z-index: 10;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.ai-toggle-btn:hover {
+    color: var(--ai-teal);
+    background: rgba(46, 196, 182, 0.1);
+}
+
+/* اقتراحات سريعة */
+.quick-suggestions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(0, 17, 28, 0.5);
+    flex-wrap: wrap;
+}
+
+.quick-btn {
+    background: rgba(157, 78, 221, 0.15);
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    color: var(--ai-purple);
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 40px;
+    justify-content: center;
+}
+
+.quick-btn:hover {
+    background: var(--ai-purple);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(157, 78, 221, 0.3);
+}
+
+/* اقتراحات تلقائية */
+.ai-suggestions {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 17, 28, 0.98);
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    border-radius: 10px;
+    margin-bottom: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    color: var(--silver);
+}
+
+.suggestion-item:hover {
+    background: rgba(157, 78, 221, 0.2);
+    color: var(--ai-purple);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* تحسين مظهر الرسائل */
+.ai-message {
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    position: relative;
+    animation: messageSlide 0.3s ease-out;
+}
+
+.ai-message strong {
+    color: var(--ai-teal);
+    font-weight: 700;
+}
+
+.ai-message.bot {
+    background: rgba(157, 78, 221, 0.1);
+    border-left: 3px solid var(--ai-purple);
+    margin-right: 15%;
+}
+
+.ai-message.user {
+    background: rgba(0, 166, 251, 0.1);
+    border-left: 3px solid var(--sky-glow);
+    margin-left: 15%;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+    .ai-assistant-modal {
+        width: 95% !important;
+        right: 2.5% !important;
+        bottom: 80px;
+        max-height: 70vh;
+    }
+    
+    .ai-clear-btn, .ai-toggle-btn {
+        top: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .ai-clear-btn { right: 40px; }
+    .ai-toggle-btn { right: 70px; }
+    
+    .quick-suggestions {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+    
+    .quick-btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        min-width: 36px;
+    }
+    
+    .ai-suggestions {
+        max-height: 120px;
+    }
+    
+    .suggestion-item {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .ai-message {
+        padding: 10px 12px;
+        margin: 0 0 8px 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-assistant-modal {
+        width: 98% !important;
+        right: 1% !important;
+        bottom: 70px;
+        max-height: 65vh;
+    }
+    
+    .quick-suggestions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .quick-btn {
+        width: 100%;
+    }
+}
+
+/* تأثيرات تحميل */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 17, 28, 0.95);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.loading-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.loading-overlay .loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    border-top-color: var(--ai-purple);
+    animation: spin 1s linear infinite;
+}
+
+.loading-overlay .loading-text {
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.5;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* مؤشر الذكاء الاصطناعي المتقدم */
+.ai-status-indicator {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: rgba(157, 78, 221, 0.2);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسينات الوصول */
+.ai-message:focus {
+    outline: 2px solid var(--ai-purple);
+    outline-offset: 2px;
+}
+
+/* تخصيص شريط التمرير */
+.ai-chat-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ai-chat-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+.ai-chat-container::-webkit-scrollbar-thumb {
+    background: var(--ai-purple);
+    border-radius: 3px;
+}
+
+.ai-chat-container::-webkit-scrollbar-thumb:hover {
+    background: var(--ai-teal);
+}
+
+/* تأثيرات خاصة للرسائل */
+.ai-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 3px;
+    height: 100%;
+    border-radius: 3px 0 0 3px;
+}
+
+.ai-message.bot::before {
+    background: var(--ai-purple);
+}
+
+.ai-message.user::before {
+    background: var(--sky-glow);
+}
+
+/* تحسينات النصوص */
+.ai-message ul, .ai-message ol {
+    padding-left: 20px;
+    margin: 8px 0;
+}
+
+.ai-message li {
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+
+/* مؤشر اتصال AI */
+.ai-connection-status {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--ai-teal);
+    opacity: 0.8;
+}
+
+.ai-connection-status .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--ai-teal);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+/* تأثيرات دخول الزر العائم */
+.ai-assistant-btn {
+    animation: float 3s ease-in-out infinite, glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4); }
+    to { box-shadow: 0 8px 25px rgba(157, 78, 221, 0.6), 0 0 30px rgba(46, 196, 182, 0.3); }
+}
+
+/* تحسينات للوضع العربي */
+[lang="ar"] .ai-message.bot {
+    border-left: none;
+    border-right: 3px solid var(--ai-purple);
+    margin-left: 15%;
+    margin-right: 0;
+}
+
+[lang="ar"] .ai-message.user {
+    border-left: none;
+    border-right: 3px solid var(--sky-glow);
+    margin-right: 15%;
+    margin-left: 0;
+}
+
+[lang="ar"] .ai-message.bot::before {
+    left: auto;
+    right: -3px;
+}
+
+[lang="ar"] .ai-message.user::before {
+    left: auto;
+    right: -3px;
+}
+
+[lang="ar"] .quick-suggestions {
+    flex-direction: row-reverse;
+}
+
+[lang="ar"] .ai-clear-btn {
+    right: auto;
+    left: 45px;
+}
+
+[lang="ar"] .ai-toggle-btn {
+    right: auto;
+    left: 75px;
+}
+
+[lang="ar"] .ai-connection-status {
+    left: auto;
+    right: 15px;
+}

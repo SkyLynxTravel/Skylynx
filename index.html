@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" id="main-html">
 <head>
+<!-- مساعد الذكاء الاصطناعي -->
+<link rel="stylesheet" href="ai-styles.css">
+<script src="ai-assistant.js" defer></script>
+<script src="travelpayouts-integration.js" defer></script>
     <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
   (function () {
       var script = document.createElement("script");
@@ -8,6 +12,8 @@
       script.src = 'https://tp-em.com/NDg2ODAw.js?t=486800';
       document.head.appendChild(script);
   })();
+<!-- في قسم <head> بعد التنسيقات الأخرى -->
+<link rel="stylesheet" href="ai-styles.css">
 </script>
 <link rel="preconnect" href="https://travel.skylynxtravel.com">
 
@@ -2379,37 +2385,41 @@ select {
     <i class="fas fa-robot"></i>
 </button>
 
-<!-- AI Assistant Modal -->
+<!-- AI Assistant Modal - Enhanced -->
 <div class="ai-assistant-modal" id="aiAssistantModal">
     <div class="ai-modal-header">
         <h3>
             <i class="fas fa-robot"></i>
             <span id="aiModalTitle">SkyLynx AI Assistant</span>
         </h3>
+        <button class="ai-toggle-btn" id="aiToggleSuggestions" aria-label="Toggle suggestions">
+            <i class="fas fa-lightbulb"></i>
+        </button>
+        <button class="ai-clear-btn" id="aiClearBtn" aria-label="Clear chat">
+            <i class="fas fa-eraser"></i>
+        </button>
         <button class="ai-close-btn" id="aiCloseBtn" aria-label="Close AI Assistant">
             <i class="fas fa-times"></i>
         </button>
     </div>
     
     <div class="ai-chat-container" id="aiChatContainer">
+        <!-- Quick suggestions will be added here by JavaScript -->
         <div class="ai-message bot" id="aiWelcomeMessage">
             👋 Hello! I'm your AI travel assistant. How can I help you plan your luxury journey today?
-        </div>
-        <div class="ai-message bot">
-            I can help you with:
-            • Finding the best flights & hotels
-            • Planning complete itineraries
-            • Getting exclusive deals
-            • Answering travel questions
-            • Group booking arrangements
         </div>
     </div>
     
     <div class="ai-input-container">
-        <input type="text" class="ai-input" id="aiInput" placeholder="Ask me anything about travel...">
+        <input type="text" class="ai-input" id="aiInput" placeholder="Ask me anything about travel..." autocomplete="off">
         <button class="ai-send-btn" id="aiSendBtn" aria-label="Send message">
             <i class="fas fa-paper-plane"></i>
         </button>
+    </div>
+    
+    <div class="ai-connection-status">
+        <span class="status-dot"></span>
+        <span id="aiStatusText">AI Connected</span>
     </div>
 </div>
 
@@ -3975,7 +3985,8 @@ select {
             aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
         }
         
-        function getAIResponse(input) {
+        /*
+	//function getAIResponse(input) {
             const currentLang = localStorage.getItem('siteLang') || 'en';
             const lowerInput = input.toLowerCase();
             
@@ -4001,7 +4012,7 @@ select {
                 "🤖 أفهم أنك تسأل عن السفر. يمكنني المساعدة في الرحلات الجوية والفنادق والسيارات والحجوزات الجماعية. ما الذي تريد معرفته بالتحديد؟" :
                 "🤖 I understand you're asking about travel. I can help with flights, hotels, cars, and group bookings. What specifically would you like to know?";
         }
-    }
+    */
 
     // ========== نظام البحث من TravelPayouts API ==========
     function initializeTravelPayoutsSearch() {
@@ -4737,5 +4748,7 @@ select {
         }
     }
 </script>
+<!-- قبل </body> مباشرة -->
+<script src="ai-assistant.js" defer></script>
 </body>
 </html>
