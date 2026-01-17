@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Flights | SkyLynx</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .card { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        input, button { padding: 10px; margin: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>✈️ Book Flights</h1>
+    <div class="card">
+        <input type="text" id="from" placeholder="From (YYZ)" value="YYZ">
+        <input type="text" id="to" placeholder="To (YVR)" value="YVR">
+        <input type="date" id="date">
+        <button onclick="search()">Search Flights</button>
+    </div>
+    <div id="results"></div>
+    
+    <script>
+        // تاريخ الغد افتراضياً
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('date').value = tomorrow.toISOString().split('T')[0];
+        
+        async function search() {
+            const searchData = {
+                origin: document.getElementById('from').value,
+                destination: document.getElementById('to').value,
+                date: document.getElementById('date').value
+            };
+            
+            document.getElementById('results').innerHTML = "Searching...";
+            
+            const response = await fetch('/api/search', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(searchData)
+            });
+            
+            const flights = await response.json();
+            document.getElementById('results').innerHTML = 
+                `Found ${flights.length} flights. First: $${flights[0]?.total_amount || 'N/A'}`;
+        }
+    </script>
+</body>
+</html>
