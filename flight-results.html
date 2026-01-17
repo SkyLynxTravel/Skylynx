@@ -640,6 +640,68 @@
                 justify-content: center;
             }
         }
+        
+        /* Mobile-optimized search summary */
+        @media (max-width: 768px) {
+            .search-summary {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: linear-gradient(135deg, #0a2540 0%, #1a4d6d 100%);
+                border: none;
+                border-radius: 0 0 20px 20px;
+                padding: 12px 15px;
+                margin-top: 0;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }
+            
+            .summary-row {
+                flex-direction: row;
+                gap: 8px;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .route-info {
+                gap: 8px;
+                flex: 1;
+            }
+            
+            .route-city {
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+            
+            .route-arrow {
+                font-size: 1rem;
+                color: #4FC3F7;
+            }
+            
+            .dates-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                font-size: 0.75rem;
+                text-align: right;
+            }
+            
+            .date-info {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+            
+            .date-label {
+                font-size: 0.7rem;
+                opacity: 0.7;
+                margin: 0;
+            }
+            
+            .date-value {
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+        }
     </style>
 </head>
 <body>
@@ -996,51 +1058,16 @@ function translatePage() {
 // تحميل بيانات البحث
 function loadSearchData() {
     try {
-        const sessionParams = sessionStorage.getItem('flightSearchParams');
-        const sessionResults = sessionStorage.getItem('flightSearchResults');
-        
-        if (sessionParams) {
-            const params = JSON.parse(sessionParams);
-            let fromName = params.origin;
-            let toName = params.destination;
-            
-            if (sessionResults) {
-                try {
-                    const results = JSON.parse(sessionResults);
-                    if (results.offers && results.offers[0] && results.offers[0].slices) {
-                        const slice = results.offers[0].slices[0];
-                        if (slice.segments && slice.segments[0]) {
-                            const firstSeg = slice.segments[0];
-                            const lastSeg = slice.segments[slice.segments.length - 1];
-                            fromName = `${firstSeg.origin.city_name || firstSeg.origin.name} (${firstSeg.origin.iata_code})`;
-                            toName = `${lastSeg.destination.city_name || lastSeg.destination.name} (${lastSeg.destination.iata_code})`;
-                        }
-                    }
-                } catch (e) {}
-            }
-            
-            searchData = {
-                from: fromName,
-                to: toName,
-                departure: params.departureDate,
-                return: params.returnDate || '',
-                passengers: { adults: params.adults || 1, children: params.children || 0, infants: params.infants || 0 },
-                class: (params.cabinClass || 'economy').toUpperCase(),
-                currency: currentCurrency,
-                language: currentLang
-            };
-        } else {
-            searchData = JSON.parse(localStorage.getItem('flightSearchData')) || {
-                from: 'Toronto (YYZ)',
-                to: 'Vancouver (YVR)',
-                departure: new Date().toISOString().split('T')[0],
-                return: '',
-                passengers: JSON.parse(localStorage.getItem('passengers')) || { adults: 1, children: 0, infants: 0 },
-                class: 'ECONOMY',
-                currency: currentCurrency,
-                language: currentLang
-            };
-        }
+        searchData = JSON.parse(localStorage.getItem('flightSearchData')) || {
+            from: 'Toronto (YYZ)',
+            to: 'Vancouver (YVR)',
+            departure: new Date().toISOString().split('T')[0],
+            return: '',
+            passengers: JSON.parse(localStorage.getItem('passengers')) || { adults: 1, children: 0, infants: 0 },
+            class: 'ECONOMY',
+            currency: currentCurrency,
+            language: currentLang
+        };
         
         displaySearchInfo();
     } catch (error) {
