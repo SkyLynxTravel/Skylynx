@@ -1695,15 +1695,13 @@ function convertDuffelToLocal(duffelOffers) {
         };
     });
 }
-r
 function formatDuffelDuration(isoDuration) {
-    const match = isoDuration.match(/PT(d+H)?(d+M)?/);
+    const match = isoDuration.match(/PT(\d+H)?(\d+M)?/);
     if (!match) return isoDuration;
     const hours = match[1] ? parseInt(match[1]) : 0;
     const minutes = match[2] ? parseInt(match[2]) : 0;
     return `${hours}h ${minutes}m`;
 }
-r
 function generateSampleFlights() {
     const airlines = [
         { name: "Air Canada", code: "AC", logo: "AC" },
