@@ -640,6 +640,75 @@
                 justify-content: center;
             }
         }
+        
+        /* Search Summary in Sidebar */
+        .search-summary-sidebar {
+            background: linear-gradient(135deg, #1a4d6d 0%, #2a5f7f 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-summary-sidebar h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .summary-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .summary-item i {
+            color: #4FC3F7;
+            font-size: 18px;
+        }
+
+        .summary-arrow {
+            text-align: center;
+            font-size: 20px;
+            color: #4FC3F7;
+            margin: 5px 0;
+        }
+
+        .summary-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin: 10px 0;
+        }
+
+        .summary-dates,
+        .summary-passengers {
+            font-size: 14px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-dates i,
+        .summary-passengers i {
+            color: #4FC3F7;
+        }
+
+        @media (max-width: 768px) {
+            .search-summary-sidebar {
+                margin-bottom: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -658,19 +727,6 @@
         </button>
     </div>
     
-    <div class="search-summary">
-        <div class="summary-row">
-            <div class="route-info">
-                <div class="route-city" id="fromCity">Ottawa (YOW)</div>
-                <div class="route-arrow">→</div>
-                <div class="route-city" id="toCity">Dubai (DXB)</div>
-            </div>
-            
-            <div class="dates-info" id="datesInfo">
-                <!-- Will be filled by JavaScript -->
-            </div>
-        </div>
-    </div>
 </header>
 
 <!-- ========== MAIN RESULTS CONTAINER ========== -->
@@ -678,6 +734,25 @@
     
     <!-- ========== LEFT SIDEBAR: FILTERS ========== -->
     <aside class="filters-sidebar">
+        <!-- Search Summary (Moved from header) -->
+        <div class="filter-section search-summary-sidebar">
+            <h3>Search Details</h3>
+            <div class="summary-content">
+                <div class="summary-item">
+                    <i class="fas fa-plane-departure"></i>
+                    <span id="fromCity">YOW</span>
+                </div>
+                <div class="summary-arrow">→</div>
+                <div class="summary-item">
+                    <i class="fas fa-plane-arrival"></i>
+                    <span id="toCity">YYZ</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-dates" id="datesInfo"></div>
+                <div class="summary-passengers" id="passengersInfo"></div>
+            </div>
+        </div>
+        
         <!-- Price Filter -->
         <div class="filter-section">
             <h3 id="priceTitle">Price Range <button class="clear-filter" onclick="clearPriceFilter()" id="clearPriceBtn">Clear</button></h3>
@@ -994,72 +1069,113 @@ function translatePage() {
 }
 
 // تحميل بيانات البحث
+
 function loadSearchData() {
     try {
-        searchData = JSON.parse(localStorage.getItem('flightSearchData')) || {
-            from: 'Toronto (YYZ)',
-            to: 'Vancouver (YVR)',
-            departure: new Date().toISOString().split('T')[0],
-            return: '',
-            passengers: JSON.parse(localStorage.getItem('passengers')) || { adults: 1, children: 0, infants: 0 },
-            class: 'ECONOMY',
-            currency: currentCurrency,
-            language: currentLang
-        };
+        const sessionParams = sessionStorage.getItem('flightSearchParams');
+        const sessionResults = sessionStorage.getItem('flightSearchResults');
+        
+        if (sessionParams) {
+            const params = JSON.parse(sessionParams);
+            let fromName = params.origin;
+            let toName = params.destination;
+            
+            if (sessionResults) {
+                const results = JSON.parse(sessionResults);
+                if (results.offers && results.offers[0]) {
+                    const firstOffer = results.offers[0];
+                    if (firstOffer.slices && firstOffer.slices[0]) {
+                        const slice = firstOffer.slices[0];
+                        const seg = slice.segments[0];
+                        const lastSeg = slice.segments[slice.segments.length - 1];
+                        fromName = `${seg.origin.city_name || seg.origin.name} (${seg.origin.iata_code})`;
+                        toName = `${lastSeg.destination.city_name || lastSeg.destination.name} (${lastSeg.destination.iata_code})`;
+                    }
+                }
+            }
+            
+            searchData = {
+                from: fromName,
+                to: toName,
+                departure: params.departureDate,
+                return: params.returnDate || '',
+                passengers: {
+                    adults: params.adults || 1,
+                    children: params.children || 0,
+                    infants: params.infants || 0
+                },
+                class: (params.cabinClass || 'economy').toUpperCase(),
+                currency: currentCurrency,
+                language: currentLang
+            };
+        } else {
+            searchData = {
+                from: 'YOW',
+                to: 'YYZ',
+                departure: new Date().toISOString().split('T')[0],
+                return: '',
+                passengers: { adults: 1, children: 0, infants: 0 },
+                class: 'ECONOMY',
+                currency: currentCurrency,
+                language: currentLang
+            };
+        }
         
         displaySearchInfo();
     } catch (error) {
         console.error('Error loading search data:', error);
         searchData = {
-            from: 'Toronto (YYZ)',
-            to: 'Vancouver (YVR)',
+            from: 'YOW',
+            to: 'YYZ',
             departure: new Date().toISOString().split('T')[0],
             passengers: { adults: 1, children: 0, infants: 0 },
-            class: 'Economy',
+            class: 'ECONOMY',
             currency: 'CAD'
         };
         displaySearchInfo();
     }
 }
 
-// عرض معلومات البحث
+
 function displaySearchInfo() {
     const lang = langData[currentLang];
     
     // تحديث المدن
-    document.getElementById('fromCity').textContent = searchData.from || 'Toronto (YYZ)';
-    document.getElementById('toCity').textContent = searchData.to || 'Vancouver (YVR)';
+    document.getElementById('fromCity').textContent = searchData.from || 'YOW';
+    document.getElementById('toCity').textContent = searchData.to || 'YYZ';
     
-    // تحديث التواريخ والمعلومات
-    let passengersText = '';
-    if (searchData.passengers) {
-        const p = searchData.passengers;
-        passengersText = `${p.adults} ${p.adults > 1 ? 'Adults' : 'Adult'}`;
-        if (p.children > 0) passengersText += `, ${p.children} ${p.children > 1 ? 'Children' : 'Child'}`;
-        if (p.infants > 0) passengersText += `, ${p.infants} ${p.infants > 1 ? 'Infants' : 'Infant'}`;
+    // تحديث التواريخ
+    const datesEl = document.getElementById('datesInfo');
+    if (datesEl) {
+        const depDate = new Date(searchData.departure).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric'
+        });
+        
+        let datesHTML = `<i class="fas fa-calendar"></i> ${depDate}`;
+        
+        if (searchData.return) {
+            const retDate = new Date(searchData.return).toLocaleDateString('en-US', {
+                month: 'short', day: 'numeric'
+            });
+            datesHTML += ` - ${retDate}`;
+        }
+        
+        datesEl.innerHTML = datesHTML;
     }
     
-    const datesInfo = document.getElementById('datesInfo');
-    datesInfo.innerHTML = `
-        <div class="date-info">
-            <div class="date-label">${lang.depart}</div>
-            <div class="date-value">${formatDate(searchData.departure)}</div>
-        </div>
-        ${searchData.return ? `
-        <div class="date-info">
-            <div class="date-label">${lang.return}</div>
-            <div class="date-value">${formatDate(searchData.return)}</div>
-        </div>
-        ` : ''}
-        <div class="date-info">
-            <div class="date-label">${lang.passengers}</div>
-            <div class="date-value">${passengersText}</div>
-        </div>
-        <div class="date-info">
-            <div class="date-label">${lang.class}</div>
-            <div class="date-value">${searchData.class || 'Economy'}</div>
-        </div>
-    `;
+    // تحديث المسافرين
+    const passengersEl = document.getElementById('passengersInfo');
+    if (passengersEl && searchData.passengers) {
+        const p = searchData.passengers;
+        let passText = `<i class="fas fa-user"></i> ${p.adults} Adult`;
+        if (p.adults > 1) passText = `<i class="fas fa-users"></i> ${p.adults} Adults`;
+        if (p.children > 0) passText += `, ${p.children} Child${p.children > 1 ? 'ren' : ''}`;
+        if (p.infants > 0) passText += `, ${p.infants} Infant${p.infants > 1 ? 's' : ''}`;
+        
+        passengersEl.innerHTML = passText;
+    }
+}
+
 }
 
 // تنسيق التاريخ
