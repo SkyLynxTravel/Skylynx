@@ -3879,6 +3879,9 @@ select {
         // تهيئة حجز المجموعات
         initializeGroupBooking();
         
+        // تهيئة إظهار/إخفاء تاريخ العودة
+        initializeTripTypeToggle();
+        
         // إضافة مستمعي النقر للنماذج
         addClickListeners();
         
@@ -3902,6 +3905,34 @@ select {
                 document.getElementById(`${tabId}-form`).classList.add('active');
             });
         });
+    }
+
+    // ========== إظهار/إخفاء تاريخ العودة حسب نوع الرحلة ==========
+    function initializeTripTypeToggle() {
+        const roundTripRadio = document.getElementById('roundtrip');
+        const oneWayRadio = document.getElementById('oneway');
+        const returnDateField = document.getElementById('return-date-field');
+        
+        if (!roundTripRadio || !oneWayRadio || !returnDateField) return;
+        
+        function toggleReturnDate() {
+            if (oneWayRadio.checked) {
+                returnDateField.style.display = 'none';
+                // إزالة خاصية required من حقل العودة عند اختيار one way
+                document.getElementById('flight-return').required = false;
+            } else {
+                returnDateField.style.display = 'block';
+                // إعادة خاصية required لحقل العودة عند اختيار round trip
+                document.getElementById('flight-return').required = true;
+            }
+        }
+        
+        // تطبيق الحالة الأولية
+        toggleReturnDate();
+        
+        // إضافة مستمعي الأحداث
+        roundTripRadio.addEventListener('change', toggleReturnDate);
+        oneWayRadio.addEventListener('change', toggleReturnDate);
     }
 
     // ========== مساعد الذكاء الاصطناعي ==========
@@ -4596,7 +4627,7 @@ select {
                 data.return_date = document.getElementById('car-return-date')?.value || '';
                 data.return_time = document.getElementById('car-return-time')?.value || '18:00';
                 data.car_type = document.getElementById('car-type')?.value || 'ECONOMY';
-                data.with_driver = document.getElementById('with-driver')?.checked || false;
+                data.with_driver = document.getElementById('driver-option')?.checked || false;
                 break;
         }
         
