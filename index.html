@@ -2444,7 +2444,8 @@ select {
     </div>
 
     <!-- Flights Form -->
-    <form id="flights-form" class="form-content active">
+    <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/search" method="GET" target="_blank">
+
         <div class="input-grid">
             <div class="field airport-autocomplete">
                 <label class="form-label" data-key="from">From</label>
@@ -4398,101 +4399,9 @@ select {
         extractAirportCode(searchData, serviceType);
         
         setTimeout(() => {
-            if (serviceType === 'flights') {
-                const originCode = searchData.originCode || extractCodeFromText(searchData.origin);
-                const destCode = searchData.destinationCode || extractCodeFromText(searchData.destination);
-                
-                if (!originCode || !destCode) {
-                    hideLoadingOverlay();
-                    alert(currentLang === 'ar' 
-                        ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
-                        : '⚠️ Please select a valid airport from the list');
-                    return;
-                }
-                
-                // تجربة عدة روابط بحث مختلفة
-                const searchUrls = [
-                    // الخيار 1: رابط Aviasales (الأكثر شيوعاً لـ TravelPayouts)
-                    `https://www.aviasales.com/search/${originCode}${destCode}${searchData.depart_date.replace(/-/g, '')}${searchData.trip_type === 'roundtrip' && searchData.return_date ? searchData.return_date.replace(/-/g, '') : ''}?marker=471016`,
-                    
-                    // الخيار 2: رابط JetRadar
-                    `https://www.jetradar.com/flights/${originCode}/${destCode}/${searchData.depart_date}${searchData.trip_type === 'roundtrip' && searchData.return_date ? '/' + searchData.return_date : ''}`,
-                    
-                    // الخيار 3: رابط TravelPayouts المباشر
-                    `https://www.travelpayouts.com/widgets/692b539a3a0f09f19a214be19fc2d933.html?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}&return_date=${searchData.trip_type === 'roundtrip' ? searchData.return_date : ''}&adults=${searchData.adults || 1}&children=${searchData.children || 0}&infants=${searchData.infants || 0}`,
-                    
-                    // الخيار 4: رابط تجريبي (يمكنك تعديل هذا حسب موقعك الفعلي)
-                    `https://search.skylynxtravel.com/flights?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}&return_date=${searchData.trip_type === 'roundtrip' ? searchData.return_date : ''}&trip_type=${searchData.trip_type}&adults=${searchData.adults || 1}&children=${searchData.children || 0}&infants=${searchData.infants || 0}`
-                ];
-                
-                // محاولة فتح الرابط الأول، إذا فشل سنجرب التالي في وظيفة منفصلة
-                openSearchUrl(searchUrls, 0);
-                
-            } else if (serviceType === 'hotels') {
-                // استخدام رابط Expedia الموجود أصلاً
-                const destInput = document.getElementById('hotel-destination').value;
-                const isArabic = currentLang === 'ar';
-                
-                const baseUrl = isArabic ? 'https://www.expedia.sa/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
-                const langParams = isArabic ? '?langid=1025' : '?';
-                
-                const url = baseUrl + langParams + '&partnerid=11001417459&destination=' + encodeURIComponent(destInput);
-                
-                window.open(url, '_blank');
-                
-            } else if (serviceType === 'cars') {
-                // استخدام رابط السيارات
-                const pickup = document.getElementById('car-pickup').value;
-                const pickupDate = document.getElementById('car-pickup-date').value;
-                const returnDate = document.getElementById('car-return-date').value;
-                
-                const carUrls = [
-                    `https://www.economybookings.com/?affiliateId=12345&pickup=${encodeURIComponent(pickup)}&from=${pickupDate}&to=${returnDate}`,
-                    `https://www.rentalcars.com/search?affiliateCode=12345&pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(pickup)}&pickupDate=${pickupDate}&dropoffDate=${returnDate}`
-                ];
-                
-                openSearchUrl(carUrls, 0);
-                
-            } else {
-                const queryString = createQueryString(searchData);
-                window.location.href = `search-results.html${queryString}`;
-            }
-            
-            setTimeout(hideLoadingOverlay, 500);
+            const queryString = createQueryString(searchData);
+            window.location.href = `search-results.html${queryString}`;
         }, 1200);
-    }
-
-    // دالة مساعدة لمحاولة فتح عدة روابط
-    function openSearchUrl(urls, index) {
-        if (index >= urls.length) {
-            console.error('All search URLs failed');
-            hideLoadingOverlay();
-            alert('عذراً، حدث خطأ في الاتصال بخدمة البحث. يرجى المحاولة مرة أخرى.');
-            return;
-        }
-        
-        try {
-            // محاولة فتح الرابط
-            const newWindow = window.open(urls[index], '_blank');
-            
-            // التحقق مما إذا كان الرابط قد فتح بنجاح
-            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                // إذا فشل، جرب الرابط التالي
-                setTimeout(() => openSearchUrl(urls, index + 1), 500);
-            } else {
-                console.log('Successfully opened URL:', urls[index]);
-            }
-        } catch (error) {
-            console.error('Error opening URL:', error);
-            // جرب الرابط التالي
-            setTimeout(() => openSearchUrl(urls, index + 1), 500);
-        }
-    }
-
-    function extractCodeFromText(text) {
-        if (!text) return null;
-        const match = text.match(/\(([A-Z]{3})\)/);
-        return match ? match[1] : null;
     }
 
     function extractAirportCode(searchData, serviceType) {
@@ -4541,14 +4450,7 @@ select {
                 data.origin = document.getElementById('flight-from')?.value || '';
                 data.destination = document.getElementById('flight-to')?.value || '';
                 data.depart_date = document.getElementById('flight-departure')?.value || '';
-                
-                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
-                
-                if (data.trip_type === 'roundtrip') {
-                    data.return_date = document.getElementById('flight-return')?.value || '';
-                } else {
-                    data.return_date = '';
-                }
+                data.return_date = document.getElementById('flight-return')?.value || '';
                 
                 const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
                 const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
@@ -4559,6 +4461,7 @@ select {
                 data.infants = infantsCount;
                 
                 data.travel_class = document.getElementById('travel-class')?.value || 'ECONOMY';
+                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
                 break;
                 
             case 'private':
