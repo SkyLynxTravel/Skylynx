@@ -2444,8 +2444,7 @@ select {
     </div>
 
     <!-- Flights Form -->
-    <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/search" method="GET" target="_blank">
-
+    <form id="flights-form" class="form-content active">
         <div class="input-grid">
             <div class="field airport-autocomplete">
                 <label class="form-label" data-key="from">From</label>
@@ -4399,9 +4398,52 @@ select {
         extractAirportCode(searchData, serviceType);
         
         setTimeout(() => {
-            const queryString = createQueryString(searchData);
-            window.location.href = `search-results.html${queryString}`;
+            if (serviceType === 'flights') {
+                const originCode = searchData.originCode || extractCodeFromText(searchData.origin);
+                const destCode = searchData.destinationCode || extractCodeFromText(searchData.destination);
+                
+                if (!originCode || !destCode) {
+                    hideLoadingOverlay();
+                    alert(currentLang === 'ar' 
+                        ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                        : '⚠️ Please select a valid airport from the list');
+                    return;
+                }
+                
+                let searchUrl = `https://travel.skylynxtravel.com/search?origin=${originCode}&destination=${destCode}`;
+                
+                if (searchData.depart_date) {
+                    searchUrl += `&depart_date=${searchData.depart_date}`;
+                }
+                
+                const tripType = searchData.trip_type || 'roundtrip';
+                searchUrl += `&trip_type=${tripType}`;
+                
+                if (tripType === 'roundtrip' && searchData.return_date) {
+                    searchUrl += `&return_date=${searchData.return_date}`;
+                }
+                
+                if (searchData.passengers) {
+                    searchUrl += `&passengers=${searchData.passengers}`;
+                }
+                
+                if (searchData.travel_class) {
+                    searchUrl += `&class=${searchData.travel_class.toLowerCase()}`;
+                }
+                
+                window.open(searchUrl, '_blank');
+                hideLoadingOverlay();
+            } else {
+                const queryString = createQueryString(searchData);
+                window.location.href = `search-results.html${queryString}`;
+            }
         }, 1200);
+    }
+
+    function extractCodeFromText(text) {
+        if (!text) return null;
+        const match = text.match(/\(([A-Z]{3})\)/);
+        return match ? match[1] : null;
     }
 
     function extractAirportCode(searchData, serviceType) {
@@ -4450,7 +4492,14 @@ select {
                 data.origin = document.getElementById('flight-from')?.value || '';
                 data.destination = document.getElementById('flight-to')?.value || '';
                 data.depart_date = document.getElementById('flight-departure')?.value || '';
-                data.return_date = document.getElementById('flight-return')?.value || '';
+                
+                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
+                
+                if (data.trip_type === 'roundtrip') {
+                    data.return_date = document.getElementById('flight-return')?.value || '';
+                } else {
+                    data.return_date = '';
+                }
                 
                 const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
                 const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
@@ -4461,7 +4510,6 @@ select {
                 data.infants = infantsCount;
                 
                 data.travel_class = document.getElementById('travel-class')?.value || 'ECONOMY';
-                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
                 break;
                 
             case 'private':
