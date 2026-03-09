@@ -4410,31 +4410,23 @@ select {
                     return;
                 }
                 
-                // بناء رابط البحث الصحيح لـ travel.skylynxtravel.com
-                let searchUrl = `https://travel.skylynxtravel.com/search?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}`;
+                // تجربة عدة روابط بحث مختلفة
+                const searchUrls = [
+                    // الخيار 1: رابط Aviasales (الأكثر شيوعاً لـ TravelPayouts)
+                    `https://www.aviasales.com/search/${originCode}${destCode}${searchData.depart_date.replace(/-/g, '')}${searchData.trip_type === 'roundtrip' && searchData.return_date ? searchData.return_date.replace(/-/g, '') : ''}?marker=471016`,
+                    
+                    // الخيار 2: رابط JetRadar
+                    `https://www.jetradar.com/flights/${originCode}/${destCode}/${searchData.depart_date}${searchData.trip_type === 'roundtrip' && searchData.return_date ? '/' + searchData.return_date : ''}`,
+                    
+                    // الخيار 3: رابط TravelPayouts المباشر
+                    `https://www.travelpayouts.com/widgets/692b539a3a0f09f19a214be19fc2d933.html?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}&return_date=${searchData.trip_type === 'roundtrip' ? searchData.return_date : ''}&adults=${searchData.adults || 1}&children=${searchData.children || 0}&infants=${searchData.infants || 0}`,
+                    
+                    // الخيار 4: رابط تجريبي (يمكنك تعديل هذا حسب موقعك الفعلي)
+                    `https://search.skylynxtravel.com/flights?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}&return_date=${searchData.trip_type === 'roundtrip' ? searchData.return_date : ''}&trip_type=${searchData.trip_type}&adults=${searchData.adults || 1}&children=${searchData.children || 0}&infants=${searchData.infants || 0}`
+                ];
                 
-                // إضافة نوع الرحلة
-                searchUrl += `&trip_type=${searchData.trip_type}`;
-                
-                // إضافة تاريخ العودة فقط إذا كان نوع الرحلة roundtrip
-                if (searchData.trip_type === 'roundtrip' && searchData.return_date) {
-                    searchUrl += `&return_date=${searchData.return_date}`;
-                }
-                
-                // إضافة المسافرين
-                if (searchData.passengers) {
-                    searchUrl += `&passengers=${searchData.passengers}`;
-                }
-                
-                // إضافة فئة السفر
-                if (searchData.travel_class) {
-                    searchUrl += `&class=${searchData.travel_class.toLowerCase()}`;
-                }
-                
-                console.log('Search URL:', searchUrl);
-                
-                // فتح الرابط في نافذة جديدة
-                window.open(searchUrl, '_blank');
+                // محاولة فتح الرابط الأول، إذا فشل سنجرب التالي في وظيفة منفصلة
+                openSearchUrl(searchUrls, 0);
                 
             } else if (serviceType === 'hotels') {
                 // استخدام رابط Expedia الموجود أصلاً
@@ -4454,9 +4446,12 @@ select {
                 const pickupDate = document.getElementById('car-pickup-date').value;
                 const returnDate = document.getElementById('car-return-date').value;
                 
-                let searchUrl = `https://cars.skylynxtravel.com/search?loc=${encodeURIComponent(pickup)}&startDate=${pickupDate}&endDate=${returnDate}`;
+                const carUrls = [
+                    `https://www.economybookings.com/?affiliateId=12345&pickup=${encodeURIComponent(pickup)}&from=${pickupDate}&to=${returnDate}`,
+                    `https://www.rentalcars.com/search?affiliateCode=12345&pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(pickup)}&pickupDate=${pickupDate}&dropoffDate=${returnDate}`
+                ];
                 
-                window.open(searchUrl, '_blank');
+                openSearchUrl(carUrls, 0);
                 
             } else {
                 const queryString = createQueryString(searchData);
@@ -4465,6 +4460,33 @@ select {
             
             setTimeout(hideLoadingOverlay, 500);
         }, 1200);
+    }
+
+    // دالة مساعدة لمحاولة فتح عدة روابط
+    function openSearchUrl(urls, index) {
+        if (index >= urls.length) {
+            console.error('All search URLs failed');
+            hideLoadingOverlay();
+            alert('عذراً، حدث خطأ في الاتصال بخدمة البحث. يرجى المحاولة مرة أخرى.');
+            return;
+        }
+        
+        try {
+            // محاولة فتح الرابط
+            const newWindow = window.open(urls[index], '_blank');
+            
+            // التحقق مما إذا كان الرابط قد فتح بنجاح
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                // إذا فشل، جرب الرابط التالي
+                setTimeout(() => openSearchUrl(urls, index + 1), 500);
+            } else {
+                console.log('Successfully opened URL:', urls[index]);
+            }
+        } catch (error) {
+            console.error('Error opening URL:', error);
+            // جرب الرابط التالي
+            setTimeout(() => openSearchUrl(urls, index + 1), 500);
+        }
     }
 
     function extractCodeFromText(text) {
