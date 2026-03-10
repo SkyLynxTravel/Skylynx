@@ -2445,6 +2445,7 @@ select {
 
     <!-- Flights Form -->
     <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/search" method="GET" target="_blank">
+
         <div class="input-grid">
             <div class="field airport-autocomplete">
                 <label class="form-label" data-key="from">From</label>
@@ -2485,7 +2486,7 @@ select {
             
             <div class="field" id="return-date-field">
                 <label class="form-label" data-key="return">Return</label>
-                <input type="date" id="flight-return" name="return_date">
+                <input type="date" id="flight-return">
             </div>
             
             <div class="field passengers-select-wrapper">
@@ -2547,11 +2548,11 @@ select {
             
             <div class="field">
                 <label class="form-label" data-key="travelClass">Travel Class</label>
-                <select id="travel-class" name="class">
-                    <option value="economy" data-key="economy">Economy</option>
-                    <option value="premium_economy" data-key="premiumEconomy">Premium Economy</option>
-                    <option value="business" data-key="businessClass">Business Class</option>
-                    <option value="first" data-key="firstClass">First Class</option>
+                <select id="travel-class">
+                    <option value="ECONOMY" data-key="economy">Economy</option>
+                    <option value="PREMIUM_ECONOMY" data-key="premiumEconomy">Premium Economy</option>
+                    <option value="BUSINESS" data-key="businessClass">Business Class</option>
+                    <option value="FIRST" data-key="firstClass">First Class</option>
                 </select>
             </div>
             
@@ -3844,19 +3845,16 @@ select {
         const roundTripRadio = document.getElementById('roundtrip');
         const oneWayRadio = document.getElementById('oneway');
         const returnDateField = document.getElementById('return-date-field');
-        const returnInput = document.getElementById('flight-return');
         
-        if (!roundTripRadio || !oneWayRadio || !returnDateField || !returnInput) return;
+        if (!roundTripRadio || !oneWayRadio || !returnDateField) return;
         
         function toggleReturnDate() {
             if (oneWayRadio.checked) {
                 returnDateField.style.display = 'none';
-                returnInput.required = false;
-                returnInput.removeAttribute('name'); // إزالة الاسم حتى لا يرسل
+                document.getElementById('flight-return').required = false;
             } else {
                 returnDateField.style.display = 'block';
-                returnInput.required = true;
-                returnInput.setAttribute('name', 'return_date'); // إعادة الاسم
+                document.getElementById('flight-return').required = true;
             }
         }
         
@@ -4320,29 +4318,29 @@ select {
     }
 
     function addClickListeners() {
-        // لا نتدخل في إرسال نموذج الطيران - يرسل تلقائياً إلى travel.skylynxtravel.com
         document.getElementById('flights-form')?.addEventListener('submit', function(e) {
-            console.log('Flights form submitted');
+            e.preventDefault();
+            handleSearch('flights');
         });
         
         document.getElementById('private-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Private jet request sent. Our team will contact you soon.');
+            handleSearch('private');
         });
         
         document.getElementById('hotels-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            handleHotelSearch();
+            handleSearch('hotels');
         });
         
         document.getElementById('cars-form')?.addEventListener('submit', function(e) {
-            console.log('Cars form submitted');
+            e.preventDefault();
+            handleSearch('cars');
         });
         
         document.getElementById('requestGroupQuote')?.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Group request sent. Our team will contact you soon.');
-            document.getElementById('groupModal')?.classList.remove('show');
+            handleGroupSearch();
         });
         
         const sameLocationCheckbox = document.getElementById('same-location');
@@ -4383,25 +4381,242 @@ select {
         });
     }
 
-    function handleHotelSearch() {
-        const destInput = document.getElementById('hotel-destination').value;
-        const isArabic = localStorage.getItem('siteLang') === 'ar';
+    function handleSearch(serviceType) {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const loadingMessage = currentLang === 'ar' 
+            ? '💫 جارٍ تحليل بحثك بواسطة الذكاء الاصطناعي...' 
+            : '💫 Analyzing your search with AI...';
         
-        const baseUrl = isArabic ? 'https://www.expedia.sa/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
-        const langParams = isArabic ? '?langid=1025' : '?';
+        showLoadingOverlay(loadingMessage);
         
-        const url = baseUrl + langParams + '&partnerid=11001417459&destination=' + encodeURIComponent(destInput);
+        const searchData = collectSearchData(serviceType);
         
-        window.open(url, '_blank');
+        if (!validateSearchData(searchData, serviceType)) {
+            hideLoadingOverlay();
+            return;
+        }
+        
+        extractAirportCode(searchData, serviceType);
+        
+        setTimeout(() => {
+            const queryString = createQueryString(searchData);
+            window.location.href = `search-results.html${queryString}`;
+        }, 1200);
     }
 
-    function updatePassengerSummary() {
-        const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
-        const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
-        const infantsCount = parseInt(document.getElementById('infants-count')?.textContent || '0');
-        const total = adultCount + childrenCount + infantsCount;
+    function extractAirportCode(searchData, serviceType) {
+        if (serviceType === 'flights' || serviceType === 'private' || serviceType === 'group') {
+            const originInput = document.getElementById(
+                serviceType === 'flights' ? 'flight-from' : 
+                serviceType === 'private' ? 'private-origin' : 
+                'group-from'
+            );
+            
+            if (originInput && originInput.dataset.airportCode) {
+                searchData.originCode = originInput.dataset.airportCode;
+            } else if (originInput && originInput.value) {
+                const match = originInput.value.match(/\(([A-Z]{3})\)/);
+                if (match) {
+                    searchData.originCode = match[1];
+                }
+            }
+            
+            const destinationInput = document.getElementById(
+                serviceType === 'flights' ? 'flight-to' : 
+                serviceType === 'private' ? 'private-destination' : 
+                'group-to'
+            );
+            
+            if (destinationInput && destinationInput.dataset.airportCode) {
+                searchData.destinationCode = destinationInput.dataset.airportCode;
+            } else if (destinationInput && destinationInput.value) {
+                const match = destinationInput.value.match(/\(([A-Z]{3})\)/);
+                if (match) {
+                    searchData.destinationCode = match[1];
+                }
+            }
+        }
+    }
+
+    function collectSearchData(serviceType) {
+        const data = {
+            service: serviceType,
+            timestamp: new Date().toISOString(),
+            source: 'SkyLynx Travel'
+        };
         
-        document.getElementById('totalPassengers').textContent = total;
+        switch(serviceType) {
+            case 'flights':
+                data.origin = document.getElementById('flight-from')?.value || '';
+                data.destination = document.getElementById('flight-to')?.value || '';
+                data.depart_date = document.getElementById('flight-departure')?.value || '';
+                data.return_date = document.getElementById('flight-return')?.value || '';
+                
+                const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
+                const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
+                const infantsCount = parseInt(document.getElementById('infants-count')?.textContent || '0');
+                data.passengers = adultCount + childrenCount + infantsCount;
+                data.adults = adultCount;
+                data.children = childrenCount;
+                data.infants = infantsCount;
+                
+                data.travel_class = document.getElementById('travel-class')?.value || 'ECONOMY';
+                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
+                break;
+                
+            case 'private':
+                data.origin = document.getElementById('private-origin')?.value || '';
+                data.destination = document.getElementById('private-destination')?.value || '';
+                data.depart_date = document.getElementById('private-departure')?.value || '';
+                data.return_date = document.getElementById('private-return')?.value || '';
+                data.passengers = document.getElementById('private-passengers')?.value || '4';
+                data.jet_type = document.getElementById('jet-type')?.value || 'MID';
+                break;
+                
+            case 'hotels':
+                data.destination = document.getElementById('hotel-destination')?.value || '';
+                data.checkin = document.getElementById('hotel-checkin')?.value || '';
+                data.checkout = document.getElementById('hotel-checkout')?.value || '';
+                data.rooms = document.getElementById('hotel-rooms')?.value || '1';
+                data.guests = document.getElementById('hotel-guests')?.value || '2';
+                data.stars = document.getElementById('hotel-stars')?.value || '5';
+                break;
+                
+            case 'cars':
+                data.origin = document.getElementById('car-pickup')?.value || '';
+                data.destination = document.getElementById('car-dropoff')?.value || data.origin;
+                data.pickup_date = document.getElementById('car-pickup-date')?.value || '';
+                data.pickup_time = document.getElementById('car-pickup-time')?.value || '10:00';
+                data.return_date = document.getElementById('car-return-date')?.value || '';
+                data.return_time = document.getElementById('car-return-time')?.value || '18:00';
+                data.car_type = document.getElementById('car-type')?.value || 'ECONOMY';
+                data.with_driver = document.getElementById('driver-option')?.checked || false;
+                break;
+        }
+        
+        return data;
+    }
+
+    function validateSearchData(data, serviceType) {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        
+        if (serviceType === 'flights' || serviceType === 'private') {
+            if (!data.origin || !data.destination) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد مكان المغادرة والوجهة' 
+                    : '⚠️ Please specify origin and destination');
+                return false;
+            }
+            
+            const originHasCode = data.origin.includes('(') && data.origin.includes(')');
+            const destinationHasCode = data.destination.includes('(') && data.destination.includes(')');
+            
+            if (!originHasCode || !destinationHasCode) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                    : '⚠️ Please select a valid airport from the list');
+                return false;
+            }
+            
+            if (!data.depart_date) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد تاريخ المغادرة' 
+                    : '⚠️ Please select departure date');
+                return false;
+            }
+            
+            if (data.trip_type === 'roundtrip' && !data.return_date) {
+                alert(currentLang === 'ar' 
+                    ? '⚠️ يرجى تحديد تاريخ العودة للرحلة ذهاب وعودة' 
+                    : '⚠️ Please select return date for round trip');
+                return false;
+            }
+        }
+        
+        if (serviceType === 'hotels' && !data.destination) {
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى تحديد الوجهة' 
+                : '⚠️ Please specify destination');
+            return false;
+        }
+        
+        return true;
+    }
+
+    function createQueryString(data) {
+        const params = new URLSearchParams();
+        
+        Object.keys(data).forEach(key => {
+            if (data[key] !== undefined && data[key] !== null && data[key] !== '') {
+                params.append(key, data[key]);
+            }
+        });
+        
+        return `?${params.toString()}`;
+    }
+
+    function handleGroupSearch() {
+        const currentLang = localStorage.getItem('siteLang') || 'en';
+        const loadingMessage = currentLang === 'ar' 
+            ? '👥 جارٍ معالجة طلب المجموعة...' 
+            : '👥 Processing group request...';
+        
+        showLoadingOverlay(loadingMessage);
+        
+        const groupData = {
+            service: 'group',
+            group_type: document.getElementById('group-type-select')?.value || 'corporate',
+            origin: document.getElementById('group-from')?.value || '',
+            destination: document.getElementById('group-to')?.value || '',
+            depart_date: document.getElementById('group-departure-date')?.value || '',
+            return_date: document.getElementById('group-return-date')?.value || '',
+            passengers: document.getElementById('group-passengers')?.value || '20',
+            budget: document.getElementById('group-budget')?.value || 'premium',
+            requirements: document.getElementById('group-requirements')?.value || '',
+            timestamp: new Date().toISOString()
+        };
+        
+        extractAirportCode(groupData, 'group');
+        
+        if (!groupData.origin || !groupData.destination || !groupData.depart_date) {
+            hideLoadingOverlay();
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى ملء جميع الحقول المطلوبة' 
+                : '⚠️ Please fill all required fields');
+            return;
+        }
+        
+        const originHasCode = groupData.origin.includes('(') && groupData.origin.includes(')');
+        const destinationHasCode = groupData.destination.includes('(') && groupData.destination.includes(')');
+        
+        if (!originHasCode || !destinationHasCode) {
+            alert(currentLang === 'ar' 
+                ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                : '⚠️ Please select a valid airport from the list');
+            return;
+        }
+        
+        document.getElementById('groupModal')?.classList.remove('show');
+        
+        setTimeout(() => {
+            const queryString = createQueryString(groupData);
+            window.location.href = `search-results.html${queryString}`;
+        }, 1500);
+    }
+
+    function showLoadingOverlay(message = 'Processing your request...') {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.querySelector('.loading-text').textContent = message;
+            overlay.style.display = 'flex';
+        }
+    }
+
+    function hideLoadingOverlay() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
     }
 </script>
 </body>
