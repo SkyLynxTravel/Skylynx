@@ -2445,7 +2445,6 @@ select {
 
     <!-- Flights Form -->
     <form id="flights-form" class="form-content active" action="https://travel.skylynxtravel.com/search" method="GET" target="_blank">
-
         <div class="input-grid">
             <div class="field airport-autocomplete">
                 <label class="form-label" data-key="from">From</label>
@@ -2486,7 +2485,7 @@ select {
             
             <div class="field" id="return-date-field">
                 <label class="form-label" data-key="return">Return</label>
-                <input type="date" id="flight-return">
+                <input type="date" id="flight-return" name="return_date">
             </div>
             
             <div class="field passengers-select-wrapper">
@@ -2548,11 +2547,11 @@ select {
             
             <div class="field">
                 <label class="form-label" data-key="travelClass">Travel Class</label>
-                <select id="travel-class">
-                    <option value="ECONOMY" data-key="economy">Economy</option>
-                    <option value="PREMIUM_ECONOMY" data-key="premiumEconomy">Premium Economy</option>
-                    <option value="BUSINESS" data-key="businessClass">Business Class</option>
-                    <option value="FIRST" data-key="firstClass">First Class</option>
+                <select id="travel-class" name="class">
+                    <option value="economy" data-key="economy">Economy</option>
+                    <option value="premium_economy" data-key="premiumEconomy">Premium Economy</option>
+                    <option value="business" data-key="businessClass">Business Class</option>
+                    <option value="first" data-key="firstClass">First Class</option>
                 </select>
             </div>
             
@@ -3852,9 +3851,11 @@ select {
             if (oneWayRadio.checked) {
                 returnDateField.style.display = 'none';
                 document.getElementById('flight-return').required = false;
+                document.getElementById('flight-return').removeAttribute('name');
             } else {
                 returnDateField.style.display = 'block';
                 document.getElementById('flight-return').required = true;
+                document.getElementById('flight-return').setAttribute('name', 'return_date');
             }
         }
         
@@ -4319,8 +4320,9 @@ select {
 
     function addClickListeners() {
         document.getElementById('flights-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleSearch('flights');
+            // لا نقوم بـ preventDefault هنا لأننا نريد إرسال النموذج بشكل طبيعي
+            // النموذج سيرسل تلقائياً إلى travel.skylynxtravel.com/search مع جميع المعاملات
+            console.log('Flights form submitted');
         });
         
         document.getElementById('private-form')?.addEventListener('submit', function(e) {
@@ -4334,8 +4336,8 @@ select {
         });
         
         document.getElementById('cars-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleSearch('cars');
+            // لا نقوم بـ preventDefault هنا لأن النموذج سيرسل تلقائياً
+            console.log('Cars form submitted');
         });
         
         document.getElementById('requestGroupQuote')?.addEventListener('click', function(e) {
@@ -4399,9 +4401,74 @@ select {
         extractAirportCode(searchData, serviceType);
         
         setTimeout(() => {
-            const queryString = createQueryString(searchData);
-            window.location.href = `search-results.html${queryString}`;
+            if (serviceType === 'flights') {
+                const originCode = searchData.originCode || extractCodeFromText(searchData.origin);
+                const destCode = searchData.destinationCode || extractCodeFromText(searchData.destination);
+                
+                if (!originCode || !destCode) {
+                    hideLoadingOverlay();
+                    alert(currentLang === 'ar' 
+                        ? '⚠️ يرجى اختيار مطار صالح من القائمة' 
+                        : '⚠️ Please select a valid airport from the list');
+                    return;
+                }
+                
+                // بناء رابط البحث - استخدام الرابط الأصلي الذي كان يعمل
+                let searchUrl = `https://travel.skylynxtravel.com/search?origin=${originCode}&destination=${destCode}&depart_date=${searchData.depart_date}`;
+                
+                // إضافة نوع الرحلة - هذا هو المفتاح لحل المشكلة
+                searchUrl += `&trip_type=${searchData.trip_type}`;
+                
+                // إضافة تاريخ العودة فقط إذا كان نوع الرحلة roundtrip
+                if (searchData.trip_type === 'roundtrip' && searchData.return_date) {
+                    searchUrl += `&return_date=${searchData.return_date}`;
+                }
+                
+                // إضافة المسافرين
+                if (searchData.passengers) {
+                    searchUrl += `&passengers=${searchData.passengers}`;
+                }
+                
+                // إضافة فئة السفر
+                if (searchData.travel_class) {
+                    searchUrl += `&class=${searchData.travel_class.toLowerCase()}`;
+                }
+                
+                console.log('Search URL:', searchUrl);
+                
+                // فتح الرابط في نافذة جديدة
+                window.open(searchUrl, '_blank');
+                
+            } else if (serviceType === 'hotels') {
+                // استخدام رابط Expedia الموجود أصلاً
+                const destInput = document.getElementById('hotel-destination').value;
+                const isArabic = currentLang === 'ar';
+                
+                const baseUrl = isArabic ? 'https://www.expedia.sa/Hotel-Search' : 'https://www.expedia.com/Hotel-Search';
+                const langParams = isArabic ? '?langid=1025' : '?';
+                
+                const url = baseUrl + langParams + '&partnerid=11001417459&destination=' + encodeURIComponent(destInput);
+                
+                window.open(url, '_blank');
+                
+            } else if (serviceType === 'cars') {
+                // استخدام رابط السيارات
+                const form = document.getElementById('cars-form');
+                form.submit();
+                
+            } else {
+                const queryString = createQueryString(searchData);
+                window.location.href = `search-results.html${queryString}`;
+            }
+            
+            setTimeout(hideLoadingOverlay, 500);
         }, 1200);
+    }
+
+    function extractCodeFromText(text) {
+        if (!text) return null;
+        const match = text.match(/\(([A-Z]{3})\)/);
+        return match ? match[1] : null;
     }
 
     function extractAirportCode(searchData, serviceType) {
@@ -4450,7 +4517,14 @@ select {
                 data.origin = document.getElementById('flight-from')?.value || '';
                 data.destination = document.getElementById('flight-to')?.value || '';
                 data.depart_date = document.getElementById('flight-departure')?.value || '';
-                data.return_date = document.getElementById('flight-return')?.value || '';
+                
+                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
+                
+                if (data.trip_type === 'roundtrip') {
+                    data.return_date = document.getElementById('flight-return')?.value || '';
+                } else {
+                    data.return_date = '';
+                }
                 
                 const adultCount = parseInt(document.getElementById('adult-count')?.textContent || '1');
                 const childrenCount = parseInt(document.getElementById('children-count')?.textContent || '0');
@@ -4461,7 +4535,6 @@ select {
                 data.infants = infantsCount;
                 
                 data.travel_class = document.getElementById('travel-class')?.value || 'ECONOMY';
-                data.trip_type = document.querySelector('input[name="tripType"]:checked')?.value || 'roundtrip';
                 break;
                 
             case 'private':
