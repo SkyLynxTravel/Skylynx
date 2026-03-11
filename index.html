@@ -3841,28 +3841,36 @@ select {
         });
     }
 
-    function initializeTripTypeToggle() {
-        const roundTripRadio = document.getElementById('roundtrip');
-        const oneWayRadio = document.getElementById('oneway');
-        const returnDateField = document.getElementById('return-date-field');
-        
-        if (!roundTripRadio || !oneWayRadio || !returnDateField) return;
-        
-        function toggleReturnDate() {
-            if (oneWayRadio.checked) {
-                returnDateField.style.display = 'none';
-                document.getElementById('flight-return').required = false;
-            } else {
-                returnDateField.style.display = 'block';
-                document.getElementById('flight-return').required = true;
-            }
+function initializeTripTypeToggle() {
+    const roundTripRadio = document.getElementById('roundtrip');
+    const oneWayRadio = document.getElementById('oneway');
+    const returnDateField = document.getElementById('return-date-field');
+    const returnInput = document.getElementById('flight-return');
+    const flightsForm = document.getElementById('flights-form');
+    
+    if (!roundTripRadio || !oneWayRadio || !returnDateField || !returnInput || !flightsForm) return;
+    
+    function toggleReturnDate() {
+        if (oneWayRadio.checked) {
+            returnDateField.style.display = 'none';
+            returnInput.required = false;
+            returnInput.removeAttribute('name');
+            // تغيير action الرابط ليدعم One Way
+            flightsForm.action = 'https://travel.skylynxtravel.com/search?trip_type=oneway';
+        } else {
+            returnDateField.style.display = 'block';
+            returnInput.required = true;
+            returnInput.setAttribute('name', 'return_date');
+            // إعادة action إلى الوضع الطبيعي
+            flightsForm.action = 'https://travel.skylynxtravel.com/search';
         }
-        
-        toggleReturnDate();
-        
-        roundTripRadio.addEventListener('change', toggleReturnDate);
-        oneWayRadio.addEventListener('change', toggleReturnDate);
     }
+    
+    toggleReturnDate();
+    
+    roundTripRadio.addEventListener('change', toggleReturnDate);
+    oneWayRadio.addEventListener('change', toggleReturnDate);
+}
 
     function initializeAIAssistant() {
         const aiBtn = document.getElementById('aiAssistantBtn');
