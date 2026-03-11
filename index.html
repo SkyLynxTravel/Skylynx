@@ -3841,28 +3841,43 @@ select {
         });
     }
 
-    function initializeTripTypeToggle() {
-        const roundTripRadio = document.getElementById('roundtrip');
-        const oneWayRadio = document.getElementById('oneway');
-        const returnDateField = document.getElementById('return-date-field');
-        
-        if (!roundTripRadio || !oneWayRadio || !returnDateField) return;
-        
-        function toggleReturnDate() {
-            if (oneWayRadio.checked) {
-                returnDateField.style.display = 'none';
-                document.getElementById('flight-return').required = false;
-            } else {
-                returnDateField.style.display = 'block';
-                document.getElementById('flight-return').required = true;
-            }
-        }
-        
-        toggleReturnDate();
-        
-        roundTripRadio.addEventListener('change', toggleReturnDate);
-        oneWayRadio.addEventListener('change', toggleReturnDate);
+function initializeTripTypeToggle() {
+    const roundTripRadio = document.getElementById('roundtrip');
+    const oneWayRadio = document.getElementById('oneway');
+    const returnDateField = document.getElementById('return-date-field');
+    const returnInput = document.getElementById('flight-return');
+    const flightsForm = document.getElementById('flights-form');
+    
+    if (!roundTripRadio || !oneWayRadio || !returnDateField || !returnInput || !flightsForm) return;
+    
+    // إنشاء حقل مخفي لـ trip_type إذا لم يكن موجوداً
+    let tripTypeInput = document.querySelector('input[name="trip_type"]');
+    if (!tripTypeInput) {
+        tripTypeInput = document.createElement('input');
+        tripTypeInput.type = 'hidden';
+        tripTypeInput.name = 'trip_type';
+        flightsForm.appendChild(tripTypeInput);
     }
+    
+    function toggleReturnDate() {
+        if (oneWayRadio.checked) {
+            returnDateField.style.display = 'none';
+            returnInput.required = false;
+            returnInput.removeAttribute('name');
+            tripTypeInput.value = 'oneway';
+        } else {
+            returnDateField.style.display = 'block';
+            returnInput.required = true;
+            returnInput.setAttribute('name', 'return_date');
+            tripTypeInput.value = 'roundtrip';
+        }
+    }
+    
+    toggleReturnDate();
+    
+    roundTripRadio.addEventListener('change', toggleReturnDate);
+    oneWayRadio.addEventListener('change', toggleReturnDate);
+}
 
     function initializeAIAssistant() {
         const aiBtn = document.getElementById('aiAssistantBtn');
