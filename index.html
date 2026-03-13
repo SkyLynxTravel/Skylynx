@@ -3683,34 +3683,39 @@ select {
     }
 
     function setDefaultDates() {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        const nextWeek = new Date(today);
-        nextWeek.setDate(today.getDate() + 7);
-        
-        const formatDate = (date) => date.toISOString().split('T')[0];
-        
-        const flightDeparture = document.getElementById('flight-departure');
-        const flightReturn = document.getElementById('flight-return');
-        if (flightDeparture) flightDeparture.value = formatDate(tomorrow);
-        if (flightReturn) flightReturn.value = formatDate(nextWeek);
-        
-        const privateDeparture = document.getElementById('private-departure');
-        const privateReturn = document.getElementById('private-return');
-        if (privateDeparture) privateDeparture.value = formatDate(tomorrow);
-        if (privateReturn) privateReturn.value = formatDate(nextWeek);
-        
-        const hotelCheckin = document.getElementById('hotel-checkin');
-        const hotelCheckout = document.getElementById('hotel-checkout');
-        if (hotelCheckin) hotelCheckin.value = formatDate(tomorrow);
-        if (hotelCheckout) hotelCheckout.value = formatDate(nextWeek);
-        
-        const carPickupDate = document.getElementById('car-pickup-date');
-        const carReturnDate = document.getElementById('car-return-date');
-        if (carPickupDate) carPickupDate.value = formatDate(tomorrow);
-        if (carReturnDate) carReturnDate.value = formatDate(nextWeek);
-    }
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const nextWeek = new Date(today);
+    nextWeek.setDate(today.getDate() + 7);
+    
+    const formatDate = (date) => date.toISOString().split('T')[0];
+    
+    // --- رحلات الطيران (تعديل ليكون ذهاب فقط) ---
+    const flightDeparture = document.getElementById('flight-departure');
+    const flightReturn = document.getElementById('flight-return');
+    if (flightDeparture) flightDeparture.value = formatDate(tomorrow);
+    if (flightReturn) flightReturn.value = ""; // تم إفراغ خانة العودة هنا
+
+    // --- الرحلات الخاصة (تعديل ليكون ذهاب فقط) ---
+    const privateDeparture = document.getElementById('private-departure');
+    const privateReturn = document.getElementById('private-return');
+    if (privateDeparture) privateDeparture.value = formatDate(tomorrow);
+    if (privateReturn) privateReturn.value = ""; // تم إفراغ خانة العودة هنا
+
+    // --- الفنادق (تبقى كما هي لأنها تتطلب تاريخ خروج) ---
+    const hotelCheckin = document.getElementById('hotel-checkin');
+    const hotelCheckout = document.getElementById('hotel-checkout');
+    if (hotelCheckin) hotelCheckin.value = formatDate(tomorrow);
+    if (hotelCheckout) hotelCheckout.value = formatDate(nextWeek);
+    
+    // --- تأجير السيارات (تبقى كما هي لأنها تتطلب تاريخ تسليم) ---
+    const carPickupDate = document.getElementById('car-pickup-date');
+    const carReturnDate = document.getElementById('car-return-date');
+    if (carPickupDate) carPickupDate.value = formatDate(tomorrow);
+    if (carReturnDate) carReturnDate.value = formatDate(nextWeek);
+}
+
 
     function updatePlaceholders(lang) {
         const placeholders = {
