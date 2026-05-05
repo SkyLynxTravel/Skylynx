@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyLynx Travel | Experience the Elevation</title>
+    <title>SkyLynx Travel | Elevation Reimagined</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
             --electric-blue: #38bdf8;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --container-bg: rgba(15, 23, 42, 0.8);
             --font-family: 'Poppins', sans-serif;
         }
 
@@ -22,30 +21,45 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            height: 100vh; 
+            min-height: 100vh; 
             margin: 0; 
             background-color: var(--bg-deep-blue); 
-            background-image: radial-gradient(circle at center, #0c1c3a 0%, #020617 70%);
+            background-image: radial-gradient(circle at center, #0c1c3a 0%, #020617 80%);
             color: var(--text-main); 
             text-align: center; 
+            padding: 20px;
         }
 
-        .luxe-container { 
-            padding: 70px 50px; 
-            border: 2px solid rgba(56, 189, 248, 0.3); 
-            border-radius: 40px; 
-            background-color: var(--container-bg); 
-            box-shadow: 0 0 50px rgba(56, 189, 248, 0.15); 
-            max-width: 650px; 
-            backdrop-filter: blur(15px);
+        .luxe-container { width: 100%; max-width: 600px; }
+
+        /* --- تصميم الشعار العلوي (المثلث والخطوط) --- */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--electric-blue), transparent);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid var(--electric-blue);
+            filter: drop-shadow(0 0 8px var(--electric-blue));
         }
 
         .brand-name { 
-            color: var(--text-main);
-            font-size: 4em; 
+            font-size: 4.5em; 
             font-weight: 700; 
             margin: 0;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
         .brand-sub {
@@ -53,43 +67,54 @@
             font-size: 1.2em;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 8px;
+            letter-spacing: 10px;
             margin-top: 5px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        /* الكلمات الفخمة التي اتفقنا عليها */
         .headline { 
-            color: var(--text-main); 
-            font-size: 1.5em; 
-            line-height: 1.6; 
+            font-size: 1.6em; 
+            line-height: 1.5; 
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 0 10px;
         }
 
         .sub-headline {
             color: var(--text-sub);
             font-size: 1.1em;
             font-weight: 300;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .divider {
-            width: 100%;
+            width: 80%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
-            margin: 30px auto;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.2), transparent);
+            margin: 40px auto 20px;
         }
 
         .legal-note { 
             font-size: 0.85em; 
-            color: rgba(148, 163, 184, 0.6); 
+            color: rgba(148, 163, 184, 0.5); 
             font-style: italic;
+        }
+
+        /* تحسين المظهر للجوال */
+        @media (max-width: 480px) {
+            .brand-name { font-size: 3.5em; }
+            .brand-sub { font-size: 1em; letter-spacing: 6px; }
+            .headline { font-size: 1.3em; }
         }
     </style>
 </head>
 <body>
     <div class="luxe-container">
+        <div class="logo-wrapper">
+            <div class="line"></div>
+            <div class="triangle"></div>
+            <div class="line"></div>
+        </div>
         
         <h1 class="brand-name">SkyLynx</h1>
         <div class="brand-sub">Travel</div>
